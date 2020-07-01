@@ -1,0 +1,2957 @@
+1
+00:00:00,560 --> 00:00:10,270
+
+[Music]
+
+2
+00:00:10,280 --> 00:00:13,799
+hey there welcome to web dev live
+
+3
+00:00:13,799 --> 00:00:16,529
+I'm deal now man and I work on the web
+
+4
+00:00:16,529 --> 00:00:18,660
+developer ecosystem at Google and I'm
+
+5
+00:00:18,660 --> 00:00:21,920
+delighted to kick off our online event
+
+6
+00:00:21,920 --> 00:00:24,180
+first though I want to acknowledge the
+
+7
+00:00:24,180 --> 00:00:26,550
+times we're in we're dealing with a
+
+8
+00:00:26,550 --> 00:00:28,830
+global pandemic that has taken a huge
+
+9
+00:00:28,830 --> 00:00:32,399
+toll on us all and most recently we
+
+10
+00:00:32,399 --> 00:00:34,079
+witnessed two events which have once
+
+11
+00:00:34,079 --> 00:00:36,600
+again surfaced the systemic racism in
+
+12
+00:00:36,600 --> 00:00:38,760
+our society that we must do everything
+
+13
+00:00:38,760 --> 00:00:42,059
+we can to eradicate you know these
+
+14
+00:00:42,059 --> 00:00:43,800
+events have been really humbling they're
+
+15
+00:00:43,800 --> 00:00:45,210
+showing us how much work we have ahead
+
+16
+00:00:45,210 --> 00:00:47,520
+of us but they also show us the power of
+
+17
+00:00:47,520 --> 00:00:50,370
+community so we join you today and over
+
+18
+00:00:50,370 --> 00:00:52,410
+the next three days in the spirit of
+
+19
+00:00:52,410 --> 00:00:54,690
+being together and helping each other
+
+20
+00:00:54,690 --> 00:00:56,520
+because we're upset when we had to
+
+21
+00:00:56,520 --> 00:00:58,590
+cancel Google i/o and I kept thinking
+
+22
+00:00:58,590 --> 00:01:00,719
+about an empty Shoreline Amphitheatre on
+
+23
+00:01:00,719 --> 00:01:02,129
+the days that some of us would have
+
+24
+00:01:02,129 --> 00:01:04,559
+congregated a web developers reached out
+
+25
+00:01:04,559 --> 00:01:07,140
+showing these same feelings wishing we
+
+26
+00:01:07,140 --> 00:01:08,820
+could be discussing ideas and enjoying
+
+27
+00:01:08,820 --> 00:01:10,830
+the hallway track whether you're joining
+
+28
+00:01:10,830 --> 00:01:14,369
+us from your couch kitchen or hammock we
+
+29
+00:01:14,369 --> 00:01:16,380
+hope you're safe and ready to kick web
+
+30
+00:01:16,380 --> 00:01:19,380
+dev live into gear now we'll be coming
+
+31
+00:01:19,380 --> 00:01:21,060
+to you in different time zones each day
+
+32
+00:01:21,060 --> 00:01:23,159
+reaching you no matter where you are on
+
+33
+00:01:23,159 --> 00:01:24,930
+the globe will be bringing you content
+
+34
+00:01:24,930 --> 00:01:27,119
+from across our teams as well as members
+
+35
+00:01:27,119 --> 00:01:31,200
+from their web community at large now
+
+36
+00:01:31,200 --> 00:01:33,060
+each day you'll have Googlers on standby
+
+37
+00:01:33,060 --> 00:01:35,430
+to answer your questions in real-time so
+
+38
+00:01:35,430 --> 00:01:36,750
+as you're watching the session simply
+
+39
+00:01:36,750 --> 00:01:39,420
+head over to the live chat on web dev
+
+40
+00:01:39,420 --> 00:01:42,210
+slash live or on YouTube and just ask
+
+41
+00:01:42,210 --> 00:01:42,570
+away
+
+42
+00:01:42,570 --> 00:01:45,780
+now when coronavirus became global we
+
+43
+00:01:45,780 --> 00:01:48,149
+really felt the need to stabilize this
+
+44
+00:01:48,149 --> 00:01:50,250
+resulted in a spawning chrome releases
+
+45
+00:01:50,250 --> 00:01:52,950
+and temporarily rolling back the same
+
+46
+00:01:52,950 --> 00:01:55,229
+site cookie changes now we wanted to
+
+47
+00:01:55,229 --> 00:01:57,750
+track chrome usage and see what changed
+
+48
+00:01:57,750 --> 00:01:59,579
+to make sure that we could be on top of
+
+49
+00:01:59,579 --> 00:02:02,189
+any ecosystem changes - you probably
+
+50
+00:02:02,189 --> 00:02:03,990
+won't be surprised that we saw surges
+
+51
+00:02:03,990 --> 00:02:07,619
+and usage of meteor api's as video chat
+
+52
+00:02:07,619 --> 00:02:10,259
+and streaming really soared now also
+
+53
+00:02:10,259 --> 00:02:12,690
+some types of content so large traffic
+
+54
+00:02:12,690 --> 00:02:13,740
+surges
+
+55
+00:02:13,740 --> 00:02:16,410
+such as food commerce entertainment
+
+56
+00:02:16,410 --> 00:02:20,370
+health science etc and many developers
+
+57
+00:02:20,370 --> 00:02:22,920
+will focus in on making sure these sites
+
+58
+00:02:22,920 --> 00:02:25,170
+were as resilient as possible that's
+
+59
+00:02:25,170 --> 00:02:27,120
+when we gathered our best practices and
+
+60
+00:02:27,120 --> 00:02:30,090
+made them available on web dev slash
+
+61
+00:02:30,090 --> 00:02:32,910
+Kovac 19 we saw a lot of developers
+
+62
+00:02:32,910 --> 00:02:34,590
+scramble to make changes to their web
+
+63
+00:02:34,590 --> 00:02:37,310
+sites and many created new ones
+
+64
+00:02:37,310 --> 00:02:39,600
+governments had to jump on this to make
+
+65
+00:02:39,600 --> 00:02:40,980
+sure the people had all of the critical
+
+66
+00:02:40,980 --> 00:02:43,410
+information that was changing rapidly
+
+67
+00:02:43,410 --> 00:02:45,720
+I remember seeing Alex Russell tweet
+
+68
+00:02:45,720 --> 00:02:47,760
+about one of these government sites from
+
+69
+00:02:47,760 --> 00:02:49,830
+the state of California we were really
+
+70
+00:02:49,830 --> 00:02:51,810
+inspired with their work and wanted to
+
+71
+00:02:51,810 --> 00:02:53,640
+ask them about their experience and they
+
+72
+00:02:53,640 --> 00:02:55,620
+kindly agreed to join us so let's
+
+73
+00:02:55,620 --> 00:02:58,140
+welcome Aaron Hines the engineering tech
+
+74
+00:02:58,140 --> 00:03:00,600
+lead on the project thank you great to
+
+75
+00:03:00,600 --> 00:03:02,550
+be here so Aaron I'm really curious
+
+76
+00:03:02,550 --> 00:03:04,680
+about how this site even all came
+
+77
+00:03:04,680 --> 00:03:07,560
+together the alpha dot ca.gov team was
+
+78
+00:03:07,560 --> 00:03:10,080
+formed in December of 2019 by an
+
+79
+00:03:10,080 --> 00:03:12,750
+helicopter Arte to bring human centered
+
+80
+00:03:12,750 --> 00:03:14,760
+design processes to the state of
+
+81
+00:03:14,760 --> 00:03:15,990
+California and improve their online
+
+82
+00:03:15,990 --> 00:03:18,810
+services we built a lot of prototypes
+
+83
+00:03:18,810 --> 00:03:21,030
+for things like how to help people
+
+84
+00:03:21,030 --> 00:03:23,250
+review the safety of their tap water and
+
+85
+00:03:23,250 --> 00:03:25,170
+see if they're eligible for subsidized
+
+86
+00:03:25,170 --> 00:03:27,360
+phone services and to prepare for
+
+87
+00:03:27,360 --> 00:03:29,760
+wildfires and then when the pandemic at
+
+88
+00:03:29,760 --> 00:03:31,530
+the state were asked to stand up the
+
+89
+00:03:31,530 --> 00:03:34,170
+public response site Connie so when a
+
+90
+00:03:34,170 --> 00:03:35,850
+government team has to build something
+
+91
+00:03:35,850 --> 00:03:38,160
+like this like how do you go about it
+
+92
+00:03:38,160 --> 00:03:40,200
+what do you all call principals the
+
+93
+00:03:40,200 --> 00:03:41,820
+number one goal is to make something
+
+94
+00:03:41,820 --> 00:03:44,850
+that works well for everybody and the
+
+95
+00:03:44,850 --> 00:03:46,890
+technical considerations they're passing
+
+96
+00:03:46,890 --> 00:03:48,660
+accessibility audits making sure it
+
+97
+00:03:48,660 --> 00:03:50,910
+works with keyboard navigation with
+
+98
+00:03:50,910 --> 00:03:53,340
+screen readers and that it has a smooth
+
+99
+00:03:53,340 --> 00:03:56,220
+experience on low-end hardware we use
+
+100
+00:03:56,220 --> 00:03:57,840
+the cheapest phone which we get from the
+
+101
+00:03:57,840 --> 00:03:59,520
+local Cricket Wireless as our test
+
+102
+00:03:59,520 --> 00:04:01,830
+device and the non-technical
+
+103
+00:04:01,830 --> 00:04:03,920
+considerations are the readability
+
+104
+00:04:03,920 --> 00:04:06,270
+what's the grade level of all the
+
+105
+00:04:06,270 --> 00:04:08,970
+content and are we really building
+
+106
+00:04:08,970 --> 00:04:10,860
+something that users need and iterating
+
+107
+00:04:10,860 --> 00:04:14,220
+based on their feedback got it now I've
+
+108
+00:04:14,220 --> 00:04:15,690
+been trying to picture the time pressure
+
+109
+00:04:15,690 --> 00:04:18,420
+that you had to get this sight out he
+
+110
+00:04:18,420 --> 00:04:19,739
+tell us a little bit about how you
+
+111
+00:04:19,739 --> 00:04:21,510
+actually built the sign and how you
+
+112
+00:04:21,510 --> 00:04:23,520
+manage the trade-offs between quality
+
+113
+00:04:23,520 --> 00:04:26,430
+and that time line sure it's definitely
+
+114
+00:04:26,430 --> 00:04:27,389
+an accelerated time
+
+115
+00:04:27,389 --> 00:04:29,520
+and put the site up in four days then
+
+116
+00:04:29,520 --> 00:04:30,599
+the governor announced a statewide
+
+117
+00:04:30,599 --> 00:04:32,509
+lockdown and we had millions of visitors
+
+118
+00:04:32,509 --> 00:04:35,129
+really happy that we chose a static site
+
+119
+00:04:35,129 --> 00:04:36,779
+generator for that because it helped us
+
+120
+00:04:36,779 --> 00:04:39,479
+whether the traffic smoothly
+
+121
+00:04:39,479 --> 00:04:41,279
+we chose the Lebanese or the state
+
+122
+00:04:41,279 --> 00:04:44,189
+static site generator and we augment
+
+123
+00:04:44,189 --> 00:04:45,629
+that with web components and
+
+124
+00:04:45,629 --> 00:04:48,930
+surveillance API is built on nodejs got
+
+125
+00:04:48,930 --> 00:04:50,849
+it we're actually fans of eleventy too
+
+126
+00:04:50,849 --> 00:04:53,310
+we use it on web dev and really like it
+
+127
+00:04:53,310 --> 00:04:55,560
+was this kind of a new set up for the
+
+128
+00:04:55,560 --> 00:04:57,629
+team to build a web site like this or
+
+129
+00:04:57,629 --> 00:04:58,889
+have you been doing this for a while
+
+130
+00:04:58,889 --> 00:05:01,169
+I remember reading the article about how
+
+131
+00:05:01,169 --> 00:05:03,060
+web dev was built and being really happy
+
+132
+00:05:03,060 --> 00:05:04,080
+that we were using some of the same
+
+133
+00:05:04,080 --> 00:05:07,710
+tools we started using 11d at the end of
+
+134
+00:05:07,710 --> 00:05:10,349
+last year just to use it for a blog on
+
+135
+00:05:10,349 --> 00:05:14,039
+new Alfred on CA gov and when we used it
+
+136
+00:05:14,039 --> 00:05:17,240
+for the koban 19 site it's built on
+
+137
+00:05:17,240 --> 00:05:19,199
+content authored in the WordPress
+
+138
+00:05:19,199 --> 00:05:20,639
+environment and then we consume it with
+
+139
+00:05:20,639 --> 00:05:23,219
+the word best API and use github actions
+
+140
+00:05:23,219 --> 00:05:25,680
+for the eleventy production build got it
+
+141
+00:05:25,680 --> 00:05:29,249
+so you know now you've got the site out
+
+142
+00:05:29,249 --> 00:05:30,659
+there now I'm curious what's next fate
+
+143
+00:05:30,659 --> 00:05:33,120
+for you and the team next things for the
+
+144
+00:05:33,120 --> 00:05:35,370
+team are continuing to respond to the
+
+145
+00:05:35,370 --> 00:05:37,259
+pandemic we're going to be getting back
+
+146
+00:05:37,259 --> 00:05:39,509
+to helping improve other online services
+
+147
+00:05:39,509 --> 00:05:41,969
+and we're hiring check us out at news
+
+148
+00:05:41,969 --> 00:05:43,830
+dot alpha dot ca.gov if you want to help
+
+149
+00:05:43,830 --> 00:05:46,500
+out we're talking about eleven E and the
+
+150
+00:05:46,500 --> 00:05:48,569
+other tools that we're using I wanted to
+
+151
+00:05:48,569 --> 00:05:50,189
+mention that lighthouse is an incredibly
+
+152
+00:05:50,189 --> 00:05:52,289
+important tool for us because
+
+153
+00:05:52,289 --> 00:05:54,180
+performance is such a paramount concern
+
+154
+00:05:54,180 --> 00:05:57,210
+and I love the way that it came affiance
+
+155
+00:05:57,210 --> 00:05:58,740
+my development you can get the rest of
+
+156
+00:05:58,740 --> 00:06:00,839
+your teammates challenged each other and
+
+157
+00:06:00,839 --> 00:06:02,129
+say who can put up some more points
+
+158
+00:06:02,129 --> 00:06:03,629
+today we really need to get that score
+
+159
+00:06:03,629 --> 00:06:06,300
+up and I some I'm curious who who's
+
+160
+00:06:06,300 --> 00:06:08,550
+winning on the points race and I've been
+
+161
+00:06:08,550 --> 00:06:10,589
+really impressed and how you know you
+
+162
+00:06:10,589 --> 00:06:12,300
+think of like performance being a key
+
+163
+00:06:12,300 --> 00:06:14,099
+part of the accessibility story in
+
+164
+00:06:14,099 --> 00:06:15,990
+general Warren it's been really
+
+165
+00:06:15,990 --> 00:06:17,969
+inspiring to see the work that the U and
+
+166
+00:06:17,969 --> 00:06:20,460
+the team did here again at an incredibly
+
+167
+00:06:20,460 --> 00:06:23,159
+stressful time thank you so much for
+
+168
+00:06:23,159 --> 00:06:24,750
+coming on and sharing the story with us
+
+169
+00:06:24,750 --> 00:06:25,879
+thank you
+
+170
+00:06:25,879 --> 00:06:28,110
+now it's been great to see developers
+
+171
+00:06:28,110 --> 00:06:29,930
+like Aaron focus on accessibility
+
+172
+00:06:29,930 --> 00:06:32,339
+resilience and performance and we've
+
+173
+00:06:32,339 --> 00:06:33,839
+made some announcements over the last
+
+174
+00:06:33,839 --> 00:06:35,610
+month about a program that brings us all
+
+175
+00:06:35,610 --> 00:06:37,849
+together under the umbrella of web
+
+176
+00:06:37,849 --> 00:06:40,159
+vitals to hit more let's welcome
+
+177
+00:06:40,159 --> 00:06:42,319
+Elizabeth a p.m. on the chrome team to
+
+178
+00:06:42,319 --> 00:06:44,749
+explain thanks Dan yeah there have been
+
+179
+00:06:44,749 --> 00:06:46,969
+a lot of product updates and releases
+
+180
+00:06:46,969 --> 00:06:48,529
+and I'm really excited to go over them
+
+181
+00:06:48,529 --> 00:06:50,569
+with you yeah it's been particularly
+
+182
+00:06:50,569 --> 00:06:52,339
+busy here over the past couple of months
+
+183
+00:06:52,339 --> 00:06:54,589
+so be great to have you get us up to
+
+184
+00:06:54,589 --> 00:06:56,360
+speed on webb vitals and what developers
+
+185
+00:06:56,360 --> 00:06:59,240
+should be really considering here yep
+
+186
+00:06:59,240 --> 00:07:01,819
+that's great let's dive in first off
+
+187
+00:07:01,819 --> 00:07:04,639
+what our core web vitals they are a set
+
+188
+00:07:04,639 --> 00:07:06,770
+of user centric metrics and thresholds
+
+189
+00:07:06,770 --> 00:07:09,229
+that apply to all web pages across all
+
+190
+00:07:09,229 --> 00:07:10,999
+industry verticals and all types of
+
+191
+00:07:10,999 --> 00:07:13,249
+experiences on the web they are signals
+
+192
+00:07:13,249 --> 00:07:14,959
+to developers and business stakeholders
+
+193
+00:07:14,959 --> 00:07:16,759
+about the basic health of your site and
+
+194
+00:07:16,759 --> 00:07:18,559
+as such they should be measured by
+
+195
+00:07:18,559 --> 00:07:20,899
+everybody but okay I jumped straight
+
+196
+00:07:20,899 --> 00:07:23,499
+into definitions let's take a step back
+
+197
+00:07:23,499 --> 00:07:26,179
+why did we introduce core what vitals as
+
+198
+00:07:26,179 --> 00:07:28,159
+a thing there are already tons of
+
+199
+00:07:28,159 --> 00:07:29,839
+metrics lots of guidance about how to
+
+200
+00:07:29,839 --> 00:07:31,249
+measure your site's performance
+
+201
+00:07:31,249 --> 00:07:35,869
+how do core web vitals help us well
+
+202
+00:07:35,869 --> 00:07:37,519
+let's go back to our foundational goal
+
+203
+00:07:37,519 --> 00:07:39,589
+we want to create outlandishly
+
+204
+00:07:39,589 --> 00:07:41,719
+phenomenal experience for all of our
+
+205
+00:07:41,719 --> 00:07:44,329
+users and it's not just out of the
+
+206
+00:07:44,329 --> 00:07:46,219
+goodness of our hearts either we know
+
+207
+00:07:46,219 --> 00:07:47,990
+that every time we have a rage clicker
+
+208
+00:07:47,990 --> 00:07:50,360
+on our site we lose out on a reader a
+
+209
+00:07:50,360 --> 00:07:53,360
+customer or a client also we want a
+
+210
+00:07:53,360 --> 00:07:57,409
+money bug so there is this mythical
+
+211
+00:07:57,409 --> 00:07:59,360
+absolutely fabulous experience that
+
+212
+00:07:59,360 --> 00:08:01,159
+we've set our sights on creating it
+
+213
+00:08:01,159 --> 00:08:03,199
+seems easy until you realize that the
+
+214
+00:08:03,199 --> 00:08:05,479
+unicorn horn requires both loading and
+
+215
+00:08:05,479 --> 00:08:07,099
+interactivity performance measurement
+
+216
+00:08:07,099 --> 00:08:08,689
+and the rainbow well the rainbow
+
+217
+00:08:08,689 --> 00:08:10,490
+requires an entire rum setup for each
+
+218
+00:08:10,490 --> 00:08:13,309
+color so there you are watching your
+
+219
+00:08:13,309 --> 00:08:16,759
+flying unison unicorn dachshund and you
+
+220
+00:08:16,759 --> 00:08:20,389
+realize that you have this it's gorged
+
+221
+00:08:20,389 --> 00:08:22,459
+on a bit too much JavaScript it doesn't
+
+222
+00:08:22,459 --> 00:08:24,469
+respond when you're issuing it commands
+
+223
+00:08:24,469 --> 00:08:27,379
+and that's upsetting but it's going to
+
+224
+00:08:27,379 --> 00:08:30,529
+take quite a bit to get this to this so
+
+225
+00:08:30,529 --> 00:08:34,639
+the question is where do you start well
+
+226
+00:08:34,639 --> 00:08:36,709
+in order to know if you've improved we
+
+227
+00:08:36,709 --> 00:08:38,870
+need to know what to measure to know
+
+228
+00:08:38,870 --> 00:08:40,279
+what to measure we need to define our
+
+229
+00:08:40,279 --> 00:08:43,219
+goals so put another way what makes a
+
+230
+00:08:43,219 --> 00:08:46,819
+web experience shine this is where the
+
+231
+00:08:46,819 --> 00:08:49,040
+core dimensions of quality come in there
+
+232
+00:08:49,040 --> 00:08:50,779
+are foundational elements of a user
+
+233
+00:08:50,779 --> 00:08:51,770
+experience that make
+
+234
+00:08:51,770 --> 00:08:55,280
+and shine above the competition content
+
+235
+00:08:55,280 --> 00:08:57,650
+needs to load quickly we've all been
+
+236
+00:08:57,650 --> 00:08:57,980
+there
+
+237
+00:08:57,980 --> 00:08:59,780
+the longer we have to wait the more
+
+238
+00:08:59,780 --> 00:09:02,390
+likely we are to bail so your pages have
+
+239
+00:09:02,390 --> 00:09:05,780
+to load fast interactivity is just as
+
+240
+00:09:05,780 --> 00:09:07,730
+important you're clicking and nothing is
+
+241
+00:09:07,730 --> 00:09:09,920
+happening no fun you don't just need
+
+242
+00:09:09,920 --> 00:09:11,810
+content to be visible you need it to be
+
+243
+00:09:11,810 --> 00:09:15,110
+available for use lastly we want a page
+
+244
+00:09:15,110 --> 00:09:17,360
+to be stable and predictable just a few
+
+245
+00:09:17,360 --> 00:09:19,250
+pixels moving around can make a huge
+
+246
+00:09:19,250 --> 00:09:21,890
+difference these core dimensions of
+
+247
+00:09:21,890 --> 00:09:23,990
+quality reflect user centric signals
+
+248
+00:09:23,990 --> 00:09:26,240
+that have long been mission-critical for
+
+249
+00:09:26,240 --> 00:09:28,460
+you and your site's success so we are
+
+250
+00:09:28,460 --> 00:09:31,040
+closer to defining quality but how do we
+
+251
+00:09:31,040 --> 00:09:32,600
+measure these quality dimensions and
+
+252
+00:09:32,600 --> 00:09:34,610
+that's where representative metrics come
+
+253
+00:09:34,610 --> 00:09:38,330
+in to represent fast-loading we have
+
+254
+00:09:38,330 --> 00:09:40,970
+largest contentful paint or LCP it
+
+255
+00:09:40,970 --> 00:09:43,310
+provides insight into how quickly a user
+
+256
+00:09:43,310 --> 00:09:44,960
+is able to see the meat of what they are
+
+257
+00:09:44,960 --> 00:09:47,810
+expecting and wanting out of a page for
+
+258
+00:09:47,810 --> 00:09:50,000
+responsive interactivity we have first
+
+259
+00:09:50,000 --> 00:09:52,610
+input delay or fit this metric has been
+
+260
+00:09:52,610 --> 00:09:54,590
+a critical signal for developers for
+
+261
+00:09:54,590 --> 00:09:57,050
+some time to understand how long a page
+
+262
+00:09:57,050 --> 00:09:59,270
+takes to respond to a user's initial
+
+263
+00:09:59,270 --> 00:10:02,690
+input and finally to represent visual
+
+264
+00:10:02,690 --> 00:10:04,730
+stability we have cumulative layout
+
+265
+00:10:04,730 --> 00:10:07,880
+shift CLS CLS measures the amount that
+
+266
+00:10:07,880 --> 00:10:10,100
+the elements within the viewport move
+
+267
+00:10:10,100 --> 00:10:13,130
+around during load time ok so we know
+
+268
+00:10:13,130 --> 00:10:14,450
+how to measure our core quality
+
+269
+00:10:14,450 --> 00:10:17,780
+dimensions and let's say my LCP is three
+
+270
+00:10:17,780 --> 00:10:20,930
+seconds do I celebrate wait I don't
+
+271
+00:10:20,930 --> 00:10:22,760
+actually have any idea whether or not
+
+272
+00:10:22,760 --> 00:10:25,250
+that's good so I need to evaluate my
+
+273
+00:10:25,250 --> 00:10:26,960
+performance on a spectrum for each
+
+274
+00:10:26,960 --> 00:10:30,620
+metric which is where the final element
+
+275
+00:10:30,620 --> 00:10:32,150
+of Korowai vitals comes in our
+
+276
+00:10:32,150 --> 00:10:34,670
+thresholds for each representative
+
+277
+00:10:34,670 --> 00:10:36,710
+metric we have clear goal posts around
+
+278
+00:10:36,710 --> 00:10:39,050
+what constitutes a good experience one
+
+279
+00:10:39,050 --> 00:10:40,580
+that needs improvement and one that's
+
+280
+00:10:40,580 --> 00:10:43,970
+poor so for instance for LCP anything
+
+281
+00:10:43,970 --> 00:10:46,550
+that is 2.5 seconds or less is on its
+
+282
+00:10:46,550 --> 00:10:48,890
+way to being a unison anything between
+
+283
+00:10:48,890 --> 00:10:51,380
+2.5 and four seconds needs some work and
+
+284
+00:10:51,380 --> 00:10:53,480
+anything above four seconds is needing
+
+285
+00:10:53,480 --> 00:10:56,870
+quite a bit of love so to finish up our
+
+286
+00:10:56,870 --> 00:10:58,910
+definition of what our core web vitals
+
+287
+00:10:58,910 --> 00:11:00,950
+the initiative is a combination of three
+
+288
+00:11:00,950 --> 00:11:03,440
+things first is user centric quality
+
+289
+00:11:03,440 --> 00:11:05,480
+dimensions then we have represented
+
+290
+00:11:05,480 --> 00:11:07,339
+of metrics of those dimensions and
+
+291
+00:11:07,339 --> 00:11:09,649
+finally thresholds to help you evaluate
+
+292
+00:11:09,649 --> 00:11:11,600
+whether or not your performance is good
+
+293
+00:11:11,600 --> 00:11:14,209
+or not against any given metric but
+
+294
+00:11:14,209 --> 00:11:15,800
+there is one more piece of really
+
+295
+00:11:15,800 --> 00:11:17,990
+important information we need to know
+
+296
+00:11:17,990 --> 00:11:20,690
+how many page loads need to hit the
+
+297
+00:11:20,690 --> 00:11:22,250
+thresholds for the core web vitals
+
+298
+00:11:22,250 --> 00:11:24,380
+metrics to constitute a good experience
+
+299
+00:11:24,380 --> 00:11:27,290
+so say we have a hundred users if only
+
+300
+00:11:27,290 --> 00:11:30,139
+one of them has an LCP below 2.5 seconds
+
+301
+00:11:30,139 --> 00:11:32,630
+do I pass Korowai vitals the answer is
+
+302
+00:11:32,630 --> 00:11:35,209
+no core web vitals uses the 75th
+
+303
+00:11:35,209 --> 00:11:37,730
+percentile value of all pageviews in the
+
+304
+00:11:37,730 --> 00:11:39,889
+field to evaluate against the thresholds
+
+305
+00:11:39,889 --> 00:11:43,339
+in other words if at least 75% of page
+
+306
+00:11:43,339 --> 00:11:45,740
+views to a site meet the good threshold
+
+307
+00:11:45,740 --> 00:11:48,079
+the site is classified as having a good
+
+308
+00:11:48,079 --> 00:11:49,940
+performance for that metric and this
+
+309
+00:11:49,940 --> 00:11:52,970
+applies to all three metrics LCP FID and
+
+310
+00:11:52,970 --> 00:11:56,060
+CLS the 75th percentile is used to
+
+311
+00:11:56,060 --> 00:11:58,430
+evaluate all three core Web vitals is a
+
+312
+00:11:58,430 --> 00:12:00,980
+holistic package of everything you need
+
+313
+00:12:00,980 --> 00:12:02,300
+to create the foundation of a healthy
+
+314
+00:12:02,300 --> 00:12:04,970
+site they are valuable because they show
+
+315
+00:12:04,970 --> 00:12:07,010
+you exactly where to start to set
+
+316
+00:12:07,010 --> 00:12:09,829
+yourself up for success if 75% of your
+
+317
+00:12:09,829 --> 00:12:12,199
+users are getting fast interactive
+
+318
+00:12:12,199 --> 00:12:15,519
+stable content its cause for celebration
+
+319
+00:12:15,519 --> 00:12:17,420
+but as we know there are other
+
+320
+00:12:17,420 --> 00:12:19,760
+dimensions of quality that are extremely
+
+321
+00:12:19,760 --> 00:12:23,060
+important accessibility security mobile
+
+322
+00:12:23,060 --> 00:12:24,920
+friendliness there are a lot of
+
+323
+00:12:24,920 --> 00:12:27,410
+dimensions that make a basic unison even
+
+324
+00:12:27,410 --> 00:12:29,660
+more fabulous and are important to your
+
+325
+00:12:29,660 --> 00:12:32,180
+site's success so don't stop measuring
+
+326
+00:12:32,180 --> 00:12:33,740
+these if you already are and if you
+
+327
+00:12:33,740 --> 00:12:34,720
+aren't already
+
+328
+00:12:34,720 --> 00:12:37,160
+once you've optimized your core web
+
+329
+00:12:37,160 --> 00:12:39,079
+idols you can begin to venturing into
+
+330
+00:12:39,079 --> 00:12:41,029
+measuring and benchmarking against other
+
+331
+00:12:41,029 --> 00:12:43,040
+important vitals that are relevant to
+
+332
+00:12:43,040 --> 00:12:45,470
+your business and your users core Web
+
+333
+00:12:45,470 --> 00:12:47,089
+vitals are just as the name indicates
+
+334
+00:12:47,089 --> 00:12:49,670
+they are core and provide you with a
+
+335
+00:12:49,670 --> 00:12:51,860
+solid foundation upon which to further
+
+336
+00:12:51,860 --> 00:12:54,889
+optimize given how important it is to
+
+337
+00:12:54,889 --> 00:12:56,899
+quantify a user's experience accurately
+
+338
+00:12:56,899 --> 00:12:59,510
+in order to be successful on the web we
+
+339
+00:12:59,510 --> 00:13:01,310
+are constantly working to find ways to
+
+340
+00:13:01,310 --> 00:13:03,589
+better measure all quality dimensions
+
+341
+00:13:03,589 --> 00:13:06,230
+what this evolution has often meant in
+
+342
+00:13:06,230 --> 00:13:08,269
+the past is a stream of new metrics
+
+343
+00:13:08,269 --> 00:13:10,519
+tweaks to existing metrics and new
+
+344
+00:13:10,519 --> 00:13:12,920
+guidance many times at an unpredictable
+
+345
+00:13:12,920 --> 00:13:15,500
+cadence we know how difficult this can
+
+346
+00:13:15,500 --> 00:13:17,269
+be when trying to set goals aligned
+
+347
+00:13:17,269 --> 00:13:19,269
+roadmaps and good organizational
+
+348
+00:13:19,269 --> 00:13:21,500
+because of this we want to set a
+
+349
+00:13:21,500 --> 00:13:23,449
+predictable cadence of updates to Cora
+
+350
+00:13:23,449 --> 00:13:25,910
+vitals they will be refreshed once a
+
+351
+00:13:25,910 --> 00:13:27,980
+year around the time of Google i/o to
+
+352
+00:13:27,980 --> 00:13:29,630
+ensure that they reflect the latest in
+
+353
+00:13:29,630 --> 00:13:31,250
+our learnings and this includes
+
+354
+00:13:31,250 --> 00:13:32,839
+adjustments to the set of metrics as
+
+355
+00:13:32,839 --> 00:13:35,300
+well as the thresholds looking ahead
+
+356
+00:13:35,300 --> 00:13:37,820
+towards 2021 we will be providing
+
+357
+00:13:37,820 --> 00:13:39,560
+regular updates on future metric
+
+358
+00:13:39,560 --> 00:13:41,149
+candidates motivations and
+
+359
+00:13:41,149 --> 00:13:43,550
+implementation status okay so this is
+
+360
+00:13:43,550 --> 00:13:44,899
+all fine and good but how do I get
+
+361
+00:13:44,899 --> 00:13:47,300
+started to know whats optimized you have
+
+362
+00:13:47,300 --> 00:13:50,630
+to measure first and Korowai vitals are
+
+363
+00:13:50,630 --> 00:13:52,310
+now in all of your favorite developer
+
+364
+00:13:52,310 --> 00:13:53,810
+tools and there are more than what is
+
+365
+00:13:53,810 --> 00:13:55,699
+listed here including a new web vitals
+
+366
+00:13:55,699 --> 00:13:57,529
+library and a bunch of ecosystem tools
+
+367
+00:13:57,529 --> 00:13:59,870
+that have already adopted them as you
+
+368
+00:13:59,870 --> 00:14:01,850
+can see core web vitals are available
+
+369
+00:14:01,850 --> 00:14:03,889
+across the board you're able to measure
+
+370
+00:14:03,889 --> 00:14:05,990
+them for a specific page for your origin
+
+371
+00:14:05,990 --> 00:14:08,449
+locally in the lab and from real users
+
+372
+00:14:08,449 --> 00:14:11,540
+in the field remember that first input
+
+373
+00:14:11,540 --> 00:14:13,940
+delay is only measurable in the field so
+
+374
+00:14:13,940 --> 00:14:15,949
+you have to have a real user clicking on
+
+375
+00:14:15,949 --> 00:14:17,570
+your page in order to measure it but
+
+376
+00:14:17,570 --> 00:14:19,100
+that doesn't mean you can't use lab
+
+377
+00:14:19,100 --> 00:14:21,139
+tools to help you improve it total
+
+378
+00:14:21,139 --> 00:14:24,079
+blocking time TBT is a proxy lab metric
+
+379
+00:14:24,079 --> 00:14:26,000
+for FID that allows you to debug and
+
+380
+00:14:26,000 --> 00:14:27,769
+improve your interactivity in the lab
+
+381
+00:14:27,769 --> 00:14:30,529
+before you users ever have to experience
+
+382
+00:14:30,529 --> 00:14:33,350
+a bad vid the next obvious question is
+
+383
+00:14:33,350 --> 00:14:35,149
+again this is great but where do I start
+
+384
+00:14:35,149 --> 00:14:38,149
+what tool should I use I'm so glad you
+
+385
+00:14:38,149 --> 00:14:40,519
+asked each tool has its own strengths
+
+386
+00:14:40,519 --> 00:14:42,560
+for example psi is one of the only
+
+387
+00:14:42,560 --> 00:14:44,269
+places you can see your lab and field
+
+388
+00:14:44,269 --> 00:14:46,339
+data in one place and search console is
+
+389
+00:14:46,339 --> 00:14:48,199
+critical for identifying page types that
+
+390
+00:14:48,199 --> 00:14:50,959
+need improvement as I mentioned earlier
+
+391
+00:14:50,959 --> 00:14:52,550
+we're seeing so many great ecosystem
+
+392
+00:14:52,550 --> 00:14:54,079
+players and production monitoring
+
+393
+00:14:54,079 --> 00:14:56,209
+solutions already implementing support
+
+394
+00:14:56,209 --> 00:14:57,860
+for core what vitals and we're really
+
+395
+00:14:57,860 --> 00:15:00,290
+delighted but again you ask you've shown
+
+396
+00:15:00,290 --> 00:15:02,120
+me the magical unison and now you've
+
+397
+00:15:02,120 --> 00:15:03,649
+given me a pallet of tools to choose
+
+398
+00:15:03,649 --> 00:15:06,079
+from that's amazing but tell me what to
+
+399
+00:15:06,079 --> 00:15:09,500
+do first okay two things first go to
+
+400
+00:15:09,500 --> 00:15:11,449
+PageSpeed insights that will give you a
+
+401
+00:15:11,449 --> 00:15:12,709
+pulse of your core with vitals
+
+402
+00:15:12,709 --> 00:15:14,600
+performance in both the field and the
+
+403
+00:15:14,600 --> 00:15:16,639
+lab from crux you'll be able to see
+
+404
+00:15:16,639 --> 00:15:18,709
+whether or not 75% of your loads are
+
+405
+00:15:18,709 --> 00:15:20,420
+hitting the core with vitals thresholds
+
+406
+00:15:20,420 --> 00:15:22,760
+for both your page and your origin in
+
+407
+00:15:22,760 --> 00:15:24,709
+the field then you can take a look at
+
+408
+00:15:24,709 --> 00:15:26,449
+your lab data from lighthouse to see
+
+409
+00:15:26,449 --> 00:15:27,740
+whether or not you are hitting the core
+
+410
+00:15:27,740 --> 00:15:29,510
+web vitals thresholds for each metric in
+
+411
+00:15:29,510 --> 00:15:31,610
+a synthetic testing environment this
+
+412
+00:15:31,610 --> 00:15:32,960
+helps to guide you towards
+
+413
+00:15:32,960 --> 00:15:34,610
+noble opportunities to improve your
+
+414
+00:15:34,610 --> 00:15:37,340
+pages performance second check out some
+
+415
+00:15:37,340 --> 00:15:39,200
+more in-depth talks later today that go
+
+416
+00:15:39,200 --> 00:15:40,790
+into detail about measuring and
+
+417
+00:15:40,790 --> 00:15:42,350
+optimising against your core weigh
+
+418
+00:15:42,350 --> 00:15:45,110
+vitals and with that I'm gonna pass it
+
+419
+00:15:45,110 --> 00:15:46,760
+back to Dion thank you so much
+
+420
+00:15:46,760 --> 00:15:48,560
+great yeah thanks for showing us the
+
+421
+00:15:48,560 --> 00:15:49,790
+context and all of the information
+
+422
+00:15:49,790 --> 00:15:51,620
+across the whole slew of tools there
+
+423
+00:15:51,620 --> 00:15:52,820
+Elizabeth my pleasure
+
+424
+00:15:52,820 --> 00:15:55,340
+one of the critical steps in modern web
+
+425
+00:15:55,340 --> 00:15:57,050
+development with a lot of influence over
+
+426
+00:15:57,050 --> 00:15:59,750
+your vitals is your build step that's
+
+427
+00:15:59,750 --> 00:16:01,550
+where your CSS modules are turned into
+
+428
+00:16:01,550 --> 00:16:04,100
+real CSS your bundler analyzes your
+
+429
+00:16:04,100 --> 00:16:06,410
+module graph and optimizations can
+
+430
+00:16:06,410 --> 00:16:09,170
+really kick in we wanted to go deeper
+
+431
+00:16:09,170 --> 00:16:11,030
+here to understand the popular bundlers
+
+432
+00:16:11,030 --> 00:16:13,370
+how they work what they can and cannot
+
+433
+00:16:13,370 --> 00:16:15,670
+do and how to set them up for success
+
+434
+00:16:15,670 --> 00:16:18,740
+let's welcome Surma to tell us more hey
+
+435
+00:16:18,740 --> 00:16:19,180
+Surma
+
+436
+00:16:19,180 --> 00:16:21,830
+hey Dion so there are many best
+
+437
+00:16:21,830 --> 00:16:23,570
+practices to follow in web development
+
+438
+00:16:23,570 --> 00:16:25,700
+knowing them is one thing began in your
+
+439
+00:16:25,700 --> 00:16:27,650
+build system to follow them as well it's
+
+440
+00:16:27,650 --> 00:16:29,510
+kind of another beast so do you have
+
+441
+00:16:29,510 --> 00:16:32,180
+anything - maybe report on that front so
+
+442
+00:16:32,180 --> 00:16:33,530
+there's two bits on this side of things
+
+443
+00:16:33,530 --> 00:16:35,000
+on the one hand there are many
+
+444
+00:16:35,000 --> 00:16:37,100
+developers who want to know what build
+
+445
+00:16:37,100 --> 00:16:38,480
+tool they should learn and use for the
+
+446
+00:16:38,480 --> 00:16:40,550
+next project and on the other hand there
+
+447
+00:16:40,550 --> 00:16:42,410
+are many project that already have a
+
+448
+00:16:42,410 --> 00:16:44,090
+build tool set up but are looking to
+
+449
+00:16:44,090 --> 00:16:46,730
+improve their output to tackle both of
+
+450
+00:16:46,730 --> 00:16:48,650
+these problems we build tooling report
+
+451
+00:16:48,650 --> 00:16:50,660
+tooling report is a website that you can
+
+452
+00:16:50,660 --> 00:16:53,690
+actually go to right now tooling report
+
+453
+00:16:53,690 --> 00:16:56,060
+we create an extensive list of best
+
+454
+00:16:56,060 --> 00:16:58,250
+practices in web development took what
+
+455
+00:16:58,250 --> 00:17:00,500
+we think are the four most popular build
+
+456
+00:17:00,500 --> 00:17:02,630
+tools and checked for each build tool if
+
+457
+00:17:02,630 --> 00:17:04,310
+it allows you to follow that best
+
+458
+00:17:04,310 --> 00:17:06,380
+practice and each tool gets a point for
+
+459
+00:17:06,380 --> 00:17:08,360
+each test and it passes we chose to
+
+460
+00:17:08,360 --> 00:17:09,890
+start this project with browserify
+
+461
+00:17:09,890 --> 00:17:13,430
+parcel roll-up and web pack now browser
+
+462
+00:17:13,430 --> 00:17:15,440
+if I might be surprising to some but the
+
+463
+00:17:15,440 --> 00:17:17,390
+data indicates that there are still many
+
+464
+00:17:17,390 --> 00:17:18,950
+sites out there that use browserify
+
+465
+00:17:18,950 --> 00:17:20,990
+and we want to help those projects
+
+466
+00:17:20,990 --> 00:17:23,660
+improve their sites as well of course we
+
+467
+00:17:23,660 --> 00:17:25,370
+have been working with the core teams of
+
+468
+00:17:25,370 --> 00:17:27,709
+all these tools to make sure that we're
+
+469
+00:17:27,709 --> 00:17:29,900
+not only used a tool correctly but also
+
+470
+00:17:29,900 --> 00:17:32,360
+represent them fairly the tests are
+
+471
+00:17:32,360 --> 00:17:34,100
+subdivided into categories and in the
+
+472
+00:17:34,100 --> 00:17:35,690
+overview you can get a quick sense of
+
+473
+00:17:35,690 --> 00:17:37,970
+which tool is excelling at what category
+
+474
+00:17:37,970 --> 00:17:39,860
+you can get more information on the
+
+475
+00:17:39,860 --> 00:17:41,570
+tests in the overview and learn more
+
+476
+00:17:41,570 --> 00:17:43,730
+about it and now this is where I think
+
+477
+00:17:43,730 --> 00:17:45,710
+tooling report gets really interests
+
+478
+00:17:45,710 --> 00:17:48,470
+each test has a dedicated page where you
+
+479
+00:17:48,470 --> 00:17:50,750
+can compare how the tool score on this
+
+480
+00:17:50,750 --> 00:17:53,210
+specific test there is an in-depth
+
+481
+00:17:53,210 --> 00:17:55,100
+explanation on why this test is
+
+482
+00:17:55,100 --> 00:17:56,960
+important and how it relates to best
+
+483
+00:17:56,960 --> 00:17:59,090
+practices and web development we also
+
+484
+00:17:59,090 --> 00:18:01,549
+explain how we codify the best practice
+
+485
+00:18:01,549 --> 00:18:03,590
+and what the expected outcome is and
+
+486
+00:18:03,590 --> 00:18:05,929
+finally at the bottom you can find an
+
+487
+00:18:05,929 --> 00:18:08,419
+explanation for each tool and writers
+
+488
+00:18:08,419 --> 00:18:10,669
+past or why it might have failed this
+
+489
+00:18:10,669 --> 00:18:13,130
+test if a tool is not passing a test we
+
+490
+00:18:13,130 --> 00:18:15,049
+will also link to back reports on the
+
+491
+00:18:15,049 --> 00:18:16,940
+tools issue tracker many of them we have
+
+492
+00:18:16,940 --> 00:18:18,919
+actually filed ourselves while building
+
+493
+00:18:18,919 --> 00:18:21,679
+tooling report we also link to a minimal
+
+494
+00:18:21,679 --> 00:18:24,169
+NPM project that we use to determine the
+
+495
+00:18:24,169 --> 00:18:26,750
+tools behavior this way tooling report
+
+496
+00:18:26,750 --> 00:18:28,970
+not only tells you what a tool can and
+
+497
+00:18:28,970 --> 00:18:31,250
+cannot do but you can also look at the
+
+498
+00:18:31,250 --> 00:18:33,260
+configuration files and plugins to see
+
+499
+00:18:33,260 --> 00:18:35,419
+how you can follow a best practice with
+
+500
+00:18:35,419 --> 00:18:37,340
+this tool this way the site double
+
+501
+00:18:37,340 --> 00:18:38,860
+functions as a source of documentation
+
+502
+00:18:38,860 --> 00:18:41,779
+the entire site is open source on github
+
+503
+00:18:41,779 --> 00:18:43,520
+and we'd love the community to help us
+
+504
+00:18:43,520 --> 00:18:45,529
+come up with more tests and help us add
+
+505
+00:18:45,529 --> 00:18:48,049
+modules over time so you can check this
+
+506
+00:18:48,049 --> 00:18:51,080
+out now on tooling dot report thanks for
+
+507
+00:18:51,080 --> 00:18:54,049
+joining me soma Cheers now we're all
+
+508
+00:18:54,049 --> 00:18:55,760
+becoming more aware of the importance of
+
+509
+00:18:55,760 --> 00:18:58,340
+security and privacy chrome believes in
+
+510
+00:18:58,340 --> 00:19:00,380
+an open web that's respectful of users
+
+511
+00:19:00,380 --> 00:19:02,630
+privacy and maintains key use cases that
+
+512
+00:19:02,630 --> 00:19:05,020
+keeps the web working for everyone
+
+513
+00:19:05,020 --> 00:19:07,909
+I'd love to welcome Rowan to have a chat
+
+514
+00:19:07,909 --> 00:19:09,559
+and kind of share some of what's new
+
+515
+00:19:09,559 --> 00:19:12,620
+here hey there thanks Deon my name is
+
+516
+00:19:12,620 --> 00:19:15,230
+Ryan and I look after web dev rel for
+
+517
+00:19:15,230 --> 00:19:18,110
+security privacy payments and identity
+
+518
+00:19:18,110 --> 00:19:21,980
+or spy for now wow that's a cute
+
+519
+00:19:21,980 --> 00:19:24,320
+internal name we are part of the wider
+
+520
+00:19:24,320 --> 00:19:27,169
+trust and safety team with Ingram great
+
+521
+00:19:27,169 --> 00:19:28,909
+so why don't we start with same site
+
+522
+00:19:28,909 --> 00:19:30,830
+cookies and the temporary rollback that
+
+523
+00:19:30,830 --> 00:19:32,720
+that kind of kicked into gear for us
+
+524
+00:19:32,720 --> 00:19:35,090
+when kovat kind of really started to hit
+
+525
+00:19:35,090 --> 00:19:37,039
+globally can you kind of share whether
+
+526
+00:19:37,039 --> 00:19:39,770
+what the latest news is there sure yeah
+
+527
+00:19:39,770 --> 00:19:41,720
+so hopefully as a lot of you are aware
+
+528
+00:19:41,720 --> 00:19:44,179
+there's an update to the cookie standard
+
+529
+00:19:44,179 --> 00:19:46,010
+that's being adopted across Chrome
+
+530
+00:19:46,010 --> 00:19:49,039
+Firefox edge and others to restrict
+
+531
+00:19:49,039 --> 00:19:51,350
+cookies to first party by default
+
+532
+00:19:51,350 --> 00:19:54,200
+along with requiring explicitly marking
+
+533
+00:19:54,200 --> 00:19:56,720
+cookies for third party contexts now
+
+534
+00:19:56,720 --> 00:19:58,820
+that's all configured via the same site
+
+535
+00:19:58,820 --> 00:19:59,390
+attribute
+
+536
+00:19:59,390 --> 00:20:02,420
+hence same-side cookies we were rolling
+
+537
+00:20:02,420 --> 00:20:04,460
+this out to staple chrome but decided to
+
+538
+00:20:04,460 --> 00:20:05,929
+reverse this at the start of April
+
+539
+00:20:05,929 --> 00:20:08,840
+because the kovat situation saw a huge
+
+540
+00:20:08,840 --> 00:20:11,660
+jump in demand for online services but
+
+541
+00:20:11,660 --> 00:20:13,940
+also a huge shift in developers being at
+
+542
+00:20:13,940 --> 00:20:16,010
+home without their equipment or looking
+
+543
+00:20:16,010 --> 00:20:18,320
+after their families we made the call
+
+544
+00:20:18,320 --> 00:20:20,240
+that it was important to prioritize
+
+545
+00:20:20,240 --> 00:20:23,299
+stability at that moment now these
+
+546
+00:20:23,299 --> 00:20:25,340
+changes are intended to make the web a
+
+547
+00:20:25,340 --> 00:20:27,920
+safer place protecting against
+
+548
+00:20:27,920 --> 00:20:30,080
+cross-site request forgery and trying to
+
+549
+00:20:30,080 --> 00:20:32,559
+minimize the surface for covert tracking
+
+550
+00:20:32,559 --> 00:20:35,780
+sadly during a crisis when people are
+
+551
+00:20:35,780 --> 00:20:37,970
+most vulnerable you see these kind of
+
+552
+00:20:37,970 --> 00:20:41,090
+scams in the tax jump too so with the
+
+553
+00:20:41,090 --> 00:20:43,520
+Chrome 84 stable release which is
+
+554
+00:20:43,520 --> 00:20:46,340
+mid-july or about two weeks from now if
+
+555
+00:20:46,340 --> 00:20:48,230
+you're watching the stream we are gonna
+
+556
+00:20:48,230 --> 00:20:50,660
+start rolling this out again across all
+
+557
+00:20:50,660 --> 00:20:53,059
+chrome versions got it so what I'm
+
+558
+00:20:53,059 --> 00:20:54,799
+hearing here is that if you haven't
+
+559
+00:20:54,799 --> 00:20:56,990
+tested your site yet if you haven't made
+
+560
+00:20:56,990 --> 00:20:58,730
+changes to kind of make sure that
+
+561
+00:20:58,730 --> 00:21:00,590
+everything works well now is actually
+
+562
+00:21:00,590 --> 00:21:03,500
+the time to get going absolutely so we
+
+563
+00:21:03,500 --> 00:21:05,390
+have documentation in examples and
+
+564
+00:21:05,390 --> 00:21:07,610
+samples out there right now for same
+
+565
+00:21:07,610 --> 00:21:09,860
+site on web dev as well as on
+
+566
+00:21:09,860 --> 00:21:11,919
+chromium.org and we'll be covering
+
+567
+00:21:11,919 --> 00:21:14,330
+implementation and debugging in our
+
+568
+00:21:14,330 --> 00:21:17,030
+segment on day three okey doke so we all
+
+569
+00:21:17,030 --> 00:21:18,950
+love cookies but I'm assuming there's
+
+570
+00:21:18,950 --> 00:21:20,900
+going to be a few more things that we're
+
+571
+00:21:20,900 --> 00:21:22,400
+going to be talking about in the kind of
+
+572
+00:21:22,400 --> 00:21:25,880
+general view of trust and safety I'll be
+
+573
+00:21:25,880 --> 00:21:27,799
+honest with you I am gonna talk about
+
+574
+00:21:27,799 --> 00:21:30,679
+cookies a lot but the rest of the team
+
+575
+00:21:30,679 --> 00:21:33,580
+does have a healthier range of interests
+
+576
+00:21:33,580 --> 00:21:36,410
+okay sounds good so we're gonna cover
+
+577
+00:21:36,410 --> 00:21:38,720
+things like you know back in 2018
+
+578
+00:21:38,720 --> 00:21:41,750
+Specter kind of raised its head and we
+
+579
+00:21:41,750 --> 00:21:43,940
+as a web community started to really
+
+580
+00:21:43,940 --> 00:21:46,820
+look at what can we do to help make sure
+
+581
+00:21:46,820 --> 00:21:48,410
+that our users are secure are they gonna
+
+582
+00:21:48,410 --> 00:21:50,000
+be kind of those type of aspects that
+
+583
+00:21:50,000 --> 00:21:52,580
+we'll be covering two for sure yeah so
+
+584
+00:21:52,580 --> 00:21:54,410
+age is gonna be taking us through some
+
+585
+00:21:54,410 --> 00:21:56,480
+of the new cross-origin opener and
+
+586
+00:21:56,480 --> 00:21:59,000
+embedder policies or a coop and co-op
+
+587
+00:21:59,000 --> 00:22:01,100
+for short so like you were saying
+
+588
+00:22:01,100 --> 00:22:03,500
+Specter was a vulnerability that in a
+
+589
+00:22:03,500 --> 00:22:06,020
+super short summary meant that malicious
+
+590
+00:22:06,020 --> 00:22:08,179
+code running in one browser process
+
+591
+00:22:08,179 --> 00:22:10,190
+might be able to read any data
+
+592
+00:22:10,190 --> 00:22:12,740
+associated with that process even if
+
+593
+00:22:12,740 --> 00:22:13,270
+it's from
+
+594
+00:22:13,270 --> 00:22:17,260
+in origin and that is super bad now one
+
+595
+00:22:17,260 --> 00:22:19,540
+of the mitigations for that is sight
+
+596
+00:22:19,540 --> 00:22:22,180
+isolation or putting each sight into a
+
+597
+00:22:22,180 --> 00:22:24,460
+separate process AG's going to be
+
+598
+00:22:24,460 --> 00:22:26,050
+running through how the headers allow
+
+599
+00:22:26,050 --> 00:22:28,480
+sites to opt into that along with a
+
+600
+00:22:28,480 --> 00:22:30,070
+bunch of other benefits that it brings
+
+601
+00:22:30,070 --> 00:22:30,790
+as well
+
+602
+00:22:30,790 --> 00:22:32,410
+got it got it got it okay so we've got
+
+603
+00:22:32,410 --> 00:22:34,840
+restricting cross-site cookies and then
+
+604
+00:22:34,840 --> 00:22:36,790
+we've got isolating sites to individual
+
+605
+00:22:36,790 --> 00:22:38,380
+processes we got this interest in
+
+606
+00:22:38,380 --> 00:22:40,660
+evolution so I'm sensing there's kind of
+
+607
+00:22:40,660 --> 00:22:42,730
+a bit of a theme here yeah there is
+
+608
+00:22:42,730 --> 00:22:45,160
+definitely a theme so we've also got
+
+609
+00:22:45,160 --> 00:22:46,840
+salmon mod on the team and they're gonna
+
+610
+00:22:46,840 --> 00:22:48,910
+kick off our little segment to explain
+
+611
+00:22:48,910 --> 00:22:51,640
+the link between these and really comes
+
+612
+00:22:51,640 --> 00:22:53,770
+down to the Web today is seeing this
+
+613
+00:22:53,770 --> 00:22:55,750
+evolution of expectations regarding
+
+614
+00:22:55,750 --> 00:22:58,840
+privacy that includes users expecting
+
+615
+00:22:58,840 --> 00:23:01,030
+more transparency and control over their
+
+616
+00:23:01,030 --> 00:23:02,890
+online data and new regulations
+
+617
+00:23:02,890 --> 00:23:05,080
+impacting how data can be used and
+
+618
+00:23:05,080 --> 00:23:07,990
+collected now Google we believe in an
+
+619
+00:23:07,990 --> 00:23:10,090
+open web that's respectful of the users
+
+620
+00:23:10,090 --> 00:23:12,490
+privacy whilst also maintaining a
+
+621
+00:23:12,490 --> 00:23:15,160
+healthy ecosystem so under the banner of
+
+622
+00:23:15,160 --> 00:23:17,620
+the privacy sandbox we're introducing a
+
+623
+00:23:17,620 --> 00:23:19,600
+number of standards proposals that aim
+
+624
+00:23:19,600 --> 00:23:22,120
+to support the use cases that let people
+
+625
+00:23:22,120 --> 00:23:24,190
+make their living off creating web
+
+626
+00:23:24,190 --> 00:23:26,800
+content but do that in a way that better
+
+627
+00:23:26,800 --> 00:23:29,530
+respects user privacy we're also
+
+628
+00:23:29,530 --> 00:23:31,300
+actively seeking feedback on these
+
+629
+00:23:31,300 --> 00:23:33,640
+proposals we're participating in all the
+
+630
+00:23:33,640 --> 00:23:36,010
+open forums the w3c to discuss our
+
+631
+00:23:36,010 --> 00:23:38,470
+proposals as well as those submitted by
+
+632
+00:23:38,470 --> 00:23:40,810
+other parties to okay so the web's
+
+633
+00:23:40,810 --> 00:23:42,430
+evolving and we're getting new
+
+634
+00:23:42,430 --> 00:23:45,010
+privacy-preserving api's coming in and
+
+635
+00:23:45,010 --> 00:23:47,350
+we're getting rid of the old cross-site
+
+636
+00:23:47,350 --> 00:23:49,390
+data leaking API so they're kind of
+
+637
+00:23:49,390 --> 00:23:52,780
+moving out exactly and one of the ways I
+
+638
+00:23:52,780 --> 00:23:54,340
+like to think about it with our team as
+
+639
+00:23:54,340 --> 00:23:56,860
+well is that we're kind of all about the
+
+640
+00:23:56,860 --> 00:23:59,950
+places where you create relationships on
+
+641
+00:23:59,950 --> 00:24:02,590
+the web so people should feel in control
+
+642
+00:24:02,590 --> 00:24:04,390
+of their data when they browse around
+
+643
+00:24:04,390 --> 00:24:06,730
+the web with a clear choice about what
+
+644
+00:24:06,730 --> 00:24:09,460
+and where they share things and when
+
+645
+00:24:09,460 --> 00:24:10,600
+they do want to create a relationship
+
+646
+00:24:10,600 --> 00:24:13,390
+like signing in to a site or making a
+
+647
+00:24:13,390 --> 00:24:15,940
+purchase that should be simple secure
+
+648
+00:24:15,940 --> 00:24:18,790
+and only share what's needed awesome
+
+649
+00:24:18,790 --> 00:24:20,350
+thanks so much for the brain dump on
+
+650
+00:24:20,350 --> 00:24:22,060
+what we're thinking about here in the
+
+651
+00:24:22,060 --> 00:24:23,530
+realm of trust and safety row and I'm
+
+652
+00:24:23,530 --> 00:24:25,600
+really excited to see the content that's
+
+653
+00:24:25,600 --> 00:24:26,950
+coming later
+
+654
+00:24:26,950 --> 00:24:28,930
+on the stream from the team where we can
+
+655
+00:24:28,930 --> 00:24:31,270
+kind of go into more of a deep dive cool
+
+656
+00:24:31,270 --> 00:24:34,240
+thanks and I'll see you around now the
+
+657
+00:24:34,240 --> 00:24:36,070
+web has a great history as a Content
+
+658
+00:24:36,070 --> 00:24:38,200
+platform with its roots in hyperlinked
+
+659
+00:24:38,200 --> 00:24:40,780
+documents but digital content has gotten
+
+660
+00:24:40,780 --> 00:24:43,060
+richer and richer we think the web has a
+
+661
+00:24:43,060 --> 00:24:45,850
+great role to play here too I'd like to
+
+662
+00:24:45,850 --> 00:24:47,440
+invite Paul Backhouse to talk about a
+
+663
+00:24:47,440 --> 00:24:49,000
+new content type that we're really
+
+664
+00:24:49,000 --> 00:24:51,040
+excited about called web stories
+
+665
+00:24:51,040 --> 00:24:54,610
+hey Dion hey Paul so what are these web
+
+666
+00:24:54,610 --> 00:24:56,530
+stories and why are we working on them
+
+667
+00:24:56,530 --> 00:24:58,240
+my team and I have been hard at work
+
+668
+00:24:58,240 --> 00:25:00,010
+working on web stories and I'm very
+
+669
+00:25:00,010 --> 00:25:01,300
+excited to share some updates with you
+
+670
+00:25:01,300 --> 00:25:03,370
+and yes I'm talking about these kind of
+
+671
+00:25:03,370 --> 00:25:05,440
+stories you know fullscreen portray
+
+672
+00:25:05,440 --> 00:25:08,920
+tapped advanced swipe to move on and if
+
+673
+00:25:08,920 --> 00:25:11,440
+you like wait a second and you do late
+
+674
+00:25:11,440 --> 00:25:13,510
+to the show then you'd be right but
+
+675
+00:25:13,510 --> 00:25:15,130
+these are not your standup ward Garden
+
+676
+00:25:15,130 --> 00:25:17,380
+stories current implementations focus on
+
+677
+00:25:17,380 --> 00:25:19,750
+ephemerality and ultra low barrier to
+
+678
+00:25:19,750 --> 00:25:21,850
+creation but our bet is a destroys
+
+679
+00:25:21,850 --> 00:25:23,800
+format works beyond the ephemeral use
+
+680
+00:25:23,800 --> 00:25:25,720
+case and can become its own pillar in
+
+681
+00:25:25,720 --> 00:25:27,880
+the open web media landscape and that's
+
+682
+00:25:27,880 --> 00:25:29,260
+because they're really cheaper to make
+
+683
+00:25:29,260 --> 00:25:31,150
+them video and more engaging in a text
+
+684
+00:25:31,150 --> 00:25:33,310
+article and really important web stories
+
+685
+00:25:33,310 --> 00:25:34,810
+are different to ward off stories in
+
+686
+00:25:34,810 --> 00:25:36,700
+many important ways just like a regular
+
+687
+00:25:36,700 --> 00:25:38,680
+web page you own them you host them and
+
+688
+00:25:38,680 --> 00:25:40,330
+very important you get the money from
+
+689
+00:25:40,330 --> 00:25:42,840
+the ads not the platform serving stories
+
+690
+00:25:42,840 --> 00:25:44,920
+because stories are really a visual
+
+691
+00:25:44,920 --> 00:25:46,540
+format my friends at Google search and
+
+692
+00:25:46,540 --> 00:25:48,310
+discover showcasing them in really cool
+
+693
+00:25:48,310 --> 00:25:50,050
+ways telling me that many more
+
+694
+00:25:50,050 --> 00:25:51,490
+integrations are coming later this year
+
+695
+00:25:51,490 --> 00:25:53,590
+we think this can be a great net new
+
+696
+00:25:53,590 --> 00:25:55,780
+traffic source for web creators these
+
+697
+00:25:55,780 --> 00:25:57,670
+stories look visually really compelling
+
+698
+00:25:57,670 --> 00:25:59,590
+but how hard is it actually to create
+
+699
+00:25:59,590 --> 00:26:01,450
+them if you want the web to be able to
+
+700
+00:26:01,450 --> 00:26:03,010
+compete with the closed platforms out
+
+701
+00:26:03,010 --> 00:26:04,600
+there story creation needs to be as
+
+702
+00:26:04,600 --> 00:26:06,280
+intuitive and fast for all content
+
+703
+00:26:06,280 --> 00:26:08,620
+creators now lots of people are working
+
+704
+00:26:08,620 --> 00:26:10,900
+on making web stores a thing but one of
+
+705
+00:26:10,900 --> 00:26:12,340
+the things my own team is doing is
+
+706
+00:26:12,340 --> 00:26:14,350
+bringing story creation to WordPress the
+
+707
+00:26:14,350 --> 00:26:16,780
+most used CMS in the world in the form
+
+708
+00:26:16,780 --> 00:26:18,400
+of a visual editor coming to you very
+
+709
+00:26:18,400 --> 00:26:21,880
+soon kind of more about the beta at goog
+
+710
+00:26:21,880 --> 00:26:24,160
+le slash story editor you'll hopefully
+
+711
+00:26:24,160 --> 00:26:26,200
+see all the basic editing features you
+
+712
+00:26:26,200 --> 00:26:28,210
+would expect like smooth image and B
+
+713
+00:26:28,210 --> 00:26:30,460
+you're handling text controls shape
+
+714
+00:26:30,460 --> 00:26:33,190
+masking and so on but we're also working
+
+715
+00:26:33,190 --> 00:26:35,050
+on some you might not expect like this
+
+716
+00:26:35,050 --> 00:26:36,790
+one we call text magic running in real
+
+717
+00:26:36,790 --> 00:26:38,470
+time against images from the unsplash
+
+718
+00:26:38,470 --> 00:26:40,920
+api here target on this feature make
+
+719
+00:26:40,920 --> 00:26:43,170
+so that the editor always ensures Texas
+
+720
+00:26:43,170 --> 00:26:45,240
+readable making dynamic decisions about
+
+721
+00:26:45,240 --> 00:26:46,950
+the background line height and so on I
+
+722
+00:26:46,950 --> 00:26:49,290
+hope you like it as much as I do yeah it
+
+723
+00:26:49,290 --> 00:26:51,030
+looks really cool you know I can't wait
+
+724
+00:26:51,030 --> 00:26:52,770
+to read some of these stories on the web
+
+725
+00:26:52,770 --> 00:26:55,140
+thanks so much for for sharing their
+
+726
+00:26:55,140 --> 00:26:56,820
+pool and and thanks again to Paul and
+
+727
+00:26:56,820 --> 00:26:59,280
+everyone who took the time to join me as
+
+728
+00:26:59,280 --> 00:27:01,530
+we kick off the event today you know I'm
+
+729
+00:27:01,530 --> 00:27:02,850
+really excited about the upcoming
+
+730
+00:27:02,850 --> 00:27:05,520
+sessions starting with the focus on how
+
+731
+00:27:05,520 --> 00:27:07,500
+to make your website hit its vitals and
+
+732
+00:27:07,500 --> 00:27:10,050
+discovery through search now please
+
+733
+00:27:10,050 --> 00:27:11,100
+enjoy the show
+
+734
+00:27:11,100 --> 00:27:13,350
+remember the whole team is here to chat
+
+735
+00:27:13,350 --> 00:27:16,830
+with you on web dev slash live and via
+
+736
+00:27:16,830 --> 00:27:19,350
+YouTube I will see you there today and
+
+737
+00:27:19,350 --> 00:27:21,270
+I'll be back tomorrow morning for the
+
+738
+00:27:21,270 --> 00:27:23,380
+day to kick off
+
+739
+00:27:23,380 --> 00:27:36,509
+[Music]
+

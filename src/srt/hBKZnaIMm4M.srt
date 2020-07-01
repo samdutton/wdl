@@ -1,0 +1,529 @@
+1
+00:00:00,560 --> 00:00:03,410
+
+[Music]
+
+2
+00:00:03,410 --> 00:00:06,140
+[Applause]
+
+3
+00:00:06,140 --> 00:00:12,430
+[Music]
+
+4
+00:00:12,440 --> 00:00:15,690
+hi everyone I'm excited to show you in
+
+5
+00:00:15,690 --> 00:00:18,480
+the next 15 minutes how you can use
+
+6
+00:00:18,480 --> 00:00:20,189
+structured data to make your website
+
+7
+00:00:20,189 --> 00:00:23,340
+stand out more in Google search and how
+
+8
+00:00:23,340 --> 00:00:25,740
+that can be done with JavaScript when
+
+9
+00:00:25,740 --> 00:00:27,330
+the static implementation is infeasible
+
+10
+00:00:27,330 --> 00:00:29,369
+we will start by looking at what
+
+11
+00:00:29,369 --> 00:00:32,489
+structured data is and why it is a good
+
+12
+00:00:32,489 --> 00:00:36,239
+idea for your website then we will look
+
+13
+00:00:36,239 --> 00:00:38,430
+at ways to implement it using javascript
+
+14
+00:00:38,430 --> 00:00:41,760
+and last but not least we'll take a look
+
+15
+00:00:41,760 --> 00:00:43,739
+at how to test and debug your
+
+16
+00:00:43,739 --> 00:00:47,520
+implementation all right now what a
+
+17
+00:00:47,520 --> 00:00:49,760
+structured data and why is it useful
+
+18
+00:00:49,760 --> 00:00:52,440
+structured data is a standardized set of
+
+19
+00:00:52,440 --> 00:00:54,780
+additional markup that you can put on
+
+20
+00:00:54,780 --> 00:00:57,149
+your pages to tell machines like
+
+21
+00:00:57,149 --> 00:00:59,789
+Googlebot more about the content on your
+
+22
+00:00:59,789 --> 00:01:03,120
+page on the right side here you can see
+
+23
+00:01:03,120 --> 00:01:05,070
+the information for a specific product
+
+24
+00:01:05,070 --> 00:01:07,500
+being highlighted in both the image
+
+25
+00:01:07,500 --> 00:01:09,810
+search as well as the search results
+
+26
+00:01:09,810 --> 00:01:12,210
+including additional information like
+
+27
+00:01:12,210 --> 00:01:16,229
+ratings and price we call such results
+
+28
+00:01:16,229 --> 00:01:20,189
+rich results to implement structured
+
+29
+00:01:20,189 --> 00:01:23,520
+data you can use json-ld microdata or
+
+30
+00:01:23,520 --> 00:01:27,290
+rdf a but we recommend using json-ld
+
+31
+00:01:27,290 --> 00:01:29,970
+here is an example of what a json-ld
+
+32
+00:01:29,970 --> 00:01:32,299
+block on your page might look like
+
+33
+00:01:32,299 --> 00:01:35,100
+besides products there are many
+
+34
+00:01:35,100 --> 00:01:36,659
+verticals that can benefit from
+
+35
+00:01:36,659 --> 00:01:38,700
+structured data and become Milledgeville
+
+36
+00:01:38,700 --> 00:01:41,490
+for which results here are some examples
+
+37
+00:01:41,490 --> 00:01:43,920
+but you should check the link for the
+
+38
+00:01:43,920 --> 00:01:47,909
+full gallery of supported verticals note
+
+39
+00:01:47,909 --> 00:01:50,759
+that implementing structured data makes
+
+40
+00:01:50,759 --> 00:01:53,130
+the page eligible for rich results but
+
+41
+00:01:53,130 --> 00:01:55,860
+does not mean that we will always show
+
+42
+00:01:55,860 --> 00:01:57,799
+them for every page that implements it
+
+43
+00:01:57,799 --> 00:02:02,070
+so now we talked about what structured
+
+44
+00:02:02,070 --> 00:02:05,180
+data is and how it benefits your website
+
+45
+00:02:05,180 --> 00:02:07,770
+let's walk through a few possible
+
+46
+00:02:07,770 --> 00:02:11,640
+implementations we've seen that the
+
+47
+00:02:11,640 --> 00:02:13,860
+easiest way is to include a script tag
+
+48
+00:02:13,860 --> 00:02:17,070
+the json-ld data in the page this can of
+
+49
+00:02:17,070 --> 00:02:19,650
+course be done in the backend or
+
+50
+00:02:19,650 --> 00:02:22,740
+straightening the HTML of a page but
+
+51
+00:02:22,740 --> 00:02:24,690
+what are the options if you are using
+
+52
+00:02:24,690 --> 00:02:27,690
+client-side oner JavaScript first of all
+
+53
+00:02:27,690 --> 00:02:30,240
+it is fine to implement it dynamically
+
+54
+00:02:30,240 --> 00:02:33,270
+with client-side JavaScript we recommend
+
+55
+00:02:33,270 --> 00:02:35,340
+to use server-side rendering to make
+
+56
+00:02:35,340 --> 00:02:37,920
+your website as robust as possible but
+
+57
+00:02:37,920 --> 00:02:39,900
+there is no issue with implementing it
+
+58
+00:02:39,900 --> 00:02:42,540
+with JavaScript per se in this session
+
+59
+00:02:42,540 --> 00:02:44,760
+we will look at three possible
+
+60
+00:02:44,760 --> 00:02:47,520
+implementation approaches of course you
+
+61
+00:02:47,520 --> 00:02:49,830
+can use JavaScript without libraries or
+
+62
+00:02:49,830 --> 00:02:52,050
+frameworks to inject structured data
+
+63
+00:02:52,050 --> 00:02:56,190
+into your pages here is an example of a
+
+64
+00:02:56,190 --> 00:02:58,830
+vanilla JavaScript implementation for a
+
+65
+00:02:58,830 --> 00:03:00,420
+client-side rendering single page
+
+66
+00:03:00,420 --> 00:03:04,890
+application it fetches the json-ld data
+
+67
+00:03:04,890 --> 00:03:08,100
+from an api and injects it into the head
+
+68
+00:03:08,100 --> 00:03:11,459
+of the page as Googlebot renders this
+
+69
+00:03:11,459 --> 00:03:14,130
+page it will execute the JavaScript and
+
+70
+00:03:14,130 --> 00:03:16,760
+the structured data will be rendered
+
+71
+00:03:16,760 --> 00:03:20,220
+just make sure that the API is available
+
+72
+00:03:20,220 --> 00:03:21,750
+to Googlebot and not blocked by
+
+73
+00:03:21,750 --> 00:03:27,150
+robots.txt when you are using frameworks
+
+74
+00:03:27,150 --> 00:03:29,910
+such as react angular or view J's
+
+75
+00:03:29,910 --> 00:03:32,910
+you very likely have helpers or built-in
+
+76
+00:03:32,910 --> 00:03:34,650
+functionality available to insert
+
+77
+00:03:34,650 --> 00:03:38,340
+structured data into your pages here is
+
+78
+00:03:38,340 --> 00:03:40,769
+an example of a react component using
+
+79
+00:03:40,769 --> 00:03:43,049
+the schema helper utility to create
+
+80
+00:03:43,049 --> 00:03:45,660
+typed json-ld for a person's profile
+
+81
+00:03:45,660 --> 00:03:48,360
+page should you not have access to the
+
+82
+00:03:48,360 --> 00:03:50,940
+code of your pages that have Google tag
+
+83
+00:03:50,940 --> 00:03:52,680
+manager on these pages
+
+84
+00:03:52,680 --> 00:03:55,440
+you may use a custom tag in custom
+
+85
+00:03:55,440 --> 00:03:58,110
+variables to create structured data from
+
+86
+00:03:58,110 --> 00:04:00,600
+the information that is on the page to
+
+87
+00:04:00,600 --> 00:04:03,690
+do that create a custom HTML tag in your
+
+88
+00:04:03,690 --> 00:04:05,880
+container and insert the relevant
+
+89
+00:04:05,880 --> 00:04:09,269
+json-ld as well as the variables for the
+
+90
+00:04:09,269 --> 00:04:11,250
+values of each field in the json-ld
+
+91
+00:04:11,250 --> 00:04:15,150
+block then create the necessary custom
+
+92
+00:04:15,150 --> 00:04:17,250
+JavaScript variables to extract
+
+93
+00:04:17,250 --> 00:04:19,200
+information from the page so it can be
+
+94
+00:04:19,200 --> 00:04:21,419
+inserted into the custom HTML tag
+
+95
+00:04:21,419 --> 00:04:26,280
+automatically we advise not to copy and
+
+96
+00:04:26,280 --> 00:04:27,720
+paste information from the page
+
+97
+00:04:27,720 --> 00:04:30,360
+directly into Google tag manager as that
+
+98
+00:04:30,360 --> 00:04:32,040
+will likely cause a mismatch between
+
+99
+00:04:32,040 --> 00:04:34,050
+page content and structured data
+
+100
+00:04:34,050 --> 00:04:36,720
+generated by Google tag manager to rise
+
+101
+00:04:36,720 --> 00:04:39,900
+in the future right so we've seen three
+
+102
+00:04:39,900 --> 00:04:41,730
+ways of generating structured data with
+
+103
+00:04:41,730 --> 00:04:44,070
+JavaScript let's find out if our
+
+104
+00:04:44,070 --> 00:04:46,560
+implementation works as expected there
+
+105
+00:04:46,560 --> 00:04:48,360
+are two main tools for testing the
+
+106
+00:04:48,360 --> 00:04:52,110
+implementations the first one is the
+
+107
+00:04:52,110 --> 00:04:55,050
+rich results test you can paste a URL
+
+108
+00:04:55,050 --> 00:04:57,390
+into the tool and see what structured
+
+109
+00:04:57,390 --> 00:04:59,940
+data is recognized as well as if there
+
+110
+00:04:59,940 --> 00:05:01,620
+are any issues with the structured data
+
+111
+00:05:01,620 --> 00:05:05,130
+on the page when using javascript to
+
+112
+00:05:05,130 --> 00:05:07,170
+generate structured data we recommend
+
+113
+00:05:07,170 --> 00:05:09,480
+testing a URL instead of pasting code
+
+114
+00:05:09,480 --> 00:05:12,390
+directly into the tool the other great
+
+115
+00:05:12,390 --> 00:05:14,700
+tool for testing this is the Google
+
+116
+00:05:14,700 --> 00:05:17,340
+search console in the URL inspection
+
+117
+00:05:17,340 --> 00:05:19,350
+tool you can see the structured data
+
+118
+00:05:19,350 --> 00:05:22,919
+that is detected and if it is valid but
+
+119
+00:05:22,919 --> 00:05:25,050
+you can also see which pages of your
+
+120
+00:05:25,050 --> 00:05:27,419
+site were eligible for which results and
+
+121
+00:05:27,419 --> 00:05:29,640
+which ones have arrows or warnings to
+
+122
+00:05:29,640 --> 00:05:32,100
+look into if you want to learn more
+
+123
+00:05:32,100 --> 00:05:33,690
+about Google search in structured data
+
+124
+00:05:33,690 --> 00:05:35,790
+check out our documentation at
+
+125
+00:05:35,790 --> 00:05:38,520
+developers.google.com slash search or
+
+126
+00:05:38,520 --> 00:05:41,880
+use this short link to read more on how
+
+127
+00:05:41,880 --> 00:05:43,800
+to use javascript to generate structured
+
+128
+00:05:43,800 --> 00:05:46,169
+data for your pages thanks a lot for
+
+129
+00:05:46,169 --> 00:05:49,120
+joining and have a great day bye
+
+130
+00:05:49,120 --> 00:05:55,640
+[Music]
+
+131
+00:05:55,640 --> 00:05:57,810
+[Applause]
+
+132
+00:05:57,810 --> 00:06:02,409
+[Music]
+

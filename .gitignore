@@ -1,0 +1,10 @@
+**/transcripts
+*~
+.DS_Store
+.swp
+.vscode/
+client_secret.json
+**/data/captions.json
+default.profraw
+node_modules
+oauth2.keys.json

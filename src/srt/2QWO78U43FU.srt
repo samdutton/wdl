@@ -1,0 +1,1273 @@
+1
+00:00:00,570 --> 00:00:03,410
+
+[Music]
+
+2
+00:00:03,410 --> 00:00:08,130
+[Applause]
+
+3
+00:00:08,140 --> 00:00:11,570
+[Music]
+
+4
+00:00:11,570 --> 00:00:14,010
+hello rim thank you for joining us today
+
+5
+00:00:14,010 --> 00:00:16,200
+my name is sebastian benz I'm part of
+
+6
+00:00:16,200 --> 00:00:18,420
+the amp developer relations team and my
+
+7
+00:00:18,420 --> 00:00:20,070
+name is Nana rising honey and I'm a
+
+8
+00:00:20,070 --> 00:00:23,040
+product manager on the amp project we
+
+9
+00:00:23,040 --> 00:00:24,390
+want to talk about the work we are doing
+
+10
+00:00:24,390 --> 00:00:27,090
+on amp to make better women less painful
+
+11
+00:00:27,090 --> 00:00:29,849
+and developers more productive yeah I'm
+
+12
+00:00:29,849 --> 00:00:31,529
+incredibly excited so let's dive right
+
+13
+00:00:31,529 --> 00:00:34,530
+into it so now we would be remiss if we
+
+14
+00:00:34,530 --> 00:00:36,690
+talked about em and didn't talk about
+
+15
+00:00:36,690 --> 00:00:38,460
+the impact of Google's recent
+
+16
+00:00:38,460 --> 00:00:40,410
+announcement around the page experience
+
+17
+00:00:40,410 --> 00:00:43,770
+ranking signal absolutely so even before
+
+18
+00:00:43,770 --> 00:00:45,629
+we can actually start talking about amp
+
+19
+00:00:45,629 --> 00:00:47,730
+and page experience first let's just
+
+20
+00:00:47,730 --> 00:00:49,730
+talk about what the announcement is in
+
+21
+00:00:49,730 --> 00:00:52,620
+May the Google search team announced
+
+22
+00:00:52,620 --> 00:00:53,789
+that they're going to measure how the
+
+23
+00:00:53,789 --> 00:00:55,829
+page is experienced by the user in
+
+24
+00:00:55,829 --> 00:00:57,660
+addition to price signals such as a
+
+25
+00:00:57,660 --> 00:01:00,000
+pages usefulness and this whole suite of
+
+26
+00:01:00,000 --> 00:01:02,280
+X measurements is called page experience
+
+27
+00:01:02,280 --> 00:01:05,670
+it uses core web vitals which the chrome
+
+28
+00:01:05,670 --> 00:01:07,530
+team announced earlier that month and
+
+29
+00:01:07,530 --> 00:01:09,630
+adds other pre-existing signals such as
+
+30
+00:01:09,630 --> 00:01:11,700
+mobile friendliness safe browsing and
+
+31
+00:01:11,700 --> 00:01:14,940
+HTTPS on top of it and the great thing
+
+32
+00:01:14,940 --> 00:01:17,069
+is that these metrics line up really
+
+33
+00:01:17,069 --> 00:01:19,200
+well with amps design goals of making
+
+34
+00:01:19,200 --> 00:01:21,270
+sure that users are getting a content
+
+35
+00:01:21,270 --> 00:01:23,490
+forward experience on a rig and are able
+
+36
+00:01:23,490 --> 00:01:25,319
+to consume content without having to
+
+37
+00:01:25,319 --> 00:01:27,750
+download unnecessary resources or wait
+
+38
+00:01:27,750 --> 00:01:30,720
+for unnecessary processing okay so how
+
+39
+00:01:30,720 --> 00:01:33,869
+does amp do against page experience good
+
+40
+00:01:33,869 --> 00:01:36,209
+catch actually we did some analysis and
+
+41
+00:01:36,209 --> 00:01:37,860
+we saw that a majority of amp pages
+
+42
+00:01:37,860 --> 00:01:40,229
+actually already do pretty well against
+
+43
+00:01:40,229 --> 00:01:42,690
+this criteria this means that amp is
+
+44
+00:01:42,690 --> 00:01:44,550
+really living up to the intention of
+
+45
+00:01:44,550 --> 00:01:46,440
+being a well lit path to creating a
+
+46
+00:01:46,440 --> 00:01:48,869
+great page experience so you said that a
+
+47
+00:01:48,869 --> 00:01:51,360
+majority of amp pages meet the criteria
+
+48
+00:01:51,360 --> 00:01:53,489
+but not all yep
+
+49
+00:01:53,489 --> 00:01:55,830
+so in the cases where the amp page
+
+50
+00:01:55,830 --> 00:01:57,509
+doesn't perform well against the page
+
+51
+00:01:57,509 --> 00:01:59,640
+experience criteria we saw that they
+
+52
+00:01:59,640 --> 00:02:01,410
+failed for reasons that were outside of
+
+53
+00:02:01,410 --> 00:02:04,319
+amps control such as overly large images
+
+54
+00:02:04,319 --> 00:02:06,330
+being served on mobile devices or the
+
+55
+00:02:06,330 --> 00:02:08,179
+server response time being too slow
+
+56
+00:02:08,179 --> 00:02:10,619
+that's a really interesting key aspect
+
+57
+00:02:10,619 --> 00:02:13,440
+of page experience that the core web
+
+58
+00:02:13,440 --> 00:02:15,510
+battles are mash up from real user data
+
+59
+00:02:15,510 --> 00:02:18,480
+this means to improve your cover battles
+
+60
+00:02:18,480 --> 00:02:20,130
+for example it's a good idea to use a
+
+61
+00:02:20,130 --> 00:02:22,460
+CDN to ensure that users
+
+62
+00:02:22,460 --> 00:02:23,960
+the world get your conduct delivered
+
+63
+00:02:23,960 --> 00:02:26,600
+quickly yeah and just like other
+
+64
+00:02:26,600 --> 00:02:28,640
+libraries and frameworks the amp project
+
+65
+00:02:28,640 --> 00:02:30,770
+will be monitoring these metrics closely
+
+66
+00:02:30,770 --> 00:02:32,780
+and continue investing in amps
+
+67
+00:02:32,780 --> 00:02:34,970
+performance by our performance working
+
+68
+00:02:34,970 --> 00:02:37,220
+group but more generally it's really
+
+69
+00:02:37,220 --> 00:02:39,350
+important to note that amp will intends
+
+70
+00:02:39,350 --> 00:02:41,450
+to reduce the ongoing effort needed to
+
+71
+00:02:41,450 --> 00:02:43,610
+create pages that offer a great user
+
+72
+00:02:43,610 --> 00:02:46,010
+experience and we intend to do so by
+
+73
+00:02:46,010 --> 00:02:48,050
+helping offload tasks and worries such
+
+74
+00:02:48,050 --> 00:02:50,600
+as browser compatibility accessibility
+
+75
+00:02:50,600 --> 00:02:53,570
+javascript budgets etc at its core and
+
+76
+00:02:53,570 --> 00:02:56,330
+as a UI component library before using
+
+77
+00:02:56,330 --> 00:02:58,250
+amp often struggled with too much choice
+
+78
+00:02:58,250 --> 00:02:59,870
+when it came to adding a new feature to
+
+79
+00:02:59,870 --> 00:03:02,060
+a site having to decide whether I should
+
+80
+00:03:02,060 --> 00:03:04,130
+bid my own carousel which is a bad idea
+
+81
+00:03:04,130 --> 00:03:06,440
+or finding a suitable existing
+
+82
+00:03:06,440 --> 00:03:08,660
+implementation could take a lot of time
+
+83
+00:03:08,660 --> 00:03:11,690
+and energy with amp you get a flexible
+
+84
+00:03:11,690 --> 00:03:14,300
+high quality or high component out of
+
+85
+00:03:14,300 --> 00:03:16,160
+the box and you can be sure that these
+
+86
+00:03:16,160 --> 00:03:18,710
+perform well are accessible and play
+
+87
+00:03:18,710 --> 00:03:21,410
+along well with each other recently I
+
+88
+00:03:21,410 --> 00:03:23,150
+talked to a developer from an agency
+
+89
+00:03:23,150 --> 00:03:25,130
+which uses am for building most of their
+
+90
+00:03:25,130 --> 00:03:27,770
+clients websites they told me that one
+
+91
+00:03:27,770 --> 00:03:29,690
+of their two side in terms had been able
+
+92
+00:03:29,690 --> 00:03:31,730
+to build a fully interactive website
+
+93
+00:03:31,730 --> 00:03:34,070
+from one of their clients without any
+
+94
+00:03:34,070 --> 00:03:36,020
+JavaScript knowledge I think that's
+
+95
+00:03:36,020 --> 00:03:38,030
+fantastic and a great example for the
+
+96
+00:03:38,030 --> 00:03:40,610
+value of a good UI component library it
+
+97
+00:03:40,610 --> 00:03:42,020
+makes it easy to get started for
+
+98
+00:03:42,020 --> 00:03:44,090
+beginners and then also experienced
+
+99
+00:03:44,090 --> 00:03:46,520
+developers to focus on creating new user
+
+100
+00:03:46,520 --> 00:03:48,680
+experiences instead of bike sharing
+
+101
+00:03:48,680 --> 00:03:51,890
+technical details and that's exactly
+
+102
+00:03:51,890 --> 00:03:54,650
+what we're focusing on in 2020 we want
+
+103
+00:03:54,650 --> 00:03:56,810
+amp to be a cost-effective and simple
+
+104
+00:03:56,810 --> 00:03:58,880
+solution that allows developers to focus
+
+105
+00:03:58,880 --> 00:04:00,980
+on their product and not worry about
+
+106
+00:04:00,980 --> 00:04:02,350
+other things like performance
+
+107
+00:04:02,350 --> 00:04:05,600
+infrastructure etc and this is an effort
+
+108
+00:04:05,600 --> 00:04:08,090
+that we're calling amp as a service the
+
+109
+00:04:08,090 --> 00:04:11,120
+idea here is to use em as a turnkey
+
+110
+00:04:11,120 --> 00:04:13,460
+solution to easily create and then
+
+111
+00:04:13,460 --> 00:04:15,560
+maintain a great page experience and
+
+112
+00:04:15,560 --> 00:04:17,600
+make developers more productive
+
+113
+00:04:17,600 --> 00:04:20,270
+simultaneously so what exactly do you
+
+114
+00:04:20,270 --> 00:04:22,580
+intend to do so the first thing that we
+
+115
+00:04:22,580 --> 00:04:23,870
+really want to do is address the
+
+116
+00:04:23,870 --> 00:04:25,550
+feedback that app developers have and
+
+117
+00:04:25,550 --> 00:04:27,110
+some of the top complaints that we've
+
+118
+00:04:27,110 --> 00:04:29,150
+seen with amp is first the need for
+
+119
+00:04:29,150 --> 00:04:31,460
+custom JavaScript and second the fact
+
+120
+00:04:31,460 --> 00:04:33,500
+that the inline CSS limit is too small
+
+121
+00:04:33,500 --> 00:04:34,610
+at 50 kilobytes
+
+122
+00:04:34,610 --> 00:04:36,409
+now we address the need for
+
+123
+00:04:36,409 --> 00:04:38,419
+javascript by adding amp script a
+
+124
+00:04:38,419 --> 00:04:40,519
+component that allows you to add custom
+
+125
+00:04:40,519 --> 00:04:42,559
+JavaScript to amp to help fulfill any
+
+126
+00:04:42,559 --> 00:04:44,509
+business specific need that amp doesn't
+
+127
+00:04:44,509 --> 00:04:46,729
+solve and if you want to hear more here
+
+128
+00:04:46,729 --> 00:04:48,379
+you should stay tuned because our
+
+129
+00:04:48,379 --> 00:04:50,300
+colleagues Ben Morse and crystal Lambert
+
+130
+00:04:50,300 --> 00:04:51,589
+will be talking you through this in
+
+131
+00:04:51,589 --> 00:04:53,659
+their talk titled where Christ GS
+
+132
+00:04:53,659 --> 00:04:56,300
+now with our CSS limit the intention was
+
+133
+00:04:56,300 --> 00:04:58,729
+to promote CSS hygiene but we got
+
+134
+00:04:58,729 --> 00:05:00,649
+feedback that the limit was too tight at
+
+135
+00:05:00,649 --> 00:05:02,779
+50 kilobytes so we worked with the amp
+
+136
+00:05:02,779 --> 00:05:04,309
+community to understand what a
+
+137
+00:05:04,309 --> 00:05:06,619
+reasonable CSS limit could be and after
+
+138
+00:05:06,619 --> 00:05:08,629
+working with plugin developers news
+
+139
+00:05:08,629 --> 00:05:10,669
+publishers and e-commerce site creators
+
+140
+00:05:10,669 --> 00:05:12,709
+we realized that most interactive
+
+141
+00:05:12,709 --> 00:05:14,689
+experiences could actually fit me within
+
+142
+00:05:14,689 --> 00:05:17,569
+75 kilobytes of CSS and so that's what
+
+143
+00:05:17,569 --> 00:05:20,149
+we made our new limit 75 kilobytes and
+
+144
+00:05:20,149 --> 00:05:22,249
+this really seems to have hit the sweet
+
+145
+00:05:22,249 --> 00:05:24,499
+spot with a vibe to kill my limit I have
+
+146
+00:05:24,499 --> 00:05:25,969
+from many developers that they've been
+
+147
+00:05:25,969 --> 00:05:27,769
+strongly was keeping this yes as below
+
+148
+00:05:27,769 --> 00:05:29,779
+the limit but I still have to hear from
+
+149
+00:05:29,779 --> 00:05:31,759
+someone starting with the 75 Caleb
+
+150
+00:05:31,759 --> 00:05:34,369
+element yeah fingers crossed that this
+
+151
+00:05:34,369 --> 00:05:36,739
+limit works now aside from addressing
+
+152
+00:05:36,739 --> 00:05:38,749
+feedback we wanted to we want to make
+
+153
+00:05:38,749 --> 00:05:40,729
+developers more productive we want to
+
+154
+00:05:40,729 --> 00:05:41,899
+help them create and maintain
+
+155
+00:05:41,899 --> 00:05:44,179
+performance sites as well the problem
+
+156
+00:05:44,179 --> 00:05:46,550
+usually wasn't with Ambit self but then
+
+157
+00:05:46,550 --> 00:05:48,619
+they had to maintain two versions of the
+
+158
+00:05:48,619 --> 00:05:50,990
+pages the canonical one and an
+
+159
+00:05:50,990 --> 00:05:54,349
+additional one and one yep that's far
+
+160
+00:05:54,349 --> 00:05:56,659
+that's by far the largest problem that
+
+161
+00:05:56,659 --> 00:05:59,179
+amp developers have the problem is even
+
+162
+00:05:59,179 --> 00:06:01,129
+more acute if you have separate teams
+
+163
+00:06:01,129 --> 00:06:02,899
+that are working on the amp and mobile
+
+164
+00:06:02,899 --> 00:06:05,029
+web experience especially if they're in
+
+165
+00:06:05,029 --> 00:06:07,639
+separate parts of the organization to be
+
+166
+00:06:07,639 --> 00:06:10,159
+honest the amp team itself advocated for
+
+167
+00:06:10,159 --> 00:06:11,779
+paired amp experiences when we got
+
+168
+00:06:11,779 --> 00:06:14,360
+started we saw it as an easy way to
+
+169
+00:06:14,360 --> 00:06:16,339
+create amp pages with the least amount
+
+170
+00:06:16,339 --> 00:06:18,949
+of effort but talking to developers over
+
+171
+00:06:18,949 --> 00:06:21,139
+time has made us realise the amount of
+
+172
+00:06:21,139 --> 00:06:22,969
+pain that can be associated with
+
+173
+00:06:22,969 --> 00:06:25,399
+maintaining this dual code base and that
+
+174
+00:06:25,399 --> 00:06:27,259
+this outweighs the initial games of
+
+175
+00:06:27,259 --> 00:06:28,879
+actually creating the amp page quickly
+
+176
+00:06:28,879 --> 00:06:31,399
+and Google's page experience
+
+177
+00:06:31,399 --> 00:06:33,199
+announcement is a great move for amp
+
+178
+00:06:33,199 --> 00:06:35,360
+developers in this regard it allows
+
+179
+00:06:35,360 --> 00:06:37,219
+development teams to really think about
+
+180
+00:06:37,219 --> 00:06:38,959
+how they want to continue investing in
+
+181
+00:06:38,959 --> 00:06:42,139
+amp going forward ok so say I'm I'm
+
+182
+00:06:42,139 --> 00:06:44,029
+publishing paired-end pages because I
+
+183
+00:06:44,029 --> 00:06:45,349
+want to be in the Google top stories
+
+184
+00:06:45,349 --> 00:06:47,569
+accountable should I continue doing this
+
+185
+00:06:47,569 --> 00:06:50,220
+so in that case I would ask for you
+
+186
+00:06:50,220 --> 00:06:52,350
+consider the maintenance costs that you
+
+187
+00:06:52,350 --> 00:06:54,060
+are incurring by having to maintain an
+
+188
+00:06:54,060 --> 00:06:55,620
+amp version of your code and a non
+
+189
+00:06:55,620 --> 00:06:57,990
+immersion of your code now that you have
+
+190
+00:06:57,990 --> 00:06:59,880
+the option to be flexible with your tech
+
+191
+00:06:59,880 --> 00:07:01,590
+stack you should be looking to pick a
+
+192
+00:07:01,590 --> 00:07:03,450
+setup that allows all your web
+
+193
+00:07:03,450 --> 00:07:05,370
+developers to be productive from day one
+
+194
+00:07:05,370 --> 00:07:07,560
+so you're telling those we're going the
+
+195
+00:07:07,560 --> 00:07:09,990
+paired-end route to completely drop and
+
+196
+00:07:09,990 --> 00:07:12,990
+support know what we're telling them is
+
+197
+00:07:12,990 --> 00:07:14,400
+to pick something that makes them the
+
+198
+00:07:14,400 --> 00:07:16,140
+most productive and this could be a
+
+199
+00:07:16,140 --> 00:07:18,390
+number of things developers could pick
+
+200
+00:07:18,390 --> 00:07:20,040
+experiences on their site that could
+
+201
+00:07:20,040 --> 00:07:21,930
+actually benefit from amp and only
+
+202
+00:07:21,930 --> 00:07:24,180
+invest in amp for those experiences or
+
+203
+00:07:24,180 --> 00:07:26,730
+they could go fully am first across all
+
+204
+00:07:26,730 --> 00:07:28,620
+their site if they actually believe that
+
+205
+00:07:28,620 --> 00:07:30,360
+amp is able to meet their needs and
+
+206
+00:07:30,360 --> 00:07:32,430
+we've gotten pretty positive feedback
+
+207
+00:07:32,430 --> 00:07:34,140
+from developers who use amp as their
+
+208
+00:07:34,140 --> 00:07:36,180
+main library because they think that amp
+
+209
+00:07:36,180 --> 00:07:38,460
+makes them more productive and this is
+
+210
+00:07:38,460 --> 00:07:40,980
+what we see amps future as a component
+
+211
+00:07:40,980 --> 00:07:42,930
+library that helps developers be more
+
+212
+00:07:42,930 --> 00:07:44,850
+productive and this is why we're
+
+213
+00:07:44,850 --> 00:07:46,710
+investing in allowing everyone to use
+
+214
+00:07:46,710 --> 00:07:48,690
+amp components even outside of amp pages
+
+215
+00:07:48,690 --> 00:07:50,790
+it's an effort that we're calling bento
+
+216
+00:07:50,790 --> 00:07:52,770
+app and we look forward to releasing it
+
+217
+00:07:52,770 --> 00:07:55,770
+later this year I'm really excited about
+
+218
+00:07:55,770 --> 00:07:58,680
+this focusing on amp as your I component
+
+219
+00:07:58,680 --> 00:08:00,690
+library isn't much healthier direction
+
+220
+00:08:00,690 --> 00:08:03,090
+in my opinion and I'm very happy that
+
+221
+00:08:03,090 --> 00:08:05,669
+we're making this move another we were
+
+222
+00:08:05,669 --> 00:08:07,590
+taking or learnings from and/or making
+
+223
+00:08:07,590 --> 00:08:08,729
+them available to provide your audience
+
+224
+00:08:08,729 --> 00:08:11,570
+our server side optimizations fan pages
+
+225
+00:08:11,570 --> 00:08:14,430
+at the beginning amp pages we're mostly
+
+226
+00:08:14,430 --> 00:08:16,979
+short from our caches and these perform
+
+227
+00:08:16,979 --> 00:08:19,020
+additional optimizations enabling
+
+228
+00:08:19,020 --> 00:08:22,500
+amstrong user experience however many
+
+229
+00:08:22,500 --> 00:08:24,180
+developers started using and forbidding
+
+230
+00:08:24,180 --> 00:08:26,940
+their whole website in these cases and
+
+231
+00:08:26,940 --> 00:08:28,919
+pages are not stopped from a cache and
+
+232
+00:08:28,919 --> 00:08:31,229
+there has been room for improving amps
+
+233
+00:08:31,229 --> 00:08:34,440
+loading performance to address this we
+
+234
+00:08:34,440 --> 00:08:35,909
+created app optimizer
+
+235
+00:08:35,909 --> 00:08:38,339
+a tool to bring em cache optimizations
+
+236
+00:08:38,339 --> 00:08:40,860
+to publishers for example we use an
+
+237
+00:08:40,860 --> 00:08:43,260
+optimized for the official app website
+
+238
+00:08:43,260 --> 00:08:45,660
+after death and by using I'm optimizing
+
+239
+00:08:45,660 --> 00:08:48,120
+achieves the same performance as when
+
+240
+00:08:48,120 --> 00:08:50,730
+the page is served from an app cache and
+
+241
+00:08:50,730 --> 00:08:52,920
+what I really like and optimizer fits
+
+242
+00:08:52,920 --> 00:08:55,200
+really well into your idea of a bizarre
+
+243
+00:08:55,200 --> 00:08:57,839
+service it enables us to automate bet
+
+244
+00:08:57,839 --> 00:09:00,480
+development best practices for example
+
+245
+00:09:00,480 --> 00:09:02,400
+the latest of optimizer with these added
+
+246
+00:09:02,400 --> 00:09:04,440
+support for image source a generation to
+
+247
+00:09:04,440 --> 00:09:07,130
+make it easier to serve optimized images
+
+248
+00:09:07,130 --> 00:09:10,620
+another example is JavaScript modules
+
+249
+00:09:10,620 --> 00:09:13,230
+the amp project is soon going to start
+
+250
+00:09:13,230 --> 00:09:15,180
+serving them run to them of components
+
+251
+00:09:15,180 --> 00:09:17,730
+as JavaScript modules and if you're
+
+252
+00:09:17,730 --> 00:09:19,530
+using amp optimizer you will
+
+253
+00:09:19,530 --> 00:09:21,480
+automatically get the benefit of smaller
+
+254
+00:09:21,480 --> 00:09:23,490
+runtime modules once this becomes
+
+255
+00:09:23,490 --> 00:09:26,970
+available and that sounds so great and
+
+256
+00:09:26,970 --> 00:09:28,260
+I'm really excited about all the
+
+257
+00:09:28,260 --> 00:09:29,370
+improvements that are coming to
+
+258
+00:09:29,370 --> 00:09:31,650
+optimizer but what's the best way for
+
+259
+00:09:31,650 --> 00:09:33,360
+developers to actually include amp
+
+260
+00:09:33,360 --> 00:09:34,140
+optimizer
+
+261
+00:09:34,140 --> 00:09:35,760
+I mean of course you could include it
+
+262
+00:09:35,760 --> 00:09:37,950
+normally in your build pipeline or your
+
+263
+00:09:37,950 --> 00:09:40,740
+rendering pipeline but ideally you
+
+264
+00:09:40,740 --> 00:09:42,780
+shouldn't have to think about how to do
+
+265
+00:09:42,780 --> 00:09:45,480
+get M optimizer our goal is to make the
+
+266
+00:09:45,480 --> 00:09:47,430
+integration seamless by integrating an
+
+267
+00:09:47,430 --> 00:09:48,180
+optimizer
+
+268
+00:09:48,180 --> 00:09:49,950
+into existing frameworks and single
+
+269
+00:09:49,950 --> 00:09:52,260
+sensors the next is integration is a
+
+270
+00:09:52,260 --> 00:09:54,600
+great example for what a good ahmedabad
+
+271
+00:09:54,600 --> 00:09:57,570
+experience can look like next is has a
+
+272
+00:09:57,570 --> 00:09:59,670
+special amp mode that you enable your
+
+273
+00:09:59,670 --> 00:10:02,010
+flag and this will result in the
+
+274
+00:10:02,010 --> 00:10:05,070
+generated page being ballot app the cool
+
+275
+00:10:05,070 --> 00:10:07,020
+thing is that you can start using amp
+
+276
+00:10:07,020 --> 00:10:09,120
+component straight out of the box and
+
+277
+00:10:09,120 --> 00:10:10,589
+you don't need to worry about the EM
+
+278
+00:10:10,589 --> 00:10:12,630
+boilerplate or importing M components
+
+279
+00:10:12,630 --> 00:10:15,180
+all of this is automatically added in
+
+280
+00:10:15,180 --> 00:10:16,709
+the background band optimizer
+
+281
+00:10:16,709 --> 00:10:19,230
+which is integrated directly into next
+
+282
+00:10:19,230 --> 00:10:22,020
+earnest and the resulting editing
+
+283
+00:10:22,020 --> 00:10:24,360
+experience was really nice and it feels
+
+284
+00:10:24,360 --> 00:10:26,310
+like that development from 30 years ago
+
+285
+00:10:26,310 --> 00:10:30,330
+and a great example for this is as Axios
+
+286
+00:10:30,330 --> 00:10:32,700
+they recently launched the new site and
+
+287
+00:10:32,700 --> 00:10:35,580
+it's completely built on am using these
+
+288
+00:10:35,580 --> 00:10:37,050
+days and they've been really happy with
+
+289
+00:10:37,050 --> 00:10:41,280
+the experience another example for a CMS
+
+290
+00:10:41,280 --> 00:10:43,290
+that has these features integrated is
+
+291
+00:10:43,290 --> 00:10:45,930
+WordPress recently the official and
+
+292
+00:10:45,930 --> 00:10:47,970
+breakfast plug-in start the publishing
+
+293
+00:10:47,970 --> 00:10:51,480
+optimized amp by default so this means
+
+294
+00:10:51,480 --> 00:10:53,490
+if you built an amp age using WordPress
+
+295
+00:10:53,490 --> 00:10:56,850
+you get the best serving performance for
+
+296
+00:10:56,850 --> 00:10:59,760
+Wow it's it's really exciting to see so
+
+297
+00:10:59,760 --> 00:11:01,110
+many new experiences that are being
+
+298
+00:11:01,110 --> 00:11:02,790
+built using amp and in fact amp
+
+299
+00:11:02,790 --> 00:11:04,830
+optimizer and I'm really hoping to see
+
+300
+00:11:04,830 --> 00:11:07,980
+more but that's it that's our time and
+
+301
+00:11:07,980 --> 00:11:10,589
+that's our vision for 2020 the Google
+
+302
+00:11:10,589 --> 00:11:12,329
+Page experience announcement allows amp
+
+303
+00:11:12,329 --> 00:11:14,070
+to focus on what it does best
+
+304
+00:11:14,070 --> 00:11:16,230
+be a UI component library that helps
+
+305
+00:11:16,230 --> 00:11:18,480
+developers be more productive by helping
+
+306
+00:11:18,480 --> 00:11:20,040
+them deploy web development best
+
+307
+00:11:20,040 --> 00:11:23,130
+practices at scale and if you want to
+
+308
+00:11:23,130 --> 00:11:25,080
+read more about Em's plans for 2020
+
+309
+00:11:25,080 --> 00:11:27,390
+please read our blog post and gilded amp
+
+310
+00:11:27,390 --> 00:11:29,730
+a definite service and with that thank
+
+311
+00:11:29,730 --> 00:11:31,380
+you for joining us if you want to learn
+
+312
+00:11:31,380 --> 00:11:33,360
+more about amp in general you can visit
+
+313
+00:11:33,360 --> 00:11:36,510
+amp death today thanks everyone and we
+
+314
+00:11:36,510 --> 00:11:38,370
+will spend on the chat I'll answer your
+
+315
+00:11:38,370 --> 00:11:39,860
+questions for bit
+
+316
+00:11:39,860 --> 00:11:46,350
+[Music]
+
+317
+00:11:46,350 --> 00:11:48,600
+[Applause]
+
+318
+00:11:48,600 --> 00:11:56,840
+[Music]
+

@@ -1,0 +1,749 @@
+1
+00:00:00,560 --> 00:00:03,410
+
+[Music]
+
+2
+00:00:03,410 --> 00:00:06,140
+[Applause]
+
+3
+00:00:06,140 --> 00:00:12,400
+[Music]
+
+4
+00:00:12,410 --> 00:00:15,179
+hi everyone thanks for watching this
+
+5
+00:00:15,179 --> 00:00:17,130
+session on debugging JavaScript SEO
+
+6
+00:00:17,130 --> 00:00:21,539
+issues in the next 15 minutes I will
+
+7
+00:00:21,539 --> 00:00:23,550
+take you on a short journey in which we
+
+8
+00:00:23,550 --> 00:00:25,320
+will talk a bit about the various that a
+
+9
+00:00:25,320 --> 00:00:27,689
+few SEO still have about JavaScript and
+
+10
+00:00:27,689 --> 00:00:30,480
+Google search then look at the tools
+
+11
+00:00:30,480 --> 00:00:33,450
+available to SEO and developers and then
+
+12
+00:00:33,450 --> 00:00:35,370
+get our hands dirty on a few case
+
+13
+00:00:35,370 --> 00:00:40,410
+studies from the real world now let's
+
+14
+00:00:40,410 --> 00:00:42,180
+get started with looking at the basics
+
+15
+00:00:42,180 --> 00:00:44,960
+can SEO and JavaScript be friends
+
+16
+00:00:44,960 --> 00:00:47,670
+there's a bunch of history behind this
+
+17
+00:00:47,670 --> 00:00:49,739
+that contributed to various opinions and
+
+18
+00:00:49,739 --> 00:00:52,920
+answers to this question today the
+
+19
+00:00:52,920 --> 00:00:56,550
+answer is generally yes sure as with
+
+20
+00:00:56,550 --> 00:00:58,260
+every technology there are things that
+
+21
+00:00:58,260 --> 00:01:01,680
+can go wrong but there's nothing
+
+22
+00:01:01,680 --> 00:01:03,930
+inherently or categorically wrong with
+
+23
+00:01:03,930 --> 00:01:06,439
+JavaScript sites in Google search let's
+
+24
+00:01:06,439 --> 00:01:09,360
+look at a few things people tend to get
+
+25
+00:01:09,360 --> 00:01:12,150
+wrong about javascript and search the
+
+26
+00:01:12,150 --> 00:01:14,310
+number one concern brought up is that
+
+27
+00:01:14,310 --> 00:01:16,560
+Googlebot does not support modern
+
+28
+00:01:16,560 --> 00:01:18,990
+JavaScript or has otherwise very limited
+
+29
+00:01:18,990 --> 00:01:21,210
+capabilities in terms of JavaScript
+
+30
+00:01:21,210 --> 00:01:24,659
+features at Google IO 2019 we announced
+
+31
+00:01:24,659 --> 00:01:27,840
+the Evergreen Googlebot this means that
+
+32
+00:01:27,840 --> 00:01:30,659
+Googlebot uses a current stable Chrome
+
+33
+00:01:30,659 --> 00:01:32,640
+to render websites and execute
+
+34
+00:01:32,640 --> 00:01:35,850
+JavaScript and that Googlebot follows
+
+35
+00:01:35,850 --> 00:01:38,130
+the release of new chrome versions quite
+
+36
+00:01:38,130 --> 00:01:42,720
+closely another worry is concerned with
+
+37
+00:01:42,720 --> 00:01:45,479
+the two waves of indexing and the delay
+
+38
+00:01:45,479 --> 00:01:48,720
+between crawling and rendering Googlebot
+
+39
+00:01:48,720 --> 00:01:52,229
+renders all pages and the two waves were
+
+40
+00:01:52,229 --> 00:01:54,240
+a simplification of the process that
+
+41
+00:01:54,240 --> 00:01:57,240
+isn't accurate anymore the time pages
+
+42
+00:01:57,240 --> 00:01:59,159
+spent in the queue between crawling and
+
+43
+00:01:59,159 --> 00:02:02,399
+rendering is very very short five
+
+44
+00:02:02,399 --> 00:02:05,460
+seconds at the median a few minutes for
+
+45
+00:02:05,460 --> 00:02:08,340
+the 90th percentile rendering itself
+
+46
+00:02:08,340 --> 00:02:10,800
+well takes as long as it takes your
+
+47
+00:02:10,800 --> 00:02:13,890
+website to load in the browser
+
+48
+00:02:13,900 --> 00:02:18,099
+last but not least be wary of blanket
+
+49
+00:02:18,099 --> 00:02:20,230
+statements that paint JavaScript as the
+
+50
+00:02:20,230 --> 00:02:23,110
+general SEO issue well some search
+
+51
+00:02:23,110 --> 00:02:24,879
+engines might still have limited
+
+52
+00:02:24,879 --> 00:02:27,060
+capabilities for processing JavaScript
+
+53
+00:02:27,060 --> 00:02:29,680
+they ultimately want to understand
+
+54
+00:02:29,680 --> 00:02:32,170
+modern websites and that includes
+
+55
+00:02:32,170 --> 00:02:34,629
+JavaScript if javascript is used
+
+56
+00:02:34,629 --> 00:02:37,049
+responsibly tested properly and
+
+57
+00:02:37,049 --> 00:02:39,730
+implemented correctly then there are no
+
+58
+00:02:39,730 --> 00:02:41,230
+issues for google search in particular
+
+59
+00:02:41,230 --> 00:02:44,129
+and solutions exist for SEO in general
+
+60
+00:02:44,129 --> 00:02:47,349
+for example you may consider server-side
+
+61
+00:02:47,349 --> 00:02:49,420
+rendering or use dynamic rendering as a
+
+62
+00:02:49,420 --> 00:02:52,090
+workaround further crawlers when saying
+
+63
+00:02:52,090 --> 00:02:55,209
+test your site properly the follow up
+
+64
+00:02:55,209 --> 00:02:57,909
+question is usually well how do I test
+
+65
+00:02:57,909 --> 00:03:01,030
+my site properly and luckily we have a
+
+66
+00:03:01,030 --> 00:03:03,459
+whole toolkit for you to test your site
+
+67
+00:03:03,459 --> 00:03:06,400
+for Google search let's take a look at
+
+68
+00:03:06,400 --> 00:03:07,120
+what's available
+
+69
+00:03:07,120 --> 00:03:09,189
+the first tool in your tool belt is
+
+70
+00:03:09,189 --> 00:03:11,470
+Google search console it's a super
+
+71
+00:03:11,470 --> 00:03:13,120
+powerful tool for your Google search
+
+72
+00:03:13,120 --> 00:03:16,150
+performance besides a ton of reports it
+
+73
+00:03:16,150 --> 00:03:18,699
+contains the gyro inspection tool that
+
+74
+00:03:18,699 --> 00:03:20,560
+lets you check if the URL is in Google
+
+75
+00:03:20,560 --> 00:03:23,709
+search if there are any issues and how
+
+76
+00:03:23,709 --> 00:03:28,569
+Googlebot sees the page the second tool
+
+77
+00:03:28,569 --> 00:03:30,790
+that is really helpful is the rich
+
+78
+00:03:30,790 --> 00:03:34,780
+results tests it takes any URL or lets
+
+79
+00:03:34,780 --> 00:03:38,709
+you copy and paste code to check its
+
+80
+00:03:38,709 --> 00:03:40,870
+main purpose is to show a structured
+
+81
+00:03:40,870 --> 00:03:42,940
+data is correctly implemented but it has
+
+82
+00:03:42,940 --> 00:03:44,799
+much more to offer than just that
+
+83
+00:03:44,799 --> 00:03:46,510
+the last but not least the
+
+84
+00:03:46,510 --> 00:03:48,430
+mobile-friendly test is similar to the
+
+85
+00:03:48,430 --> 00:03:51,069
+rich results test on top of the rendered
+
+86
+00:03:51,069 --> 00:03:52,989
+HTML the status of all embedded
+
+87
+00:03:52,989 --> 00:03:55,959
+resources and network requests it also
+
+88
+00:03:55,959 --> 00:03:57,519
+shows an above the full screen shot of
+
+89
+00:03:57,519 --> 00:04:00,849
+the page as well as possible mobile user
+
+90
+00:04:00,849 --> 00:04:04,239
+experience issues now let's take these
+
+91
+00:04:04,239 --> 00:04:07,000
+tools for spin I have built three
+
+92
+00:04:07,000 --> 00:04:09,250
+websites based on real cases that ID
+
+93
+00:04:09,250 --> 00:04:12,010
+bugged in the webmaster forums the first
+
+94
+00:04:12,010 --> 00:04:14,440
+case is a single page application that
+
+95
+00:04:14,440 --> 00:04:18,760
+does not show up and will at all as I'm
+
+96
+00:04:18,760 --> 00:04:21,370
+not the owner of the domain I don't have
+
+97
+00:04:21,370 --> 00:04:23,110
+access to Google search console for this
+
+98
+00:04:23,110 --> 00:04:26,409
+side but I can still take a look I will
+
+99
+00:04:26,409 --> 00:04:27,400
+start with a mobile
+
+100
+00:04:27,400 --> 00:04:29,710
+detests to get a first look at the page
+
+101
+00:04:29,710 --> 00:04:34,650
+in question as we can see the page loads
+
+102
+00:04:34,650 --> 00:04:39,130
+but shows an error message when I load
+
+103
+00:04:39,130 --> 00:04:41,470
+the page in the browser it displays the
+
+104
+00:04:41,470 --> 00:04:45,009
+data correctly hmm we can take a look at
+
+105
+00:04:45,009 --> 00:04:46,870
+the resources Googlebot tried to load
+
+106
+00:04:46,870 --> 00:04:51,340
+for this page here we see that one
+
+107
+00:04:51,340 --> 00:04:54,850
+wasn't loaded the API Dahl example.org
+
+108
+00:04:54,850 --> 00:04:58,120
+slash products URL wasn't loaded because
+
+109
+00:04:58,120 --> 00:05:00,850
+it's blocked by robots.txt when
+
+110
+00:05:00,850 --> 00:05:02,710
+Googlebot renders it respects the
+
+111
+00:05:02,710 --> 00:05:04,990
+robots.txt for each network request it
+
+112
+00:05:04,990 --> 00:05:08,800
+needs to make the HTML CSS JavaScript
+
+113
+00:05:08,800 --> 00:05:12,220
+images or API calls in this case someone
+
+114
+00:05:12,220 --> 00:05:14,139
+prevented Googlebot from making the API
+
+115
+00:05:14,139 --> 00:05:17,470
+call by disallowing it in robots.txt in
+
+116
+00:05:17,470 --> 00:05:19,960
+this case the web app handles a failed
+
+117
+00:05:19,960 --> 00:05:22,240
+API request as a not found error and
+
+118
+00:05:22,240 --> 00:05:24,070
+shows a corresponding message to the
+
+119
+00:05:24,070 --> 00:05:24,570
+user
+
+120
+00:05:24,570 --> 00:05:28,360
+we caught this as a software for and as
+
+121
+00:05:28,360 --> 00:05:31,320
+it is a narrow page we didn't index it
+
+122
+00:05:31,320 --> 00:05:34,270
+take note that there are safer ways to
+
+123
+00:05:34,270 --> 00:05:36,160
+show a 404 page in a single page app
+
+124
+00:05:36,160 --> 00:05:39,370
+such as redirecting to a URL with a four
+
+125
+00:05:39,370 --> 00:05:41,680
+for status or setting the page to no
+
+126
+00:05:41,680 --> 00:05:45,580
+index right we solved that one that's
+
+127
+00:05:45,580 --> 00:05:48,510
+pretty good all right on to the next one
+
+128
+00:05:48,510 --> 00:05:51,610
+this one is described as a progressive
+
+129
+00:05:51,610 --> 00:05:54,550
+web app or PWA that didn't show up in
+
+130
+00:05:54,550 --> 00:05:57,400
+search except for their home page let's
+
+131
+00:05:57,400 --> 00:06:00,639
+go find out why looking at the home page
+
+132
+00:06:00,639 --> 00:06:03,580
+it looks alright the other views in this
+
+133
+00:06:03,580 --> 00:06:05,970
+progressive web app also know just fine
+
+134
+00:06:05,970 --> 00:06:07,090
+hmm
+
+135
+00:06:07,090 --> 00:06:09,909
+let's test one of these pages we will
+
+136
+00:06:09,909 --> 00:06:11,590
+use the mobile-friendly test again to
+
+137
+00:06:11,590 --> 00:06:16,159
+get a first look at what's going on oh
+
+138
+00:06:16,169 --> 00:06:19,949
+the test says it can't access the page
+
+139
+00:06:19,949 --> 00:06:23,979
+but it worked in the browser so let's
+
+140
+00:06:23,979 --> 00:06:27,699
+check with our dev tools in the network
+
+141
+00:06:27,699 --> 00:06:31,449
+tab I see that I get a 200 status from
+
+142
+00:06:31,449 --> 00:06:34,419
+the service worker though what happens
+
+143
+00:06:34,419 --> 00:06:36,130
+when I open the page in an incognito
+
+144
+00:06:36,130 --> 00:06:41,080
+window whoops so
+
+145
+00:06:41,080 --> 00:06:42,939
+or the server isn't actually properly
+
+146
+00:06:42,939 --> 00:06:45,430
+set up to display the page instead the
+
+147
+00:06:45,430 --> 00:06:47,169
+serviceworker does all the work to
+
+148
+00:06:47,169 --> 00:06:50,349
+handle the navigation that isn't good
+
+149
+00:06:50,349 --> 00:06:51,969
+Googlebot has to behave like a
+
+150
+00:06:51,969 --> 00:06:54,099
+first-time visitor so it loads a page
+
+151
+00:06:54,099 --> 00:06:56,289
+without the serviceworker cookies and so
+
+152
+00:06:56,289 --> 00:06:58,960
+on this needs to be fixed on the server
+
+153
+00:06:58,960 --> 00:07:01,960
+great two websites fixed but I have one
+
+154
+00:07:01,960 --> 00:07:04,389
+more to go this one is a news website
+
+155
+00:07:04,389 --> 00:07:06,759
+that is worried because not all content
+
+156
+00:07:06,759 --> 00:07:09,849
+can be found by a Google search to mix
+
+157
+00:07:09,849 --> 00:07:11,979
+things up a little bit I'll use the rich
+
+158
+00:07:11,979 --> 00:07:15,099
+results test for this one the website
+
+159
+00:07:15,099 --> 00:07:17,400
+doesn't seem to have any obvious issues
+
+160
+00:07:17,400 --> 00:07:23,020
+let's look at the rendered HTML hmm even
+
+161
+00:07:23,020 --> 00:07:24,310
+that looks fine to me
+
+162
+00:07:24,310 --> 00:07:26,229
+so let's take a look at the web site in
+
+163
+00:07:26,229 --> 00:07:31,270
+the browser so it loads 10 news stories
+
+164
+00:07:31,270 --> 00:07:34,060
+and links to each news story and then
+
+165
+00:07:34,060 --> 00:07:36,940
+loads more stories as I scroll down do
+
+166
+00:07:36,940 --> 00:07:40,800
+we find that in the rendered HTML -
+
+167
+00:07:40,800 --> 00:07:43,419
+interesting this story isn't in the
+
+168
+00:07:43,419 --> 00:07:45,520
+rendered HTML it looks like the initial
+
+169
+00:07:45,520 --> 00:07:47,830
+10 stories are there but none of the
+
+170
+00:07:47,830 --> 00:07:49,529
+content that is being loaded on scroll
+
+171
+00:07:49,529 --> 00:07:52,690
+wait does it work when I resize the
+
+172
+00:07:52,690 --> 00:07:53,669
+window
+
+173
+00:07:53,669 --> 00:07:56,740
+oops it only works when the user Scrolls
+
+174
+00:07:56,740 --> 00:07:59,289
+well Google but doesn't scroll that's
+
+175
+00:07:59,289 --> 00:08:02,199
+why these stories are loaded that's not
+
+176
+00:08:02,199 --> 00:08:04,449
+exactly a problem this can be solved by
+
+177
+00:08:04,449 --> 00:08:05,949
+using an intersection observer for
+
+178
+00:08:05,949 --> 00:08:08,830
+instance generally I recommend checking
+
+179
+00:08:08,830 --> 00:08:09,969
+out the documentation at
+
+180
+00:08:09,969 --> 00:08:12,759
+developers.google.com slash search for
+
+181
+00:08:12,759 --> 00:08:14,919
+much more information on this topic and
+
+182
+00:08:14,919 --> 00:08:18,580
+other topics I hope this was interesting
+
+183
+00:08:18,580 --> 00:08:20,259
+and helped you with testing your
+
+184
+00:08:20,259 --> 00:08:22,659
+websites for Google search keep building
+
+185
+00:08:22,659 --> 00:08:25,030
+cool stuff on the web and take care
+
+186
+00:08:25,030 --> 00:08:31,520
+[Music]
+
+187
+00:08:31,520 --> 00:08:33,710
+[Applause]
+

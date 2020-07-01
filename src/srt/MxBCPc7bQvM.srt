@@ -1,0 +1,821 @@
+1
+00:00:00,560 --> 00:00:03,410
+
+[Music]
+
+2
+00:00:03,410 --> 00:00:06,140
+[Applause]
+
+3
+00:00:06,140 --> 00:00:11,630
+[Music]
+
+4
+00:00:11,630 --> 00:00:14,849
+hi everyone hope you're all staying safe
+
+5
+00:00:14,849 --> 00:00:17,250
+my name is Usain journey and I'm a
+
+6
+00:00:17,250 --> 00:00:19,320
+developer advocate on the web team at
+
+7
+00:00:19,320 --> 00:00:22,830
+Google for this segment of web dev live
+
+8
+00:00:22,830 --> 00:00:24,779
+we want to talk about different ways to
+
+9
+00:00:24,779 --> 00:00:27,480
+explore and analyze JavaScript undos on
+
+10
+00:00:27,480 --> 00:00:30,929
+a web page analyzing bundles is a good
+
+11
+00:00:30,929 --> 00:00:33,390
+first step to optimizing the amount of
+
+12
+00:00:33,390 --> 00:00:36,270
+JavaScript shipped to the browser which
+
+13
+00:00:36,270 --> 00:00:38,969
+can improve page load times and directly
+
+14
+00:00:38,969 --> 00:00:41,219
+result in better large example paint and
+
+15
+00:00:41,219 --> 00:00:44,550
+first input delay jobs the bundling is a
+
+16
+00:00:44,550 --> 00:00:46,860
+term commonly used to describe the
+
+17
+00:00:46,860 --> 00:00:49,170
+approach many websites take to group
+
+18
+00:00:49,170 --> 00:00:51,300
+multiple job script files or modules
+
+19
+00:00:51,300 --> 00:00:54,660
+into a single file or bundle
+
+20
+00:00:54,660 --> 00:00:56,789
+many tools that bundle JavaScript code
+
+21
+00:00:56,789 --> 00:00:59,160
+for the browser usually include a number
+
+22
+00:00:59,160 --> 00:01:01,170
+of different optimization steps such as
+
+23
+00:01:01,170 --> 00:01:03,930
+minification and sculpt wasting this is
+
+24
+00:01:03,930 --> 00:01:05,640
+a good thing because code written across
+
+25
+00:01:05,640 --> 00:01:07,950
+multiple files and modules can be
+
+26
+00:01:07,950 --> 00:01:10,619
+combined into a single optimized bundle
+
+27
+00:01:10,619 --> 00:01:12,720
+although this might be useful from a
+
+28
+00:01:12,720 --> 00:01:14,130
+developer and user experience standpoint
+
+29
+00:01:14,130 --> 00:01:16,860
+this process usually obvi skates
+
+30
+00:01:16,860 --> 00:01:19,020
+JavaScript code to the extent that it
+
+31
+00:01:19,020 --> 00:01:20,640
+can't easily be read and analyzed
+
+32
+00:01:20,640 --> 00:01:22,830
+without the help of additional tooling
+
+33
+00:01:22,830 --> 00:01:25,439
+let's take a look at some examples to
+
+34
+00:01:25,439 --> 00:01:27,720
+get a better idea if you're using Chrome
+
+35
+00:01:27,720 --> 00:01:29,939
+the network panel on the dev tools is
+
+36
+00:01:29,939 --> 00:01:31,890
+the easiest way to look at all the
+
+37
+00:01:31,890 --> 00:01:34,770
+JavaScript downloaded on a page open dev
+
+38
+00:01:34,770 --> 00:01:37,220
+tools by pressing ctrl shift J or
+
+39
+00:01:37,220 --> 00:01:39,570
+command obviously J on the Mac and click
+
+40
+00:01:39,570 --> 00:01:42,479
+the network tab to open the network
+
+41
+00:01:42,479 --> 00:01:44,850
+panel to take a look at all the network
+
+42
+00:01:44,850 --> 00:01:46,979
+activity during page load reload the
+
+43
+00:01:46,979 --> 00:01:48,659
+page while dev tools is still open
+
+44
+00:01:48,659 --> 00:01:51,030
+click the dogs good button to filter
+
+45
+00:01:51,030 --> 00:01:54,240
+requests by JavaScript and click any URL
+
+46
+00:01:54,240 --> 00:01:57,149
+to view the response by the format
+
+47
+00:01:57,149 --> 00:01:59,159
+button can make a minify file more
+
+48
+00:01:59,159 --> 00:02:01,649
+readable notice how with this simple
+
+49
+00:02:01,649 --> 00:02:03,990
+static site there's only a single jobs
+
+50
+00:02:03,990 --> 00:02:06,630
+file and although minified it's easily
+
+51
+00:02:06,630 --> 00:02:09,569
+human readable if we do the same for a
+
+52
+00:02:09,569 --> 00:02:12,030
+site that bundles the JavaScript code it
+
+53
+00:02:12,030 --> 00:02:13,550
+gets harder try
+
+54
+00:02:13,550 --> 00:02:15,590
+understand exactly what lives in the
+
+55
+00:02:15,590 --> 00:02:18,590
+bundle this is an example of a site that
+
+56
+00:02:18,590 --> 00:02:20,630
+bundles many third-party libraries and
+
+57
+00:02:20,630 --> 00:02:22,790
+hundreds of first party modules into
+
+58
+00:02:22,790 --> 00:02:26,690
+just a few discrete bundles so let's
+
+59
+00:02:26,690 --> 00:02:28,940
+take a look at some ways to analyze this
+
+60
+00:02:28,940 --> 00:02:31,880
+code the coverage tab can show you how
+
+61
+00:02:31,880 --> 00:02:34,220
+my JavaScript code is unused in any of
+
+62
+00:02:34,220 --> 00:02:36,590
+your files or bundles directly in dev
+
+63
+00:02:36,590 --> 00:02:39,110
+tools open the command menu with ctrl
+
+64
+00:02:39,110 --> 00:02:42,680
+shift P or command C SP for Mac type
+
+65
+00:02:42,680 --> 00:02:44,840
+coverage and select the show coverage
+
+66
+00:02:44,840 --> 00:02:47,240
+command click the reload button to
+
+67
+00:02:47,240 --> 00:02:49,460
+reload the page while capturing coverage
+
+68
+00:02:49,460 --> 00:02:51,280
+and in a drop-down menu select
+
+69
+00:02:51,280 --> 00:02:55,280
+JavaScript and the table the unused
+
+70
+00:02:55,280 --> 00:02:57,470
+bytes field shows exactly how much
+
+71
+00:02:57,470 --> 00:03:00,080
+javascript is unused for each file click
+
+72
+00:03:00,080 --> 00:03:03,550
+any URL to see a line by line break them
+
+73
+00:03:03,550 --> 00:03:06,590
+so although the coverage tab gives us a
+
+74
+00:03:06,590 --> 00:03:08,990
+lens of how much code is being used on a
+
+75
+00:03:08,990 --> 00:03:09,710
+page
+
+76
+00:03:09,710 --> 00:03:12,380
+it still isn't easy to identify which
+
+77
+00:03:12,380 --> 00:03:15,500
+modules make up the bundle now there are
+
+78
+00:03:15,500 --> 00:03:17,030
+other tools out there to make this
+
+79
+00:03:17,030 --> 00:03:19,580
+possible if you're already bundling code
+
+80
+00:03:19,580 --> 00:03:21,650
+for your site chances are you're using a
+
+81
+00:03:21,650 --> 00:03:23,660
+module bundler like web pack or roll-up
+
+82
+00:03:23,660 --> 00:03:25,310
+and many of these module by lenders
+
+83
+00:03:25,310 --> 00:03:27,080
+provide either first-class or a
+
+84
+00:03:27,080 --> 00:03:29,540
+third-party tooling that you can use to
+
+85
+00:03:29,540 --> 00:03:32,180
+visualize and map your bundles let's go
+
+86
+00:03:32,180 --> 00:03:34,520
+over an example if you use webpack you
+
+87
+00:03:34,520 --> 00:03:36,620
+can generate a staff JSON file that
+
+88
+00:03:36,620 --> 00:03:38,989
+contains statistics about all bundled
+
+89
+00:03:38,989 --> 00:03:42,410
+modules a single CLI command omits the
+
+90
+00:03:42,410 --> 00:03:43,300
+file
+
+91
+00:03:43,300 --> 00:03:45,860
+although reading this file yourself can
+
+92
+00:03:45,860 --> 00:03:47,000
+give us some information about what
+
+93
+00:03:47,000 --> 00:03:49,130
+modules live in the bundle there are
+
+94
+00:03:49,130 --> 00:03:50,660
+community build libraries that can
+
+95
+00:03:50,660 --> 00:03:52,880
+consume this file and display a more
+
+96
+00:03:52,880 --> 00:03:54,890
+useful visualization
+
+97
+00:03:54,890 --> 00:03:57,290
+one such library is called WebP at bonds
+
+98
+00:03:57,290 --> 00:03:59,810
+landlines and it works by parsing the
+
+99
+00:03:59,810 --> 00:04:01,730
+bundles generated by web pack and then
+
+100
+00:04:01,730 --> 00:04:04,190
+mapping them to the module names in this
+
+101
+00:04:04,190 --> 00:04:05,450
+task JSON file
+
+102
+00:04:05,450 --> 00:04:07,970
+by doing this it creates an interactive
+
+103
+00:04:07,970 --> 00:04:10,340
+tree map visualization of an entire
+
+104
+00:04:10,340 --> 00:04:12,800
+bundle showing the sizes of each module
+
+105
+00:04:12,800 --> 00:04:16,120
+as well as the relation to each other
+
+106
+00:04:16,120 --> 00:04:18,830
+gzip and parse sizes are also displayed
+
+107
+00:04:18,830 --> 00:04:21,440
+to give you a better idea of how large
+
+108
+00:04:21,440 --> 00:04:26,150
+each of the modules are bundler specific
+
+109
+00:04:26,150 --> 00:04:27,320
+visualization tools
+
+110
+00:04:27,320 --> 00:04:29,750
+Green they make it easier to see what
+
+111
+00:04:29,750 --> 00:04:32,780
+makes up each of your bundles but they
+
+112
+00:04:32,780 --> 00:04:35,870
+are blunder specific for any site
+
+113
+00:04:35,870 --> 00:04:37,970
+regardless of whether a specific module
+
+114
+00:04:37,970 --> 00:04:41,150
+Bunder is used or not source maps are a
+
+115
+00:04:41,150 --> 00:04:43,820
+way to map original written code to
+
+116
+00:04:43,820 --> 00:04:46,040
+transform the output this is useful
+
+117
+00:04:46,040 --> 00:04:48,620
+because it allow us to continue to
+
+118
+00:04:48,620 --> 00:04:51,170
+obfuscate and transform our code during
+
+119
+00:04:51,170 --> 00:04:53,690
+the build process but still have a means
+
+120
+00:04:53,690 --> 00:04:56,450
+to map it back to its original form
+
+121
+00:04:56,450 --> 00:04:58,190
+Java's new files that have been
+
+122
+00:04:58,190 --> 00:05:00,440
+transformed Duty minification or other
+
+123
+00:05:00,440 --> 00:05:03,020
+bundling optimizations need to point to
+
+124
+00:05:03,020 --> 00:05:05,600
+the location of a source map file with a
+
+125
+00:05:05,600 --> 00:05:08,600
+source mapping URL comment or a source
+
+126
+00:05:08,600 --> 00:05:11,720
+map HTTP header all newer browsers
+
+127
+00:05:11,720 --> 00:05:15,110
+support source maps and with chrome you
+
+128
+00:05:15,110 --> 00:05:16,910
+can enable it in the dev tools by
+
+129
+00:05:16,910 --> 00:05:19,100
+opening up settings and checking the
+
+130
+00:05:19,100 --> 00:05:21,110
+enable JavaScript source Maps option
+
+131
+00:05:21,110 --> 00:05:23,540
+when chrome can detect that of source
+
+132
+00:05:23,540 --> 00:05:25,460
+map it's available and also a message
+
+133
+00:05:25,460 --> 00:05:27,950
+and we're able to open and debug these
+
+134
+00:05:27,950 --> 00:05:30,260
+separate associated files as regular
+
+135
+00:05:30,260 --> 00:05:33,140
+JavaScript files source map Explorer is
+
+136
+00:05:33,140 --> 00:05:34,880
+the library that you can use to see a
+
+137
+00:05:34,880 --> 00:05:37,300
+tree map visualization of the bundle
+
+138
+00:05:37,300 --> 00:05:40,220
+this visualization is an example of
+
+139
+00:05:40,220 --> 00:05:42,080
+using source map Explorer with a
+
+140
+00:05:42,080 --> 00:05:44,510
+production tool just by looking at this
+
+141
+00:05:44,510 --> 00:05:47,030
+we can identify a few issues already a
+
+142
+00:05:47,030 --> 00:05:50,420
+few common GS models here moment J s and
+
+143
+00:05:50,420 --> 00:05:53,360
+lo - are already larger than they need
+
+144
+00:05:53,360 --> 00:05:55,640
+to be if they were switched to use es
+
+145
+00:05:55,640 --> 00:05:57,890
+modules they could be smaller and more
+
+146
+00:05:57,890 --> 00:06:00,320
+optimized there are duplicate copies of
+
+147
+00:06:00,320 --> 00:06:03,140
+react and code needed from multiple
+
+148
+00:06:03,140 --> 00:06:05,300
+different routes all live in this bundle
+
+149
+00:06:05,300 --> 00:06:07,700
+and they could easily be lazy loaded
+
+150
+00:06:07,700 --> 00:06:10,490
+into their own separate bundles these
+
+151
+00:06:10,490 --> 00:06:12,680
+are all common issues than many sites
+
+152
+00:06:12,680 --> 00:06:15,440
+run into and we can spot them by using a
+
+153
+00:06:15,440 --> 00:06:17,420
+visualization tool like source map
+
+154
+00:06:17,420 --> 00:06:20,300
+Explorer other tooling that you may
+
+155
+00:06:20,300 --> 00:06:22,100
+already be familiar with are also
+
+156
+00:06:22,100 --> 00:06:23,960
+starting to consume source maps in
+
+157
+00:06:23,960 --> 00:06:26,990
+different ways that can be useful light
+
+158
+00:06:26,990 --> 00:06:28,940
+house an open source website auditing
+
+159
+00:06:28,940 --> 00:06:31,160
+tool is currently experimenting with
+
+160
+00:06:31,160 --> 00:06:32,900
+source map support for some of these
+
+161
+00:06:32,900 --> 00:06:35,570
+audits with source Maps the unused
+
+162
+00:06:35,570 --> 00:06:37,640
+JavaScript audits to show how much
+
+163
+00:06:37,640 --> 00:06:40,740
+onions code and potential savings live
+
+164
+00:06:40,740 --> 00:06:43,470
+in bundled modules there's also a new
+
+165
+00:06:43,470 --> 00:06:45,660
+legacy jobs audit being developed that
+
+166
+00:06:45,660 --> 00:06:47,970
+takes advantage of source maps to show
+
+167
+00:06:47,970 --> 00:06:49,889
+legacy code within the bundle that
+
+168
+00:06:49,889 --> 00:06:51,720
+contains polyfills and newer browsers
+
+169
+00:06:51,720 --> 00:06:54,750
+don't need and there we have it we just
+
+170
+00:06:54,750 --> 00:06:56,639
+went over a number of different
+
+171
+00:06:56,639 --> 00:06:59,460
+techniques to analyze bundle JavaScript
+
+172
+00:06:59,460 --> 00:07:02,820
+code to recap the network panel and dev
+
+173
+00:07:02,820 --> 00:07:04,919
+tools is the easiest way to start seeing
+
+174
+00:07:04,919 --> 00:07:07,110
+how much JavaScript code is being
+
+175
+00:07:07,110 --> 00:07:09,990
+downloaded the coverage tab could show
+
+176
+00:07:09,990 --> 00:07:12,090
+you how much javascript is actually used
+
+177
+00:07:12,090 --> 00:07:14,669
+many module bundlers have supported
+
+178
+00:07:14,669 --> 00:07:16,289
+tooling and make it easier to visualize
+
+179
+00:07:16,289 --> 00:07:19,020
+bundles if you use webpack for example
+
+180
+00:07:19,020 --> 00:07:21,570
+you can administer a JSON file and use
+
+181
+00:07:21,570 --> 00:07:24,030
+webpack bundle analyzer consider
+
+182
+00:07:24,030 --> 00:07:26,070
+enabling source maps on your site and
+
+183
+00:07:26,070 --> 00:07:28,530
+use source map Explorer to visualize
+
+184
+00:07:28,530 --> 00:07:31,320
+your bundles if you'd prefer not to omit
+
+185
+00:07:31,320 --> 00:07:33,210
+source maps from production you can set
+
+186
+00:07:33,210 --> 00:07:35,460
+it up as part of your build process so
+
+187
+00:07:35,460 --> 00:07:37,410
+that it's only generated during
+
+188
+00:07:37,410 --> 00:07:39,389
+development and lighthouse is also
+
+189
+00:07:39,389 --> 00:07:41,190
+working collecting source maps to
+
+190
+00:07:41,190 --> 00:07:42,690
+display more useful audit
+
+191
+00:07:42,690 --> 00:07:45,539
+recommendations these changes will land
+
+192
+00:07:45,539 --> 00:07:47,840
+in a future version so keep an eye out
+
+193
+00:07:47,840 --> 00:07:51,240
+so analyzing your bundles and limiting
+
+194
+00:07:51,240 --> 00:07:53,180
+the amount of JavaScript in a web page
+
+195
+00:07:53,180 --> 00:07:55,320
+reduces the amount of time the browser
+
+196
+00:07:55,320 --> 00:07:57,900
+needs to spend parsing compiling and
+
+197
+00:07:57,900 --> 00:08:00,479
+executing JavaScript code the speeds up
+
+198
+00:08:00,479 --> 00:08:03,510
+how fast the browser can begin to
+
+199
+00:08:03,510 --> 00:08:04,889
+respond to any user interactions
+
+200
+00:08:04,889 --> 00:08:07,620
+improving first input delay and results
+
+201
+00:08:07,620 --> 00:08:10,229
+in a fast render improving largest
+
+202
+00:08:10,229 --> 00:08:12,630
+content paint thanks for watching I hope
+
+203
+00:08:12,630 --> 00:08:16,180
+you found this screencast super useful
+
+204
+00:08:16,180 --> 00:08:22,680
+[Music]
+
+205
+00:08:22,680 --> 00:08:24,870
+[Applause]
+

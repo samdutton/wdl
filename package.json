@@ -1,0 +1,48 @@
+{
+  "name": "web.dev-LIVE-search",
+  "version": "1.0.0",
+  "description": "Create readable transcripts from YouTube captions for web.dev LIVE videos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samdutton/wdl.git"
+  },
+  "keywords": [
+    "caption",
+    "SRT",
+    "transcript",
+    "VTT",
+    "web.dev",
+    "web.dev LIVE",
+    "YouTube"
+  ],
+  "author": "open .",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samdutton/wdl/issues"
+  },
+  "homepage": "https://github.com/samdutton/wdl#readme",
+  "dependencies": {
+    "eslint": "latest",
+    "eslint-config-google": "latest",
+    "flexsearch": "latest",
+    "grunt": "latest",
+    "grunt-cli": "latest",
+    "grunt-eslint": "latest",
+    "grunt-stylelint": "latest",
+    "html-validator": "latest",
+    "htmlhint": "latest",
+    "jsdom": "latest",
+    "recursive": "latest",
+    "recursive-readdir": "latest",
+    "rimraf": "latest",
+    "stylelint": "latest",
+    "stylelint-config-standard": "latest",
+    "subtitle": "latest",
+    "validator": "latest",
+    "yargs": "latest"
+  }
+}

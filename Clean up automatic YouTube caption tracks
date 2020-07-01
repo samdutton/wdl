@@ -1,0 +1,13 @@
+ youtube-dl -o 'src/srt/%(id)s' --batch-file src/youtube-urls --no-check-certificate --skip-download --write-auto-sub --youtube-skip-dash-manifest --ignore-errors
+
+for i in ./*.vtt ; do ffmpeg -fix_sub_duration -i "$i" "$( echo "$i"|sed 's/\.srt.en.vtt//g' ).srt"  &&  rm -f "$i"  ; done
+
+for i in ./*.srt ; do subtitle-overlap-fixer "$i"; done;
+
+## rm ./*.bak
+
+## Rename *.en.vtt.srt to *.srt:
+## • Install rename and run from the command line
+## OR
+## • Select all files in Finder => right-click => Rename
+

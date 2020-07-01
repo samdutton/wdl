@@ -210,7 +210,7 @@ searchOptionsDetails.ontoggle = (event) => {
 // Respond to URL pop.
 // A hash value is a search query, video ID, or video ID and time (s or mm:ss)
 // For example: /?q=brazen, /?v=AB9qSUhlxh8, /?v=AB9qSUhlxh8&t=1:41
-window.onpopstate = handleQueryParams;
+window.onpopstate = handleUrlParams;
 
 window.onload = () => {
   // registerServiceWorker();
@@ -262,9 +262,9 @@ function fetchDatalists() {
   //     option.value = title;
   //     titlesDatalist.appendChild(option);
   //   }
-  //   // NB: handleQueryParams() called in checkForQueryParams()
+  //   // NB: handleUrlParams() called in checkForUrlParams()
   //   // depends on data in DATALISTS_FILE
-  window.setTimeout(checkForQueryParams, 100);
+  window.setTimeout(checkForUrlParams, 100);
   // }).catch((error) => {
   //   displayInfo('There was a problem downloading data.<br><br>' +
   //     'Please check that you\'re online or try refreshing the page.');
@@ -272,17 +272,27 @@ function fetchDatalists() {
   // });
 }
 
-// If the location has query params, do a search of load a video
-function checkForQueryParams() {
-  if (location.search) {
-    handleQueryParams();
+// If the location has query params, do a search or load a video or caption.
+function checkForUrlParams() {
+  if (location.search || location.hash) {
+    handleUrlParams();
   }
 }
 
-// Query paramters mean a search query, video ID, or video ID and time (s or mm:ss)
+// Parameters mean a search query, video ID, or video ID and time (s or mm:ss)
 // For example: /?q=brazen, /?v=AB9qSUhlxh8, /?v=AB9qSUhlxh8&t=1:41
-function handleQueryParams() {
-  const params = new URLSearchParams(window.location.search);
+//              /#q=brazen, /#v=AB9qSUhlxh8, /#v=AB9qSUhlxh8&t=1:41
+function handleUrlParams() {
+  let params;
+  if (location.hash) {
+    // Construct a URLSearchParams object from the values in the hash fragment.
+    const valueArray = location.hash.slice(1).split('&').map((value) => {
+      return value.split('=');
+    });
+    params = new URLSearchParams(valueArray);
+  } else if (location.search) {
+    params = new URLSearchParams(window.location.search);
+  }
   let query = params.get('q');
   const video = params.get('v');
   if (query) {

@@ -1,0 +1,2401 @@
+1
+00:00:00,300 --> 00:00:10,910
+
+[Music]
+
+2
+00:00:10,910 --> 00:00:12,389
+hey everybody
+
+3
+00:00:12,389 --> 00:00:14,610
+Paulo is here just gonna show you some
+
+4
+00:00:14,610 --> 00:00:16,410
+features that have been landing inside
+
+5
+00:00:16,410 --> 00:00:18,359
+of dev tools recently and a half as
+
+6
+00:00:18,359 --> 00:00:20,250
+always so Moe with me and we're just
+
+7
+00:00:20,250 --> 00:00:21,840
+going to talk those through navigate
+
+8
+00:00:21,840 --> 00:00:23,670
+around I've got a few demos and things
+
+9
+00:00:23,670 --> 00:00:27,390
+to show you hey doing some I'm good good
+
+10
+00:00:27,390 --> 00:00:30,330
+good I thought we could start with I
+
+11
+00:00:30,330 --> 00:00:32,669
+know you've been working on on the
+
+12
+00:00:32,669 --> 00:00:37,500
+performance tab yes in in some ways and
+
+13
+00:00:37,500 --> 00:00:38,969
+that's one something that people aren't
+
+14
+00:00:38,969 --> 00:00:40,140
+within why don't we start with that
+
+15
+00:00:40,140 --> 00:00:42,780
+let's deal with that then okay so if
+
+16
+00:00:42,780 --> 00:00:44,340
+you've not seen it if I let's just go
+
+17
+00:00:44,340 --> 00:00:45,030
+there right now
+
+18
+00:00:45,030 --> 00:00:49,920
+web dev slash metrics helps if I can
+
+19
+00:00:49,920 --> 00:00:52,410
+type as always my typing is waffle but
+
+20
+00:00:52,410 --> 00:00:54,870
+nothing has changed things changed web
+
+21
+00:00:54,870 --> 00:00:57,239
+dev slash metrics okay so here you can
+
+22
+00:00:57,239 --> 00:00:59,520
+see we've got a important metrics to
+
+23
+00:00:59,520 --> 00:01:01,890
+measure first content for paint largest
+
+24
+00:01:01,890 --> 00:01:04,229
+content for paint first input delay time
+
+25
+00:01:04,229 --> 00:01:06,360
+to interactive total blocking time and
+
+26
+00:01:06,360 --> 00:01:08,340
+cumulative layout shift now some of
+
+27
+00:01:08,340 --> 00:01:10,260
+these metrics it's worth saying from the
+
+28
+00:01:10,260 --> 00:01:12,570
+off these are all designed to help you
+
+29
+00:01:12,570 --> 00:01:14,130
+improve the user experience in your
+
+30
+00:01:14,130 --> 00:01:17,610
+sites and your apps but not all of them
+
+31
+00:01:17,610 --> 00:01:18,960
+are suitable for what we'd call a lab
+
+32
+00:01:18,960 --> 00:01:20,909
+setting some of them are we call field
+
+33
+00:01:20,909 --> 00:01:25,229
+setting metrics so for example first
+
+34
+00:01:25,229 --> 00:01:26,640
+input delay it's not really something
+
+35
+00:01:26,640 --> 00:01:29,159
+you typically test in a lab setting
+
+36
+00:01:29,159 --> 00:01:30,360
+something you do more with the field
+
+37
+00:01:30,360 --> 00:01:33,450
+with like rum and sort of live data so
+
+38
+00:01:33,450 --> 00:01:35,460
+not all of these make sense in in the
+
+39
+00:01:35,460 --> 00:01:36,540
+lab but the ones that do we've been
+
+40
+00:01:36,540 --> 00:01:39,360
+trying to get into the performance panel
+
+41
+00:01:39,360 --> 00:01:42,780
+inside of dev tools so because once your
+
+42
+00:01:42,780 --> 00:01:44,369
+death thoughts you are in a lab setting
+
+43
+00:01:44,369 --> 00:01:46,920
+exactly you're not you can never require
+
+44
+00:01:46,920 --> 00:01:48,509
+a real user after mechanically so from
+
+45
+00:01:48,509 --> 00:01:49,799
+dev tools and quickly do with the
+
+46
+00:01:49,799 --> 00:01:52,140
+measurement the second you need EV tools
+
+47
+00:01:52,140 --> 00:01:53,640
+to measure something you're in a lab
+
+48
+00:01:53,640 --> 00:01:55,350
+yeah and so our assumption is
+
+49
+00:01:55,350 --> 00:01:57,420
+predominately if your local host on your
+
+50
+00:01:57,420 --> 00:01:59,399
+machine we tend to refer to that as the
+
+51
+00:01:59,399 --> 00:02:02,430
+lab setting so let me just run you
+
+52
+00:02:02,430 --> 00:02:04,439
+through very quickly the kinds of things
+
+53
+00:02:04,439 --> 00:02:07,110
+we've got so if I just if I go to the
+
+54
+00:02:07,110 --> 00:02:08,759
+web dev home page and I've got the
+
+55
+00:02:08,759 --> 00:02:11,580
+performance tab open here in chrome this
+
+56
+00:02:11,580 --> 00:02:13,740
+is Ernie in canary so
+
+57
+00:02:13,740 --> 00:02:16,650
+some of these features are very kind of
+
+58
+00:02:16,650 --> 00:02:18,510
+hot off the press they're subject to
+
+59
+00:02:18,510 --> 00:02:20,040
+change so just bear that in mind if
+
+60
+00:02:20,040 --> 00:02:21,420
+these things look a little bit different
+
+61
+00:02:21,420 --> 00:02:23,250
+over the coming weeks and months it's
+
+62
+00:02:23,250 --> 00:02:24,330
+because we're working on them we just
+
+63
+00:02:24,330 --> 00:02:25,440
+wanted to share them with you because
+
+64
+00:02:25,440 --> 00:02:27,180
+we're kind of excited about some of them
+
+65
+00:02:27,180 --> 00:02:29,190
+and all them we want to show them to you
+
+66
+00:02:29,190 --> 00:02:31,200
+so if I take a recording so I've been
+
+67
+00:02:31,200 --> 00:02:32,730
+about to record I'm going to hit in my
+
+68
+00:02:32,730 --> 00:02:34,410
+case command shift R which will do a
+
+69
+00:02:34,410 --> 00:02:38,760
+reload without any caching just wait for
+
+70
+00:02:38,760 --> 00:02:40,020
+a little while for thing all service
+
+71
+00:02:40,020 --> 00:02:42,960
+worker sorry say again all service
+
+72
+00:02:42,960 --> 00:02:44,760
+worker like it's literally as if you hit
+
+73
+00:02:44,760 --> 00:02:46,530
+the network yeah exactly so I'm gonna
+
+74
+00:02:46,530 --> 00:02:48,150
+stop that profile I left it running for
+
+75
+00:02:48,150 --> 00:02:50,550
+quite some time there and it's gonna
+
+76
+00:02:50,550 --> 00:02:53,970
+process that okay so let me bring that
+
+77
+00:02:53,970 --> 00:02:57,690
+down so this I mean this is actually a
+
+78
+00:02:57,690 --> 00:02:59,640
+really good trace recording like a
+
+79
+00:02:59,640 --> 00:03:00,660
+performance recording if you've got
+
+80
+00:03:00,660 --> 00:03:02,580
+something like this in the lab setting
+
+81
+00:03:02,580 --> 00:03:04,230
+you can be super happy and the reason is
+
+82
+00:03:04,230 --> 00:03:06,150
+if I just zoom in a little bit here you
+
+83
+00:03:06,150 --> 00:03:08,790
+can see that most of the tasks in all of
+
+84
+00:03:08,790 --> 00:03:10,890
+these top-level tasks here the tasks
+
+85
+00:03:10,890 --> 00:03:12,870
+they're all really really short and
+
+86
+00:03:12,870 --> 00:03:13,920
+that's really good because it means
+
+87
+00:03:13,920 --> 00:03:15,300
+they're super short it means that the
+
+88
+00:03:15,300 --> 00:03:17,610
+main thread is remaining responsive so
+
+89
+00:03:17,610 --> 00:03:19,500
+let me just zoom back out but let's talk
+
+90
+00:03:19,500 --> 00:03:20,880
+about some of these metrics so for
+
+91
+00:03:20,880 --> 00:03:23,430
+example dunk content loaded that's been
+
+92
+00:03:23,430 --> 00:03:25,800
+around since forever really
+
+93
+00:03:25,800 --> 00:03:28,740
+um and that continues to be shown here
+
+94
+00:03:28,740 --> 00:03:30,150
+but you see this timings row contains
+
+95
+00:03:30,150 --> 00:03:32,070
+some new ones like first paint first
+
+96
+00:03:32,070 --> 00:03:34,230
+content full paint first meaningful
+
+97
+00:03:34,230 --> 00:03:36,090
+paint and largest content for painting
+
+98
+00:03:36,090 --> 00:03:37,830
+you actually see on my screen here when
+
+99
+00:03:37,830 --> 00:03:39,840
+I roll over largest content for paint
+
+100
+00:03:39,840 --> 00:03:41,850
+the element that is the largest content
+
+101
+00:03:41,850 --> 00:03:44,160
+for paint highlights we put an overlay
+
+102
+00:03:44,160 --> 00:03:45,900
+on that one so you can see so
+
+103
+00:03:45,900 --> 00:03:47,820
+immediately some of these metrics that
+
+104
+00:03:47,820 --> 00:03:48,900
+you're going to see in web dev slash
+
+105
+00:03:48,900 --> 00:03:52,320
+metrics are showing up inside of the dev
+
+106
+00:03:52,320 --> 00:03:55,860
+tools timeline so that's the high level
+
+107
+00:03:55,860 --> 00:03:59,580
+metrics what we can also do though is we
+
+108
+00:03:59,580 --> 00:04:01,530
+can show long tasks now as I said all
+
+109
+00:04:01,530 --> 00:04:04,440
+these tasks are pretty pretty quick but
+
+110
+00:04:04,440 --> 00:04:06,600
+I'm running on decent hardware here this
+
+111
+00:04:06,600 --> 00:04:10,200
+one here is 18 milliseconds and I think
+
+112
+00:04:10,200 --> 00:04:13,320
+we could probably do another recording
+
+113
+00:04:13,320 --> 00:04:15,960
+and actually show it slowed down so what
+
+114
+00:04:15,960 --> 00:04:16,859
+I'm going to do is I'm going to go to
+
+115
+00:04:16,859 --> 00:04:18,270
+the settings here and I'm going to
+
+116
+00:04:18,270 --> 00:04:20,040
+switch on CPU throttling I'm gonna
+
+117
+00:04:20,040 --> 00:04:22,740
+switch it to 6 times slow down there
+
+118
+00:04:22,740 --> 00:04:24,030
+isn't going to do that it's just so that
+
+119
+00:04:24,030 --> 00:04:25,410
+we can see what it would look like on
+
+120
+00:04:25,410 --> 00:04:27,120
+slower hardware so
+
+121
+00:04:27,120 --> 00:04:29,430
+of a MacBook now yeah exactly so I'm
+
+122
+00:04:29,430 --> 00:04:31,710
+going to record a refresh as I did
+
+123
+00:04:31,710 --> 00:04:35,340
+before as I say I'm going to give it
+
+124
+00:04:35,340 --> 00:04:38,400
+time to actually settle down some of our
+
+125
+00:04:38,400 --> 00:04:40,940
+metrics they do need to wait until
+
+126
+00:04:40,940 --> 00:04:43,710
+there's only a couple of requests
+
+127
+00:04:43,710 --> 00:04:45,690
+running on the network and so on so I'm
+
+128
+00:04:45,690 --> 00:04:47,580
+gonna stop that recording and what we
+
+129
+00:04:47,580 --> 00:04:48,900
+start to see is we start to see these
+
+130
+00:04:48,900 --> 00:04:50,790
+red triangles so again let me zoom in on
+
+131
+00:04:50,790 --> 00:04:52,800
+what's going on here so there's a couple
+
+132
+00:04:52,800 --> 00:04:54,660
+of things to notice one is that the task
+
+133
+00:04:54,660 --> 00:04:57,180
+six times slow down in this particular
+
+134
+00:04:57,180 --> 00:04:59,160
+case is one hundred and sixty eight
+
+135
+00:04:59,160 --> 00:05:01,410
+point five four milliseconds what we're
+
+136
+00:05:01,410 --> 00:05:03,240
+trying to do is we're going to try and
+
+137
+00:05:03,240 --> 00:05:05,729
+keep all our tasks under fifty
+
+138
+00:05:05,729 --> 00:05:07,710
+milliseconds and the reason for that is
+
+139
+00:05:07,710 --> 00:05:09,690
+that we can may make their main thread
+
+140
+00:05:09,690 --> 00:05:12,990
+responsive when we do that to use
+
+141
+00:05:12,990 --> 00:05:14,039
+interactions because most of the
+
+142
+00:05:14,039 --> 00:05:15,150
+JavaScript that people are running like
+
+143
+00:05:15,150 --> 00:05:18,000
+touch handlers and mouse click handlers
+
+144
+00:05:18,000 --> 00:05:18,900
+and all those kinds of things
+
+145
+00:05:18,900 --> 00:05:21,300
+all run on the main thread and so what
+
+146
+00:05:21,300 --> 00:05:22,229
+we want to make sure is that we're not
+
+147
+00:05:22,229 --> 00:05:24,000
+blocking the main thread with work and
+
+148
+00:05:24,000 --> 00:05:25,740
+so keeping tasks under 50 milliseconds
+
+149
+00:05:25,740 --> 00:05:28,949
+is the goal so the the blocking time and
+
+150
+00:05:28,949 --> 00:05:31,410
+I mean let's be honest year that I mean
+
+151
+00:05:31,410 --> 00:05:33,840
+50 milliseconds is somewhat lenient if
+
+152
+00:05:33,840 --> 00:05:36,270
+we went to the good old goal of like 60
+
+153
+00:05:36,270 --> 00:05:37,680
+frames a second it would be even less
+
+154
+00:05:37,680 --> 00:05:40,320
+but during the first load we can be a
+
+155
+00:05:40,320 --> 00:05:43,380
+bit more lenient because nobody expects
+
+156
+00:05:43,380 --> 00:05:45,000
+to interact with the website during the
+
+157
+00:05:45,000 --> 00:05:47,610
+first second of loading and so we can be
+
+158
+00:05:47,610 --> 00:05:48,840
+have a little bit of a higher threshold
+
+159
+00:05:48,840 --> 00:05:50,760
+there but about 50 milliseconds it can
+
+160
+00:05:50,760 --> 00:05:53,490
+become very noticeable if the mate was
+
+161
+00:05:53,490 --> 00:05:55,229
+blocked yeah absolutely great point in
+
+162
+00:05:55,229 --> 00:05:58,020
+the context of page load absolutely this
+
+163
+00:05:58,020 --> 00:06:00,479
+is more about the 50 millisecond thing
+
+164
+00:06:00,479 --> 00:06:02,039
+if you're animating yeah absolutely to
+
+165
+00:06:02,039 --> 00:06:03,990
+just repeat that you'd be going for 60
+
+166
+00:06:03,990 --> 00:06:05,340
+frames a second and your tasks would
+
+167
+00:06:05,340 --> 00:06:06,960
+need to be a lot lot shorter so if
+
+168
+00:06:06,960 --> 00:06:07,919
+you're wondering how much of your
+
+169
+00:06:07,919 --> 00:06:09,389
+recording is actually blocking so how
+
+170
+00:06:09,389 --> 00:06:11,220
+much it can be striping overall do you
+
+171
+00:06:11,220 --> 00:06:13,169
+have going on in here well we actually
+
+172
+00:06:13,169 --> 00:06:14,669
+have this new metric at the bottom which
+
+173
+00:06:14,669 --> 00:06:16,410
+says total blocking time which you can
+
+174
+00:06:16,410 --> 00:06:19,620
+think of is like the amount of candy
+
+175
+00:06:19,620 --> 00:06:21,000
+striping that's in this recording as a
+
+176
+00:06:21,000 --> 00:06:21,300
+whole
+
+177
+00:06:21,300 --> 00:06:23,039
+in this particular case it's two hundred
+
+178
+00:06:23,039 --> 00:06:25,260
+and thirty point zero five milliseconds
+
+179
+00:06:25,260 --> 00:06:26,699
+and we have a link to explain what's
+
+180
+00:06:26,699 --> 00:06:28,169
+going on and you can see that that would
+
+181
+00:06:28,169 --> 00:06:30,960
+take you over to the total blocking time
+
+182
+00:06:30,960 --> 00:06:34,199
+metric information so that's so I find
+
+183
+00:06:34,199 --> 00:06:36,000
+it quite interesting because we have the
+
+184
+00:06:36,000 --> 00:06:39,000
+the total blocking time is actually not
+
+185
+00:06:39,000 --> 00:06:40,980
+necessarily the amount of time that
+
+186
+00:06:40,980 --> 00:06:42,630
+Maine has been blocked because you have
+
+187
+00:06:42,630 --> 00:06:45,750
+a fifty milliseconds budget per task if
+
+188
+00:06:45,750 --> 00:06:47,760
+you're allowed to block but everything
+
+189
+00:06:47,760 --> 00:06:50,310
+gets over counts into that total
+
+190
+00:06:50,310 --> 00:06:52,050
+blocking time so that is the amount of
+
+191
+00:06:52,050 --> 00:06:53,940
+time that you went over the 50
+
+192
+00:06:53,940 --> 00:06:56,220
+millisecond budget exactly I should say
+
+193
+00:06:56,220 --> 00:06:58,740
+the the total blocking time we tend to
+
+194
+00:06:58,740 --> 00:07:01,500
+stop it at one metric that is not shown
+
+195
+00:07:01,500 --> 00:07:03,600
+here which is the time to interactive so
+
+196
+00:07:03,600 --> 00:07:05,250
+when we hit an interactive time and the
+
+197
+00:07:05,250 --> 00:07:07,260
+back end and blink actually notifies us
+
+198
+00:07:07,260 --> 00:07:09,000
+that we've hit hit interactive time if
+
+199
+00:07:09,000 --> 00:07:12,840
+it can will actually stop tracking total
+
+200
+00:07:12,840 --> 00:07:13,950
+blocking time for that value at the
+
+201
+00:07:13,950 --> 00:07:16,980
+bottom but the candy striping here would
+
+202
+00:07:16,980 --> 00:07:18,480
+tally pretty much entirely with that
+
+203
+00:07:18,480 --> 00:07:20,550
+total blocking time at the bottom you've
+
+204
+00:07:20,550 --> 00:07:22,620
+got this number 230 point zero five in
+
+205
+00:07:22,620 --> 00:07:24,450
+this case it's that if a number starts
+
+206
+00:07:24,450 --> 00:07:26,370
+to creep open up that's something you're
+
+207
+00:07:26,370 --> 00:07:27,750
+going to want to take a look at because
+
+208
+00:07:27,750 --> 00:07:29,610
+that means that you're spending quite a
+
+209
+00:07:29,610 --> 00:07:31,980
+lot of time with long running tasks on
+
+210
+00:07:31,980 --> 00:07:33,300
+the main thread and the chances are it's
+
+211
+00:07:33,300 --> 00:07:34,830
+it's negatively impacting the user
+
+212
+00:07:34,830 --> 00:07:38,010
+experience in this case web dev is
+
+213
+00:07:38,010 --> 00:07:39,450
+actually really good it's just I had to
+
+214
+00:07:39,450 --> 00:07:40,860
+introduce some slowdown which is a good
+
+215
+00:07:40,860 --> 00:07:41,850
+feature to know about that you can
+
+216
+00:07:41,850 --> 00:07:43,980
+introduce slowdown both in terms of the
+
+217
+00:07:43,980 --> 00:07:46,050
+CPU but also the network as well you can
+
+218
+00:07:46,050 --> 00:07:48,540
+do that if you so desire so that's
+
+219
+00:07:48,540 --> 00:07:50,130
+that's the total blocking time that's
+
+220
+00:07:50,130 --> 00:07:52,170
+long running tasks as well we we mark
+
+221
+00:07:52,170 --> 00:07:54,000
+that at 50 milliseconds plus with the
+
+222
+00:07:54,000 --> 00:07:55,290
+candy striping and the little red
+
+223
+00:07:55,290 --> 00:07:58,050
+triangle in the corner now the other
+
+224
+00:07:58,050 --> 00:08:00,720
+thing we've also introduced is a thing
+
+225
+00:08:00,720 --> 00:08:02,730
+called layout shifting so if I just even
+
+226
+00:08:02,730 --> 00:08:05,970
+go to the Google homepage and I do a
+
+227
+00:08:05,970 --> 00:08:09,510
+recording here and I just refreshed like
+
+228
+00:08:09,510 --> 00:08:13,650
+so I hit stop okay what you're gonna see
+
+229
+00:08:13,650 --> 00:08:15,600
+is you're going to see a new track if we
+
+230
+00:08:15,600 --> 00:08:17,610
+find any layout shifts and the layout
+
+231
+00:08:17,610 --> 00:08:20,310
+track so the expense is the new track
+
+232
+00:08:20,310 --> 00:08:22,170
+it's called experience and one inside
+
+233
+00:08:22,170 --> 00:08:25,020
+here we've got a layout shift and if we
+
+234
+00:08:25,020 --> 00:08:26,760
+click on this let me just bring this up
+
+235
+00:08:26,760 --> 00:08:29,460
+so you can see a bit more you get
+
+236
+00:08:29,460 --> 00:08:30,750
+information on the layer shift so the
+
+237
+00:08:30,750 --> 00:08:33,720
+idea of the layout shift is I think most
+
+238
+00:08:33,720 --> 00:08:34,620
+people have experienced this you're
+
+239
+00:08:34,620 --> 00:08:36,599
+browsing the web and you're about to tap
+
+240
+00:08:36,599 --> 00:08:38,010
+on a button and it moves to somewhere
+
+241
+00:08:38,010 --> 00:08:40,500
+else on the screen and it's really
+
+242
+00:08:40,500 --> 00:08:42,360
+frustrating and so we're starting to
+
+243
+00:08:42,360 --> 00:08:44,790
+give you the ways and the means of
+
+244
+00:08:44,790 --> 00:08:47,700
+tracking those layout shifts in the
+
+245
+00:08:47,700 --> 00:08:49,800
+course of you know interacting with your
+
+246
+00:08:49,800 --> 00:08:51,810
+page and so on and we put them into this
+
+247
+00:08:51,810 --> 00:08:54,060
+experience track so there's some stuff
+
+248
+00:08:54,060 --> 00:08:54,750
+about
+
+249
+00:08:54,750 --> 00:08:56,280
+boring which if you read the
+
+250
+00:08:56,280 --> 00:08:57,720
+documentation on cumulative layout
+
+251
+00:08:57,720 --> 00:08:59,730
+shifts I will explain the scoring a
+
+252
+00:08:59,730 --> 00:09:01,290
+little bit more to you and you can also
+
+253
+00:09:01,290 --> 00:09:02,880
+see whether or not it was in response to
+
+254
+00:09:02,880 --> 00:09:05,880
+some recent user input we also include
+
+255
+00:09:05,880 --> 00:09:07,710
+some location information where you went
+
+256
+00:09:07,710 --> 00:09:12,780
+from and you can see this here is this
+
+257
+00:09:12,780 --> 00:09:15,090
+so it's come from here this element has
+
+258
+00:09:15,090 --> 00:09:17,160
+shifted to here you can see that overlay
+
+259
+00:09:17,160 --> 00:09:19,650
+so I'm pretty confident I know what it
+
+260
+00:09:19,650 --> 00:09:20,970
+is it's probably this privacy reminder
+
+261
+00:09:20,970 --> 00:09:24,120
+here that is coming on here now one of
+
+262
+00:09:24,120 --> 00:09:25,760
+the things that we probably need to add
+
+263
+00:09:25,760 --> 00:09:29,970
+is which elements it is specifically and
+
+264
+00:09:29,970 --> 00:09:31,680
+there is that information in the trace
+
+265
+00:09:31,680 --> 00:09:33,360
+it's just a case of plumbing it through
+
+266
+00:09:33,360 --> 00:09:34,710
+so that's actually something that I'm
+
+267
+00:09:34,710 --> 00:09:35,940
+going to hopefully look at so maybe by
+
+268
+00:09:35,940 --> 00:09:38,940
+the time you see this video go and have
+
+269
+00:09:38,940 --> 00:09:41,790
+a look in Chrome Canary possibly we've
+
+270
+00:09:41,790 --> 00:09:45,030
+got the elements there if if not what's
+
+271
+00:09:45,030 --> 00:09:46,920
+doing the time are recording with
+
+272
+00:09:46,920 --> 00:09:49,050
+screenshots help so you can go through
+
+273
+00:09:49,050 --> 00:09:51,080
+the film strip and actually see
+
+274
+00:09:51,080 --> 00:09:53,010
+something shipped and that might be a
+
+275
+00:09:53,010 --> 00:09:55,500
+good way to work around that until dev
+
+276
+00:09:55,500 --> 00:09:57,180
+tools can yeah that's a great way of
+
+277
+00:09:57,180 --> 00:09:59,610
+doing it often I think when it's your
+
+278
+00:09:59,610 --> 00:10:02,820
+own code you have a fair sense of what's
+
+279
+00:10:02,820 --> 00:10:05,070
+likely to be moving around and the thing
+
+280
+00:10:05,070 --> 00:10:07,620
+to bear in mind is layout shifts do
+
+281
+00:10:07,620 --> 00:10:10,740
+cause problem are problematic UX and so
+
+282
+00:10:10,740 --> 00:10:12,870
+it's a good thing to try and get those
+
+283
+00:10:12,870 --> 00:10:15,000
+down and ideally removed if at all
+
+284
+00:10:15,000 --> 00:10:16,440
+possible and the way to do that normally
+
+285
+00:10:16,440 --> 00:10:19,260
+is to reserve space for your content
+
+286
+00:10:19,260 --> 00:10:20,730
+ahead of time in your style so that
+
+287
+00:10:20,730 --> 00:10:22,080
+you're not just leaving content to just
+
+288
+00:10:22,080 --> 00:10:23,910
+move other content of the way if
+
+289
+00:10:23,910 --> 00:10:25,290
+sometimes it's not possible but where
+
+290
+00:10:25,290 --> 00:10:27,630
+you can if you can mark certain areas as
+
+291
+00:10:27,630 --> 00:10:29,550
+being the correct size ahead of time
+
+292
+00:10:29,550 --> 00:10:30,690
+that should help
+
+293
+00:10:30,690 --> 00:10:32,610
+an awful lot so that's that's the layout
+
+294
+00:10:32,610 --> 00:10:37,110
+shift information so that's added in so
+
+295
+00:10:37,110 --> 00:10:38,550
+those are the main bits of performance
+
+296
+00:10:38,550 --> 00:10:41,370
+in summary we had the timings which are
+
+297
+00:10:41,370 --> 00:10:43,710
+here I've got the layout shifts and we
+
+298
+00:10:43,710 --> 00:10:45,600
+also had long-running tests which we
+
+299
+00:10:45,600 --> 00:10:47,070
+show on the main thread with the candy
+
+300
+00:10:47,070 --> 00:10:49,680
+striping and the red triangle so in dev
+
+301
+00:10:49,680 --> 00:10:52,560
+tools we have also been working on web
+
+302
+00:10:52,560 --> 00:10:54,450
+assembly and the debugging experience
+
+303
+00:10:54,450 --> 00:10:55,860
+that it gives you because your write
+
+304
+00:10:55,860 --> 00:10:57,839
+your code in whatever language then you
+
+305
+00:10:57,839 --> 00:11:01,530
+compile it to this vm bytecode and you
+
+306
+00:11:01,530 --> 00:11:03,420
+kind of don't want to step through the
+
+307
+00:11:03,420 --> 00:11:04,770
+bytecode you want to step through your
+
+308
+00:11:04,770 --> 00:11:07,320
+original code that you wrote and for the
+
+309
+00:11:07,320 --> 00:11:08,490
+longest time
+
+310
+00:11:08,490 --> 00:11:10,320
+webassembly in dev tools use source map
+
+311
+00:11:10,320 --> 00:11:13,020
+source maps to define that mapping from
+
+312
+00:11:13,020 --> 00:11:16,380
+the compiled webassembly binary code to
+
+313
+00:11:16,380 --> 00:11:18,300
+the original source code and source maps
+
+314
+00:11:18,300 --> 00:11:21,029
+were kind of built for JavaScript and
+
+315
+00:11:21,029 --> 00:11:23,399
+minifiers and transpilers and so that
+
+316
+00:11:23,399 --> 00:11:26,399
+worked quite well but it's also lacking
+
+317
+00:11:26,399 --> 00:11:27,630
+some capabilities that are quite
+
+318
+00:11:27,630 --> 00:11:31,020
+important and so I have little example
+
+319
+00:11:31,020 --> 00:11:33,029
+secret it's actually a sample from M
+
+320
+00:11:33,029 --> 00:11:34,170
+script that I just simplified a little
+
+321
+00:11:34,170 --> 00:11:35,730
+bit it just draws little gradient it
+
+322
+00:11:35,730 --> 00:11:37,440
+doesn't really matter what it does but
+
+323
+00:11:37,440 --> 00:11:40,170
+this is C code and I have compiled this
+
+324
+00:11:40,170 --> 00:11:42,810
+to webassembly with our new debugging
+
+325
+00:11:42,810 --> 00:11:45,510
+experience because in native lands in
+
+326
+00:11:45,510 --> 00:11:47,370
+binary land there has been a toboggan
+
+327
+00:11:47,370 --> 00:11:49,500
+format called dwarf for a very long time
+
+328
+00:11:49,500 --> 00:11:51,899
+that has all these capabilities but
+
+329
+00:11:51,899 --> 00:11:54,000
+until recently dev tools didn't
+
+330
+00:11:54,000 --> 00:11:56,820
+understand it so now we have compiled
+
+331
+00:11:56,820 --> 00:11:58,380
+this to represent Li this is what the
+
+332
+00:11:58,380 --> 00:12:00,300
+output looks like it just draws this
+
+333
+00:12:00,300 --> 00:12:01,890
+little nice gradient that you see on
+
+334
+00:12:01,890 --> 00:12:04,440
+screen here but what's cool about is
+
+335
+00:12:04,440 --> 00:12:06,180
+that now if you go to the source panel
+
+336
+00:12:06,180 --> 00:12:08,520
+in dev tools over here we have our usual
+
+337
+00:12:08,520 --> 00:12:10,920
+Java Script files we have a weapon
+
+338
+00:12:10,920 --> 00:12:13,020
+simply byte code which you know that's
+
+339
+00:12:13,020 --> 00:12:14,339
+not the kind of code you want to step
+
+340
+00:12:14,339 --> 00:12:15,779
+through I mean that's not because that
+
+341
+00:12:15,779 --> 00:12:18,810
+is base it's basically assembly well
+
+342
+00:12:18,810 --> 00:12:21,450
+that sometimes can be useful it doesn't
+
+343
+00:12:21,450 --> 00:12:24,089
+read that well let's be honest and what
+
+344
+00:12:24,089 --> 00:12:26,579
+you can now find with dwarf support in
+
+345
+00:12:26,579 --> 00:12:29,370
+dev tools is that we actually have a
+
+346
+00:12:29,370 --> 00:12:32,610
+mapping to the original C++ file again
+
+347
+00:12:32,610 --> 00:12:34,890
+this also worked with source maps but
+
+348
+00:12:34,890 --> 00:12:37,529
+this has some more capabilities so I can
+
+349
+00:12:37,529 --> 00:12:40,560
+now set a breakpoint here in the C code
+
+350
+00:12:40,560 --> 00:12:43,020
+actually I said let's let's set two code
+
+351
+00:12:43,020 --> 00:12:44,520
+as breakpoints why not and so if I
+
+352
+00:12:44,520 --> 00:12:47,100
+reload the program will be halted once
+
+353
+00:12:47,100 --> 00:12:49,649
+we reach that breakpoint and then we can
+
+354
+00:12:49,649 --> 00:12:51,779
+continue going through it as we're used
+
+355
+00:12:51,779 --> 00:12:54,209
+to and you can see the UI updating so if
+
+356
+00:12:54,209 --> 00:12:57,140
+I now step over this SDL unlock surface
+
+357
+00:12:57,140 --> 00:12:59,339
+the gradient shows up because we're
+
+358
+00:12:59,339 --> 00:13:00,899
+actually stopping the program and
+
+359
+00:13:00,899 --> 00:13:04,529
+updating the UI as we go along and I
+
+360
+00:13:04,529 --> 00:13:05,520
+think that's pretty cool
+
+361
+00:13:05,520 --> 00:13:07,709
+so now the question I have for you guys
+
+362
+00:13:07,709 --> 00:13:11,399
+is are you able to inspect say the
+
+363
+00:13:11,399 --> 00:13:14,490
+values of like I or J or alpha and those
+
+364
+00:13:14,490 --> 00:13:17,220
+kind of writers of your loop so for
+
+365
+00:13:17,220 --> 00:13:20,040
+example if I hover over this nothing
+
+366
+00:13:20,040 --> 00:13:21,450
+shows up and
+
+367
+00:13:21,450 --> 00:13:23,610
+that's exactly the capability that goes
+
+368
+00:13:23,610 --> 00:13:25,020
+for example I was also missing with
+
+369
+00:13:25,020 --> 00:13:26,610
+source maps because source maps can't
+
+370
+00:13:26,610 --> 00:13:28,620
+really handle renaming of variables very
+
+371
+00:13:28,620 --> 00:13:28,980
+well
+
+372
+00:13:28,980 --> 00:13:31,800
+dois forever can so while we are using
+
+373
+00:13:31,800 --> 00:13:34,470
+dwarf to have a more efficient debugging
+
+374
+00:13:34,470 --> 00:13:38,000
+experience and the capabilities our
+
+375
+00:13:38,000 --> 00:13:40,260
+potential but we haven't quite built
+
+376
+00:13:40,260 --> 00:13:42,420
+that part yet so we are using dwarf to
+
+377
+00:13:42,420 --> 00:13:44,130
+allow you the old experience of stepping
+
+378
+00:13:44,130 --> 00:13:46,110
+through and brake pointing and all these
+
+379
+00:13:46,110 --> 00:13:48,570
+things but you can try to expect inspect
+
+380
+00:13:48,570 --> 00:13:50,190
+variables yet but we are working on that
+
+381
+00:13:50,190 --> 00:13:52,110
+and only now is it even possible to
+
+382
+00:13:52,110 --> 00:13:53,700
+build so that's really the exciting part
+
+383
+00:13:53,700 --> 00:13:56,550
+here the other part is that we are no
+
+384
+00:13:56,550 --> 00:13:59,820
+longer using a web assembly interpreter
+
+385
+00:13:59,820 --> 00:14:01,470
+during debugging but actually our
+
+386
+00:14:01,470 --> 00:14:04,560
+baseline compiler so usually in the
+
+387
+00:14:04,560 --> 00:14:06,120
+olden days when you will start debugging
+
+388
+00:14:06,120 --> 00:14:08,340
+your weapon sembly with source maps you
+
+389
+00:14:08,340 --> 00:14:10,770
+will actually experience a much much
+
+390
+00:14:10,770 --> 00:14:12,750
+slower webassembly execution so if you
+
+391
+00:14:12,750 --> 00:14:14,070
+had a long loop and you want to break
+
+392
+00:14:14,070 --> 00:14:15,000
+through it you would actually have to
+
+393
+00:14:15,000 --> 00:14:17,310
+wait longer until it is done now we are
+
+394
+00:14:17,310 --> 00:14:19,710
+at the baseline compiler which generates
+
+395
+00:14:19,710 --> 00:14:21,180
+much more performant code under the hood
+
+396
+00:14:21,180 --> 00:14:23,970
+and so you can do debug with higher
+
+397
+00:14:23,970 --> 00:14:25,800
+performance and if that isn't the great
+
+398
+00:14:25,800 --> 00:14:28,380
+tagline I I don't know what is to be
+
+399
+00:14:28,380 --> 00:14:30,480
+honest so you've kind of pointed at this
+
+400
+00:14:30,480 --> 00:14:32,250
+I think a little bit this is
+
+401
+00:14:32,250 --> 00:14:34,890
+experimental it's still a work in
+
+402
+00:14:34,890 --> 00:14:36,510
+progress if somebody wanted to actually
+
+403
+00:14:36,510 --> 00:14:38,820
+try this out for themselves in Canary
+
+404
+00:14:38,820 --> 00:14:40,410
+what would they do where would they go
+
+405
+00:14:40,410 --> 00:14:44,610
+so it is currently in Canary and it is
+
+406
+00:14:44,610 --> 00:14:46,080
+still being worked on so in the last
+
+407
+00:14:46,080 --> 00:14:47,820
+couple days it kind of oscillated
+
+408
+00:14:47,820 --> 00:14:49,160
+between working and not working
+
+409
+00:14:49,160 --> 00:14:50,940
+sometimes I could set breakpoints
+
+410
+00:14:50,940 --> 00:14:53,070
+sometimes I couldn't but we are on track
+
+411
+00:14:53,070 --> 00:14:54,990
+for getting this ready for stable I
+
+412
+00:14:54,990 --> 00:14:56,940
+don't know if we've set a milestone yet
+
+413
+00:14:56,940 --> 00:14:59,280
+if so I will update the description of
+
+414
+00:14:59,280 --> 00:15:01,890
+this talk accordingly and but you're
+
+415
+00:15:01,890 --> 00:15:04,590
+gonna play around with it please do I'm
+
+416
+00:15:04,590 --> 00:15:06,300
+stripping if you just Google for M
+
+417
+00:15:06,300 --> 00:15:09,480
+scripting and dwarf the most recent
+
+418
+00:15:09,480 --> 00:15:11,460
+release now has support by default for
+
+419
+00:15:11,460 --> 00:15:13,230
+these Dwarfs of bugging symbols so if
+
+420
+00:15:13,230 --> 00:15:14,610
+you just update your engine to the most
+
+421
+00:15:14,610 --> 00:15:16,440
+recent release this shows just work out
+
+422
+00:15:16,440 --> 00:15:20,100
+of the box just to be clear there is no
+
+423
+00:15:20,100 --> 00:15:23,190
+source map file and the fourth that I'm
+
+424
+00:15:23,190 --> 00:15:25,410
+serving so source Maps cannot have
+
+425
+00:15:25,410 --> 00:15:28,290
+provided this debugging experience so
+
+426
+00:15:28,290 --> 00:15:29,910
+this is definitely using the dwarf
+
+427
+00:15:29,910 --> 00:15:31,380
+symbols that are in the web assembly
+
+428
+00:15:31,380 --> 00:15:35,900
+binary cool well with that
+
+429
+00:15:35,900 --> 00:15:37,040
+I think we have covered what is
+
+430
+00:15:37,040 --> 00:15:40,010
+important and new in Devil's Den we know
+
+431
+00:15:40,010 --> 00:15:41,720
+I've got more stuff to show you I've got
+
+432
+00:15:41,720 --> 00:15:43,190
+the issues you have more stuff to show
+
+433
+00:15:43,190 --> 00:15:43,850
+yeah
+
+434
+00:15:43,850 --> 00:15:46,430
+switch back well alright so the next
+
+435
+00:15:46,430 --> 00:15:48,260
+thing I want to show you is the issues
+
+436
+00:15:48,260 --> 00:15:50,180
+tab now you use similar your a similar
+
+437
+00:15:50,180 --> 00:15:53,020
+sameer thing when you see lots of
+
+438
+00:15:53,020 --> 00:15:55,280
+warnings and messages in the console
+
+439
+00:15:55,280 --> 00:15:57,430
+over here you can ago
+
+440
+00:15:57,430 --> 00:16:00,410
+sure and you start to kind of mentally
+
+441
+00:16:00,410 --> 00:16:02,210
+filter those out and you maybe if you're
+
+442
+00:16:02,210 --> 00:16:03,650
+like me you kind of clear the console
+
+443
+00:16:03,650 --> 00:16:05,840
+and you something okay it's just too
+
+444
+00:16:05,840 --> 00:16:08,240
+busy just too noisy I'll kind of deal
+
+445
+00:16:08,240 --> 00:16:10,850
+with those at some point well if you are
+
+446
+00:16:10,850 --> 00:16:14,300
+like that completely understand where
+
+447
+00:16:14,300 --> 00:16:16,220
+you're coming from so we've added this
+
+448
+00:16:16,220 --> 00:16:19,070
+new thing which is the issues tab it
+
+449
+00:16:19,070 --> 00:16:21,320
+says the issues have been detected so if
+
+450
+00:16:21,320 --> 00:16:22,670
+you see something like this we've
+
+451
+00:16:22,670 --> 00:16:24,890
+detected some issues during the
+
+452
+00:16:24,890 --> 00:16:26,420
+execution of your page and you can go to
+
+453
+00:16:26,420 --> 00:16:28,430
+the issues tab which opens a new tab
+
+454
+00:16:28,430 --> 00:16:31,760
+here now sometimes if the page is
+
+455
+00:16:31,760 --> 00:16:33,290
+already loaded in you you bring up the
+
+456
+00:16:33,290 --> 00:16:34,550
+console you might say well there's
+
+457
+00:16:34,550 --> 00:16:36,050
+possibly more information would you like
+
+458
+00:16:36,050 --> 00:16:37,700
+to reload so sometimes you get an option
+
+459
+00:16:37,700 --> 00:16:38,900
+to reload the page and you might see
+
+460
+00:16:38,900 --> 00:16:41,480
+more issues coming through that way so
+
+461
+00:16:41,480 --> 00:16:43,120
+you can see here that this particular
+
+462
+00:16:43,120 --> 00:16:48,260
+page some say same site cookies issues
+
+463
+00:16:48,260 --> 00:16:49,580
+are starting to show up so you can see
+
+464
+00:16:49,580 --> 00:16:51,680
+I've got the issues listed here and I
+
+465
+00:16:51,680 --> 00:16:53,690
+can spin this down and it gives me an
+
+466
+00:16:53,690 --> 00:16:55,400
+explanation of what's going on
+
+467
+00:16:55,400 --> 00:16:58,190
+and how I can resolve this issue
+
+468
+00:16:58,190 --> 00:17:00,920
+directly it also tells me which cookies
+
+469
+00:17:00,920 --> 00:17:03,230
+in this case are affected and also links
+
+470
+00:17:03,230 --> 00:17:05,570
+me off to some informational web dev
+
+471
+00:17:05,570 --> 00:17:09,410
+about how this all works it's also true
+
+472
+00:17:09,410 --> 00:17:11,330
+of something like mixed content as well
+
+473
+00:17:11,330 --> 00:17:13,670
+so if I go to something with mixed
+
+474
+00:17:13,670 --> 00:17:16,280
+content which is HTTP and HTTPS
+
+475
+00:17:16,280 --> 00:17:20,600
+together similarly I can go here and it
+
+476
+00:17:20,600 --> 00:17:23,270
+says that there are eight cases where I
+
+477
+00:17:23,270 --> 00:17:26,390
+have mixed content where all resources
+
+478
+00:17:26,390 --> 00:17:28,970
+should have been loaded via HTTPS but
+
+479
+00:17:28,970 --> 00:17:31,010
+they haven't been and it lists again it
+
+480
+00:17:31,010 --> 00:17:33,170
+lists lists the requests and the
+
+481
+00:17:33,170 --> 00:17:37,160
+resources in question so hopefully
+
+482
+00:17:37,160 --> 00:17:39,620
+that's going to make the console less
+
+483
+00:17:39,620 --> 00:17:43,340
+noisy and makes it much more clear to
+
+484
+00:17:43,340 --> 00:17:45,530
+you how you can track down any issues
+
+485
+00:17:45,530 --> 00:17:47,700
+that dev tools has noticed in
+
+486
+00:17:47,700 --> 00:17:50,250
+site and you're up okay so the last
+
+487
+00:17:50,250 --> 00:17:52,139
+thing I want to talk about is color
+
+488
+00:17:52,139 --> 00:17:54,480
+vision deficiency emulation so let me
+
+489
+00:17:54,480 --> 00:17:57,600
+fire up this brilliant video of HTTP
+
+490
+00:17:57,600 --> 00:18:00,269
+very second yeah talking about imposter
+
+491
+00:18:00,269 --> 00:18:02,429
+syndrome something I personally suffer
+
+492
+00:18:02,429 --> 00:18:04,110
+from so if you've not seen that go ahead
+
+493
+00:18:04,110 --> 00:18:07,049
+and watch it's a really good video so
+
+494
+00:18:07,049 --> 00:18:10,460
+what I've got on my screen I've got the
+
+495
+00:18:10,460 --> 00:18:13,110
+rendering tools inside of dev tools now
+
+496
+00:18:13,110 --> 00:18:14,159
+if you've not seen this you can go to
+
+497
+00:18:14,159 --> 00:18:16,529
+more tools and then rendering down here
+
+498
+00:18:16,529 --> 00:18:18,389
+if you click on that this tab will pop
+
+499
+00:18:18,389 --> 00:18:20,429
+up and there's a load of tools just for
+
+500
+00:18:20,429 --> 00:18:21,750
+rendering inside of here
+
+501
+00:18:21,750 --> 00:18:24,480
+and since we're passing through here the
+
+502
+00:18:24,480 --> 00:18:25,740
+layout shifts that I talked about
+
+503
+00:18:25,740 --> 00:18:27,960
+earlier in the performance area layout
+
+504
+00:18:27,960 --> 00:18:30,330
+shift regions this is a live update
+
+505
+00:18:30,330 --> 00:18:32,190
+version of layer shifts so if you're
+
+506
+00:18:32,190 --> 00:18:34,590
+just wanting to see very quickly what
+
+507
+00:18:34,590 --> 00:18:36,870
+they actually have during the you know
+
+508
+00:18:36,870 --> 00:18:38,519
+the life cycle of your page you can
+
+509
+00:18:38,519 --> 00:18:40,169
+switch this on and if you see blue
+
+510
+00:18:40,169 --> 00:18:42,659
+flashes then that's the layout shift
+
+511
+00:18:42,659 --> 00:18:43,649
+that would have been caught if you took
+
+512
+00:18:43,649 --> 00:18:45,870
+taken a performance recording now I'm
+
+513
+00:18:45,870 --> 00:18:47,880
+not going to show this today because as
+
+514
+00:18:47,880 --> 00:18:48,779
+it says here may not be suitable
+
+515
+00:18:48,779 --> 00:18:50,669
+suitable for people prone to
+
+516
+00:18:50,669 --> 00:18:52,980
+photosensitive epilepsy and I want to be
+
+517
+00:18:52,980 --> 00:18:55,350
+mindful of that but if you think this is
+
+518
+00:18:55,350 --> 00:18:56,940
+the right tool for you definitely check
+
+519
+00:18:56,940 --> 00:18:57,450
+that out
+
+520
+00:18:57,450 --> 00:18:58,830
+when you're looking in the rendering
+
+521
+00:18:58,830 --> 00:19:02,070
+tools so if I scroll to the bottom here
+
+522
+00:19:02,070 --> 00:19:04,320
+of this list you'll see that you can
+
+523
+00:19:04,320 --> 00:19:07,440
+emulate vision deficiencies and if I
+
+524
+00:19:07,440 --> 00:19:09,419
+start playing this video back you can
+
+525
+00:19:09,419 --> 00:19:11,279
+see that if we work our way through this
+
+526
+00:19:11,279 --> 00:19:13,649
+list we have blurred vision which you
+
+527
+00:19:13,649 --> 00:19:15,750
+see applies a blur to everything and I
+
+528
+00:19:15,750 --> 00:19:17,190
+can still interact with the painting
+
+529
+00:19:17,190 --> 00:19:19,169
+still click on buttons and so on but you
+
+530
+00:19:19,169 --> 00:19:22,230
+see the content is completely blurred we
+
+531
+00:19:22,230 --> 00:19:27,600
+also have protanopia and there is due to
+
+532
+00:19:27,600 --> 00:19:33,029
+an opiate triton topia and a chroma top
+
+533
+00:19:33,029 --> 00:19:35,039
+seer assuming I'm pronouncing those
+
+534
+00:19:35,039 --> 00:19:38,789
+correctly if I'm not forgive me I find
+
+535
+00:19:38,789 --> 00:19:42,330
+it really cool that all these effects so
+
+536
+00:19:42,330 --> 00:19:44,070
+to speak I applied to the page without
+
+537
+00:19:44,070 --> 00:19:46,260
+disabling the interactivity or the
+
+538
+00:19:46,260 --> 00:19:48,090
+animations or even the video so you can
+
+539
+00:19:48,090 --> 00:19:50,580
+really check if all your animation
+
+540
+00:19:50,580 --> 00:19:53,370
+entire experience holds up when someone
+
+541
+00:19:53,370 --> 00:19:56,279
+has one of these vision deficiencies so
+
+542
+00:19:56,279 --> 00:19:57,769
+I think that's just a really cool thing
+
+543
+00:19:57,769 --> 00:20:01,100
+yeah absolutely
+
+544
+00:20:01,100 --> 00:20:04,549
+so you might noticed so these are they
+
+545
+00:20:04,549 --> 00:20:06,530
+seem fairly extreme when you look at
+
+546
+00:20:06,530 --> 00:20:09,650
+this it looks to me as somebody who
+
+547
+00:20:09,650 --> 00:20:11,179
+doesn't have any of these vision
+
+548
+00:20:11,179 --> 00:20:12,410
+deficiencies these look like a very
+
+549
+00:20:12,410 --> 00:20:18,590
+extreme form of change visual change so
+
+550
+00:20:18,590 --> 00:20:20,510
+I mean I said this in the introduction
+
+551
+00:20:20,510 --> 00:20:24,730
+with Dion earlier but to say it again
+
+552
+00:20:24,730 --> 00:20:28,250
+these deficiencies that we're emulating
+
+553
+00:20:28,250 --> 00:20:32,480
+are physiologically accurate but the
+
+554
+00:20:32,480 --> 00:20:34,970
+most acute form of that particular
+
+555
+00:20:34,970 --> 00:20:39,650
+vision deficiency so it's not on/off
+
+556
+00:20:39,650 --> 00:20:41,480
+like we have emulated here where it's
+
+557
+00:20:41,480 --> 00:20:43,760
+sort of knowing no vision deficiency and
+
+558
+00:20:43,760 --> 00:20:46,280
+then protanopia if you have one of these
+
+559
+00:20:46,280 --> 00:20:47,539
+vision deficiencies it's much more
+
+560
+00:20:47,539 --> 00:20:50,179
+likely to be a spectrum and you may have
+
+561
+00:20:50,179 --> 00:20:52,760
+a certain amount of one of these vision
+
+562
+00:20:52,760 --> 00:20:55,880
+deficiencies so what is like this is the
+
+563
+00:20:55,880 --> 00:20:58,070
+most extreme version of all of these
+
+564
+00:20:58,070 --> 00:21:00,289
+vision deficiencies and so that way you
+
+565
+00:21:00,289 --> 00:21:02,390
+can make sure if your page holds up in
+
+566
+00:21:02,390 --> 00:21:04,400
+the most extreme case you know it will
+
+567
+00:21:04,400 --> 00:21:06,919
+also hold up for any less severe case
+
+568
+00:21:06,919 --> 00:21:08,510
+you can make sure your website remains
+
+569
+00:21:08,510 --> 00:21:11,900
+usable for anyone really that is exactly
+
+570
+00:21:11,900 --> 00:21:13,789
+the idea behind it exactly that if
+
+571
+00:21:13,789 --> 00:21:15,320
+you're optimizing for accessibility you
+
+572
+00:21:15,320 --> 00:21:17,330
+want to be as confident as you can be
+
+573
+00:21:17,330 --> 00:21:21,080
+that you're capturing the colors and the
+
+574
+00:21:21,080 --> 00:21:23,570
+contrast and all of that stuff in the
+
+575
+00:21:23,570 --> 00:21:27,260
+most helpful way possible and so by
+
+576
+00:21:27,260 --> 00:21:28,909
+going for the most acute version of
+
+577
+00:21:28,909 --> 00:21:31,010
+these vision deficiencies exactly as you
+
+578
+00:21:31,010 --> 00:21:32,809
+said you can you can optimize for those
+
+579
+00:21:32,809 --> 00:21:34,220
+and then anything up to and including
+
+580
+00:21:34,220 --> 00:21:37,580
+those will also be covered as well so so
+
+581
+00:21:37,580 --> 00:21:38,630
+that says we've talked about the issues
+
+582
+00:21:38,630 --> 00:21:40,250
+tab we've talked about long tests we
+
+583
+00:21:40,250 --> 00:21:41,539
+talked about layout shapes color vision
+
+584
+00:21:41,539 --> 00:21:43,850
+deficiency and whoever simply debugging
+
+585
+00:21:43,850 --> 00:21:46,220
+with dwarf I know right and ballast
+
+586
+00:21:46,220 --> 00:21:48,590
+quite a lot of new things and dev tools
+
+587
+00:21:48,590 --> 00:21:51,640
+and you should definitely try those out
+
+588
+00:21:51,640 --> 00:21:53,690
+absolutely yeah so if you want to try
+
+589
+00:21:53,690 --> 00:21:56,360
+any of these out probably the easiest
+
+590
+00:21:56,360 --> 00:21:57,620
+thing to do is to fire up Chrome Canary
+
+591
+00:21:57,620 --> 00:21:59,780
+give them a go if you run into any
+
+592
+00:21:59,780 --> 00:22:01,669
+issues you can go over here to the help
+
+593
+00:22:01,669 --> 00:22:03,230
+menu and you can report the dev tools
+
+594
+00:22:03,230 --> 00:22:05,179
+issue which will create a bug and you
+
+595
+00:22:05,179 --> 00:22:06,500
+can fill that in and that'll make its
+
+596
+00:22:06,500 --> 00:22:09,900
+way aka your inbox I really
+
+597
+00:22:09,900 --> 00:22:13,740
+not so with that thanks for watching and
+
+598
+00:22:13,740 --> 00:22:15,240
+I guess we'll see you around see you
+
+599
+00:22:15,240 --> 00:22:16,690
+around bye
+
+600
+00:22:16,690 --> 00:22:30,570
+[Music]
+

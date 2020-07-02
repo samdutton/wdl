@@ -1,0 +1,3273 @@
+1
+00:00:00,570 --> 00:00:03,420
+
+[Music]
+
+2
+00:00:03,420 --> 00:00:05,670
+[Applause]
+
+3
+00:00:05,670 --> 00:00:09,920
+[Music]
+
+4
+00:00:09,920 --> 00:00:13,380
+welcome back to web dev live as a Brit
+
+5
+00:00:13,380 --> 00:00:15,900
+and tickled to be kicking off day 2 from
+
+6
+00:00:15,900 --> 00:00:19,230
+an Amir friendly time zone yesterday we
+
+7
+00:00:19,230 --> 00:00:20,699
+spoke about government's doing great
+
+8
+00:00:20,699 --> 00:00:23,640
+work getting the word out on the web and
+
+9
+00:00:23,640 --> 00:00:25,470
+one of the most inspirational digital
+
+10
+00:00:25,470 --> 00:00:28,170
+services is from the UK where I saw a
+
+11
+00:00:28,170 --> 00:00:30,090
+government convened online for the first
+
+12
+00:00:30,090 --> 00:00:32,219
+time now we've all been learning how
+
+13
+00:00:32,219 --> 00:00:35,070
+best to work and learn from home and at
+
+14
+00:00:35,070 --> 00:00:36,540
+Google we're trying to get a deeper
+
+15
+00:00:36,540 --> 00:00:38,010
+understanding of the needs of web
+
+16
+00:00:38,010 --> 00:00:39,899
+developers partnering with the community
+
+17
+00:00:39,899 --> 00:00:42,570
+as one of our close partners I wanted to
+
+18
+00:00:42,570 --> 00:00:44,550
+invite our friends at Mozilla to chat
+
+19
+00:00:44,550 --> 00:00:46,800
+more about that work and also get
+
+20
+00:00:46,800 --> 00:00:48,950
+information on what's new in their world
+
+21
+00:00:48,950 --> 00:00:52,920
+welcome khadiyah and Victoria hi Deon
+
+22
+00:00:52,920 --> 00:00:54,360
+great to be here hey
+
+23
+00:00:54,360 --> 00:00:57,480
+so kadia web developers know mdn really
+
+24
+00:00:57,480 --> 00:00:59,820
+well and many may have participated in
+
+25
+00:00:59,820 --> 00:01:02,219
+the last DNA report but can you get us
+
+26
+00:01:02,219 --> 00:01:03,750
+up to speed a little bit and tell us
+
+27
+00:01:03,750 --> 00:01:05,519
+about its history and what we're trying
+
+28
+00:01:05,519 --> 00:01:08,340
+to do yeah of course so this really
+
+29
+00:01:08,340 --> 00:01:10,670
+started in late 2017
+
+30
+00:01:10,670 --> 00:01:14,280
+shortly after CSS great was shipped CSS
+
+31
+00:01:14,280 --> 00:01:16,860
+great was a massive success but was also
+
+32
+00:01:16,860 --> 00:01:18,840
+years in the making and layout had been
+
+33
+00:01:18,840 --> 00:01:20,430
+an issue for web developers at least
+
+34
+00:01:20,430 --> 00:01:23,670
+since the 90s when we abused tables
+
+35
+00:01:23,670 --> 00:01:27,090
+implement our UI designs so we asked
+
+36
+00:01:27,090 --> 00:01:29,310
+ourselves how can we have more of these
+
+37
+00:01:29,310 --> 00:01:32,250
+wins and we talked to people who worked
+
+38
+00:01:32,250 --> 00:01:36,750
+at the web platform at Mozilla about how
+
+39
+00:01:36,750 --> 00:01:38,880
+they prioritize things and one thing
+
+40
+00:01:38,880 --> 00:01:40,200
+really stood out because almost everyone
+
+41
+00:01:40,200 --> 00:01:42,869
+said the same thing they said we need to
+
+42
+00:01:42,869 --> 00:01:45,060
+hear more from developers and it makes
+
+43
+00:01:45,060 --> 00:01:45,810
+so much sense
+
+44
+00:01:45,810 --> 00:01:47,970
+because none of us can be successful
+
+45
+00:01:47,970 --> 00:01:49,170
+without that part it's hard to
+
+46
+00:01:49,170 --> 00:01:50,610
+prioritize the right thing without
+
+47
+00:01:50,610 --> 00:01:53,159
+knowing about developer pain points and
+
+48
+00:01:53,159 --> 00:01:55,159
+it's hard to find the right solution
+
+49
+00:01:55,159 --> 00:01:58,649
+especially if it and it's hard to get
+
+50
+00:01:58,649 --> 00:02:00,869
+people to use something if it's not
+
+51
+00:02:00,869 --> 00:02:02,729
+solving that problem or not solving it
+
+52
+00:02:02,729 --> 00:02:05,189
+in the right way so for all of those
+
+53
+00:02:05,189 --> 00:02:07,350
+reasons we proposed developer needs
+
+54
+00:02:07,350 --> 00:02:11,250
+assessment and the DNA in short is meant
+
+55
+00:02:11,250 --> 00:02:13,830
+to be a single and simple tool for harsh
+
+56
+00:02:13,830 --> 00:02:16,740
+characterization representing very
+
+57
+00:02:16,740 --> 00:02:19,530
+diverse populations and a huge future
+
+58
+00:02:19,530 --> 00:02:22,680
+space and it's publisher I'm Deanna
+
+59
+00:02:22,680 --> 00:02:24,330
+that's important because it's not owned
+
+60
+00:02:24,330 --> 00:02:26,610
+by a single browser vendor when you know
+
+61
+00:02:26,610 --> 00:02:28,560
+she initially proposed this under the
+
+62
+00:02:28,560 --> 00:02:30,480
+umbrella of the MDM product Advisory
+
+63
+00:02:30,480 --> 00:02:32,580
+Board where we have representation from
+
+64
+00:02:32,580 --> 00:02:34,920
+browser vendors like Google and
+
+65
+00:02:34,920 --> 00:02:37,860
+Microsoft and Samsung but also the w3c
+
+66
+00:02:37,860 --> 00:02:41,340
+and industry stakeholders and as a
+
+67
+00:02:41,340 --> 00:02:43,950
+community we need to have at least a
+
+68
+00:02:43,950 --> 00:02:45,600
+common understanding of the facts when
+
+69
+00:02:45,600 --> 00:02:47,670
+it comes to needs even if we draw
+
+70
+00:02:47,670 --> 00:02:52,470
+different conclusions from them and for
+
+71
+00:02:52,470 --> 00:02:55,590
+this situation in 2019 more than 20,000
+
+72
+00:02:55,590 --> 00:02:57,000
+developers and designers took the 20
+
+73
+00:02:57,000 --> 00:02:58,920
+minutes necessary to fully complete the
+
+74
+00:02:58,920 --> 00:03:02,280
+survey and that's from 173 countries
+
+75
+00:03:02,280 --> 00:03:05,100
+total and that's about ten thousand
+
+76
+00:03:05,100 --> 00:03:08,400
+hours of time contributed by developers
+
+77
+00:03:08,400 --> 00:03:11,010
+and designers to help us understand what
+
+78
+00:03:11,010 --> 00:03:13,980
+their pain points and needs are and we
+
+79
+00:03:13,980 --> 00:03:16,290
+believe that makes the amnion web DNA
+
+80
+00:03:16,290 --> 00:03:18,360
+the biggest web developer a design and
+
+81
+00:03:18,360 --> 00:03:21,510
+focus survey ever conducted so far yeah
+
+82
+00:03:21,510 --> 00:03:23,250
+well when you put it that way
+
+83
+00:03:23,250 --> 00:03:25,709
+just really want to say thank you to to
+
+84
+00:03:25,709 --> 00:03:27,570
+the community and anyone that took the
+
+85
+00:03:27,570 --> 00:03:30,390
+time to go through those you know 20
+
+86
+00:03:30,390 --> 00:03:31,980
+minutes and getting us the feedback it's
+
+87
+00:03:31,980 --> 00:03:34,380
+it's incredibly useful to us but but
+
+88
+00:03:34,380 --> 00:03:36,330
+thank you so much so when you were going
+
+89
+00:03:36,330 --> 00:03:37,459
+through the results
+
+90
+00:03:37,459 --> 00:03:40,590
+Kadir the 2019 report what kind of
+
+91
+00:03:40,590 --> 00:03:43,320
+really kind of stood out to you you know
+
+92
+00:03:43,320 --> 00:03:44,519
+one thing really
+
+93
+00:03:44,519 --> 00:03:46,200
+and that's web compatibility and
+
+94
+00:03:46,200 --> 00:03:49,350
+interoperability the four of the top
+
+95
+00:03:49,350 --> 00:03:51,690
+five issues were focused on exactly that
+
+96
+00:03:51,690 --> 00:03:54,510
+topic and one of the biggest strengths
+
+97
+00:03:54,510 --> 00:03:55,890
+of the web is that there is no single
+
+98
+00:03:55,890 --> 00:03:58,680
+entity controlling the platform but that
+
+99
+00:03:58,680 --> 00:04:01,410
+doesn't come for free web developers and
+
+100
+00:04:01,410 --> 00:04:04,320
+designers are frustrated by not being
+
+101
+00:04:04,320 --> 00:04:07,800
+able to use features by having to find
+
+102
+00:04:07,800 --> 00:04:09,510
+workarounds fiddling with browser
+
+103
+00:04:09,510 --> 00:04:11,850
+differences and also by the difficulty
+
+104
+00:04:11,850 --> 00:04:14,100
+to verify that something that works in
+
+105
+00:04:14,100 --> 00:04:16,500
+one browser will not break in another
+
+106
+00:04:16,500 --> 00:04:20,010
+browser and related to that it was a bit
+
+107
+00:04:20,010 --> 00:04:22,650
+of a surprise that the top five issues
+
+108
+00:04:22,650 --> 00:04:25,440
+were extremely stable between very
+
+109
+00:04:25,440 --> 00:04:27,780
+different markets so whether it's China
+
+110
+00:04:27,780 --> 00:04:31,740
+in the Japan the US or France the top
+
+111
+00:04:31,740 --> 00:04:33,360
+issues for web developers revolve around
+
+112
+00:04:33,360 --> 00:04:35,750
+web compatibility and interoperability
+
+113
+00:04:35,750 --> 00:04:39,530
+got it so when you take this feedback in
+
+114
+00:04:39,530 --> 00:04:42,180
+how does it actually kind of change the
+
+115
+00:04:42,180 --> 00:04:44,280
+roadmap at Mozilla like what are you now
+
+116
+00:04:44,280 --> 00:04:45,870
+looking to focus on based on this
+
+117
+00:04:45,870 --> 00:04:48,270
+feedback yeah so web config web
+
+118
+00:04:48,270 --> 00:04:49,980
+compatibility was already a focus at
+
+119
+00:04:49,980 --> 00:04:52,320
+Mozilla even before this but we now have
+
+120
+00:04:52,320 --> 00:04:54,720
+doubled down on it so recently we made
+
+121
+00:04:54,720 --> 00:04:56,820
+browser compatibility data machine
+
+122
+00:04:56,820 --> 00:04:59,400
+readable on MDM and that's now starting
+
+123
+00:04:59,400 --> 00:05:03,660
+to pay off so if you use yes code very
+
+124
+00:05:03,660 --> 00:05:07,230
+popular code editor the tooltips have
+
+125
+00:05:07,230 --> 00:05:09,900
+compact data information when you write
+
+126
+00:05:09,900 --> 00:05:12,840
+CSS and we also recently started a
+
+127
+00:05:12,840 --> 00:05:15,750
+collaboration with can I use comm to
+
+128
+00:05:15,750 --> 00:05:17,580
+share the data that we have so we are
+
+129
+00:05:17,580 --> 00:05:19,919
+all looking at the same browser company
+
+130
+00:05:19,919 --> 00:05:22,680
+information and I'm sure Victoria can
+
+131
+00:05:22,680 --> 00:05:24,660
+say more about it in a moment but the
+
+132
+00:05:24,660 --> 00:05:26,790
+Firefox dev tool say now come with
+
+133
+00:05:26,790 --> 00:05:29,430
+combat data information built-in got it
+
+134
+00:05:29,430 --> 00:05:31,160
+yeah this the feedback has been really
+
+135
+00:05:31,160 --> 00:05:34,530
+helpful for us and the web platform team
+
+136
+00:05:34,530 --> 00:05:36,750
+is really you know working even deeper
+
+137
+00:05:36,750 --> 00:05:39,000
+on stability compared issues that you
+
+138
+00:05:39,000 --> 00:05:42,300
+talked about helping with testing layout
+
+139
+00:05:42,300 --> 00:05:45,240
+really kind of understanding what what
+
+140
+00:05:45,240 --> 00:05:46,680
+the development needs are and kind of
+
+141
+00:05:46,680 --> 00:05:48,630
+bringing it into our prioritization too
+
+142
+00:05:48,630 --> 00:05:50,880
+so it's actually almost time for the
+
+143
+00:05:50,880 --> 00:05:53,520
+next version of the DNA report so what
+
+144
+00:05:53,520 --> 00:05:55,020
+do we have in store for developers this
+
+145
+00:05:55,020 --> 00:05:58,410
+time around yeah so one thing we are
+
+146
+00:05:58,410 --> 00:06:00,240
+super excited about this year is to see
+
+147
+00:06:00,240 --> 00:06:02,240
+how things have changed year-over-year
+
+148
+00:06:02,240 --> 00:06:04,950
+so we want to see that developer
+
+149
+00:06:04,950 --> 00:06:08,790
+satisfaction go up or down and however
+
+150
+00:06:08,790 --> 00:06:12,570
+the top pain points changed so this is
+
+151
+00:06:12,570 --> 00:06:13,800
+really the first opportunity to see
+
+152
+00:06:13,800 --> 00:06:15,900
+those trends well I can't wait to get
+
+153
+00:06:15,900 --> 00:06:17,760
+that out to developers and I hope that
+
+154
+00:06:17,760 --> 00:06:20,580
+everyone's watching would do us a favor
+
+155
+00:06:20,580 --> 00:06:23,100
+and take some time to to get that
+
+156
+00:06:23,100 --> 00:06:25,050
+feedback in so we can like really know
+
+157
+00:06:25,050 --> 00:06:27,930
+what we can prioritize in the future for
+
+158
+00:06:27,930 --> 00:06:30,060
+our roadmaps now Victoria I actually
+
+159
+00:06:30,060 --> 00:06:32,190
+used to work on there on developer tools
+
+160
+00:06:32,190 --> 00:06:35,550
+at Mozilla and not only was it the birth
+
+161
+00:06:35,550 --> 00:06:37,289
+of a you know great tooling in the
+
+162
+00:06:37,289 --> 00:06:39,030
+browser back from Joe Hewitt's you know
+
+163
+00:06:39,030 --> 00:06:41,550
+Firebug on words but it really continued
+
+164
+00:06:41,550 --> 00:06:44,310
+to push the bar so I'd love for you to
+
+165
+00:06:44,310 --> 00:06:46,230
+be able to kind of catch us up on what's
+
+166
+00:06:46,230 --> 00:06:49,320
+the latest what's new in in Firefox dev
+
+167
+00:06:49,320 --> 00:06:53,160
+tools hi Dan as Kadir explained we know
+
+168
+00:06:53,160 --> 00:06:54,960
+that differing browser support for CSS
+
+169
+00:06:54,960 --> 00:06:57,870
+features is a top issue for web devs so
+
+170
+00:06:57,870 --> 00:07:00,000
+our team built a compatibility panel to
+
+171
+00:07:00,000 --> 00:07:01,980
+make it easier to stay on top of this it
+
+172
+00:07:01,980 --> 00:07:03,900
+lists all CSS on your website that's
+
+173
+00:07:03,900 --> 00:07:06,060
+unsupported in certain browsers as well
+
+174
+00:07:06,060 --> 00:07:08,670
+as deprecated Styles you try it now in
+
+175
+00:07:08,670 --> 00:07:11,190
+Firefox dev edition I really love the
+
+176
+00:07:11,190 --> 00:07:13,140
+the UX touches there especially the
+
+177
+00:07:13,140 --> 00:07:15,150
+turtle and the like that's that's great
+
+178
+00:07:15,150 --> 00:07:17,550
+and in general you know a lot of great
+
+179
+00:07:17,550 --> 00:07:19,530
+features Lydia that I landed there and
+
+180
+00:07:19,530 --> 00:07:21,660
+I'm curious if there's anything on the
+
+181
+00:07:21,660 --> 00:07:23,970
+upcoming roadmap that you're excited
+
+182
+00:07:23,970 --> 00:07:26,100
+about sharing we've also been working on
+
+183
+00:07:26,100 --> 00:07:28,050
+the Firefox profiler it's our
+
+184
+00:07:28,050 --> 00:07:29,310
+performance tool which features
+
+185
+00:07:29,310 --> 00:07:31,500
+shareable links for collaboration we've
+
+186
+00:07:31,500 --> 00:07:33,480
+been integrating the recorded UI into
+
+187
+00:07:33,480 --> 00:07:35,550
+Firefox so it's easy to get started this
+
+188
+00:07:35,550 --> 00:07:37,680
+tool is also currently in dev edition as
+
+189
+00:07:37,680 --> 00:07:39,900
+far as our debugger I want to highlight
+
+190
+00:07:39,900 --> 00:07:42,780
+two unique features in 77 we added a
+
+191
+00:07:42,780 --> 00:07:43,980
+type of break point that's new to
+
+192
+00:07:43,980 --> 00:07:46,320
+browser tools the watch point it let's
+
+193
+00:07:46,320 --> 00:07:47,820
+see pause when an object property is
+
+194
+00:07:47,820 --> 00:07:50,640
+accessed or changed also we made source
+
+195
+00:07:50,640 --> 00:07:52,800
+mapped variables work when you pause in
+
+196
+00:07:52,800 --> 00:07:55,170
+an original file we now reverse engineer
+
+197
+00:07:55,170 --> 00:07:57,000
+the scope chain so that variables look
+
+198
+00:07:57,000 --> 00:07:58,800
+correct in the scopes pane and work in
+
+199
+00:07:58,800 --> 00:08:01,230
+the console oh this was six months of
+
+200
+00:08:01,230 --> 00:08:02,910
+incredibly challenging work done by our
+
+201
+00:08:02,910 --> 00:08:04,740
+teammate Logan who had deep knowledge
+
+202
+00:08:04,740 --> 00:08:06,630
+for being tech lead on Babel the year
+
+203
+00:08:06,630 --> 00:08:08,220
+before we dropped that he's the only
+
+204
+00:08:08,220 --> 00:08:09,480
+person in the world who could have
+
+205
+00:08:09,480 --> 00:08:11,850
+written this so recently I really
+
+206
+00:08:11,850 --> 00:08:13,620
+embraced the open design process for a
+
+207
+00:08:13,620 --> 00:08:16,470
+network panel redesign we set and we
+
+208
+00:08:16,470 --> 00:08:18,390
+sent out a survey and posted early
+
+209
+00:08:18,390 --> 00:08:19,980
+mock-ups to Twitter and got amazing
+
+210
+00:08:19,980 --> 00:08:23,250
+input I originally used bold to indicate
+
+211
+00:08:23,250 --> 00:08:25,500
+large files and someone suggested it be
+
+212
+00:08:25,500 --> 00:08:27,060
+more clear to have Mouse and elephant
+
+213
+00:08:27,060 --> 00:08:29,070
+icons for small and big that's how we
+
+214
+00:08:29,070 --> 00:08:30,870
+ended up with the turtle for slow
+
+215
+00:08:30,870 --> 00:08:34,440
+responses people also told us that when
+
+216
+00:08:34,440 --> 00:08:36,420
+it comes to the domain column they
+
+217
+00:08:36,420 --> 00:08:38,010
+mainly want to know if it's third-party
+
+218
+00:08:38,010 --> 00:08:41,130
+or not so in this condensed view with a
+
+219
+00:08:41,130 --> 00:08:43,230
+sidebar we hid the domain column and add
+
+220
+00:08:43,230 --> 00:08:45,060
+an icon that indicates third-party
+
+221
+00:08:45,060 --> 00:08:48,060
+requests originally I made these
+
+222
+00:08:48,060 --> 00:08:50,070
+brightly-colored file type icons and
+
+223
+00:08:50,070 --> 00:08:51,900
+some people love them and others said it
+
+224
+00:08:51,900 --> 00:08:54,750
+was too much label like candy so i ated
+
+225
+00:08:54,750 --> 00:08:55,350
+tone down
+
+226
+00:08:55,350 --> 00:08:56,970
+colors and got to the result you see
+
+227
+00:08:56,970 --> 00:08:59,370
+here most of this has landed in the
+
+228
+00:08:59,370 --> 00:09:01,110
+latest nightly we hope everyone will try
+
+229
+00:09:01,110 --> 00:09:03,680
+it out and give us more feedback awesome
+
+230
+00:09:03,680 --> 00:09:05,790
+great so Victoria
+
+231
+00:09:05,790 --> 00:09:08,070
+Kadir thank you so much for taking the
+
+232
+00:09:08,070 --> 00:09:09,660
+time to join us today we really
+
+233
+00:09:09,660 --> 00:09:11,430
+appreciate the great work the Mozilla
+
+234
+00:09:11,430 --> 00:09:14,190
+continues to do for the web now you
+
+235
+00:09:14,190 --> 00:09:16,020
+spend a lot of time both in your
+
+236
+00:09:16,020 --> 00:09:18,180
+developer tools and also on the core
+
+237
+00:09:18,180 --> 00:09:20,010
+task of building your app UI
+
+238
+00:09:20,010 --> 00:09:22,710
+so to chat more about modern web UI
+
+239
+00:09:22,710 --> 00:09:26,880
+let's welcome you now idea hi Yuna now
+
+240
+00:09:26,880 --> 00:09:28,170
+we were just talking about the develop
+
+241
+00:09:28,170 --> 00:09:30,300
+and need survey with Mozilla and there
+
+242
+00:09:30,300 --> 00:09:32,130
+was plenty of feedback from developers
+
+243
+00:09:32,130 --> 00:09:34,350
+on layout so I was just curious you know
+
+244
+00:09:34,350 --> 00:09:35,760
+there any recent additions to the
+
+245
+00:09:35,760 --> 00:09:37,500
+platform that you think target these
+
+246
+00:09:37,500 --> 00:09:40,110
+needs oh yes you've definitely been
+
+247
+00:09:40,110 --> 00:09:42,570
+listening and CSS has been evolving so
+
+248
+00:09:42,570 --> 00:09:44,910
+rapidly in the past few years and really
+
+249
+00:09:44,910 --> 00:09:47,640
+months so tomorrow I'll be going over a
+
+250
+00:09:47,640 --> 00:09:49,710
+ton of cool aspects of modern layout
+
+251
+00:09:49,710 --> 00:09:51,300
+with CSS grid and flexbox
+
+252
+00:09:51,300 --> 00:09:53,130
+including how to harness the power of
+
+253
+00:09:53,130 --> 00:09:55,650
+CSS functions like clamp fractional
+
+254
+00:09:55,650 --> 00:09:57,630
+units Auto placement the min max
+
+255
+00:09:57,630 --> 00:10:00,750
+function justification place items the
+
+256
+00:10:00,750 --> 00:10:03,150
+VP function and a lot more to create
+
+257
+00:10:03,150 --> 00:10:05,100
+robust layouts breaking down how
+
+258
+00:10:05,100 --> 00:10:07,920
+powerful a single line of CSS can be
+
+259
+00:10:07,920 --> 00:10:10,440
+there are also some CSS properties
+
+260
+00:10:10,440 --> 00:10:12,000
+coming down the pipeline that will help
+
+261
+00:10:12,000 --> 00:10:13,740
+with a lot of user needs that haven't
+
+262
+00:10:13,740 --> 00:10:16,320
+yet been met an aspect ratio is one of
+
+263
+00:10:16,320 --> 00:10:18,120
+them this just landed in Chrome Canary
+
+264
+00:10:18,120 --> 00:10:21,000
+and it enables users set to find width
+
+265
+00:10:21,000 --> 00:10:23,310
+to height ratios for media items like
+
+266
+00:10:23,310 --> 00:10:25,890
+images and video previously the way to
+
+267
+00:10:25,890 --> 00:10:27,750
+do this was a hack using padding and
+
+268
+00:10:27,750 --> 00:10:30,180
+calculating a percentage but now you can
+
+269
+00:10:30,180 --> 00:10:31,980
+set your ratios in a much more readable
+
+270
+00:10:31,980 --> 00:10:34,170
+way I'm looking forward to the planning
+
+271
+00:10:34,170 --> 00:10:35,520
+and browsers and making a lot of
+
+272
+00:10:35,520 --> 00:10:37,470
+developers lives easier because I know
+
+273
+00:10:37,470 --> 00:10:39,030
+this is something that I run into a lot
+
+274
+00:10:39,030 --> 00:10:41,550
+we're also getting the gap property in
+
+275
+00:10:41,550 --> 00:10:44,190
+Flex box this one is exciting because of
+
+276
+00:10:44,190 --> 00:10:46,410
+how many times we've just been styling a
+
+277
+00:10:46,410 --> 00:10:48,270
+series of items and wanting there to be
+
+278
+00:10:48,270 --> 00:10:50,310
+space between those items but not around
+
+279
+00:10:50,310 --> 00:10:53,160
+those items gap enables the parent
+
+280
+00:10:53,160 --> 00:10:54,960
+element to control spacing not the
+
+281
+00:10:54,960 --> 00:10:56,940
+children making it easier to style these
+
+282
+00:10:56,940 --> 00:10:59,240
+items uniformly within that parent
+
+283
+00:10:59,240 --> 00:11:01,440
+currently you can use gap to create
+
+284
+00:11:01,440 --> 00:11:03,810
+tracks with CSS grid but you'll be able
+
+285
+00:11:03,810 --> 00:11:06,180
+to use with a flexbox layout too meaning
+
+286
+00:11:06,180 --> 00:11:07,890
+you can leverage all the benefits of gap
+
+287
+00:11:07,890 --> 00:11:08,680
+with the greater
+
+288
+00:11:08,680 --> 00:11:11,470
+choice and layout mechanism the web
+
+289
+00:11:11,470 --> 00:11:13,870
+animations API is also getting a lot
+
+290
+00:11:13,870 --> 00:11:16,720
+more robust in chromium 84 now we have
+
+291
+00:11:16,720 --> 00:11:18,520
+promises replaceable animations
+
+292
+00:11:18,520 --> 00:11:20,890
+composite modes partial keyframes and a
+
+293
+00:11:20,890 --> 00:11:23,050
+way to access animations from CSS and
+
+294
+00:11:23,050 --> 00:11:25,360
+JavaScript check out the blog post on
+
+295
+00:11:25,360 --> 00:11:26,890
+web app dev for more information about
+
+296
+00:11:26,890 --> 00:11:28,600
+these updates and try them out in Chrome
+
+297
+00:11:28,600 --> 00:11:31,480
+Canary yourself the act property rule is
+
+298
+00:11:31,480 --> 00:11:33,250
+also available behind a flag and canary
+
+299
+00:11:33,250 --> 00:11:34,959
+and something that I am particularly
+
+300
+00:11:34,959 --> 00:11:36,730
+excited about because this allows for
+
+301
+00:11:36,730 --> 00:11:39,490
+semantic variables in CSS with a
+
+302
+00:11:39,490 --> 00:11:41,500
+property you can declare a CSS custom
+
+303
+00:11:41,500 --> 00:11:43,630
+properties that have semantics typed
+
+304
+00:11:43,630 --> 00:11:46,180
+values and fallbacks this is the part of
+
+305
+00:11:46,180 --> 00:11:48,760
+the CSS Houdini effort specifically the
+
+306
+00:11:48,760 --> 00:11:51,430
+properties and values API and previously
+
+307
+00:11:51,430 --> 00:11:53,680
+was possible in JavaScript with CSS to
+
+308
+00:11:53,680 --> 00:11:55,390
+register property as a part of Houdini
+
+309
+00:11:55,390 --> 00:11:57,640
+but the app property declaration brings
+
+310
+00:11:57,640 --> 00:12:00,010
+us into our CSS files meaning a nice
+
+311
+00:12:00,010 --> 00:12:02,350
+collocation of super-powered styles with
+
+312
+00:12:02,350 --> 00:12:04,899
+the rest of your CSS the other Houdini
+
+313
+00:12:04,899 --> 00:12:06,640
+API is to keep an eye out for our the
+
+314
+00:12:06,640 --> 00:12:08,800
+type object model the paint worklets
+
+315
+00:12:08,800 --> 00:12:10,720
+animation workbook and the layout work
+
+316
+00:12:10,720 --> 00:12:13,150
+with great so javascript seems to kind
+
+317
+00:12:13,150 --> 00:12:14,950
+of have its time with the addition of
+
+318
+00:12:14,950 --> 00:12:18,400
+async away yes modules and the like it
+
+319
+00:12:18,400 --> 00:12:20,230
+was great to see that evolution it's
+
+320
+00:12:20,230 --> 00:12:22,000
+really feeling like this is a big time
+
+321
+00:12:22,000 --> 00:12:24,430
+for for CSS I love being able to get
+
+322
+00:12:24,430 --> 00:12:26,589
+features that like gap that you made
+
+323
+00:12:26,589 --> 00:12:27,880
+though you mentioned and the like to
+
+324
+00:12:27,880 --> 00:12:30,190
+just make things a lot easier for us and
+
+325
+00:12:30,190 --> 00:12:32,800
+super excited at how deep you can get
+
+326
+00:12:32,800 --> 00:12:35,980
+into on the Houdini side too but if I
+
+327
+00:12:35,980 --> 00:12:37,750
+use these and I'm building these super
+
+328
+00:12:37,750 --> 00:12:40,510
+rich designs and the like with this
+
+329
+00:12:40,510 --> 00:12:41,920
+great power comes great responsibility
+
+330
+00:12:41,920 --> 00:12:43,839
+so how do you think about the role of
+
+331
+00:12:43,839 --> 00:12:46,930
+accessibility here I love that you bring
+
+332
+00:12:46,930 --> 00:12:48,520
+up accessibility because accessibility
+
+333
+00:12:48,520 --> 00:12:50,529
+should always come first I think you're
+
+334
+00:12:50,529 --> 00:12:51,970
+absolutely right that that needs to be
+
+335
+00:12:51,970 --> 00:12:54,310
+top of mind your users need to be able
+
+336
+00:12:54,310 --> 00:12:56,170
+to access your content and navigate your
+
+337
+00:12:56,170 --> 00:12:58,959
+product it is not an enhancement I think
+
+338
+00:12:58,959 --> 00:13:00,670
+of accessibility as a core feature and
+
+339
+00:13:00,670 --> 00:13:03,160
+from 83 actually just launched with some
+
+340
+00:13:03,160 --> 00:13:05,290
+new accessibility testing features which
+
+341
+00:13:05,290 --> 00:13:07,209
+are pretty neat because they allow for
+
+342
+00:13:07,209 --> 00:13:09,670
+visual accessibility testing so now
+
+343
+00:13:09,670 --> 00:13:11,410
+their dev tools you can examine if your
+
+344
+00:13:11,410 --> 00:13:13,060
+UI works for users with the various
+
+345
+00:13:13,060 --> 00:13:15,130
+vision deficiency is like blurred vision
+
+346
+00:13:15,130 --> 00:13:16,990
+and for different types of
+
+347
+00:13:16,990 --> 00:13:19,060
+colorblindness yeah it's great we're
+
+348
+00:13:19,060 --> 00:13:20,500
+actually gonna have pool Luis come on
+
+349
+00:13:20,500 --> 00:13:21,170
+then kind of
+
+350
+00:13:21,170 --> 00:13:23,600
+through that a little bit and so thanks
+
+351
+00:13:23,600 --> 00:13:25,250
+so much I also have really been enjoying
+
+352
+00:13:25,250 --> 00:13:27,920
+your new CSS podcast with Adam Argyle
+
+353
+00:13:27,920 --> 00:13:29,810
+not only are you both kind of like
+
+354
+00:13:29,810 --> 00:13:31,220
+really fun to listen to him the like
+
+355
+00:13:31,220 --> 00:13:33,620
+it's actually been really interesting to
+
+356
+00:13:33,620 --> 00:13:35,149
+what you kind of go through step by step
+
+357
+00:13:35,149 --> 00:13:36,800
+and kind of teach us the fundamentals
+
+358
+00:13:36,800 --> 00:13:38,870
+there was a lot that I didn't really
+
+359
+00:13:38,870 --> 00:13:41,000
+know about yeah honestly we're learning
+
+360
+00:13:41,000 --> 00:13:42,860
+so much as we are going through the
+
+361
+00:13:42,860 --> 00:13:44,480
+fundamentals and we're having a lot of
+
+362
+00:13:44,480 --> 00:13:46,940
+fun making these episodes so if you
+
+363
+00:13:46,940 --> 00:13:48,920
+haven't seen it yet check out the CSS
+
+364
+00:13:48,920 --> 00:13:52,160
+podcast absolutely so thanks so much for
+
+365
+00:13:52,160 --> 00:13:54,290
+joining us Yuna and we'll see you later
+
+366
+00:13:54,290 --> 00:13:57,800
+on the stream bye now there are a few
+
+367
+00:13:57,800 --> 00:13:59,690
+more dev tools features I'm really keen
+
+368
+00:13:59,690 --> 00:14:02,180
+to show you and no one's better to show
+
+369
+00:14:02,180 --> 00:14:03,740
+off a bit all-in than the ever
+
+370
+00:14:03,740 --> 00:14:05,300
+supercharged Paul Lewis
+
+371
+00:14:05,300 --> 00:14:08,149
+hey how you doing not too bad how you
+
+372
+00:14:08,149 --> 00:14:10,910
+doing mate yep pretty good thanks
+
+373
+00:14:10,910 --> 00:14:12,620
+alright so one of the things that we've
+
+374
+00:14:12,620 --> 00:14:15,079
+noticed is that dev tools puts out these
+
+375
+00:14:15,079 --> 00:14:17,389
+console warnings as you can see on
+
+376
+00:14:17,389 --> 00:14:18,920
+screen and if you're anything like me
+
+377
+00:14:18,920 --> 00:14:21,529
+after a while you start to ignore them
+
+378
+00:14:21,529 --> 00:14:23,269
+and the reason is that that just could
+
+379
+00:14:23,269 --> 00:14:24,889
+be quite a lot of them so we've been
+
+380
+00:14:24,889 --> 00:14:26,660
+thinking about that and what we decided
+
+381
+00:14:26,660 --> 00:14:29,959
+to do is to bring in the issues tab now
+
+382
+00:14:29,959 --> 00:14:32,029
+if we detect issues on your page you'll
+
+383
+00:14:32,029 --> 00:14:34,250
+see this bar across the top with a
+
+384
+00:14:34,250 --> 00:14:35,120
+button in the top right hand corner
+
+385
+00:14:35,120 --> 00:14:37,310
+there that says go to issues if you
+
+386
+00:14:37,310 --> 00:14:39,440
+click on that it'll take you through to
+
+387
+00:14:39,440 --> 00:14:41,209
+the issues tab now you might offer you
+
+388
+00:14:41,209 --> 00:14:43,459
+the opportunity to reload the page to
+
+389
+00:14:43,459 --> 00:14:46,070
+get more information if you click on one
+
+390
+00:14:46,070 --> 00:14:47,660
+of these items it'll expand and you can
+
+391
+00:14:47,660 --> 00:14:49,490
+see more information there as well as
+
+392
+00:14:49,490 --> 00:14:51,230
+potentially some links to content for
+
+393
+00:14:51,230 --> 00:14:53,300
+you to read up on what you could do to
+
+394
+00:14:53,300 --> 00:14:56,300
+fix the issue so that's the issues tab
+
+395
+00:14:56,300 --> 00:14:58,250
+the other thing we've been looking at is
+
+396
+00:14:58,250 --> 00:15:01,760
+Web vitals so if you go to web dev slash
+
+397
+00:15:01,760 --> 00:15:04,069
+metrics you'll see a whole list of
+
+398
+00:15:04,069 --> 00:15:05,779
+metrics here that affect the UX and
+
+399
+00:15:05,779 --> 00:15:07,550
+things that we would like to optimize as
+
+400
+00:15:07,550 --> 00:15:08,870
+web developers and we've been looking at
+
+401
+00:15:08,870 --> 00:15:10,760
+ways of exposing this information to you
+
+402
+00:15:10,760 --> 00:15:13,010
+inside of the dev tools UI so things
+
+403
+00:15:13,010 --> 00:15:15,440
+like first content full paint or largest
+
+404
+00:15:15,440 --> 00:15:17,750
+content for paint for example so if you
+
+405
+00:15:17,750 --> 00:15:19,880
+go to the performance tab in dev tools
+
+406
+00:15:19,880 --> 00:15:22,279
+and you take a recording in the
+
+407
+00:15:22,279 --> 00:15:24,230
+performance tab you'll see something
+
+408
+00:15:24,230 --> 00:15:26,709
+that looks like this now there is a
+
+409
+00:15:26,709 --> 00:15:28,940
+timings tab there what time use row
+
+410
+00:15:28,940 --> 00:15:30,829
+sorry I should say across which you'll
+
+411
+00:15:30,829 --> 00:15:32,990
+see these blocks and these relate to
+
+412
+00:15:32,990 --> 00:15:34,660
+some of those metrics so you can see
+
+413
+00:15:34,660 --> 00:15:37,990
+P&L CP first contact 4p largest contact
+
+414
+00:15:37,990 --> 00:15:39,759
+for patrons so on so you can start to
+
+415
+00:15:39,759 --> 00:15:41,860
+get information there on some of your
+
+416
+00:15:41,860 --> 00:15:44,740
+metrics the other thing we started doing
+
+417
+00:15:44,740 --> 00:15:46,899
+is to add candy striping to your
+
+418
+00:15:46,899 --> 00:15:48,759
+long-running tasks and you can see that
+
+419
+00:15:48,759 --> 00:15:51,220
+here I have one task on my main thread
+
+420
+00:15:51,220 --> 00:15:53,649
+that is 17 milliseconds long and what
+
+421
+00:15:53,649 --> 00:15:54,759
+we're looking for is we're looking for
+
+422
+00:15:54,759 --> 00:15:57,459
+tasks to remain under 50 milliseconds
+
+423
+00:15:57,459 --> 00:15:58,629
+this means that the main thread stays
+
+424
+00:15:58,629 --> 00:16:00,730
+responsive and hopefully we can respond
+
+425
+00:16:00,730 --> 00:16:03,009
+to user interactions quickly so as you
+
+426
+00:16:03,009 --> 00:16:04,750
+look around your performance recording
+
+427
+00:16:04,750 --> 00:16:06,370
+if you see this can't distracting effect
+
+428
+00:16:06,370 --> 00:16:07,930
+and the red triangle in the corner you
+
+429
+00:16:07,930 --> 00:16:09,129
+know that you've got a task that's
+
+430
+00:16:09,129 --> 00:16:11,800
+running longer than 50 milliseconds what
+
+431
+00:16:11,800 --> 00:16:13,449
+we've also added as well is we've added
+
+432
+00:16:13,449 --> 00:16:15,310
+a tons of blocking time footer at the
+
+433
+00:16:15,310 --> 00:16:17,680
+bottom what this tells you is if you
+
+434
+00:16:17,680 --> 00:16:19,810
+like the amount of candy striping that
+
+435
+00:16:19,810 --> 00:16:21,610
+you would see across the whole recording
+
+436
+00:16:21,610 --> 00:16:23,740
+so as you're looking around if you see
+
+437
+00:16:23,740 --> 00:16:25,060
+that that numbers going up you might
+
+438
+00:16:25,060 --> 00:16:26,290
+want to take a look and see if you have
+
+439
+00:16:26,290 --> 00:16:28,209
+a lot of long running tasks on your main
+
+440
+00:16:28,209 --> 00:16:30,129
+thread bringing that down should
+
+441
+00:16:30,129 --> 00:16:32,069
+hopefully help your user experience
+
+442
+00:16:32,069 --> 00:16:33,939
+another thing that we've added is this
+
+443
+00:16:33,939 --> 00:16:36,550
+experience track and what's contained
+
+444
+00:16:36,550 --> 00:16:38,889
+within this is layout shift information
+
+445
+00:16:38,889 --> 00:16:41,350
+so for example when you've got buttons
+
+446
+00:16:41,350 --> 00:16:42,579
+and so on on your page and they're
+
+447
+00:16:42,579 --> 00:16:45,279
+perhaps moving around this can cause you
+
+448
+00:16:45,279 --> 00:16:47,170
+X discomfort so what we want to do is we
+
+449
+00:16:47,170 --> 00:16:49,000
+want to minimize the amount of moving
+
+450
+00:16:49,000 --> 00:16:51,160
+elements on the page and so the layout
+
+451
+00:16:51,160 --> 00:16:53,110
+shift here is going to tell you what
+
+452
+00:16:53,110 --> 00:16:55,269
+elements are moving on the page and
+
+453
+00:16:55,269 --> 00:16:57,970
+where and so on and the size that they
+
+454
+00:16:57,970 --> 00:16:59,259
+were when they did it so if I look at
+
+455
+00:16:59,259 --> 00:17:02,110
+this I have a warning here which tells
+
+456
+00:17:02,110 --> 00:17:04,000
+me that qtip layouts can result in poor
+
+457
+00:17:04,000 --> 00:17:05,530
+user experiences and that's a link to
+
+458
+00:17:05,530 --> 00:17:07,419
+more information as well as information
+
+459
+00:17:07,419 --> 00:17:10,089
+on where is moved from and - and if I
+
+460
+00:17:10,089 --> 00:17:12,220
+roll over that I get an overlay on my
+
+461
+00:17:12,220 --> 00:17:14,350
+screen which shows me exactly where on
+
+462
+00:17:14,350 --> 00:17:17,799
+my page the shift took place you can
+
+463
+00:17:17,799 --> 00:17:20,380
+also get live information about layout
+
+464
+00:17:20,380 --> 00:17:22,299
+shifts by going to the rendering tab and
+
+465
+00:17:22,299 --> 00:17:24,699
+choosing layout shift regions here in
+
+466
+00:17:24,699 --> 00:17:27,100
+the options now I should say that for
+
+467
+00:17:27,100 --> 00:17:29,289
+people prone to photosensitive epilepsy
+
+468
+00:17:29,289 --> 00:17:30,700
+this might be a less suitable option
+
+469
+00:17:30,700 --> 00:17:32,049
+because it can cause flushing or
+
+470
+00:17:32,049 --> 00:17:34,240
+overlays on the screen but it is there
+
+471
+00:17:34,240 --> 00:17:35,919
+as an option if it's suitable for you
+
+472
+00:17:35,919 --> 00:17:37,450
+the next thing I want to talk about is
+
+473
+00:17:37,450 --> 00:17:39,280
+web assembly debugging and it's an
+
+474
+00:17:39,280 --> 00:17:41,140
+experiment so if you go into your dev
+
+475
+00:17:41,140 --> 00:17:43,270
+tool settings go to these parents tab
+
+476
+00:17:43,270 --> 00:17:45,460
+and click on web assembly debugging you
+
+477
+00:17:45,460 --> 00:17:47,799
+can switch it on there well this allows
+
+478
+00:17:47,799 --> 00:17:48,330
+you to
+
+479
+00:17:48,330 --> 00:17:49,800
+is allows you to do things like setting
+
+480
+00:17:49,800 --> 00:17:51,930
+breakpoints in your web assembly code so
+
+481
+00:17:51,930 --> 00:17:54,240
+here I've compiled a C program it's just
+
+482
+00:17:54,240 --> 00:17:56,160
+a hello world program but what I've done
+
+483
+00:17:56,160 --> 00:17:57,840
+is I've added a breakpoint on the line
+
+484
+00:17:57,840 --> 00:18:00,270
+that says hello world so when this code
+
+485
+00:18:00,270 --> 00:18:02,340
+executes and it hits that line inside of
+
+486
+00:18:02,340 --> 00:18:04,380
+the web assembly it pauses execution
+
+487
+00:18:04,380 --> 00:18:05,940
+just like it would inside the JavaScript
+
+488
+00:18:05,940 --> 00:18:07,620
+and you can see here in the call stack
+
+489
+00:18:07,620 --> 00:18:09,360
+that I can actually take a look at
+
+490
+00:18:09,360 --> 00:18:11,550
+what's going on in that particular frame
+
+491
+00:18:11,550 --> 00:18:13,170
+and I can go between my JavaScript and
+
+492
+00:18:13,170 --> 00:18:15,450
+the C and so on and so forth so that's
+
+493
+00:18:15,450 --> 00:18:16,920
+something that's coming down and it's
+
+494
+00:18:16,920 --> 00:18:18,780
+currently in canary so take a look at
+
+495
+00:18:18,780 --> 00:18:20,880
+that now the last thing I want to show
+
+496
+00:18:20,880 --> 00:18:23,250
+you is color vision deficiency emulation
+
+497
+00:18:23,250 --> 00:18:24,930
+inside of dev tools and there's no
+
+498
+00:18:24,930 --> 00:18:26,280
+better way to do that than to actually
+
+499
+00:18:26,280 --> 00:18:29,450
+give you a demo ok so here I am in
+
+500
+00:18:29,450 --> 00:18:31,650
+Chrome Canary and I have a video here
+
+501
+00:18:31,650 --> 00:18:33,330
+running of me and server doing
+
+502
+00:18:33,330 --> 00:18:35,580
+supercharged yesteryear but you see I
+
+503
+00:18:35,580 --> 00:18:37,470
+have the rendering tab open in dev tools
+
+504
+00:18:37,470 --> 00:18:39,720
+and I can emulate various vision
+
+505
+00:18:39,720 --> 00:18:42,540
+deficiencies such as blurred vision or I
+
+506
+00:18:42,540 --> 00:18:48,170
+can do protanopia I can do deuteron Opia
+
+507
+00:18:48,170 --> 00:18:51,180
+protanopia I will straight right in Opa
+
+508
+00:18:51,180 --> 00:18:55,680
+a chroma top to you as well so you can
+
+509
+00:18:55,680 --> 00:18:58,380
+see the live effect that it has on the
+
+510
+00:18:58,380 --> 00:19:00,240
+page so these are physiologically
+
+511
+00:19:00,240 --> 00:19:01,950
+accurate emulations of various vision
+
+512
+00:19:01,950 --> 00:19:03,420
+deficiencies now a vision deficiency
+
+513
+00:19:03,420 --> 00:19:05,850
+isn't an on/off thing let me see here
+
+514
+00:19:05,850 --> 00:19:07,950
+but rather it's a spectrum so a person
+
+515
+00:19:07,950 --> 00:19:10,080
+could have a milder form of a vision
+
+516
+00:19:10,080 --> 00:19:12,120
+deficiency or a more acute form what
+
+517
+00:19:12,120 --> 00:19:13,380
+we've chosen to implement inside of the
+
+518
+00:19:13,380 --> 00:19:16,200
+dev tools UI is the most acute form the
+
+519
+00:19:16,200 --> 00:19:17,460
+theory being that as you're optimizing
+
+520
+00:19:17,460 --> 00:19:19,140
+your app for accessibility in terms of
+
+521
+00:19:19,140 --> 00:19:21,420
+color and contrast if you make it work
+
+522
+00:19:21,420 --> 00:19:22,920
+for the most acute form then you'll
+
+523
+00:19:22,920 --> 00:19:24,330
+include everything up to and including
+
+524
+00:19:24,330 --> 00:19:28,130
+that as well
+
+525
+00:19:28,140 --> 00:19:29,279
+so that's color vision deficiency
+
+526
+00:19:29,279 --> 00:19:33,299
+emulation inside of dev tools thanks
+
+527
+00:19:33,299 --> 00:19:34,470
+Paul I'm really looking forward to
+
+528
+00:19:34,470 --> 00:19:36,380
+seeing more later today
+
+529
+00:19:36,380 --> 00:19:38,909
+now one thing I've noticed as we work
+
+530
+00:19:38,909 --> 00:19:40,950
+from home is how seriously people are
+
+531
+00:19:40,950 --> 00:19:43,559
+taking their home setups whether it be
+
+532
+00:19:43,559 --> 00:19:45,779
+playing with mics and cameras or virtual
+
+533
+00:19:45,779 --> 00:19:48,690
+backgrounds and recently I saw a demo
+
+534
+00:19:48,690 --> 00:19:50,460
+that would make you invisible on your
+
+535
+00:19:50,460 --> 00:19:53,640
+video feed using tensorflow j/s so I've
+
+536
+00:19:53,640 --> 00:19:54,720
+really wanted to learn more
+
+537
+00:19:54,720 --> 00:19:57,330
+so please welcome Jason maze from the
+
+538
+00:19:57,330 --> 00:19:58,769
+tensorflow Jas team
+
+539
+00:19:58,769 --> 00:20:01,350
+hi there I'm Jason and thank you for the
+
+540
+00:20:01,350 --> 00:20:02,760
+introduction there it's pleasure to be
+
+541
+00:20:02,760 --> 00:20:05,669
+invited to the show and yes I have
+
+542
+00:20:05,669 --> 00:20:07,139
+created an invisibility cloak
+
+543
+00:20:07,139 --> 00:20:08,880
+so maybe you would learn more about that
+
+544
+00:20:08,880 --> 00:20:11,309
+yeah Jason invisibility cloaks are
+
+545
+00:20:11,309 --> 00:20:14,220
+pretty cool and so maybe you can show us
+
+546
+00:20:14,220 --> 00:20:15,480
+how web developers can create
+
+547
+00:20:15,480 --> 00:20:17,309
+superpowers like that with tensive law
+
+548
+00:20:17,309 --> 00:20:18,570
+sure definitely
+
+549
+00:20:18,570 --> 00:20:20,789
+so if I switch to my slides for just a
+
+550
+00:20:20,789 --> 00:20:23,250
+second you can see what the invisibility
+
+551
+00:20:23,250 --> 00:20:25,230
+cloak was that Zeon was referring to you
+
+552
+00:20:25,230 --> 00:20:27,870
+and in this demonstration on the right
+
+553
+00:20:27,870 --> 00:20:29,460
+hand side you can see as I get on the
+
+554
+00:20:29,460 --> 00:20:31,860
+bed the bed is deforming in real time
+
+555
+00:20:31,860 --> 00:20:33,720
+and I'm being removed from the bottom
+
+556
+00:20:33,720 --> 00:20:35,429
+frame at the same time and this is
+
+557
+00:20:35,429 --> 00:20:37,769
+running all in the web browser now this
+
+558
+00:20:37,769 --> 00:20:39,269
+is pretty cool because privacy is
+
+559
+00:20:39,269 --> 00:20:41,700
+preserved as none of these images are
+
+560
+00:20:41,700 --> 00:20:44,039
+being sent to the server site and that's
+
+561
+00:20:44,039 --> 00:20:45,539
+super powerful especially in today's
+
+562
+00:20:45,539 --> 00:20:48,240
+climate where privacy is top of mind now
+
+563
+00:20:48,240 --> 00:20:50,580
+this was created in just under a day in
+
+564
+00:20:50,580 --> 00:20:52,320
+fact so it's quite easy to get started
+
+565
+00:20:52,320 --> 00:20:53,760
+with machine learning in the web browser
+
+566
+00:20:53,760 --> 00:20:55,889
+and we'll see some more demos in just a
+
+567
+00:20:55,889 --> 00:20:59,580
+second so on that note I also created a
+
+568
+00:20:59,580 --> 00:21:01,919
+Chrome extension that allows me to use
+
+569
+00:21:01,919 --> 00:21:04,860
+the same stuff we saw before as I using
+
+570
+00:21:04,860 --> 00:21:06,539
+body pics to create that which gives me
+
+571
+00:21:06,539 --> 00:21:08,250
+this image segmentation of my body in
+
+572
+00:21:08,250 --> 00:21:10,260
+real time and I can now join a Google
+
+573
+00:21:10,260 --> 00:21:13,320
+meet meeting as you can see shown on the
+
+574
+00:21:13,320 --> 00:21:15,450
+side right now and this can be combined
+
+575
+00:21:15,450 --> 00:21:17,309
+with my previous demo so I can remove
+
+576
+00:21:17,309 --> 00:21:19,019
+that second person who comes into frame
+
+577
+00:21:19,019 --> 00:21:22,049
+halfway through the gif and then it
+
+578
+00:21:22,049 --> 00:21:23,490
+would appear as if it never actually
+
+579
+00:21:23,490 --> 00:21:26,610
+happened cool so can you give us a few
+
+580
+00:21:26,610 --> 00:21:28,880
+more details on how this all works so
+
+581
+00:21:28,880 --> 00:21:31,260
+essentially all this is using body
+
+582
+00:21:31,260 --> 00:21:33,149
+segmentation and this is running
+
+583
+00:21:33,149 --> 00:21:34,769
+intensive projects in the web browser
+
+584
+00:21:34,769 --> 00:21:37,830
+and this can distinguish 24 unique body
+
+585
+00:21:37,830 --> 00:21:40,230
+areas across multiple bodies in real
+
+586
+00:21:40,230 --> 00:21:41,280
+time you can see
+
+587
+00:21:41,280 --> 00:21:42,750
+on the right-hand side that this works
+
+588
+00:21:42,750 --> 00:21:44,100
+pretty well when it all those settings
+
+589
+00:21:44,100 --> 00:21:45,930
+are bumped up too high and you can even
+
+590
+00:21:45,930 --> 00:21:48,090
+get the pose estimation showing on the
+
+591
+00:21:48,090 --> 00:21:49,440
+bodies to which estimated where the
+
+592
+00:21:49,440 --> 00:21:51,510
+skeleton is these can be used in
+
+593
+00:21:51,510 --> 00:21:53,700
+delightful ways juts as clothing size
+
+594
+00:21:53,700 --> 00:21:55,290
+estimation which you can see here this
+
+595
+00:21:55,290 --> 00:21:57,060
+is not a prototype I created and I don't
+
+596
+00:21:57,060 --> 00:21:59,160
+know about you Theon but I am terrible
+
+597
+00:21:59,160 --> 00:22:00,990
+at knowing what size clothing to buy I
+
+598
+00:22:00,990 --> 00:22:03,420
+mean by once a year clothing purchase so
+
+599
+00:22:03,420 --> 00:22:06,810
+absolutely yeah totally and here you can
+
+600
+00:22:06,810 --> 00:22:08,850
+see I just enter my height and in less
+
+601
+00:22:08,850 --> 00:22:11,250
+than 15 seconds I think an estimate of
+
+602
+00:22:11,250 --> 00:22:13,230
+my inner leg my chest and waist
+
+603
+00:22:13,230 --> 00:22:15,180
+measurements which for clothing sight
+
+604
+00:22:15,180 --> 00:22:17,340
+can then use to estimate what size I am
+
+605
+00:22:17,340 --> 00:22:19,010
+a small medium or large
+
+606
+00:22:19,010 --> 00:22:21,030
+now this can even give you superpowers
+
+607
+00:22:21,030 --> 00:22:23,460
+ACC on this next slide and what about
+
+608
+00:22:23,460 --> 00:22:25,590
+community members from the USA has
+
+609
+00:22:25,590 --> 00:22:27,990
+combined this with WebGL shaders to turn
+
+610
+00:22:27,990 --> 00:22:29,640
+himself into Iron Man of sorts that he
+
+611
+00:22:29,640 --> 00:22:31,200
+can shoot lasers from its eyes and mouth
+
+612
+00:22:31,200 --> 00:22:34,350
+using our face mesh model so this is
+
+613
+00:22:34,350 --> 00:22:35,910
+pretty cool and it runs buttery smooth
+
+614
+00:22:35,910 --> 00:22:37,590
+at 60 frames per second in the web
+
+615
+00:22:37,590 --> 00:22:40,500
+browser and you can even go further of
+
+616
+00:22:40,500 --> 00:22:42,030
+course there's many web technologies out
+
+617
+00:22:42,030 --> 00:22:43,350
+there but you might want to combine with
+
+618
+00:22:43,350 --> 00:22:46,050
+machine learning such as web X our WebGL
+
+619
+00:22:46,050 --> 00:22:48,780
+and use very intensive OGS and if you do
+
+620
+00:22:48,780 --> 00:22:50,460
+that you can get an example like this
+
+621
+00:22:50,460 --> 00:22:51,810
+from another one of our community
+
+622
+00:22:51,810 --> 00:22:53,910
+members in Paris France who can
+
+623
+00:22:53,910 --> 00:22:56,310
+essentially scan a magazine and if
+
+624
+00:22:56,310 --> 00:22:57,660
+there's a person in it they can bring
+
+625
+00:22:57,660 --> 00:22:59,640
+that person into the living room full
+
+626
+00:22:59,640 --> 00:23:01,920
+size you can walk up to them and inspect
+
+627
+00:23:01,920 --> 00:23:03,810
+them in more detail pretty cool
+
+628
+00:23:03,810 --> 00:23:05,910
+technology but of course after seeing
+
+629
+00:23:05,910 --> 00:23:07,590
+this I thought to go one step further
+
+630
+00:23:07,590 --> 00:23:10,710
+and if I add web RTC I can bend teleport
+
+631
+00:23:10,710 --> 00:23:12,510
+myself anywhere in the world in real
+
+632
+00:23:12,510 --> 00:23:15,810
+time and this is using complete rewrite
+
+633
+00:23:15,810 --> 00:23:19,440
+using WebRTC a frame 3GS and 10 suppose
+
+634
+00:23:19,440 --> 00:23:22,590
+yes together to create this demo and it
+
+635
+00:23:22,590 --> 00:23:24,090
+really does make a big difference when
+
+636
+00:23:24,090 --> 00:23:27,480
+I'm seeing someone in my room which I
+
+637
+00:23:27,480 --> 00:23:29,070
+can walk up to and move around
+
+638
+00:23:29,070 --> 00:23:31,200
+it's a massive difference compared to a
+
+639
+00:23:31,200 --> 00:23:33,750
+rectangle that's solid on the screen so
+
+640
+00:23:33,750 --> 00:23:34,770
+this could be the future of video
+
+641
+00:23:34,770 --> 00:23:36,660
+conferencing who knows but it's great to
+
+642
+00:23:36,660 --> 00:23:38,010
+play these technologies have pushed the
+
+643
+00:23:38,010 --> 00:23:40,680
+boundaries of the web that's really cool
+
+644
+00:23:40,680 --> 00:23:42,510
+from invisibility cloaks to
+
+645
+00:23:42,510 --> 00:23:46,080
+teleportation that's that's pretty cool
+
+646
+00:23:46,080 --> 00:23:48,650
+stuff yeah exactly
+
+647
+00:23:48,650 --> 00:23:51,720
+this changes everything is anything so
+
+648
+00:23:51,720 --> 00:23:53,820
+how should web developers if we kind of
+
+649
+00:23:53,820 --> 00:23:55,909
+zoom out a second
+
+650
+00:23:55,909 --> 00:23:58,429
+how do web developers kind of
+
+651
+00:23:58,429 --> 00:24:00,440
+generically think about the role of ml
+
+652
+00:24:00,440 --> 00:24:02,419
+in tensorflow j/s and how it could fit
+
+653
+00:24:02,419 --> 00:24:05,630
+into their web applications yeah that's
+
+654
+00:24:05,630 --> 00:24:07,730
+a great question and obviously right now
+
+655
+00:24:07,730 --> 00:24:10,490
+in fact machine learning in JavaScript
+
+656
+00:24:10,490 --> 00:24:12,200
+is still a pretty new thing right the
+
+657
+00:24:12,200 --> 00:24:13,760
+very early stages but that's super
+
+658
+00:24:13,760 --> 00:24:15,230
+exciting too because there's so much
+
+659
+00:24:15,230 --> 00:24:18,020
+potential to be unraveled at this time
+
+660
+00:24:18,020 --> 00:24:21,080
+as well so on that note I had asked web
+
+661
+00:24:21,080 --> 00:24:23,059
+developers to consider how a machine
+
+662
+00:24:23,059 --> 00:24:24,409
+learning might fit into their existing
+
+663
+00:24:24,409 --> 00:24:27,200
+pipelines maybe you're developing a
+
+664
+00:24:27,200 --> 00:24:29,150
+content management system in that case
+
+665
+00:24:29,150 --> 00:24:31,960
+you could potentially use something like
+
+666
+00:24:31,960 --> 00:24:34,520
+automatic image cropping to detect where
+
+667
+00:24:34,520 --> 00:24:36,860
+a human faces in the image so then you
+
+668
+00:24:36,860 --> 00:24:39,080
+can make sure that it's cropped nicely
+
+669
+00:24:39,080 --> 00:24:41,740
+when you're resizing with your CSS or
+
+670
+00:24:41,740 --> 00:24:44,900
+maybe you want to summarize a blog post
+
+671
+00:24:44,900 --> 00:24:46,760
+article so you have one paragraph of
+
+672
+00:24:46,760 --> 00:24:48,890
+text that shows MD search results that's
+
+673
+00:24:48,890 --> 00:24:50,570
+now possible of machine learning - and
+
+674
+00:24:50,570 --> 00:24:52,490
+that can be done automatically so I
+
+675
+00:24:52,490 --> 00:24:54,289
+think only coach people to experiment
+
+676
+00:24:54,289 --> 00:24:57,020
+and and go outside of the regular box or
+
+677
+00:24:57,020 --> 00:24:59,390
+thinking and of course on that note on
+
+678
+00:24:59,390 --> 00:25:00,860
+this side you can see all the different
+
+679
+00:25:00,860 --> 00:25:03,070
+areas JavaScript can run on the browser
+
+680
+00:25:03,070 --> 00:25:06,380
+server-side mobile native desktop native
+
+681
+00:25:06,380 --> 00:25:08,270
+and even Internet of Things and tensor
+
+682
+00:25:08,270 --> 00:25:09,500
+phones jes supports all of these
+
+683
+00:25:09,500 --> 00:25:11,539
+environments too so maybe you want to
+
+684
+00:25:11,539 --> 00:25:12,830
+combine it with hardware if you can
+
+685
+00:25:12,830 --> 00:25:14,330
+recognize an object maybe you can
+
+686
+00:25:14,330 --> 00:25:15,470
+trigger something to happen in the
+
+687
+00:25:15,470 --> 00:25:17,240
+physical world or something on the
+
+688
+00:25:17,240 --> 00:25:18,650
+surface I if I talk to a third-party
+
+689
+00:25:18,650 --> 00:25:22,100
+service and on that note tensorflow Jess
+
+690
+00:25:22,100 --> 00:25:24,799
+can essentially run retrain by transfer
+
+691
+00:25:24,799 --> 00:25:27,080
+learning or even write allow you to
+
+692
+00:25:27,080 --> 00:25:28,970
+write your own models from scratch if
+
+693
+00:25:28,970 --> 00:25:32,360
+you so desire now on that note we have a
+
+694
+00:25:32,360 --> 00:25:33,980
+ton of pre frame models you can use to
+
+695
+00:25:33,980 --> 00:25:35,150
+get started such as the body
+
+696
+00:25:35,150 --> 00:25:36,740
+segmentation you saw just a little bit
+
+697
+00:25:36,740 --> 00:25:39,070
+ago but also things that pose estimation
+
+698
+00:25:39,070 --> 00:25:42,650
+speech commands base mesh hand pose and
+
+699
+00:25:42,650 --> 00:25:44,179
+some cool natural language processing
+
+700
+00:25:44,179 --> 00:25:46,549
+and just to dive into that a little bit
+
+701
+00:25:46,549 --> 00:25:48,200
+more you can see how these models work
+
+702
+00:25:48,200 --> 00:25:50,390
+here so here's the object recognition in
+
+703
+00:25:50,390 --> 00:25:52,970
+action this class allows you to
+
+704
+00:25:52,970 --> 00:25:56,270
+recognize 90 pre-trained objects that
+
+705
+00:25:56,270 --> 00:25:57,590
+cookies dock you can see here and you
+
+706
+00:25:57,590 --> 00:25:59,090
+get the bounding boxes that come back at
+
+707
+00:25:59,090 --> 00:26:00,860
+the same time which is pretty neat or
+
+708
+00:26:00,860 --> 00:26:03,140
+what about this face mesh just three
+
+709
+00:26:03,140 --> 00:26:05,380
+megabytes in size and you can understand
+
+710
+00:26:05,380 --> 00:26:08,260
+468 unique landmarks on her face
+
+711
+00:26:08,260 --> 00:26:10,330
+and this could be cool for making face
+
+712
+00:26:10,330 --> 00:26:12,670
+masks or some kind of AR experience such
+
+713
+00:26:12,670 --> 00:26:14,530
+as the one you see on the right Madhi
+
+714
+00:26:14,530 --> 00:26:16,150
+face which is part of a loyal group has
+
+715
+00:26:16,150 --> 00:26:18,220
+actually uses for AR makeup try on and
+
+716
+00:26:18,220 --> 00:26:19,900
+this lady on the right hand side is not
+
+717
+00:26:19,900 --> 00:26:21,700
+actually wearing any makeup at all in
+
+718
+00:26:21,700 --> 00:26:24,130
+fact she's selecting the color of makeup
+
+719
+00:26:24,130 --> 00:26:25,840
+she wants to try on and she can do that
+
+720
+00:26:25,840 --> 00:26:27,850
+all in real time in the web browser in a
+
+721
+00:26:27,850 --> 00:26:29,290
+much more hygienic way which is pretty
+
+722
+00:26:29,290 --> 00:26:31,270
+cool and then finally I just want to
+
+723
+00:26:31,270 --> 00:26:32,830
+talk about some of the client-side
+
+724
+00:26:32,830 --> 00:26:35,170
+superpowers you get if we think about
+
+725
+00:26:35,170 --> 00:26:36,580
+running machine running in the web
+
+726
+00:26:36,580 --> 00:26:37,060
+browser
+
+727
+00:26:37,060 --> 00:26:39,670
+the first one is privacy as we hinted at
+
+728
+00:26:39,670 --> 00:26:41,890
+before essentially because we're running
+
+729
+00:26:41,890 --> 00:26:43,330
+in the web browser
+
+730
+00:26:43,330 --> 00:26:45,160
+none of that data is ever being sent to
+
+731
+00:26:45,160 --> 00:26:47,050
+a server for classification so that
+
+732
+00:26:47,050 --> 00:26:48,760
+allows you to access for sensor data in
+
+733
+00:26:48,760 --> 00:26:51,850
+a way that is great for privacy linked
+
+734
+00:26:51,850 --> 00:26:53,500
+to that of course is lower latency as
+
+735
+00:26:53,500 --> 00:26:55,420
+there's no server involved that means
+
+736
+00:26:55,420 --> 00:26:56,830
+there's no hundred milliseconds or so
+
+737
+00:26:56,830 --> 00:26:58,750
+round-trip time from the mobile device
+
+738
+00:26:58,750 --> 00:27:00,490
+to the server you cut out completely by
+
+739
+00:27:00,490 --> 00:27:02,560
+running on the edge and of course lower
+
+740
+00:27:02,560 --> 00:27:04,630
+costs you might spend tens of thousands
+
+741
+00:27:04,630 --> 00:27:05,130
+of dollars
+
+742
+00:27:05,130 --> 00:27:08,350
+hiring beefy GPUs and CPUs to run the
+
+743
+00:27:08,350 --> 00:27:09,790
+machines any models on your server-side
+
+744
+00:27:09,790 --> 00:27:12,160
+environments by running on the client
+
+745
+00:27:12,160 --> 00:27:13,480
+side all of that goes away because
+
+746
+00:27:13,480 --> 00:27:14,890
+you're using the hardware of the client
+
+747
+00:27:14,890 --> 00:27:19,090
+to run instead got it so how can people
+
+748
+00:27:19,090 --> 00:27:20,740
+get started you've definitely piqued my
+
+749
+00:27:20,740 --> 00:27:22,750
+interest now I want to know when I start
+
+750
+00:27:22,750 --> 00:27:26,980
+playing ok sounds good so if there's one
+
+751
+00:27:26,980 --> 00:27:28,540
+slide you want to kind of screenshot
+
+752
+00:27:28,540 --> 00:27:30,100
+from today's talk it would be this one
+
+753
+00:27:30,100 --> 00:27:32,380
+here on this site you can find out our
+
+754
+00:27:32,380 --> 00:27:34,690
+websites our models github code we are
+
+755
+00:27:34,690 --> 00:27:36,280
+open source or feel free to contribute
+
+756
+00:27:36,280 --> 00:27:38,080
+there's a Google group for asking more
+
+757
+00:27:38,080 --> 00:27:39,670
+technical questions and of course some
+
+758
+00:27:39,670 --> 00:27:41,260
+great boilerplates to get started on
+
+759
+00:27:41,260 --> 00:27:43,570
+code pen and Glitch and for those of you
+
+760
+00:27:43,570 --> 00:27:45,730
+want to go really deep we recommend for
+
+761
+00:27:45,730 --> 00:27:46,990
+deep learning with JavaScript book
+
+762
+00:27:46,990 --> 00:27:48,850
+that's very comprehensive and even if
+
+763
+00:27:48,850 --> 00:27:49,870
+you have no background in machine
+
+764
+00:27:49,870 --> 00:27:51,850
+learning as long as you know some
+
+765
+00:27:51,850 --> 00:27:52,990
+JavaScript it will walk you through
+
+766
+00:27:52,990 --> 00:27:55,030
+everything step-by-step so I highly
+
+767
+00:27:55,030 --> 00:27:57,430
+recommend checking that out and on that
+
+768
+00:27:57,430 --> 00:27:59,080
+note I would also suggest checking out
+
+769
+00:27:59,080 --> 00:28:00,730
+teach or machine right after this show
+
+770
+00:28:00,730 --> 00:28:02,800
+maybe in just two minutes you can use
+
+771
+00:28:02,800 --> 00:28:05,320
+this website to learn to recognize any
+
+772
+00:28:05,320 --> 00:28:07,930
+object in your room in just thirty
+
+773
+00:28:07,930 --> 00:28:09,340
+seconds you just take a few images of
+
+774
+00:28:09,340 --> 00:28:11,560
+that thing hit train and you'll get a
+
+775
+00:28:11,560 --> 00:28:14,740
+classifier that can then classify that
+
+776
+00:28:14,740 --> 00:28:17,110
+object if you like it you can export
+
+777
+00:28:17,110 --> 00:28:19,180
+this model to a JSON format and then use
+
+778
+00:28:19,180 --> 00:28:20,650
+it on any website you like to be more
+
+779
+00:28:20,650 --> 00:28:21,970
+creative and
+
+780
+00:28:21,970 --> 00:28:24,400
+makes your own creations using that and
+
+781
+00:28:24,400 --> 00:28:26,679
+then finally I'd ask you to come join
+
+782
+00:28:26,679 --> 00:28:28,690
+the community we've got this made with
+
+783
+00:28:28,690 --> 00:28:31,120
+TFG a hashtag that you can use that
+
+784
+00:28:31,120 --> 00:28:33,580
+allows you to share what you've made so
+
+785
+00:28:33,580 --> 00:28:35,410
+we can find it and we can invite you to
+
+786
+00:28:35,410 --> 00:28:36,940
+our future showing tells and of course
+
+787
+00:28:36,940 --> 00:28:38,710
+that others to get inspired by your
+
+788
+00:28:38,710 --> 00:28:40,900
+great work too so finally I just want to
+
+789
+00:28:40,900 --> 00:28:42,309
+leave you with one more inspirational
+
+790
+00:28:42,309 --> 00:28:45,250
+example this guy from Tokyo in Japan is
+
+791
+00:28:45,250 --> 00:28:46,929
+actually a dancer
+
+792
+00:28:46,929 --> 00:28:49,780
+but he's used temps of hojae s to make
+
+793
+00:28:49,780 --> 00:28:52,120
+this cool hip-hop video so machine
+
+794
+00:28:52,120 --> 00:28:53,830
+learning really is now for everyone and
+
+795
+00:28:53,830 --> 00:28:55,780
+I'm super excited to see how creatives
+
+796
+00:28:55,780 --> 00:28:57,340
+will start using this and not just
+
+797
+00:28:57,340 --> 00:29:01,179
+academics musicians artists and much
+
+798
+00:29:01,179 --> 00:29:03,340
+much more so if you do make something do
+
+799
+00:29:03,340 --> 00:29:05,230
+use a major of TF J's hashtag so we can
+
+800
+00:29:05,230 --> 00:29:07,059
+find it and share it for you and I look
+
+801
+00:29:07,059 --> 00:29:09,130
+forward to seeing what you make and with
+
+802
+00:29:09,130 --> 00:29:10,900
+that feel free to stay in touch using
+
+803
+00:29:10,900 --> 00:29:12,340
+the following links if you say desire on
+
+804
+00:29:12,340 --> 00:29:14,740
+Twitter and LinkedIn great thanks so
+
+805
+00:29:14,740 --> 00:29:16,809
+much for joining us Jason yeah and
+
+806
+00:29:16,809 --> 00:29:18,610
+thanks to everyone who joined me on the
+
+807
+00:29:18,610 --> 00:29:21,580
+day to kick off so now let's get to
+
+808
+00:29:21,580 --> 00:29:23,530
+today's sessions where we focus on
+
+809
+00:29:23,530 --> 00:29:25,179
+updates across our tools and the web
+
+810
+00:29:25,179 --> 00:29:27,159
+platform to make developers more
+
+811
+00:29:27,159 --> 00:29:29,650
+productive as well as the latest in the
+
+812
+00:29:29,650 --> 00:29:31,020
+world of PW A's
+
+813
+00:29:31,020 --> 00:29:33,549
+please enjoy the show and remember the
+
+814
+00:29:33,549 --> 00:29:36,190
+team is here to chat with you on web dev
+
+815
+00:29:36,190 --> 00:29:40,030
+slash live and via YouTube I'll see you
+
+816
+00:29:40,030 --> 00:29:41,530
+there today or will be back tomorrow
+
+817
+00:29:41,530 --> 00:29:43,980
+morning for the day three kickoff
+
+818
+00:29:43,980 --> 00:29:57,340
+[Music]
+

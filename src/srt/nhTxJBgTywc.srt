@@ -1,0 +1,1369 @@
+1
+00:00:00,560 --> 00:00:03,380
+
+[Music]
+
+2
+00:00:03,380 --> 00:00:05,660
+[Applause]
+
+3
+00:00:05,660 --> 00:00:12,480
+[Music]
+
+4
+00:00:12,480 --> 00:00:15,240
+hi everyone my name is Thomas and today
+
+5
+00:00:15,240 --> 00:00:16,379
+I want to talk to you about the
+
+6
+00:00:16,379 --> 00:00:17,730
+explorations that we've been doing with
+
+7
+00:00:17,730 --> 00:00:19,740
+the zoom team over the past few months
+
+8
+00:00:19,740 --> 00:00:22,050
+and some of the specific advanced api's
+
+9
+00:00:22,050 --> 00:00:23,669
+that we've been exploring together as
+
+10
+00:00:23,669 --> 00:00:25,829
+you've all probably seen zoom has become
+
+11
+00:00:25,829 --> 00:00:27,750
+a staple in many homes and so it's
+
+12
+00:00:27,750 --> 00:00:29,310
+critical that we're able to provide a
+
+13
+00:00:29,310 --> 00:00:31,050
+good experience directly through the
+
+14
+00:00:31,050 --> 00:00:32,820
+browser zoom does have a web version
+
+15
+00:00:32,820 --> 00:00:35,220
+today but compared to its native client
+
+16
+00:00:35,220 --> 00:00:37,440
+it's missing some features and sometimes
+
+17
+00:00:37,440 --> 00:00:40,559
+misses the mark in performance we wanted
+
+18
+00:00:40,559 --> 00:00:42,540
+to change this and so even before Cova
+
+19
+00:00:42,540 --> 00:00:43,860
+did we started working with the zoom
+
+20
+00:00:43,860 --> 00:00:46,050
+team to understand exactly what changes
+
+21
+00:00:46,050 --> 00:00:47,760
+they would need and what new things in
+
+22
+00:00:47,760 --> 00:00:49,860
+chrome they would want to create a truly
+
+23
+00:00:49,860 --> 00:00:52,500
+great experience now zooms of course a
+
+24
+00:00:52,500 --> 00:00:54,570
+video conferencing application you can't
+
+25
+00:00:54,570 --> 00:00:56,250
+talk about video conferencing on the web
+
+26
+00:00:56,250 --> 00:00:59,940
+without talking about WebRTC WebRTC is a
+
+27
+00:00:59,940 --> 00:01:02,219
+really great full-stack solution that
+
+28
+00:01:02,219 --> 00:01:03,629
+provides a complete package for
+
+29
+00:01:03,629 --> 00:01:05,570
+achieving video conferencing on the web
+
+30
+00:01:05,570 --> 00:01:08,580
+web RTC was build and standardized about
+
+31
+00:01:08,580 --> 00:01:10,920
+10 years ago and now ships in all major
+
+32
+00:01:10,920 --> 00:01:13,289
+browsers this makes it the best choice
+
+33
+00:01:13,289 --> 00:01:15,090
+if you want a complete solution with
+
+34
+00:01:15,090 --> 00:01:18,270
+broad support across browsers WebRTC is
+
+35
+00:01:18,270 --> 00:01:20,550
+strength of being that complete solution
+
+36
+00:01:20,550 --> 00:01:22,800
+can however also be a challenge for
+
+37
+00:01:22,800 --> 00:01:24,539
+someone like zoom who have their own
+
+38
+00:01:24,539 --> 00:01:26,520
+custom protocols and their own
+
+39
+00:01:26,520 --> 00:01:29,280
+architecture zoom would rather want a
+
+40
+00:01:29,280 --> 00:01:32,429
+set of more simple low-level api's that
+
+41
+00:01:32,429 --> 00:01:33,479
+they can then build their own
+
+42
+00:01:33,479 --> 00:01:35,399
+architecture and system on top of
+
+43
+00:01:35,399 --> 00:01:37,170
+themselves and the three specific ones
+
+44
+00:01:37,170 --> 00:01:38,369
+that we've been exploring and that I
+
+45
+00:01:38,369 --> 00:01:39,660
+want to talk to you a little bit about
+
+46
+00:01:39,660 --> 00:01:41,880
+today are webassembly sim D web
+
+47
+00:01:41,880 --> 00:01:44,369
+transport and web codecs I'll mention
+
+48
+00:01:44,369 --> 00:01:45,929
+from the start that all of these are
+
+49
+00:01:45,929 --> 00:01:47,640
+fairly cutting-edge and most of them are
+
+50
+00:01:47,640 --> 00:01:49,770
+in active development so while they're
+
+51
+00:01:49,770 --> 00:01:50,910
+all in a place where you can start to
+
+52
+00:01:50,910 --> 00:01:52,410
+play with them these aren't shipping
+
+53
+00:01:52,410 --> 00:01:55,050
+api's just yet but hopefully this
+
+54
+00:01:55,050 --> 00:01:56,759
+presentation will cover some of the
+
+55
+00:01:56,759 --> 00:01:58,530
+early parts of it and by the time you're
+
+56
+00:01:58,530 --> 00:01:59,879
+watching this it might be in the future
+
+57
+00:01:59,879 --> 00:02:02,099
+and you'll be able to actually use these
+
+58
+00:02:02,099 --> 00:02:04,110
+directly and lock already shipped so
+
+59
+00:02:04,110 --> 00:02:05,670
+first of all I want to talk about
+
+60
+00:02:05,670 --> 00:02:07,649
+webassembly sim D and how it can provide
+
+61
+00:02:07,649 --> 00:02:10,289
+really highly performant code most of
+
+62
+00:02:10,289 --> 00:02:11,069
+you have probably heard about
+
+63
+00:02:11,069 --> 00:02:13,680
+webassembly already but as a recap web
+
+64
+00:02:13,680 --> 00:02:15,660
+assembly is a new low-level binary
+
+65
+00:02:15,660 --> 00:02:17,730
+format for the web that is compiled from
+
+66
+00:02:17,730 --> 00:02:19,890
+other languages and offers maximized
+
+67
+00:02:19,890 --> 00:02:20,579
+performance
+
+68
+00:02:20,579 --> 00:02:22,379
+this means that you can take something
+
+69
+00:02:22,379 --> 00:02:24,810
+like C++ or rust and then compile it
+
+70
+00:02:24,810 --> 00:02:26,100
+into web assembly the
+
+71
+00:02:26,100 --> 00:02:28,640
+for shipping it to the client
+
+72
+00:02:28,640 --> 00:02:30,840
+webassembly has been out for a while and
+
+73
+00:02:30,840 --> 00:02:32,670
+has been shipping in all major browsers
+
+74
+00:02:32,670 --> 00:02:34,500
+for a while but we're continuing to
+
+75
+00:02:34,500 --> 00:02:36,120
+expand it with functionalities such as
+
+76
+00:02:36,120 --> 00:02:38,070
+Cindy which stands for single
+
+77
+00:02:38,070 --> 00:02:41,700
+instruction multiple data to explain
+
+78
+00:02:41,700 --> 00:02:43,440
+Cindy let's look at this incredibly
+
+79
+00:02:43,440 --> 00:02:45,030
+simple loop that just adds two arrays
+
+80
+00:02:45,030 --> 00:02:48,930
+together without Cindy the CPU would go
+
+81
+00:02:48,930 --> 00:02:50,310
+through this loop and add their
+
+82
+00:02:50,310 --> 00:02:52,070
+different elements together one by one
+
+83
+00:02:52,070 --> 00:02:56,220
+requiring four full steps but with Cindy
+
+84
+00:02:56,220 --> 00:02:58,440
+the CPU is able to vectorize these
+
+85
+00:02:58,440 --> 00:03:00,420
+elements and then take just a single CPU
+
+86
+00:03:00,420 --> 00:03:03,150
+operation to add them the best part is
+
+87
+00:03:03,150 --> 00:03:05,220
+that because compilers are so smart they
+
+88
+00:03:05,220 --> 00:03:07,500
+can automatically detect these
+
+89
+00:03:07,500 --> 00:03:10,490
+optimizations and do them for you in
+
+90
+00:03:10,490 --> 00:03:13,410
+unscripted you just need to pass the -
+
+91
+00:03:13,410 --> 00:03:17,970
+MMD 128 argument - EMCC and for rust you
+
+92
+00:03:17,970 --> 00:03:20,850
+can pass - c target feature equals plus
+
+93
+00:03:20,850 --> 00:03:24,180
+70 128 this will cause the compilers to
+
+94
+00:03:24,180 --> 00:03:26,040
+automatically find and use Cindy where
+
+95
+00:03:26,040 --> 00:03:29,550
+possible sometimes you also want to have
+
+96
+00:03:29,550 --> 00:03:31,740
+more explicit control and this is where
+
+97
+00:03:31,740 --> 00:03:33,570
+you'll want to use Cindy intrinsics
+
+98
+00:03:33,570 --> 00:03:35,760
+which let you use the Cindy instructions
+
+99
+00:03:35,760 --> 00:03:38,430
+directly this is more detail than I can
+
+100
+00:03:38,430 --> 00:03:40,230
+cover here but if you're interested I
+
+101
+00:03:40,230 --> 00:03:42,090
+highly encourage you to go and check out
+
+102
+00:03:42,090 --> 00:03:44,310
+these links simply it can be used for a
+
+103
+00:03:44,310 --> 00:03:46,860
+huge variety of things including highly
+
+104
+00:03:46,860 --> 00:03:48,660
+performant ml models such as this hand
+
+105
+00:03:48,660 --> 00:03:51,240
+tracking a real life invisibility cloak
+
+106
+00:03:51,240 --> 00:03:53,580
+and real time automated background
+
+107
+00:03:53,580 --> 00:03:55,830
+removal and this last use case is just
+
+108
+00:03:55,830 --> 00:03:57,570
+one of the things that zoom is excited
+
+109
+00:03:57,570 --> 00:03:59,460
+about using Cindy for they have an
+
+110
+00:03:59,460 --> 00:04:00,570
+awesome feature where you're able to
+
+111
+00:04:00,570 --> 00:04:02,340
+automatically remove the background so
+
+112
+00:04:02,340 --> 00:04:03,780
+that people and conferences can't see
+
+113
+00:04:03,780 --> 00:04:05,160
+all the random stuff that you have in
+
+114
+00:04:05,160 --> 00:04:07,140
+your background and then replace it with
+
+115
+00:04:07,140 --> 00:04:09,390
+fun videos or animations if you're
+
+116
+00:04:09,390 --> 00:04:10,830
+interested in diving into webassembly
+
+117
+00:04:10,830 --> 00:04:12,810
+and Cindy here are some of the links
+
+118
+00:04:12,810 --> 00:04:14,160
+that should help you get started
+
+119
+00:04:14,160 --> 00:04:16,500
+webassembly cindy is doing an origin
+
+120
+00:04:16,500 --> 00:04:19,410
+trial in chrome m84 which will start
+
+121
+00:04:19,410 --> 00:04:22,620
+rolling out to users in July 14th if you
+
+122
+00:04:22,620 --> 00:04:24,270
+aren't familiar with origin trials it's
+
+123
+00:04:24,270 --> 00:04:25,980
+basically a mechanism for you to test
+
+124
+00:04:25,980 --> 00:04:28,650
+out features with production users while
+
+125
+00:04:28,650 --> 00:04:30,510
+we may still be making some changes to
+
+126
+00:04:30,510 --> 00:04:32,730
+the API you can read more about those
+
+127
+00:04:32,730 --> 00:04:35,040
+origin trials at this link as well so
+
+128
+00:04:35,040 --> 00:04:36,870
+the next IPI I want to get into is web
+
+129
+00:04:36,870 --> 00:04:38,640
+transport which is a next-generation
+
+130
+00:04:38,640 --> 00:04:39,810
+networking
+
+131
+00:04:39,810 --> 00:04:42,330
+pi4 client-to-server communication let's
+
+132
+00:04:42,330 --> 00:04:43,770
+look at the definition of web transport
+
+133
+00:04:43,770 --> 00:04:46,110
+web transport provides bi-directional
+
+134
+00:04:46,110 --> 00:04:48,570
+transport through both unreliable data
+
+135
+00:04:48,570 --> 00:04:50,610
+grams and reliable streams based
+
+136
+00:04:50,610 --> 00:04:53,100
+mechanisms that's a mouthful but let's
+
+137
+00:04:53,100 --> 00:04:54,480
+see if we can't break it down and
+
+138
+00:04:54,480 --> 00:04:57,620
+understand it a bit better first
+
+139
+00:04:57,620 --> 00:04:59,610
+bi-directional means that it enables
+
+140
+00:04:59,610 --> 00:05:01,530
+easy two-way communication with
+
+141
+00:05:01,530 --> 00:05:04,530
+something like HTTP the connection has
+
+142
+00:05:04,530 --> 00:05:06,180
+to be initiated by the client and you
+
+143
+00:05:06,180 --> 00:05:08,760
+have to send all of the requests at once
+
+144
+00:05:08,760 --> 00:05:10,380
+and then wait for a response
+
+145
+00:05:10,380 --> 00:05:12,600
+with web transport you don't have these
+
+146
+00:05:12,600 --> 00:05:14,669
+limitations and so you can enable a much
+
+147
+00:05:14,669 --> 00:05:19,350
+more interactive session looking at the
+
+148
+00:05:19,350 --> 00:05:21,330
+two different mechanisms unreliable data
+
+149
+00:05:21,330 --> 00:05:23,310
+grams are one of the mechanisms for
+
+150
+00:05:23,310 --> 00:05:26,100
+sending data through web transport these
+
+151
+00:05:26,100 --> 00:05:28,590
+datagrams are similar to UDP data grams
+
+152
+00:05:28,590 --> 00:05:30,840
+in that they are packets of information
+
+153
+00:05:30,840 --> 00:05:33,180
+that gets sent but with no guarantees
+
+154
+00:05:33,180 --> 00:05:37,380
+about delivery or ordering reliable
+
+155
+00:05:37,380 --> 00:05:40,440
+streams in contrast are similar to TCP
+
+156
+00:05:40,440 --> 00:05:42,960
+streams and provide reliable and ordered
+
+157
+00:05:42,960 --> 00:05:46,620
+data communication so now that we have
+
+158
+00:05:46,620 --> 00:05:48,330
+an understanding of the definition of
+
+159
+00:05:48,330 --> 00:05:50,340
+web transport let's understand what you
+
+160
+00:05:50,340 --> 00:05:53,160
+might actually use it for firstly web
+
+161
+00:05:53,160 --> 00:05:55,200
+transport will be the only mechanism to
+
+162
+00:05:55,200 --> 00:05:57,570
+do unreliable data communication without
+
+163
+00:05:57,570 --> 00:06:00,060
+leveraging WebRTC and this is exactly
+
+164
+00:06:00,060 --> 00:06:02,100
+why zoom is interested in looking into
+
+165
+00:06:02,100 --> 00:06:05,250
+web transport because it'll allow them
+
+166
+00:06:05,250 --> 00:06:07,440
+to simplify their deployment and put it
+
+167
+00:06:07,440 --> 00:06:08,910
+a little more in line with the other
+
+168
+00:06:08,910 --> 00:06:11,130
+platforms that they support it's
+
+169
+00:06:11,130 --> 00:06:13,260
+important to note though that web
+
+170
+00:06:13,260 --> 00:06:15,510
+transport won't be just a pure UDP
+
+171
+00:06:15,510 --> 00:06:17,729
+sockets API since it does have some
+
+172
+00:06:17,729 --> 00:06:19,289
+requirements around encryption and
+
+173
+00:06:19,289 --> 00:06:21,960
+congestion control it does offer an
+
+174
+00:06:21,960 --> 00:06:23,729
+alternative to WebSockets and to
+
+175
+00:06:23,729 --> 00:06:25,890
+understand exactly how it compares to
+
+176
+00:06:25,890 --> 00:06:28,320
+WebSockets and WebRTC let's look at this
+
+177
+00:06:28,320 --> 00:06:31,979
+chart so to understand the differences
+
+178
+00:06:31,979 --> 00:06:33,289
+let's dig into each of these pieces
+
+179
+00:06:33,289 --> 00:06:36,570
+first web transport and WebRTC offer
+
+180
+00:06:36,570 --> 00:06:39,720
+both reliable and unreliable while
+
+181
+00:06:39,720 --> 00:06:42,350
+WebSockets only offer reliable delivery
+
+182
+00:06:42,350 --> 00:06:46,800
+web transport is a in-development API
+
+183
+00:06:46,800 --> 00:06:50,130
+while both WebSockets and web RTC are
+
+184
+00:06:50,130 --> 00:06:53,520
+widely available while
+
+185
+00:06:53,520 --> 00:06:55,349
+RTC provides a fairly high-level
+
+186
+00:06:55,349 --> 00:06:57,479
+complete solution to the problem of
+
+187
+00:06:57,479 --> 00:06:59,340
+video conferencing web transport and
+
+188
+00:06:59,340 --> 00:07:01,560
+WebSockets are both much lower level API
+
+189
+00:07:01,560 --> 00:07:03,539
+s that doesn't solve everything for you
+
+190
+00:07:03,539 --> 00:07:05,960
+but gives you more of that basic access
+
+191
+00:07:05,960 --> 00:07:09,240
+web transport also enables multiple
+
+192
+00:07:09,240 --> 00:07:12,990
+cancelable streams whereas WebSockets
+
+193
+00:07:12,990 --> 00:07:17,250
+can only do a single stream and web RTC
+
+194
+00:07:17,250 --> 00:07:19,560
+can also do multiple streams but they
+
+195
+00:07:19,560 --> 00:07:22,050
+aren't cancelable so here is a quick
+
+196
+00:07:22,050 --> 00:07:24,180
+example setup for how you can actually
+
+197
+00:07:24,180 --> 00:07:26,460
+use web transport in this part of the
+
+198
+00:07:26,460 --> 00:07:28,650
+code we really just set up our new quick
+
+199
+00:07:28,650 --> 00:07:30,750
+transport which is specific subtype of
+
+200
+00:07:30,750 --> 00:07:32,789
+web transport and create that object
+
+201
+00:07:32,789 --> 00:07:34,620
+passing in the URL that we want to
+
+202
+00:07:34,620 --> 00:07:36,599
+connect to then we just set up some
+
+203
+00:07:36,599 --> 00:07:38,460
+simple logging function and await the
+
+204
+00:07:38,460 --> 00:07:40,650
+transport being ready for us to use then
+
+205
+00:07:40,650 --> 00:07:42,419
+we can simply grab the writer from the
+
+206
+00:07:42,419 --> 00:07:44,400
+send datagrams function of our transport
+
+207
+00:07:44,400 --> 00:07:46,830
+object which we can then use to send
+
+208
+00:07:46,830 --> 00:07:49,440
+data at any point remember that this
+
+209
+00:07:49,440 --> 00:07:51,240
+data that we send does not have any
+
+210
+00:07:51,240 --> 00:07:53,219
+guarantees of delivery or the order that
+
+211
+00:07:53,219 --> 00:07:55,680
+it will be delivered in next let's look
+
+212
+00:07:55,680 --> 00:07:57,750
+at how you can actually read data from
+
+213
+00:07:57,750 --> 00:08:00,210
+the server here you see a simple example
+
+214
+00:08:00,210 --> 00:08:02,190
+where we get the reader from the get
+
+215
+00:08:02,190 --> 00:08:04,349
+reader function and then in a classic
+
+216
+00:08:04,349 --> 00:08:06,960
+while true loop we just read things from
+
+217
+00:08:06,960 --> 00:08:08,520
+that reader and then detect them when
+
+218
+00:08:08,520 --> 00:08:10,590
+we're done and console log out the
+
+219
+00:08:10,590 --> 00:08:12,029
+actual values that we're able to read
+
+220
+00:08:12,029 --> 00:08:14,039
+web transport is still very much in
+
+221
+00:08:14,039 --> 00:08:15,750
+development but we do have a blog post
+
+222
+00:08:15,750 --> 00:08:17,880
+already published about how you can use
+
+223
+00:08:17,880 --> 00:08:19,380
+it and you can find that and more
+
+224
+00:08:19,380 --> 00:08:21,479
+information at these various links so
+
+225
+00:08:21,479 --> 00:08:22,949
+now it's time for us to jump in to our
+
+226
+00:08:22,949 --> 00:08:25,529
+last and exciting API the web codecs API
+
+227
+00:08:25,529 --> 00:08:27,870
+which aims to offer direct codec access
+
+228
+00:08:27,870 --> 00:08:29,819
+on the web but first let's back up and
+
+229
+00:08:29,819 --> 00:08:31,650
+remind ourselves what exactly a codec is
+
+230
+00:08:31,650 --> 00:08:34,620
+a codec is a device or computer program
+
+231
+00:08:34,620 --> 00:08:36,599
+which encodes and decodes a digital
+
+232
+00:08:36,599 --> 00:08:39,180
+stream or signal while many of us have
+
+233
+00:08:39,180 --> 00:08:41,190
+not worked directly with codecs we've
+
+234
+00:08:41,190 --> 00:08:43,940
+all seen common examples like mp3 vp9
+
+235
+00:08:43,940 --> 00:08:46,890
+h.264 and many others codecs are
+
+236
+00:08:46,890 --> 00:08:48,510
+actually used in tons of places
+
+237
+00:08:48,510 --> 00:08:50,820
+throughout chrome such as the audio and
+
+238
+00:08:50,820 --> 00:08:53,550
+video tags Web Audio WebRTC and the
+
+239
+00:08:53,550 --> 00:08:56,670
+media recorder API however in all these
+
+240
+00:08:56,670 --> 00:08:58,529
+places where it's used you can't really
+
+241
+00:08:58,529 --> 00:09:01,380
+configure and get pure access to just a
+
+242
+00:09:01,380 --> 00:09:04,170
+codec part for example Web Audio allows
+
+243
+00:09:04,170 --> 00:09:06,449
+for decoding a media file but needs to
+
+244
+00:09:06,449 --> 00:09:07,260
+work on the complete
+
+245
+00:09:07,260 --> 00:09:08,730
+file and doesn't support a streaming
+
+246
+00:09:08,730 --> 00:09:11,640
+based approach media recorder has some
+
+247
+00:09:11,640 --> 00:09:13,440
+controls but they're very high level and
+
+248
+00:09:13,440 --> 00:09:15,690
+you can't really configure it to support
+
+249
+00:09:15,690 --> 00:09:18,480
+extremely low latency use cases as
+
+250
+00:09:18,480 --> 00:09:20,580
+mentioned previously WebRTC does give
+
+251
+00:09:20,580 --> 00:09:24,660
+you a lot of this control but it needs
+
+252
+00:09:24,660 --> 00:09:26,190
+you to bring the whole package of WebRTC
+
+253
+00:09:26,190 --> 00:09:28,740
+along and without doing that it's hard
+
+254
+00:09:28,740 --> 00:09:30,510
+to get access to just the encoding and
+
+255
+00:09:30,510 --> 00:09:34,230
+decoding parts that you want as a result
+
+256
+00:09:34,230 --> 00:09:36,360
+of this lack of configuration some apps
+
+257
+00:09:36,360 --> 00:09:38,670
+have started compiling these codecs to
+
+258
+00:09:38,670 --> 00:09:41,070
+JavaScript and web assembly some of you
+
+259
+00:09:41,070 --> 00:09:42,270
+may remember that this is how the
+
+260
+00:09:42,270 --> 00:09:44,430
+awesome application screw Sh lets you
+
+261
+00:09:44,430 --> 00:09:48,270
+resize and we encode images this
+
+262
+00:09:48,270 --> 00:09:49,890
+approach is really cool and workable
+
+263
+00:09:49,890 --> 00:09:52,610
+today but has some specific drawbacks
+
+264
+00:09:52,610 --> 00:09:54,750
+specifically it increases your bundle
+
+265
+00:09:54,750 --> 00:09:57,420
+size lowers your the performance cause a
+
+266
+00:09:57,420 --> 00:09:59,700
+slower startup time and reduces the
+
+267
+00:09:59,700 --> 00:10:02,220
+power efficiency really what you want is
+
+268
+00:10:02,220 --> 00:10:03,720
+to avoid shipping these codecs all
+
+269
+00:10:03,720 --> 00:10:05,940
+together and just get the direct access
+
+270
+00:10:05,940 --> 00:10:07,800
+that you need through the codecs that
+
+271
+00:10:07,800 --> 00:10:09,060
+are already shipping as part of the
+
+272
+00:10:09,060 --> 00:10:12,720
+browser and that's exactly what the goal
+
+273
+00:10:12,720 --> 00:10:14,520
+of web codecs is and in their own words
+
+274
+00:10:14,520 --> 00:10:17,220
+the goal of web codecs is to provide web
+
+275
+00:10:17,220 --> 00:10:19,080
+apps with efficient access to built-in
+
+276
+00:10:19,080 --> 00:10:21,120
+both software and hardware media
+
+277
+00:10:21,120 --> 00:10:23,310
+encoders and decoders for encoding and
+
+278
+00:10:23,310 --> 00:10:25,950
+decoding media web codecs main advantage
+
+279
+00:10:25,950 --> 00:10:28,140
+is that it lets you get the direct
+
+280
+00:10:28,140 --> 00:10:30,150
+access that you need to again build your
+
+281
+00:10:30,150 --> 00:10:32,100
+own systems on top of the basic coding
+
+282
+00:10:32,100 --> 00:10:35,520
+access this completely unlocks some use
+
+283
+00:10:35,520 --> 00:10:37,830
+cases like video editing since you
+
+284
+00:10:37,830 --> 00:10:39,810
+really need that frame-by-frame access
+
+285
+00:10:39,810 --> 00:10:41,610
+and faster than real time encoding and
+
+286
+00:10:41,610 --> 00:10:43,590
+decoding to do this properly something
+
+287
+00:10:43,590 --> 00:10:44,850
+that's currently completely impossible
+
+288
+00:10:44,850 --> 00:10:45,980
+on the web platform
+
+289
+00:10:45,980 --> 00:10:48,180
+except for maybe shipping codecs with
+
+290
+00:10:48,180 --> 00:10:51,060
+web assembly additionally many existing
+
+291
+00:10:51,060 --> 00:10:52,620
+things that are possible today on the
+
+292
+00:10:52,620 --> 00:10:55,710
+web but only if you use WebRTC things
+
+293
+00:10:55,710 --> 00:10:57,750
+like cloud gaming live streaming and
+
+294
+00:10:57,750 --> 00:10:59,580
+video conferencing will get more
+
+295
+00:10:59,580 --> 00:11:01,770
+flexibility about how they can interact
+
+296
+00:11:01,770 --> 00:11:04,710
+with these codecs zoom for example is
+
+297
+00:11:04,710 --> 00:11:06,330
+looking into using this API in
+
+298
+00:11:06,330 --> 00:11:08,150
+conjunction with the web transport API
+
+299
+00:11:08,150 --> 00:11:10,340
+they're hoping that they'll be able to
+
+300
+00:11:10,340 --> 00:11:13,380
+take encoded video frames and send them
+
+301
+00:11:13,380 --> 00:11:15,450
+up to the server using web transport at
+
+302
+00:11:15,450 --> 00:11:17,250
+the same time that they'll be fetching
+
+303
+00:11:17,250 --> 00:11:19,650
+down encoded frames and then decoding
+
+304
+00:11:19,650 --> 00:11:20,430
+them to
+
+305
+00:11:20,430 --> 00:11:22,589
+to the client providing a really smooth
+
+306
+00:11:22,589 --> 00:11:25,200
+integrated experience next let's look at
+
+307
+00:11:25,200 --> 00:11:26,820
+some of the simple examples for how you
+
+308
+00:11:26,820 --> 00:11:30,660
+can use the decoder part of this here in
+
+309
+00:11:30,660 --> 00:11:32,490
+this canvas setup part we're really just
+
+310
+00:11:32,490 --> 00:11:35,970
+grabbing a canvases context and then
+
+311
+00:11:35,970 --> 00:11:38,850
+making this very simple function to
+
+312
+00:11:38,850 --> 00:11:42,810
+paint a video frame to that canvas from
+
+313
+00:11:42,810 --> 00:11:46,140
+converting it to an image bitmap now
+
+314
+00:11:46,140 --> 00:11:48,240
+when you want to set up the decoder part
+
+315
+00:11:48,240 --> 00:11:50,220
+you just call this new video decoder
+
+316
+00:11:50,220 --> 00:11:51,899
+element and you set up the output
+
+317
+00:11:51,899 --> 00:11:53,580
+function that we defined previously as
+
+318
+00:11:53,580 --> 00:11:55,230
+well as just constant logging out any
+
+319
+00:11:55,230 --> 00:11:57,600
+errors then you configure it with the
+
+320
+00:11:57,600 --> 00:11:59,910
+codec that you want to use and then you
+
+321
+00:11:59,910 --> 00:12:01,410
+have this incredibly simple function
+
+322
+00:12:01,410 --> 00:12:03,270
+that you just pass in your ending coded
+
+323
+00:12:03,270 --> 00:12:05,040
+chunk and called the decode function
+
+324
+00:12:05,040 --> 00:12:07,589
+from your video decoder and then it does
+
+325
+00:12:07,589 --> 00:12:11,580
+the rest of the work for you web codecs
+
+326
+00:12:11,580 --> 00:12:13,500
+is still extremely new but for those of
+
+327
+00:12:13,500 --> 00:12:15,149
+you who are curious you can go and check
+
+328
+00:12:15,149 --> 00:12:16,680
+out the explainer to see what the team
+
+329
+00:12:16,680 --> 00:12:18,660
+is currently working on we will also be
+
+330
+00:12:18,660 --> 00:12:21,360
+doing a web dev post about web codecs so
+
+331
+00:12:21,360 --> 00:12:22,649
+if you're seeing this in the future be
+
+332
+00:12:22,649 --> 00:12:24,300
+sure to go and check out that and that
+
+333
+00:12:24,300 --> 00:12:25,920
+brings us to our overview of these three
+
+334
+00:12:25,920 --> 00:12:27,420
+new exciting api's that we've been
+
+335
+00:12:27,420 --> 00:12:29,100
+exploring with zoom you've hopefully
+
+336
+00:12:29,100 --> 00:12:31,020
+getting a better understanding of some
+
+337
+00:12:31,020 --> 00:12:33,360
+of these new and advanced API s and
+
+338
+00:12:33,360 --> 00:12:35,220
+hopefully an understanding of how they
+
+339
+00:12:35,220 --> 00:12:37,230
+will be bringing all of us closer
+
+340
+00:12:37,230 --> 00:12:39,540
+together in the future thank you so much
+
+341
+00:12:39,540 --> 00:12:41,279
+for your time and I hope you enjoy the
+
+342
+00:12:41,279 --> 00:12:42,610
+rest of the sessions
+

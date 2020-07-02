@@ -1,0 +1,1741 @@
+1
+00:00:00,560 --> 00:00:03,380
+
+[Music]
+
+2
+00:00:03,380 --> 00:00:05,660
+[Applause]
+
+3
+00:00:05,660 --> 00:00:12,170
+[Music]
+
+4
+00:00:12,170 --> 00:00:15,960
+back in March 2003 Nick Fink and Steve
+
+5
+00:00:15,960 --> 00:00:17,880
+champion stunned the web design world
+
+6
+00:00:17,880 --> 00:00:19,619
+with the concept of progressive
+
+7
+00:00:19,619 --> 00:00:22,050
+enhancement a strategy for web design
+
+8
+00:00:22,050 --> 00:00:23,970
+that emphasizes core web page content
+
+9
+00:00:23,970 --> 00:00:26,369
+first and that then progressively adds
+
+10
+00:00:26,369 --> 00:00:28,560
+more nuance and technically rigorous
+
+11
+00:00:28,560 --> 00:00:30,750
+layers of presentation and features on
+
+12
+00:00:30,750 --> 00:00:33,510
+top of the web content while in 2003
+
+13
+00:00:33,510 --> 00:00:35,579
+progressive enhancement was about using
+
+14
+00:00:35,579 --> 00:00:36,510
+at the time
+
+15
+00:00:36,510 --> 00:00:38,700
+modern CSS features unobtrusive
+
+16
+00:00:38,700 --> 00:00:40,770
+javascript or even scalable vector
+
+17
+00:00:40,770 --> 00:00:42,870
+graphics progressive enhancement and
+
+18
+00:00:42,870 --> 00:00:45,270
+20/20 is about using modern browser
+
+19
+00:00:45,270 --> 00:00:47,789
+capabilities my name is Thomas Tanner
+
+20
+00:00:47,789 --> 00:00:50,070
+I'm a developer advocate based out of
+
+21
+00:00:50,070 --> 00:00:52,440
+the Google Hamburg office today I want
+
+22
+00:00:52,440 --> 00:00:54,149
+to talk about progressively enhancing
+
+23
+00:00:54,149 --> 00:00:56,640
+like it's 2003 building for modern
+
+24
+00:00:56,640 --> 00:00:59,010
+browsers since we all can be here
+
+25
+00:00:59,010 --> 00:01:00,570
+together in person due to the
+
+26
+00:01:00,570 --> 00:01:02,940
+coronavirus I've converted my talk into
+
+27
+00:01:02,940 --> 00:01:05,309
+an online trip that I want to take you
+
+28
+00:01:05,309 --> 00:01:07,500
+on with me for this trip you need a
+
+29
+00:01:07,500 --> 00:01:09,170
+solid understanding of JavaScript
+
+30
+00:01:09,170 --> 00:01:11,549
+talking of JavaScript the browser
+
+31
+00:01:11,549 --> 00:01:14,369
+support for the latest quod JavaScript
+
+32
+00:01:14,369 --> 00:01:17,490
+features is great promises modules
+
+33
+00:01:17,490 --> 00:01:20,130
+classes template literals arrow
+
+34
+00:01:20,130 --> 00:01:22,770
+functions you name them all supported
+
+35
+00:01:22,770 --> 00:01:25,680
+basic functions work across the board in
+
+36
+00:01:25,680 --> 00:01:28,080
+all modern browsers and even super
+
+37
+00:01:28,080 --> 00:01:30,299
+recent language editions like optional
+
+38
+00:01:30,299 --> 00:01:32,280
+chaining and knowledge coalescing reach
+
+39
+00:01:32,280 --> 00:01:34,650
+support really quickly when it comes to
+
+40
+00:01:34,650 --> 00:01:36,540
+CRO JavaScript features the grass
+
+41
+00:01:36,540 --> 00:01:38,520
+couldn't be much greener than it is
+
+42
+00:01:38,520 --> 00:01:40,710
+today for the trick that we are going on
+
+43
+00:01:40,710 --> 00:01:42,479
+the likeness should have a good
+
+44
+00:01:42,479 --> 00:01:43,979
+understanding of progressive web apps
+
+45
+00:01:43,979 --> 00:01:46,829
+for this talk I work with a simple PWA
+
+46
+00:01:46,829 --> 00:01:49,259
+called fugu greetings the name of this
+
+47
+00:01:49,259 --> 00:01:52,140
+app is a hat tip to project fugu where
+
+48
+00:01:52,140 --> 00:01:54,060
+we work on giving the web all the powers
+
+49
+00:01:54,060 --> 00:01:56,280
+of native applications you can read more
+
+50
+00:01:56,280 --> 00:01:57,899
+about the project at web tour death
+
+51
+00:01:57,899 --> 00:01:59,700
+slash food - status
+
+52
+00:01:59,700 --> 00:02:02,310
+fugu breedings is drawing up that allows
+
+53
+00:02:02,310 --> 00:02:03,869
+you to create virtual greeting cards
+
+54
+00:02:03,869 --> 00:02:06,390
+just imagine you actually had traveled
+
+55
+00:02:06,390 --> 00:02:08,220
+to Google i/o and wanted to send a
+
+56
+00:02:08,220 --> 00:02:10,830
+greeting card to your loved ones let me
+
+57
+00:02:10,830 --> 00:02:13,310
+recall some of the pwe concepts
+
+58
+00:02:13,310 --> 00:02:15,380
+fool greetings is reliable and fully
+
+59
+00:02:15,380 --> 00:02:17,540
+offline enabled so even if you don't
+
+60
+00:02:17,540 --> 00:02:19,730
+have Network you can still use it it can
+
+61
+00:02:19,730 --> 00:02:21,140
+be installed to the home screen of the
+
+62
+00:02:21,140 --> 00:02:23,420
+device and it integrates seamlessly into
+
+63
+00:02:23,420 --> 00:02:24,890
+the operating system as a standalone
+
+64
+00:02:24,890 --> 00:02:26,900
+application with this out of the way
+
+65
+00:02:26,900 --> 00:02:29,000
+let's dive into the actual topic of this
+
+66
+00:02:29,000 --> 00:02:32,030
+talk progressive enhancement starting
+
+67
+00:02:32,030 --> 00:02:33,739
+each greeting card from scratch can be
+
+68
+00:02:33,739 --> 00:02:35,750
+really cumbersome so why not have a
+
+69
+00:02:35,750 --> 00:02:37,819
+feature that allows users to import an
+
+70
+00:02:37,819 --> 00:02:39,890
+image installed from there with a
+
+71
+00:02:39,890 --> 00:02:41,840
+traditional approach you have used an
+
+72
+00:02:41,840 --> 00:02:43,910
+input type file element to make this
+
+73
+00:02:43,910 --> 00:02:45,319
+happen first
+
+74
+00:02:45,319 --> 00:02:47,450
+you'd create the element set its ID and
+
+75
+00:02:47,450 --> 00:02:49,730
+the to be accepted mine types and then
+
+76
+00:02:49,730 --> 00:02:52,340
+programmatically click it and listen for
+
+77
+00:02:52,340 --> 00:02:54,620
+changes and it works perfectly fine the
+
+78
+00:02:54,620 --> 00:02:56,630
+image is imported straight onto the
+
+79
+00:02:56,630 --> 00:02:59,060
+canvas when there is an import feature
+
+80
+00:02:59,060 --> 00:03:01,610
+that probably should also be an export
+
+81
+00:03:01,610 --> 00:03:03,830
+feature so users can save their greeting
+
+82
+00:03:03,830 --> 00:03:06,410
+cards locally similar to before the
+
+83
+00:03:06,410 --> 00:03:08,390
+traditional way to saving files is to
+
+84
+00:03:08,390 --> 00:03:09,860
+create an anchor link with the download
+
+85
+00:03:09,860 --> 00:03:12,080
+attribute and with the blob URL as it's
+
+86
+00:03:12,080 --> 00:03:13,970
+a trove you would then programmatically
+
+87
+00:03:13,970 --> 00:03:16,940
+click it to trigger the download and to
+
+88
+00:03:16,940 --> 00:03:18,290
+prevent memory leaks from happening
+
+89
+00:03:18,290 --> 00:03:20,420
+hopefully make sure not to forget to
+
+90
+00:03:20,420 --> 00:03:22,760
+revoke the blob URL but wait a minute
+
+91
+00:03:22,760 --> 00:03:25,100
+mentally you haven't downloaded a
+
+92
+00:03:25,100 --> 00:03:27,799
+greeting card you have saved it rather
+
+93
+00:03:27,799 --> 00:03:29,390
+than showing you a safe dial-up that
+
+94
+00:03:29,390 --> 00:03:30,829
+lets you choose where to put the file
+
+95
+00:03:30,829 --> 00:03:33,350
+the browser instead has directly down on
+
+96
+00:03:33,350 --> 00:03:35,239
+the greeting card without interaction
+
+97
+00:03:35,239 --> 00:03:36,920
+and it's put it straight into your
+
+98
+00:03:36,920 --> 00:03:37,670
+downloads folder
+
+99
+00:03:37,670 --> 00:03:40,640
+this isn't good what if there were a
+
+100
+00:03:40,640 --> 00:03:43,010
+better way what if you could just open a
+
+101
+00:03:43,010 --> 00:03:45,350
+local file edit it and then save the
+
+102
+00:03:45,350 --> 00:03:47,269
+modifications either through a new file
+
+103
+00:03:47,269 --> 00:03:49,579
+or back to the original file that you
+
+104
+00:03:49,579 --> 00:03:52,459
+had initially opened turns out there is
+
+105
+00:03:52,459 --> 00:03:54,560
+a better way the native file system API
+
+106
+00:03:54,560 --> 00:03:56,420
+allows you to open a grade files and
+
+107
+00:03:56,420 --> 00:03:58,819
+directories make modifications and save
+
+108
+00:03:58,819 --> 00:04:00,680
+them back let's see how it can feature
+
+109
+00:04:00,680 --> 00:04:03,530
+detect if the API exists the native file
+
+110
+00:04:03,530 --> 00:04:05,750
+system API exposes a new method choose
+
+111
+00:04:05,750 --> 00:04:08,750
+file system entries I can use this to
+
+112
+00:04:08,750 --> 00:04:09,530
+conditionally load
+
+113
+00:04:09,530 --> 00:04:12,859
+import image MJS and export image MJS if
+
+114
+00:04:12,859 --> 00:04:15,410
+the API exists and if it isn't available
+
+115
+00:04:15,410 --> 00:04:16,910
+load the files with the legacy
+
+116
+00:04:16,910 --> 00:04:19,340
+approaches from the earlier slides but
+
+117
+00:04:19,340 --> 00:04:20,720
+before I dive into the native file
+
+118
+00:04:20,720 --> 00:04:22,849
+system API let me just quickly highlight
+
+119
+00:04:22,849 --> 00:04:25,490
+the progressive announcement pattern and
+
+120
+00:04:25,490 --> 00:04:27,200
+browsers that don't support
+
+121
+00:04:27,200 --> 00:04:29,690
+file system API hello the legacy scripts
+
+122
+00:04:29,690 --> 00:04:32,030
+you can see the network tabs of Firefox
+
+123
+00:04:32,030 --> 00:04:32,990
+and Safari here
+
+124
+00:04:32,990 --> 00:04:35,660
+however on Chrome only the new scripts
+
+125
+00:04:35,660 --> 00:04:37,460
+are loaded this is made elegantly
+
+126
+00:04:37,460 --> 00:04:39,590
+possible thanks to dynamic imports that
+
+127
+00:04:39,590 --> 00:04:41,930
+all modern browsers support as I said
+
+128
+00:04:41,930 --> 00:04:44,030
+earlier the grass is pretty green these
+
+129
+00:04:44,030 --> 00:04:46,310
+days let's look at the actual native
+
+130
+00:04:46,310 --> 00:04:48,650
+file system API based implementation for
+
+131
+00:04:48,650 --> 00:04:51,380
+importing an image I call window choose
+
+132
+00:04:51,380 --> 00:04:53,300
+file system entries and pass it an
+
+133
+00:04:53,300 --> 00:04:55,670
+accept option parameter where I say I
+
+134
+00:04:55,670 --> 00:04:58,400
+want image files both file extensions as
+
+135
+00:04:58,400 --> 00:05:00,980
+well as mime types are supported this
+
+136
+00:05:00,980 --> 00:05:03,320
+results in a file handle from the file
+
+137
+00:05:03,320 --> 00:05:05,510
+handle I can obtain the actual file by
+
+138
+00:05:05,510 --> 00:05:08,030
+calling its get file method exporting an
+
+139
+00:05:08,030 --> 00:05:09,740
+image is almost the same but this time
+
+140
+00:05:09,740 --> 00:05:12,050
+you need to pass a type parameter save
+
+141
+00:05:12,050 --> 00:05:14,060
+file to the choose file system entries
+
+142
+00:05:14,060 --> 00:05:16,670
+method so I get a file save dialog
+
+143
+00:05:16,670 --> 00:05:19,490
+before this wasn't necessary since Open
+
+144
+00:05:19,490 --> 00:05:22,610
+File is the default I said the accept
+
+145
+00:05:22,610 --> 00:05:24,470
+parameter similar as before but this
+
+146
+00:05:24,470 --> 00:05:27,770
+time limited to just PNG images again I
+
+147
+00:05:27,770 --> 00:05:29,630
+get back a financial but rather than
+
+148
+00:05:29,630 --> 00:05:31,790
+getting the file this time I'm creating
+
+149
+00:05:31,790 --> 00:05:33,860
+a writable stream by calling crate
+
+150
+00:05:33,860 --> 00:05:36,770
+writable next I read the blog which is
+
+151
+00:05:36,770 --> 00:05:38,450
+my greeting card image to the file
+
+152
+00:05:38,450 --> 00:05:41,180
+finally I close the writable screen
+
+153
+00:05:41,180 --> 00:05:43,910
+everything can always Fame the disc
+
+154
+00:05:43,910 --> 00:05:45,830
+could be Arg space there could be a
+
+155
+00:05:45,830 --> 00:05:48,470
+write or read arrow or maybe simply the
+
+156
+00:05:48,470 --> 00:05:50,870
+user cancels the file a lot this is why
+
+157
+00:05:50,870 --> 00:05:53,060
+I always read the calls in a try-catch
+
+158
+00:05:53,060 --> 00:05:55,340
+statement I can now open the file as
+
+159
+00:05:55,340 --> 00:05:58,190
+before the imported file is drawn right
+
+160
+00:05:58,190 --> 00:06:00,350
+onto the canvas I can make my edits and
+
+161
+00:06:00,350 --> 00:06:02,840
+finally save them with a real save
+
+162
+00:06:02,840 --> 00:06:04,670
+dialogue where I can choose the name and
+
+163
+00:06:04,670 --> 00:06:07,370
+storage location of the file now the
+
+164
+00:06:07,370 --> 00:06:09,320
+file is ready to be preserved for the
+
+165
+00:06:09,320 --> 00:06:11,990
+eternity about from storing files for
+
+166
+00:06:11,990 --> 00:06:14,030
+the eternity maybe I actually want to
+
+167
+00:06:14,030 --> 00:06:16,430
+share my greeting card this is something
+
+168
+00:06:16,430 --> 00:06:18,710
+that the web share and web share target
+
+169
+00:06:18,710 --> 00:06:21,410
+API is allow me to do mobile and more
+
+170
+00:06:21,410 --> 00:06:23,270
+recently also district operating systems
+
+171
+00:06:23,270 --> 00:06:25,220
+have gained native sharing mechanisms
+
+172
+00:06:25,220 --> 00:06:27,920
+for example here is safaris share sheet
+
+173
+00:06:27,920 --> 00:06:30,560
+on Mac OS triggered from an article on
+
+174
+00:06:30,560 --> 00:06:34,220
+my side block Tommy icon and click the
+
+175
+00:06:34,220 --> 00:06:36,380
+share button you can share a link to the
+
+176
+00:06:36,380 --> 00:06:38,450
+article with a friend for example by the
+
+177
+00:06:38,450 --> 00:06:40,110
+native messages
+
+178
+00:06:40,110 --> 00:06:41,430
+the code to make this happen is pretty
+
+179
+00:06:41,430 --> 00:06:43,980
+straightforward I call navigator dot
+
+180
+00:06:43,980 --> 00:06:47,130
+share and pass it an optional title text
+
+181
+00:06:47,130 --> 00:06:50,310
+and euro but what if I want to attach an
+
+182
+00:06:50,310 --> 00:06:52,530
+image whether one of the web share a P I
+
+183
+00:06:52,530 --> 00:06:54,480
+that you can see on the screen doesn't
+
+184
+00:06:54,480 --> 00:06:56,430
+support this yet the good news is that
+
+185
+00:06:56,430 --> 00:06:58,560
+web share level two has added file
+
+186
+00:06:58,560 --> 00:07:00,540
+sharing capabilities let me show you how
+
+187
+00:07:00,540 --> 00:07:02,010
+to make this work with a fool greeting
+
+188
+00:07:02,010 --> 00:07:04,590
+card application first I need to prepare
+
+189
+00:07:04,590 --> 00:07:06,420
+a data object with a files array
+
+190
+00:07:06,420 --> 00:07:09,240
+consisting of one blob and then a title
+
+191
+00:07:09,240 --> 00:07:12,030
+and a text next as a best practice and
+
+192
+00:07:12,030 --> 00:07:13,920
+the use of the new navigator dot can
+
+193
+00:07:13,920 --> 00:07:15,660
+share method but does what its name
+
+194
+00:07:15,660 --> 00:07:18,180
+suggests it tells me if the data object
+
+195
+00:07:18,180 --> 00:07:20,190
+I'm trying to share can't technically be
+
+196
+00:07:20,190 --> 00:07:22,710
+shared by the browser if navigator can
+
+197
+00:07:22,710 --> 00:07:24,030
+share tells me the data can be shared
+
+198
+00:07:24,030 --> 00:07:26,880
+and in the final step ready to call a
+
+199
+00:07:26,880 --> 00:07:29,850
+navigator dot share that's before again
+
+200
+00:07:29,850 --> 00:07:32,100
+everything can fail in the simplest way
+
+201
+00:07:32,100 --> 00:07:34,080
+when the user cancels the sharing
+
+202
+00:07:34,080 --> 00:07:35,820
+operation so it's all wrapped in
+
+203
+00:07:35,820 --> 00:07:38,700
+try-catch blocks as before I use a
+
+204
+00:07:38,700 --> 00:07:40,380
+progressive enhancement loading strategy
+
+205
+00:07:40,380 --> 00:07:43,050
+if both share and can share exists on a
+
+206
+00:07:43,050 --> 00:07:45,360
+navigator object only then I go forward
+
+207
+00:07:45,360 --> 00:07:47,430
+and load shared on MJS why a dynamic
+
+208
+00:07:47,430 --> 00:07:49,650
+import on browsers like mobile safari
+
+209
+00:07:49,650 --> 00:07:51,510
+that only fulfill one of the two
+
+210
+00:07:51,510 --> 00:07:52,050
+conditions
+
+211
+00:07:52,050 --> 00:07:54,780
+I don't load the full functionality if I
+
+212
+00:07:54,780 --> 00:07:56,190
+tap the share button on a supporting
+
+213
+00:07:56,190 --> 00:07:58,440
+browser the native share sheet opens I
+
+214
+00:07:58,440 --> 00:08:00,060
+can for example choose
+
+215
+00:08:00,060 --> 00:08:01,890
+Gmail and the email composer Richard
+
+216
+00:08:01,890 --> 00:08:04,560
+pops up with the image attached up next
+
+217
+00:08:04,560 --> 00:08:06,780
+I want to talk about contacts and when I
+
+218
+00:08:06,780 --> 00:08:09,420
+say contacts I mean contacts as in the
+
+219
+00:08:09,420 --> 00:08:11,400
+devices address book when you write a
+
+220
+00:08:11,400 --> 00:08:13,440
+greeting card it may not always be easy
+
+221
+00:08:13,440 --> 00:08:15,510
+to correctly write someone's name for
+
+222
+00:08:15,510 --> 00:08:17,310
+example I have a friend who prefers the
+
+223
+00:08:17,310 --> 00:08:18,720
+name to be spelled in Cyrillic letters
+
+224
+00:08:18,720 --> 00:08:21,270
+I'm using a German qwertz keyboard and I
+
+225
+00:08:21,270 --> 00:08:23,700
+have no idea how to type their name this
+
+226
+00:08:23,700 --> 00:08:25,380
+is a problem that the contact picker API
+
+227
+00:08:25,380 --> 00:08:27,630
+sells since I have my friends stored in
+
+228
+00:08:27,630 --> 00:08:29,880
+my phone's contacts app by the contacts
+
+229
+00:08:29,880 --> 00:08:32,130
+picker API I can tap into my contacts
+
+230
+00:08:32,130 --> 00:08:34,950
+from the web first I need to specify the
+
+231
+00:08:34,950 --> 00:08:36,540
+list of properties I want to access in
+
+232
+00:08:36,540 --> 00:08:39,390
+this case I only want the names but for
+
+233
+00:08:39,390 --> 00:08:41,190
+the use cases I might be interested in
+
+234
+00:08:41,190 --> 00:08:44,220
+telephone numbers emails avatar icon or
+
+235
+00:08:44,220 --> 00:08:47,160
+physical addresses next I configure an
+
+236
+00:08:47,160 --> 00:08:49,320
+options object and set multiples to true
+
+237
+00:08:49,320 --> 00:08:51,140
+so you can select more than one account
+
+238
+00:08:51,140 --> 00:08:53,880
+finally I can call navigator
+
+239
+00:08:53,880 --> 00:08:55,920
+contacts that select which results in
+
+240
+00:08:55,920 --> 00:08:57,690
+the desired properties once the user
+
+241
+00:08:57,690 --> 00:08:59,250
+selects one or multiple of their
+
+242
+00:08:59,250 --> 00:09:01,830
+contacts in fugu greetings when I tap
+
+243
+00:09:01,830 --> 00:09:03,870
+the contacts button and select that two
+
+244
+00:09:03,870 --> 00:09:06,540
+best pals said again makarevich Bryn and
+
+245
+00:09:06,540 --> 00:09:09,210
+Laurence Edward Larry Page you can see
+
+246
+00:09:09,210 --> 00:09:11,070
+how the contacts picker is limited to
+
+247
+00:09:11,070 --> 00:09:13,170
+only show their names but not their
+
+248
+00:09:13,170 --> 00:09:14,460
+email addresses or other information
+
+249
+00:09:14,460 --> 00:09:17,100
+like their phone numbers the names are
+
+250
+00:09:17,100 --> 00:09:19,350
+then drawn onto my greeting card and by
+
+251
+00:09:19,350 --> 00:09:21,270
+now you probably learned the pattern I
+
+252
+00:09:21,270 --> 00:09:23,610
+only load the file when the API is
+
+253
+00:09:23,610 --> 00:09:27,030
+actually supported up next is copying
+
+254
+00:09:27,030 --> 00:09:28,710
+and pasting one of our favorite
+
+255
+00:09:28,710 --> 00:09:30,330
+operations as software developers is
+
+256
+00:09:30,330 --> 00:09:32,400
+copy and paste as greeting card
+
+257
+00:09:32,400 --> 00:09:34,920
+elephants at times and I want to do the
+
+258
+00:09:34,920 --> 00:09:36,810
+same either paste an image into a
+
+259
+00:09:36,810 --> 00:09:38,790
+greeting card and working on or on the
+
+260
+00:09:38,790 --> 00:09:39,420
+other way around
+
+261
+00:09:39,420 --> 00:09:41,610
+copy my greeting card so I can continue
+
+262
+00:09:41,610 --> 00:09:43,800
+editing it from somewhere else the I
+
+263
+00:09:43,800 --> 00:09:46,350
+simplified API about from text also
+
+264
+00:09:46,350 --> 00:09:48,390
+supports images let me walk you through
+
+265
+00:09:48,390 --> 00:09:50,790
+how I have added copy and paste to the
+
+266
+00:09:50,790 --> 00:09:52,950
+fugu breeding set in order to copy
+
+267
+00:09:52,950 --> 00:09:54,570
+something onto the system's clipboard
+
+268
+00:09:54,570 --> 00:09:57,090
+you need to write to it the navigated
+
+269
+00:09:57,090 --> 00:09:59,370
+clipboard right method takes an area of
+
+270
+00:09:59,370 --> 00:10:00,840
+clipper items as a parameter
+
+271
+00:10:00,840 --> 00:10:03,120
+each kept one item essentially as an
+
+272
+00:10:03,120 --> 00:10:05,250
+object with a blob as a value and the
+
+273
+00:10:05,250 --> 00:10:08,820
+blocks type as the key to paste I need
+
+274
+00:10:08,820 --> 00:10:10,650
+to loop over the clipboard items that
+
+275
+00:10:10,650 --> 00:10:12,240
+are obtained by calling navigated or
+
+276
+00:10:12,240 --> 00:10:14,880
+clipboard Audrey the reason for this is
+
+277
+00:10:14,880 --> 00:10:16,470
+that multiple clipboard items might be
+
+278
+00:10:16,470 --> 00:10:17,850
+on the clipboard in different
+
+279
+00:10:17,850 --> 00:10:20,220
+representations each clip pod item has a
+
+280
+00:10:20,220 --> 00:10:22,110
+types field that tells me in which mine
+
+281
+00:10:22,110 --> 00:10:24,630
+type the resource is available I simply
+
+282
+00:10:24,630 --> 00:10:26,100
+take the first one and call the
+
+283
+00:10:26,100 --> 00:10:27,660
+clipboard items get a type method
+
+284
+00:10:27,660 --> 00:10:29,760
+passing the mime type I obtained before
+
+285
+00:10:29,760 --> 00:10:33,000
+and almost needless to say by now I only
+
+286
+00:10:33,000 --> 00:10:35,640
+do this on supporting browsers so how
+
+287
+00:10:35,640 --> 00:10:38,070
+does this work here I have an image open
+
+288
+00:10:38,070 --> 00:10:39,990
+and the Mac OS preview app and copy it
+
+289
+00:10:39,990 --> 00:10:42,690
+to the clipboard when I click paste the
+
+290
+00:10:42,690 --> 00:10:44,580
+fugu breeding zap then asks me what I
+
+291
+00:10:44,580 --> 00:10:46,290
+want to allow the app to see texts and
+
+292
+00:10:46,290 --> 00:10:48,690
+images on the clipboard finally after
+
+293
+00:10:48,690 --> 00:10:50,730
+accepting the permission the images then
+
+294
+00:10:50,730 --> 00:10:53,010
+paste it into the application the other
+
+295
+00:10:53,010 --> 00:10:55,290
+way round works to let me copy a
+
+296
+00:10:55,290 --> 00:10:57,210
+greeting card to the clipboard when I
+
+297
+00:10:57,210 --> 00:10:59,310
+then open preview and click file and
+
+298
+00:10:59,310 --> 00:11:02,130
+then new from clipboard the greeting
+
+299
+00:11:02,130 --> 00:11:03,960
+card gets pasted into a new untitled
+
+300
+00:11:03,960 --> 00:11:06,810
+image another useful API is the badging
+
+301
+00:11:06,810 --> 00:11:07,500
+AJ
+
+302
+00:11:07,500 --> 00:11:10,350
+as an installable PWI fugu greetings of
+
+303
+00:11:10,350 --> 00:11:12,660
+course does have an app icon that users
+
+304
+00:11:12,660 --> 00:11:14,430
+can place on the app dock or the home
+
+305
+00:11:14,430 --> 00:11:16,470
+screen something fun to do with it in
+
+306
+00:11:16,470 --> 00:11:18,570
+the context of frugal greetings miss use
+
+307
+00:11:18,570 --> 00:11:20,670
+it as a pen stroke counter with a
+
+308
+00:11:20,670 --> 00:11:22,350
+batting okay it is a straightforward
+
+309
+00:11:22,350 --> 00:11:24,720
+task to do this I have added an event
+
+310
+00:11:24,720 --> 00:11:26,280
+less than that on pointed down
+
+311
+00:11:26,280 --> 00:11:28,230
+increments the pen strokes counter and
+
+312
+00:11:28,230 --> 00:11:30,900
+sets the icon whenever the canvas gets
+
+313
+00:11:30,900 --> 00:11:32,880
+cleared the counter resets and the badge
+
+314
+00:11:32,880 --> 00:11:35,460
+is removed in this example I've drawn
+
+315
+00:11:35,460 --> 00:11:37,860
+the numbers from 1 to 7 using one pen
+
+316
+00:11:37,860 --> 00:11:40,050
+stroke for each number the batch counter
+
+317
+00:11:40,050 --> 00:11:43,020
+on the icon is now at 7 this feature is
+
+318
+00:11:43,020 --> 00:11:44,490
+a progressive enhancement so the loading
+
+319
+00:11:44,490 --> 00:11:47,160
+logic is as usual want to start each day
+
+320
+00:11:47,160 --> 00:11:49,980
+fresh with something new a neat feature
+
+321
+00:11:49,980 --> 00:11:52,320
+of the fugu greetings app is that it can
+
+322
+00:11:52,320 --> 00:11:53,880
+inspire you each morning with a new
+
+323
+00:11:53,880 --> 00:11:55,590
+background image to study a breeding
+
+324
+00:11:55,590 --> 00:11:57,930
+card the app uses two prokaryotic
+
+325
+00:11:57,930 --> 00:12:00,300
+background sync API to achieve this the
+
+326
+00:12:00,300 --> 00:12:02,040
+first step is to register a periodic
+
+327
+00:12:02,040 --> 00:12:03,090
+sync event in the serviceworker
+
+328
+00:12:03,090 --> 00:12:05,820
+registration it listens for a sync tag
+
+329
+00:12:05,820 --> 00:12:06,270
+called
+
+330
+00:12:06,270 --> 00:12:08,010
+image of the day and as a minimum
+
+331
+00:12:08,010 --> 00:12:10,110
+interval of one day so the user can get
+
+332
+00:12:10,110 --> 00:12:12,320
+a new background image every 24 hours
+
+333
+00:12:12,320 --> 00:12:14,550
+the second step is to listen for the
+
+334
+00:12:14,550 --> 00:12:16,260
+periodic sync event in the serviceworker
+
+335
+00:12:16,260 --> 00:12:18,480
+if Devon Tech is the one that was
+
+336
+00:12:18,480 --> 00:12:20,760
+registered a slide ago the image of the
+
+337
+00:12:20,760 --> 00:12:22,560
+day is retrieved for the get image of
+
+338
+00:12:22,560 --> 00:12:24,210
+the day function and the result
+
+339
+00:12:24,210 --> 00:12:26,490
+propagated to all clients so they can
+
+340
+00:12:26,490 --> 00:12:29,100
+update their chemists and captions again
+
+341
+00:12:29,100 --> 00:12:30,510
+this is truly a progressive enhancement
+
+342
+00:12:30,510 --> 00:12:32,820
+so the code is only loaded when the API
+
+343
+00:12:32,820 --> 00:12:35,190
+is supported by the browser this applies
+
+344
+00:12:35,190 --> 00:12:36,840
+to both the client code and the
+
+345
+00:12:36,840 --> 00:12:38,970
+serviceworker code on lan supporting
+
+346
+00:12:38,970 --> 00:12:41,400
+browsers me of them is loaded note how
+
+347
+00:12:41,400 --> 00:12:42,660
+in the serviceworker instead of a
+
+348
+00:12:42,660 --> 00:12:45,090
+dynamic input I use the classic import
+
+349
+00:12:45,090 --> 00:12:46,920
+scripts function to the same effect
+
+350
+00:12:46,920 --> 00:12:49,290
+sometimes even with a lot of inspiration
+
+351
+00:12:49,290 --> 00:12:51,300
+you need a nudge to finish it started
+
+352
+00:12:51,300 --> 00:12:53,160
+reading code this is a feature that is
+
+353
+00:12:53,160 --> 00:12:55,170
+enabled by the notification triggers API
+
+354
+00:12:55,170 --> 00:12:57,900
+as a user I can enter a time and I want
+
+355
+00:12:57,900 --> 00:12:59,550
+to be nudged to finish my greeting card
+
+356
+00:12:59,550 --> 00:13:01,380
+and when the time has come and I get a
+
+357
+00:13:01,380 --> 00:13:02,970
+notification that my greeting card is
+
+358
+00:13:02,970 --> 00:13:04,860
+waiting after prompting for the target
+
+359
+00:13:04,860 --> 00:13:06,600
+time the application schedules a
+
+360
+00:13:06,600 --> 00:13:08,610
+notification with the show trigger this
+
+361
+00:13:08,610 --> 00:13:10,170
+can be a timestamp trigger with a
+
+362
+00:13:10,170 --> 00:13:12,690
+previously selected target date the
+
+363
+00:13:12,690 --> 00:13:14,070
+reminder notification will be triggered
+
+364
+00:13:14,070 --> 00:13:16,230
+locally no network or server-side is
+
+365
+00:13:16,230 --> 00:13:18,210
+necessary as everything else i've shown
+
+366
+00:13:18,210 --> 00:13:20,010
+so far this is a progressive enhancement
+
+367
+00:13:20,010 --> 00:13:21,570
+so the code is
+
+368
+00:13:21,570 --> 00:13:23,580
+me conditionally loaded I also want to
+
+369
+00:13:23,580 --> 00:13:26,340
+talk about the wakelock API sometimes
+
+370
+00:13:26,340 --> 00:13:27,930
+you need to just stare long enough on
+
+371
+00:13:27,930 --> 00:13:30,000
+the screen until the inspiration pieces
+
+372
+00:13:30,000 --> 00:13:32,490
+you the worst that can happen is for the
+
+373
+00:13:32,490 --> 00:13:34,920
+screen to turn off the way okay P I can
+
+374
+00:13:34,920 --> 00:13:37,110
+prevent this from happening in food
+
+375
+00:13:37,110 --> 00:13:39,270
+readings there's an insomnia checkbox
+
+376
+00:13:39,270 --> 00:13:41,370
+that when checked keeps your screen
+
+377
+00:13:41,370 --> 00:13:43,740
+awake in a first step they obtain a wake
+
+378
+00:13:43,740 --> 00:13:45,390
+lock with the Navigator table like dog
+
+379
+00:13:45,390 --> 00:13:47,340
+but request not a pass it the string
+
+380
+00:13:47,340 --> 00:13:49,850
+screen to obtain a screen leg lock I
+
+381
+00:13:49,850 --> 00:13:52,020
+then add an event listener to be
+
+382
+00:13:52,020 --> 00:13:53,390
+informed when the wake lock is released
+
+383
+00:13:53,390 --> 00:13:55,860
+this can happen for example when the tap
+
+384
+00:13:55,860 --> 00:13:58,920
+visibility changes if this happens I can
+
+385
+00:13:58,920 --> 00:14:00,840
+when this happens with will again we
+
+386
+00:14:00,840 --> 00:14:02,910
+obtain the wait look yes this is a
+
+387
+00:14:02,910 --> 00:14:04,350
+progressive announcement so you only
+
+388
+00:14:04,350 --> 00:14:05,790
+need to load it when the browser
+
+389
+00:14:05,790 --> 00:14:08,820
+supports the API at times even hysteria
+
+390
+00:14:08,820 --> 00:14:12,060
+the screen for hours is just useless the
+
+391
+00:14:12,060 --> 00:14:13,800
+idle detection API allows the app to
+
+392
+00:14:13,800 --> 00:14:15,990
+detect user idle time if the user's
+
+393
+00:14:15,990 --> 00:14:18,480
+detected to be idle for too long the app
+
+394
+00:14:18,480 --> 00:14:20,250
+resets to the initial state and clears
+
+395
+00:14:20,250 --> 00:14:22,830
+the canvas this API is currently gated
+
+396
+00:14:22,830 --> 00:14:25,080
+behind the notification permission since
+
+397
+00:14:25,080 --> 00:14:26,790
+a lot of production use cases of idle
+
+398
+00:14:26,790 --> 00:14:29,460
+detection or notification related for
+
+399
+00:14:29,460 --> 00:14:31,290
+example to only send a notification to a
+
+400
+00:14:31,290 --> 00:14:33,270
+device the user is currently actively
+
+401
+00:14:33,270 --> 00:14:35,580
+using after making sure that the
+
+402
+00:14:35,580 --> 00:14:37,230
+notifications permission is granted I
+
+403
+00:14:37,230 --> 00:14:39,600
+then instantiate the idle detector a
+
+404
+00:14:39,600 --> 00:14:41,400
+register an event listener that listens
+
+405
+00:14:41,400 --> 00:14:43,800
+for idle changes which includes the user
+
+406
+00:14:43,800 --> 00:14:45,960
+and the screen state the user can be
+
+407
+00:14:45,960 --> 00:14:48,000
+active or idle in a screen can be
+
+408
+00:14:48,000 --> 00:14:50,430
+unlocked or locked if the users detected
+
+409
+00:14:50,430 --> 00:14:53,490
+to be idle the chemist clears I give the
+
+410
+00:14:53,490 --> 00:14:56,550
+I detector a threshold of 60 seconds and
+
+411
+00:14:56,550 --> 00:14:58,740
+as always I unload this code and the
+
+412
+00:14:58,740 --> 00:15:01,500
+browser supports it whoo what a writer
+
+413
+00:15:01,500 --> 00:15:04,100
+so many ideas in just one sample app and
+
+414
+00:15:04,100 --> 00:15:06,540
+reminder we never make the use of pay
+
+415
+00:15:06,540 --> 00:15:08,190
+the download cost for a future that
+
+416
+00:15:08,190 --> 00:15:10,320
+their browser doesn't support by using
+
+417
+00:15:10,320 --> 00:15:12,360
+progressive enhancement and make sure
+
+418
+00:15:12,360 --> 00:15:14,370
+only the relevant code gets loaded and
+
+419
+00:15:14,370 --> 00:15:17,070
+since with HTTP 2 requests are cheap
+
+420
+00:15:17,070 --> 00:15:19,110
+this pattern should work well for a lot
+
+421
+00:15:19,110 --> 00:15:21,480
+of applications although at times you
+
+422
+00:15:21,480 --> 00:15:23,160
+might still want to consider a bundler
+
+423
+00:15:23,160 --> 00:15:25,200
+for really large apps this has been a
+
+424
+00:15:25,200 --> 00:15:27,120
+short overview of many of the ApS we're
+
+425
+00:15:27,120 --> 00:15:28,530
+working on in the context of project
+
+426
+00:15:28,530 --> 00:15:30,780
+Google definitely check out our landing
+
+427
+00:15:30,780 --> 00:15:32,460
+page they can find links to detailed
+
+428
+00:15:32,460 --> 00:15:34,380
+articles for each API that I've talked
+
+429
+00:15:34,380 --> 00:15:35,100
+about
+
+430
+00:15:35,100 --> 00:15:36,810
+if you're interested in FUBU greetings
+
+431
+00:15:36,810 --> 00:15:39,660
+go find and fork it on github and with
+
+432
+00:15:39,660 --> 00:15:41,310
+that thank you very much for watching my
+
+433
+00:15:41,310 --> 00:15:43,650
+talk you can find me as tomahawk on
+
+434
+00:15:43,650 --> 00:15:46,760
+github Twitter and the web in general
+
+435
+00:15:46,760 --> 00:15:59,830
+[Music]
+

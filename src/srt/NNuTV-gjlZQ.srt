@@ -1,0 +1,929 @@
+1
+00:00:00,580 --> 00:00:11,389
+
+[Music]
+
+2
+00:00:11,389 --> 00:00:12,990
+true or false
+
+3
+00:00:12,990 --> 00:00:18,180
+indexdb is limited to 25 Meg's false
+
+4
+00:00:18,180 --> 00:00:21,020
+gone are the days of tiny storage quotas
+
+5
+00:00:21,020 --> 00:00:22,560
+true or false
+
+6
+00:00:22,560 --> 00:00:26,849
+local storage should be avoided true
+
+7
+00:00:26,849 --> 00:00:29,130
+it's synchronous and may cause
+
+8
+00:00:29,130 --> 00:00:31,230
+performance issues by blocking the main
+
+9
+00:00:31,230 --> 00:00:33,780
+thread all right here's another one
+
+10
+00:00:33,780 --> 00:00:35,880
+true or false cookies are a great way to
+
+11
+00:00:35,880 --> 00:00:39,239
+store data false they've got their uses
+
+12
+00:00:39,239 --> 00:00:41,969
+but to never be used for storage how
+
+13
+00:00:41,969 --> 00:00:44,460
+about this one app cache is a great way
+
+14
+00:00:44,460 --> 00:00:48,750
+to make your app work offline yeah a
+
+15
+00:00:48,750 --> 00:00:50,670
+trick question absolutely false app
+
+16
+00:00:50,670 --> 00:00:53,100
+cache is awful and it's going away soon
+
+17
+00:00:53,100 --> 00:00:55,920
+thankfully so how should we be storing
+
+18
+00:00:55,920 --> 00:00:58,230
+data and caching our critical app
+
+19
+00:00:58,230 --> 00:01:00,359
+resources on the client how much can we
+
+20
+00:01:00,359 --> 00:01:02,699
+store how does the browser deal with
+
+21
+00:01:02,699 --> 00:01:05,159
+eviction and be sure to stick around to
+
+22
+00:01:05,159 --> 00:01:07,710
+the end and I'll tell you how you can
+
+23
+00:01:07,710 --> 00:01:10,170
+start Chrome with only a tiny storage
+
+24
+00:01:10,170 --> 00:01:12,810
+limit so you can test what happens when
+
+25
+00:01:12,810 --> 00:01:15,420
+you exceed your storage quota I'm Pete
+
+26
+00:01:15,420 --> 00:01:17,670
+LePage let's dive in to storage on the
+
+27
+00:01:17,670 --> 00:01:21,630
+web modern storage makes it possible to
+
+28
+00:01:21,630 --> 00:01:24,000
+store more than two small chunks of data
+
+29
+00:01:24,000 --> 00:01:26,790
+on the user's device even in perfect
+
+30
+00:01:26,790 --> 00:01:29,159
+wireless environments caching and other
+
+31
+00:01:29,159 --> 00:01:31,290
+storage techniques can substantially
+
+32
+00:01:31,290 --> 00:01:34,560
+improve performance reliability and most
+
+33
+00:01:34,560 --> 00:01:37,860
+importantly the user experience with the
+
+34
+00:01:37,860 --> 00:01:40,409
+cache storage API you can cast your
+
+35
+00:01:40,409 --> 00:01:42,960
+static app resources like HTML
+
+36
+00:01:42,960 --> 00:01:45,600
+Javascript CSS ensuring that they're
+
+37
+00:01:45,600 --> 00:01:48,930
+always instantly available and with
+
+38
+00:01:48,930 --> 00:01:51,860
+indexdb you can store all kinds of data
+
+39
+00:01:51,860 --> 00:01:55,020
+article content users document settings
+
+40
+00:01:55,020 --> 00:01:58,710
+and more index DB and the cache storage
+
+41
+00:01:58,710 --> 00:02:00,960
+API are supported in every modern
+
+42
+00:02:00,960 --> 00:02:01,530
+browser
+
+43
+00:02:01,530 --> 00:02:03,930
+they're both asynchronous and will not
+
+44
+00:02:03,930 --> 00:02:06,479
+block the main thread they're accessible
+
+45
+00:02:06,479 --> 00:02:08,610
+from the window object web workers and
+
+46
+00:02:08,610 --> 00:02:11,129
+service workers making it easy to use
+
+47
+00:02:11,129 --> 00:02:13,950
+them anywhere in your code there
+
+48
+00:02:13,950 --> 00:02:16,230
+several other storage mechanisms that
+
+49
+00:02:16,230 --> 00:02:18,510
+are available in the browser but they've
+
+50
+00:02:18,510 --> 00:02:20,750
+got limited use and may cause
+
+51
+00:02:20,750 --> 00:02:23,730
+significant performance issues if you're
+
+52
+00:02:23,730 --> 00:02:25,920
+concerned about storing large amounts of
+
+53
+00:02:25,920 --> 00:02:27,120
+data on the client
+
+54
+00:02:27,120 --> 00:02:29,670
+don't be unless you're trying to store
+
+55
+00:02:29,670 --> 00:02:32,819
+several gigs modern browsers typically
+
+56
+00:02:32,819 --> 00:02:35,160
+won't even bat an eye and even then it
+
+57
+00:02:35,160 --> 00:02:37,440
+really comes down to the amount of disk
+
+58
+00:02:37,440 --> 00:02:39,209
+space available on the device
+
+59
+00:02:39,209 --> 00:02:42,120
+of course implementations vary by
+
+60
+00:02:42,120 --> 00:02:45,239
+browsers Firefox allows an origin to
+
+61
+00:02:45,239 --> 00:02:48,239
+store up to two gigs Safari allows an
+
+62
+00:02:48,239 --> 00:02:50,670
+origin to use up to one gig and when
+
+63
+00:02:50,670 --> 00:02:52,950
+that limit is reached Safari is
+
+64
+00:02:52,950 --> 00:02:54,209
+currently the only browser
+
+65
+00:02:54,209 --> 00:02:56,340
+that'll prompt the user to increase that
+
+66
+00:02:56,340 --> 00:02:59,940
+limit and Chrome well look it's a little
+
+67
+00:02:59,940 --> 00:03:02,400
+complex but stick with me here chrome
+
+68
+00:03:02,400 --> 00:03:04,440
+and most other chromium based browsers
+
+69
+00:03:04,440 --> 00:03:07,560
+limit storage to 80% of the total disk
+
+70
+00:03:07,560 --> 00:03:10,680
+space and each origin can only use 75%
+
+71
+00:03:10,680 --> 00:03:14,010
+of that for example if you had a 10 gig
+
+72
+00:03:14,010 --> 00:03:16,650
+hard disk chrome with limited storage to
+
+73
+00:03:16,650 --> 00:03:19,859
+8 gigs then each origin would be limited
+
+74
+00:03:19,859 --> 00:03:23,280
+to 6 gigs essentially each origin will
+
+75
+00:03:23,280 --> 00:03:26,160
+be allowed to use up to 60% of the total
+
+76
+00:03:26,160 --> 00:03:29,220
+disk space it sounds complex but there's
+
+77
+00:03:29,220 --> 00:03:31,139
+an easy way to see what's available in
+
+78
+00:03:31,139 --> 00:03:34,200
+many browsers you can use the Storage
+
+79
+00:03:34,200 --> 00:03:36,299
+Manager API to determine the amount of
+
+80
+00:03:36,299 --> 00:03:38,459
+storage that's available to the origin
+
+81
+00:03:38,459 --> 00:03:40,680
+and how much storage that you're already
+
+82
+00:03:40,680 --> 00:03:43,139
+using it reports the total number of
+
+83
+00:03:43,139 --> 00:03:45,299
+bytes used and makes it possible to
+
+84
+00:03:45,299 --> 00:03:47,040
+calculate the approximate bytes
+
+85
+00:03:47,040 --> 00:03:50,100
+remaining unfortunately the storage
+
+86
+00:03:50,100 --> 00:03:52,530
+manager API isn't implemented in all
+
+87
+00:03:52,530 --> 00:03:55,019
+browsers yet so you must use feature
+
+88
+00:03:55,019 --> 00:03:58,349
+detection before using it but even when
+
+89
+00:03:58,349 --> 00:03:59,340
+it is available
+
+90
+00:03:59,340 --> 00:04:01,889
+you still need to catch over quota
+
+91
+00:04:01,889 --> 00:04:04,530
+errors in some cases and I'm looking at
+
+92
+00:04:04,530 --> 00:04:06,900
+you Chrome it's possible for the
+
+93
+00:04:06,900 --> 00:04:09,060
+available quota to exceed the actual
+
+94
+00:04:09,060 --> 00:04:12,209
+amount of storage available most
+
+95
+00:04:12,209 --> 00:04:14,970
+chromium based browsers factor in the
+
+96
+00:04:14,970 --> 00:04:17,820
+amount of free space when reporting the
+
+97
+00:04:17,820 --> 00:04:20,190
+available quota chrome does not though
+
+98
+00:04:20,190 --> 00:04:23,669
+and it will always report 60% of the
+
+99
+00:04:23,669 --> 00:04:26,039
+actual disk size this helps to reduce
+
+100
+00:04:26,039 --> 00:04:27,840
+the ability to
+
+101
+00:04:27,840 --> 00:04:30,389
+the size of stored cross-origin
+
+102
+00:04:30,389 --> 00:04:33,419
+resources so what should you do when you
+
+103
+00:04:33,419 --> 00:04:36,540
+go over quota most importantly you
+
+104
+00:04:36,540 --> 00:04:39,030
+should always catch and handle right
+
+105
+00:04:39,030 --> 00:04:41,160
+errors whether it's a quota exceeded air
+
+106
+00:04:41,160 --> 00:04:44,970
+or something else then depending on your
+
+107
+00:04:44,970 --> 00:04:48,270
+app design decide how to handle it for
+
+108
+00:04:48,270 --> 00:04:50,639
+example delete content that hasn't been
+
+109
+00:04:50,639 --> 00:04:53,520
+accessed in a long time or remove data
+
+110
+00:04:53,520 --> 00:04:56,340
+based on its size or provide a way for
+
+111
+00:04:56,340 --> 00:04:59,210
+users to choose what they want to delete
+
+112
+00:04:59,210 --> 00:05:03,120
+both indexdb and the CAF api throw a dom
+
+113
+00:05:03,120 --> 00:05:05,940
+error named quota exceeded error when
+
+114
+00:05:05,940 --> 00:05:08,700
+you've exceeded the quota available for
+
+115
+00:05:08,700 --> 00:05:12,060
+indexdb the transactions on abort
+
+116
+00:05:12,060 --> 00:05:14,580
+handler will be called passing an event
+
+117
+00:05:14,580 --> 00:05:17,639
+that event will include a Dom exception
+
+118
+00:05:17,639 --> 00:05:19,770
+in the error property and if you check
+
+119
+00:05:19,770 --> 00:05:21,960
+the name of the error it'll return quota
+
+120
+00:05:21,960 --> 00:05:25,380
+exceeded error for the CAF API rights
+
+121
+00:05:25,380 --> 00:05:27,960
+will reject with a quota exceeded error
+
+122
+00:05:27,960 --> 00:05:31,020
+Dom accept some data stored in the
+
+123
+00:05:31,020 --> 00:05:32,789
+browser can be cleared in a couple of
+
+124
+00:05:32,789 --> 00:05:36,210
+ways it's most commonly initiated by the
+
+125
+00:05:36,210 --> 00:05:38,700
+user choosing to clear data in the
+
+126
+00:05:38,700 --> 00:05:41,820
+browser's site setting panel but it can
+
+127
+00:05:41,820 --> 00:05:44,130
+also happen when faced with storage
+
+128
+00:05:44,130 --> 00:05:46,919
+pressure like load disk space in this
+
+129
+00:05:46,919 --> 00:05:49,560
+case browsers typically automatically
+
+130
+00:05:49,560 --> 00:05:52,139
+delete data from the least recently used
+
+131
+00:05:52,139 --> 00:05:55,650
+origins and continue to delete that
+
+132
+00:05:55,650 --> 00:05:57,510
+until the storage pressure has been
+
+133
+00:05:57,510 --> 00:06:00,599
+relieved if the app hasn't synced data
+
+134
+00:06:00,599 --> 00:06:03,090
+with the server it will cause data loss
+
+135
+00:06:03,090 --> 00:06:05,400
+and means that the app won't have the
+
+136
+00:06:05,400 --> 00:06:08,639
+resources needed to run both of which
+
+137
+00:06:08,639 --> 00:06:11,060
+can lead to a negative user experience
+
+138
+00:06:11,060 --> 00:06:13,560
+thankfully research by the chrome team
+
+139
+00:06:13,560 --> 00:06:15,389
+shows that this doesn't happen very
+
+140
+00:06:15,389 --> 00:06:18,150
+often and it's far more common for users
+
+141
+00:06:18,150 --> 00:06:21,360
+to manually clear storage thus if a user
+
+142
+00:06:21,360 --> 00:06:23,580
+visits your site often the chances are
+
+143
+00:06:23,580 --> 00:06:26,700
+small that data will be deleted let's
+
+144
+00:06:26,700 --> 00:06:28,680
+take a look at a specific example of how
+
+145
+00:06:28,680 --> 00:06:31,080
+automatic eviction might happen in
+
+146
+00:06:31,080 --> 00:06:34,139
+chrome origin a is the least recently
+
+147
+00:06:34,139 --> 00:06:37,500
+visited site origin B is the next least
+
+148
+00:06:37,500 --> 00:06:39,650
+recently visited site and so on
+
+149
+00:06:39,650 --> 00:06:41,249
+origin e and
+
+150
+00:06:41,249 --> 00:06:42,929
+George and Kay are getting close to
+
+151
+00:06:42,929 --> 00:06:44,729
+their quota limits but they haven't
+
+152
+00:06:44,729 --> 00:06:47,519
+reached it yet and the overall usage is
+
+153
+00:06:47,519 --> 00:06:50,579
+less than the total quota so nothing is
+
+154
+00:06:50,579 --> 00:06:53,549
+gonna be evicted origin B has a star
+
+155
+00:06:53,549 --> 00:06:55,109
+next trip because it was granted
+
+156
+00:06:55,109 --> 00:06:57,389
+persistent storage meaning that it can
+
+157
+00:06:57,389 --> 00:07:00,269
+only be deleted by the user check out my
+
+158
+00:07:00,269 --> 00:07:02,489
+article on web dev for more info about
+
+159
+00:07:02,489 --> 00:07:04,829
+persistent storage when you should be
+
+160
+00:07:04,829 --> 00:07:08,279
+using it and how to request it now let's
+
+161
+00:07:08,279 --> 00:07:11,609
+say the user visits Origin n again which
+
+162
+00:07:11,609 --> 00:07:13,679
+happens to be a music playing site the
+
+163
+00:07:13,679 --> 00:07:15,719
+user saves a few more songs for offline
+
+164
+00:07:15,719 --> 00:07:16,229
+listening
+
+165
+00:07:16,229 --> 00:07:19,139
+now each origin is still within its
+
+166
+00:07:19,139 --> 00:07:21,569
+quota limit but Chrome has exceeded the
+
+167
+00:07:21,569 --> 00:07:24,209
+overall limit to get back under the
+
+168
+00:07:24,209 --> 00:07:26,729
+overall limit chrome will start evicting
+
+169
+00:07:26,729 --> 00:07:28,860
+stored data from the least recently used
+
+170
+00:07:28,860 --> 00:07:31,229
+origin first and continue until it's
+
+171
+00:07:31,229 --> 00:07:34,439
+back under the total limit Firefox and
+
+172
+00:07:34,439 --> 00:07:36,719
+other chromium based browsers work in
+
+173
+00:07:36,719 --> 00:07:39,479
+essentially the same way Safari is a
+
+174
+00:07:39,479 --> 00:07:41,249
+little different when it's out of
+
+175
+00:07:41,249 --> 00:07:43,319
+storage it will prevent anything new
+
+176
+00:07:43,319 --> 00:07:46,589
+from being ready but they recently
+
+177
+00:07:46,589 --> 00:07:48,989
+implemented a new 7-day cap on all
+
+178
+00:07:48,989 --> 00:07:51,709
+writable storage including indexdb
+
+179
+00:07:51,709 --> 00:07:53,849
+serviceworker registrations and the
+
+180
+00:07:53,849 --> 00:07:56,849
+cache API this means that after using
+
+181
+00:07:56,849 --> 00:07:58,979
+Safari for seven days and not
+
+182
+00:07:58,979 --> 00:08:01,169
+interacting with the site it will evict
+
+183
+00:08:01,169 --> 00:08:03,959
+all content for that site this eviction
+
+184
+00:08:03,959 --> 00:08:06,179
+policy does not apply to progressive web
+
+185
+00:08:06,179 --> 00:08:07,739
+apps that have been added to the home
+
+186
+00:08:07,739 --> 00:08:10,979
+screen essentially installed pwace check
+
+187
+00:08:10,979 --> 00:08:12,929
+out the WebKit blog linked in the
+
+188
+00:08:12,929 --> 00:08:15,749
+description for complete details modern
+
+189
+00:08:15,749 --> 00:08:17,519
+computers typically have large hard
+
+190
+00:08:17,519 --> 00:08:19,769
+drives which makes it hard to test the
+
+191
+00:08:19,769 --> 00:08:21,989
+over quota failures so here's a little
+
+192
+00:08:21,989 --> 00:08:25,289
+pro tip create a small RAM disk here
+
+193
+00:08:25,289 --> 00:08:29,399
+I've created a 500 mega on my Mac then
+
+194
+00:08:29,399 --> 00:08:32,189
+start Chrome using the user data der
+
+195
+00:08:32,189 --> 00:08:34,949
+flag this tells chrome to store the user
+
+196
+00:08:34,949 --> 00:08:37,069
+profile and user data on the RAM disk
+
+197
+00:08:37,069 --> 00:08:39,990
+Chrome now thinks my disk is only 500
+
+198
+00:08:39,990 --> 00:08:42,209
+Meg's thus is gonna limit my storage
+
+199
+00:08:42,209 --> 00:08:44,610
+quota to only three hundred Meg's which
+
+200
+00:08:44,610 --> 00:08:47,279
+I can quickly fill this makes it much
+
+201
+00:08:47,279 --> 00:08:49,679
+easier to verify that my code behaves
+
+202
+00:08:49,679 --> 00:08:51,720
+properly when it hits those quota
+
+203
+00:08:51,720 --> 00:08:54,540
+exceeded errors chrome dev tools also
+
+204
+00:08:54,540 --> 00:08:55,080
+have
+
+205
+00:08:55,080 --> 00:08:56,790
+helpful features for understanding
+
+206
+00:08:56,790 --> 00:08:58,500
+what's going on with the data that
+
+207
+00:08:58,500 --> 00:09:00,870
+you've stored in the application panel
+
+208
+00:09:00,870 --> 00:09:03,060
+the clear storage panel will show you
+
+209
+00:09:03,060 --> 00:09:04,920
+how much storage you're using for the
+
+210
+00:09:04,920 --> 00:09:07,350
+origin and makes it easy to clear some
+
+211
+00:09:07,350 --> 00:09:09,360
+or all of that data that you've got
+
+212
+00:09:09,360 --> 00:09:12,420
+stored the storage panel lets you see
+
+213
+00:09:12,420 --> 00:09:14,370
+what's in local and session storage as
+
+214
+00:09:14,370 --> 00:09:16,860
+well as what's in index DB including the
+
+215
+00:09:16,860 --> 00:09:19,560
+actual databases and even the individual
+
+216
+00:09:19,560 --> 00:09:22,620
+entries and the CAF storage panel shows
+
+217
+00:09:22,620 --> 00:09:25,680
+you what's stored in cache storage gone
+
+218
+00:09:25,680 --> 00:09:27,600
+are the days of limited storage and
+
+219
+00:09:27,600 --> 00:09:29,490
+prompting the user to store more and
+
+220
+00:09:29,490 --> 00:09:32,160
+more data using the cache storage API
+
+221
+00:09:32,160 --> 00:09:34,950
+and indexdb you can effectively store
+
+222
+00:09:34,950 --> 00:09:37,290
+all the resources that your app needs to
+
+223
+00:09:37,290 --> 00:09:39,540
+run be sure to check out my article
+
+224
+00:09:39,540 --> 00:09:41,460
+storage for the web where I've got
+
+225
+00:09:41,460 --> 00:09:44,040
+additional details and info on some of
+
+226
+00:09:44,040 --> 00:09:46,620
+them not so good storage mechanisms then
+
+227
+00:09:46,620 --> 00:09:48,510
+check out my article on persistent
+
+228
+00:09:48,510 --> 00:09:50,370
+storage to learn how you can protect
+
+229
+00:09:50,370 --> 00:09:52,980
+your data from being blown away even
+
+230
+00:09:52,980 --> 00:09:54,810
+when the device is facing storage
+
+231
+00:09:54,810 --> 00:09:56,850
+pressure see you soon
+
+232
+00:09:56,850 --> 00:10:08,400
+[Music]
+

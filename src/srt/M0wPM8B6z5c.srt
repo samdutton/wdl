@@ -1,0 +1,2249 @@
+1
+00:00:00,560 --> 00:00:03,380
+
+[Music]
+
+2
+00:00:03,380 --> 00:00:05,660
+[Applause]
+
+3
+00:00:05,660 --> 00:00:11,100
+[Music]
+
+4
+00:00:11,100 --> 00:00:14,720
+you
+
+5
+00:00:14,730 --> 00:00:17,070
+hi i'm andre today we're going to answer
+
+6
+00:00:17,070 --> 00:00:19,890
+some frequently features and
+
+7
+00:00:19,890 --> 00:00:22,320
+capabilities for installed pwas that
+
+8
+00:00:22,320 --> 00:00:25,259
+were reserved previously only to native
+
+9
+00:00:25,259 --> 00:00:28,680
+apps and to tell us more about what is
+
+10
+00:00:28,680 --> 00:00:30,750
+new and help us with some hard questions
+
+11
+00:00:30,750 --> 00:00:33,930
+we have a guest hi PJ tell us a tell us
+
+12
+00:00:33,930 --> 00:00:35,309
+about your role at Google
+
+13
+00:00:35,309 --> 00:00:37,680
+thanks so much Andrzej I'm PJ I'm a
+
+14
+00:00:37,680 --> 00:00:39,180
+product manager on the chrome web
+
+15
+00:00:39,180 --> 00:00:41,370
+platform team I work on progressive Web
+
+16
+00:00:41,370 --> 00:00:44,370
+Apps usually called pwace and basically
+
+17
+00:00:44,370 --> 00:00:46,559
+progressive web apps or modern
+
+18
+00:00:46,559 --> 00:00:48,270
+applications built using web
+
+19
+00:00:48,270 --> 00:00:50,340
+technologies that are making users
+
+20
+00:00:50,340 --> 00:00:53,550
+happier PWA is have a lot of
+
+21
+00:00:53,550 --> 00:00:56,399
+capabilities of which one is that they
+
+22
+00:00:56,399 --> 00:00:57,809
+can be installed into a user's computer
+
+23
+00:00:57,809 --> 00:01:00,030
+just the same as any other application
+
+24
+00:01:00,030 --> 00:01:02,519
+oh cool so that means we have exactly
+
+25
+00:01:02,519 --> 00:01:06,360
+the right person in the room for people
+
+26
+00:01:06,360 --> 00:01:07,770
+in the audience who are not yet familiar
+
+27
+00:01:07,770 --> 00:01:09,360
+with installable petaboys
+
+28
+00:01:09,360 --> 00:01:11,580
+can you tell us a bit more about what
+
+29
+00:01:11,580 --> 00:01:14,210
+they are and where they are available
+
+30
+00:01:14,210 --> 00:01:16,950
+being a savile is really a standout
+
+31
+00:01:16,950 --> 00:01:19,470
+feature for PW AAS because it's giving
+
+32
+00:01:19,470 --> 00:01:20,759
+web developers the ability to make
+
+33
+00:01:20,759 --> 00:01:22,709
+applications that can be started from
+
+34
+00:01:22,709 --> 00:01:25,110
+the Start menu on Windows from the
+
+35
+00:01:25,110 --> 00:01:27,390
+application folder on Mac the homescreen
+
+36
+00:01:27,390 --> 00:01:30,509
+on Android and iOS and these can really
+
+37
+00:01:30,509 --> 00:01:32,220
+look and feel like any other application
+
+38
+00:01:32,220 --> 00:01:34,860
+on the device so for applications that
+
+39
+00:01:34,860 --> 00:01:36,989
+users are using repeatedly being
+
+40
+00:01:36,989 --> 00:01:39,539
+installed means that that app is a
+
+41
+00:01:39,539 --> 00:01:41,009
+little bit more top-of-mind for the user
+
+42
+00:01:41,009 --> 00:01:43,289
+because that launching surface is is
+
+43
+00:01:43,289 --> 00:01:45,270
+immediately accessible to the user they
+
+44
+00:01:45,270 --> 00:01:46,800
+don't have to navigate anywhere in the
+
+45
+00:01:46,800 --> 00:01:48,899
+browser to get to get back to the
+
+46
+00:01:48,899 --> 00:01:50,190
+application it also means that the
+
+47
+00:01:50,190 --> 00:01:51,929
+application is showing up in the
+
+48
+00:01:51,929 --> 00:01:54,209
+activity switcher as a separate app and
+
+49
+00:01:54,209 --> 00:01:56,429
+that makes install quite attractive to
+
+50
+00:01:56,429 --> 00:01:58,920
+developers but I want to be clear that a
+
+51
+00:01:58,920 --> 00:02:01,349
+pw8 doesn't have to be installed to be a
+
+52
+00:02:01,349 --> 00:02:04,289
+PW a being installable is just one
+
+53
+00:02:04,289 --> 00:02:07,470
+property of a PW a us this question
+
+54
+00:02:07,470 --> 00:02:09,720
+about distribution so let's talk from
+
+55
+00:02:09,720 --> 00:02:11,940
+what about where PW A's are available
+
+56
+00:02:11,940 --> 00:02:14,370
+so first PW eyes can be installed
+
+57
+00:02:14,370 --> 00:02:16,980
+directly from the web browser on both
+
+58
+00:02:16,980 --> 00:02:21,840
+desktop and Android and on desktop pwace
+
+59
+00:02:21,840 --> 00:02:23,819
+can also be listed in the Windows Store
+
+60
+00:02:23,819 --> 00:02:26,760
+on Android you can find PW a powered
+
+61
+00:02:26,760 --> 00:02:28,319
+Android apps in the Play Store
+
+62
+00:02:28,319 --> 00:02:30,719
+these is a technology called a trusted
+
+63
+00:02:30,719 --> 00:02:31,500
+web activity
+
+64
+00:02:31,500 --> 00:02:34,250
+you also see pwace in the Samsung store
+
+65
+00:02:34,250 --> 00:02:36,359
+you might have heard that pwace are
+
+66
+00:02:36,359 --> 00:02:37,950
+showing up in the chroma West Play Store
+
+67
+00:02:37,950 --> 00:02:39,750
+and that's an early access feature I'm
+
+68
+00:02:39,750 --> 00:02:42,180
+really excited about so let's save a
+
+69
+00:02:42,180 --> 00:02:43,290
+little time at the end of the session to
+
+70
+00:02:43,290 --> 00:02:46,560
+talk more about that oh I'm really
+
+71
+00:02:46,560 --> 00:02:48,000
+looking forward to learning more about
+
+72
+00:02:48,000 --> 00:02:51,269
+Chrome OS Play Store but before that can
+
+73
+00:02:51,269 --> 00:02:52,920
+you tell us about the recent features
+
+74
+00:02:52,920 --> 00:02:54,689
+that you think are the most exciting for
+
+75
+00:02:54,689 --> 00:02:57,060
+developers I really wish that we had
+
+76
+00:02:57,060 --> 00:02:58,650
+time to go into everything that shipping
+
+77
+00:02:58,650 --> 00:03:00,810
+because there's a lot happening right
+
+78
+00:03:00,810 --> 00:03:02,819
+now but I'm gonna have to just pick a
+
+79
+00:03:02,819 --> 00:03:05,430
+few favorites for today so the features
+
+80
+00:03:05,430 --> 00:03:08,069
+that I'm most excited about are some of
+
+81
+00:03:08,069 --> 00:03:09,209
+the things that web developers could
+
+82
+00:03:09,209 --> 00:03:11,519
+previously only do using a hybrid
+
+83
+00:03:11,519 --> 00:03:14,220
+technology like an electron app or a
+
+84
+00:03:14,220 --> 00:03:18,060
+Cordova app and to begin here let me
+
+85
+00:03:18,060 --> 00:03:19,919
+just mention that the ability to install
+
+86
+00:03:19,919 --> 00:03:22,109
+pwace on desktop is still really new so
+
+87
+00:03:22,109 --> 00:03:23,430
+for those of you the audience who have
+
+88
+00:03:23,430 --> 00:03:25,079
+been paying close attention I might've
+
+89
+00:03:25,079 --> 00:03:26,700
+seen the announcement at i/o last year
+
+90
+00:03:26,700 --> 00:03:28,530
+this might seem like old news but I
+
+91
+00:03:28,530 --> 00:03:29,760
+think for a lot of the web development
+
+92
+00:03:29,760 --> 00:03:31,680
+community this is still a very new
+
+93
+00:03:31,680 --> 00:03:33,569
+feature and people are still getting
+
+94
+00:03:33,569 --> 00:03:36,810
+used to the super power that install can
+
+95
+00:03:36,810 --> 00:03:39,359
+happen everywhere you can now write one
+
+96
+00:03:39,359 --> 00:03:41,609
+app and have it be installable on
+
+97
+00:03:41,609 --> 00:03:44,879
+desktop on tablet on smartphones and
+
+98
+00:03:44,879 --> 00:03:47,159
+users can discover that app on your
+
+99
+00:03:47,159 --> 00:03:50,129
+website in search results in play in the
+
+100
+00:03:50,129 --> 00:03:52,409
+Windows Store in a Samsung store and
+
+101
+00:03:52,409 --> 00:03:54,799
+this is giving web developers a really
+
+102
+00:03:54,799 --> 00:03:58,680
+unprecedented reach for distribution of
+
+103
+00:03:58,680 --> 00:04:01,620
+their applications so I'm just super
+
+104
+00:04:01,620 --> 00:04:03,479
+excited that this is now possible for
+
+105
+00:04:03,479 --> 00:04:06,359
+they have install across all of these
+
+106
+00:04:06,359 --> 00:04:07,650
+different screens and through all of
+
+107
+00:04:07,650 --> 00:04:09,629
+these different channels the other
+
+108
+00:04:09,629 --> 00:04:11,310
+features that I'm most excited about are
+
+109
+00:04:11,310 --> 00:04:13,319
+all the capabilities that were
+
+110
+00:04:13,319 --> 00:04:17,699
+previously only possible with Cordova or
+
+111
+00:04:17,699 --> 00:04:20,970
+electron so for example registering a
+
+112
+00:04:20,970 --> 00:04:23,669
+file type handler for an app offering an
+
+113
+00:04:23,669 --> 00:04:25,740
+immersive mode so creating better web
+
+114
+00:04:25,740 --> 00:04:28,409
+games through an immersive mode and
+
+115
+00:04:28,409 --> 00:04:31,080
+adding context menus for shortcuts and
+
+116
+00:04:31,080 --> 00:04:34,889
+more so the file type handler would
+
+117
+00:04:34,889 --> 00:04:37,740
+allow a user to start a web-based image
+
+118
+00:04:37,740 --> 00:04:40,229
+editor by double clicking on an image in
+
+119
+00:04:40,229 --> 00:04:42,330
+their OS File Explorer
+
+120
+00:04:42,330 --> 00:04:45,300
+that's that's exciting exactly that and
+
+121
+00:04:45,300 --> 00:04:47,819
+so like with file type handling you can
+
+122
+00:04:47,819 --> 00:04:49,620
+register a file extension or mime type
+
+123
+00:04:49,620 --> 00:04:51,479
+so let's say that you've written a new
+
+124
+00:04:51,479 --> 00:04:53,460
+type of image editor and you can edit
+
+125
+00:04:53,460 --> 00:04:56,550
+jpg and pink files you could register a
+
+126
+00:04:56,550 --> 00:04:59,009
+file type extension for those file types
+
+127
+00:04:59,009 --> 00:05:01,080
+and then those files Heights will
+
+128
+00:05:01,080 --> 00:05:02,909
+automatically open and your editor if
+
+129
+00:05:02,909 --> 00:05:04,979
+the user double clicks on those a word
+
+130
+00:05:04,979 --> 00:05:06,240
+of warning file type handling isn't
+
+131
+00:05:06,240 --> 00:05:08,699
+quite here yet we expect it to go into
+
+132
+00:05:08,699 --> 00:05:11,099
+Oranje trial in chrome 85 in August and
+
+133
+00:05:11,099 --> 00:05:14,159
+to be available generally sometime in
+
+134
+00:05:14,159 --> 00:05:16,710
+the fall or winter looking forward for
+
+135
+00:05:16,710 --> 00:05:19,229
+this one to go stable tell me more about
+
+136
+00:05:19,229 --> 00:05:22,280
+the immersive mode what does that mean
+
+137
+00:05:22,280 --> 00:05:24,690
+immersive mode is a term that's just a
+
+138
+00:05:24,690 --> 00:05:26,460
+board from native it's a full-screen
+
+139
+00:05:26,460 --> 00:05:29,280
+mode and basically it removes all of the
+
+140
+00:05:29,280 --> 00:05:31,319
+operating system decorations so no
+
+141
+00:05:31,319 --> 00:05:33,960
+status bar no navigation bar and this is
+
+142
+00:05:33,960 --> 00:05:37,440
+great for games or other media basically
+
+143
+00:05:37,440 --> 00:05:38,940
+when you want to be able to address
+
+144
+00:05:38,940 --> 00:05:42,449
+every single pixel on the screen so I
+
+145
+00:05:42,449 --> 00:05:44,550
+could start a video player a full screen
+
+146
+00:05:44,550 --> 00:05:49,740
+from daikon and a home screen nice and
+
+147
+00:05:49,740 --> 00:05:53,460
+what about up short codes sure absolute
+
+148
+00:05:53,460 --> 00:05:55,440
+cuts are a way to provide quick access
+
+149
+00:05:55,440 --> 00:05:57,750
+to important functions in the app
+
+150
+00:05:57,750 --> 00:06:01,349
+directly from the app icon so for
+
+151
+00:06:01,349 --> 00:06:03,120
+example on Android you might be familiar
+
+152
+00:06:03,120 --> 00:06:06,479
+with a long press on the app icon on the
+
+153
+00:06:06,479 --> 00:06:07,949
+launch screen so or on the home screen
+
+154
+00:06:07,949 --> 00:06:10,289
+so if you were to long press on a home
+
+155
+00:06:10,289 --> 00:06:12,150
+screen icon for say a mail application
+
+156
+00:06:12,150 --> 00:06:14,490
+you might see compose functionality
+
+157
+00:06:14,490 --> 00:06:17,759
+directly in the menu that appears when
+
+158
+00:06:17,759 --> 00:06:20,789
+you long press on the mail client app
+
+159
+00:06:20,789 --> 00:06:23,310
+shortcuts also work on desktop operating
+
+160
+00:06:23,310 --> 00:06:25,919
+systems and that support will be
+
+161
+00:06:25,919 --> 00:06:29,909
+arriving in chrome 85 interesting so
+
+162
+00:06:29,909 --> 00:06:31,830
+that's like deep linking into parts off
+
+163
+00:06:31,830 --> 00:06:34,110
+might be the Blooey directly from the
+
+164
+00:06:34,110 --> 00:06:35,840
+icon that's on the home screen
+
+165
+00:06:35,840 --> 00:06:39,690
+exactly switching gears a little bit we
+
+166
+00:06:39,690 --> 00:06:41,639
+launched tracer to web activity at last
+
+167
+00:06:41,639 --> 00:06:44,159
+year's i/o and since then we have many
+
+168
+00:06:44,159 --> 00:06:45,840
+feature requests and questions from
+
+169
+00:06:45,840 --> 00:06:47,879
+developers and I wanted to go through
+
+170
+00:06:47,879 --> 00:06:49,460
+some of those with you today
+
+171
+00:06:49,460 --> 00:06:52,139
+first developers have pointed out that
+
+172
+00:06:52,139 --> 00:06:54,120
+the wait permissions work in the browser
+
+173
+00:06:54,120 --> 00:06:56,129
+any native is different
+
+174
+00:06:56,129 --> 00:06:58,649
+and that may stir users a little bit
+
+175
+00:06:58,649 --> 00:07:01,979
+confused as an example native apps gets
+
+176
+00:07:01,979 --> 00:07:03,330
+in the notification permission by
+
+177
+00:07:03,330 --> 00:07:06,089
+default while web apps need to need the
+
+178
+00:07:06,089 --> 00:07:09,119
+users to accept the permission first how
+
+179
+00:07:09,119 --> 00:07:10,889
+are how are we planning to solve those
+
+180
+00:07:10,889 --> 00:07:14,309
+inconsistencies so let's just start by
+
+181
+00:07:14,309 --> 00:07:17,849
+just sharing my perspective on the
+
+182
+00:07:17,849 --> 00:07:20,639
+philosophy here of I don't think that
+
+183
+00:07:20,639 --> 00:07:22,949
+users should need to think about what
+
+184
+00:07:22,949 --> 00:07:24,839
+technology was used to build the
+
+185
+00:07:24,839 --> 00:07:28,199
+application that they're using users
+
+186
+00:07:28,199 --> 00:07:30,300
+should really just have a job you know
+
+187
+00:07:30,300 --> 00:07:32,249
+users just have a job to get done and we
+
+188
+00:07:32,249 --> 00:07:35,219
+want to help developers help users as
+
+189
+00:07:35,219 --> 00:07:37,889
+easily as possible so wherever it makes
+
+190
+00:07:37,889 --> 00:07:40,259
+sense I think an installed web
+
+191
+00:07:40,259 --> 00:07:42,330
+application should use the operating
+
+192
+00:07:42,330 --> 00:07:46,319
+systems typical UI for things like
+
+193
+00:07:46,319 --> 00:07:48,479
+managing permissions launching and
+
+194
+00:07:48,479 --> 00:07:50,969
+switching between applications just to
+
+195
+00:07:50,969 --> 00:07:53,669
+match the users expectations for how
+
+196
+00:07:53,669 --> 00:07:55,379
+things should behave on the device that
+
+197
+00:07:55,379 --> 00:07:58,229
+they're using so we've introduced this
+
+198
+00:07:58,229 --> 00:08:01,409
+concept of notification delegation into
+
+199
+00:08:01,409 --> 00:08:03,779
+installed pwace and that means that when
+
+200
+00:08:03,779 --> 00:08:06,300
+a PW is installed it will delegate the
+
+201
+00:08:06,300 --> 00:08:08,669
+notification permission into the native
+
+202
+00:08:08,669 --> 00:08:12,209
+setting area on Android so another
+
+203
+00:08:12,209 --> 00:08:14,369
+difference between an app installed from
+
+204
+00:08:14,369 --> 00:08:17,009
+Play and a web for example is that an
+
+205
+00:08:17,009 --> 00:08:18,899
+app install from play automatically
+
+206
+00:08:18,899 --> 00:08:21,719
+receives notification permission so we
+
+207
+00:08:21,719 --> 00:08:23,819
+want that experience to be the same for
+
+208
+00:08:23,819 --> 00:08:25,529
+Android applications that were built
+
+209
+00:08:25,529 --> 00:08:28,019
+using a PWA and that's why we've
+
+210
+00:08:28,019 --> 00:08:29,879
+delegated the web notification
+
+211
+00:08:29,879 --> 00:08:32,099
+permission to the notification settings
+
+212
+00:08:32,099 --> 00:08:35,130
+panel in Android and these apps can be
+
+213
+00:08:35,130 --> 00:08:36,659
+configured to auto enroll users and
+
+214
+00:08:36,659 --> 00:08:39,240
+notifications so that they just look and
+
+215
+00:08:39,240 --> 00:08:40,860
+feel and behave exactly like any other
+
+216
+00:08:40,860 --> 00:08:42,810
+Android app and the user doesn't even
+
+217
+00:08:42,810 --> 00:08:45,029
+need to know that this application was
+
+218
+00:08:45,029 --> 00:08:47,610
+built using web technology in the future
+
+219
+00:08:47,610 --> 00:08:49,860
+we're going to be adding location to the
+
+220
+00:08:49,860 --> 00:08:52,290
+Settings panel to of course there won't
+
+221
+00:08:52,290 --> 00:08:54,209
+be any auto enrolment for location
+
+222
+00:08:54,209 --> 00:08:57,319
+because users are not Auto enrolled in
+
+223
+00:08:57,319 --> 00:09:00,839
+location before location permission on
+
+224
+00:09:00,839 --> 00:09:03,569
+in Android native apps either so we're
+
+225
+00:09:03,569 --> 00:09:05,069
+just gonna match what the behavior is
+
+226
+00:09:05,069 --> 00:09:07,860
+between you know for a native
+
+227
+00:09:07,860 --> 00:09:09,449
+application for apps that are installed
+
+228
+00:09:09,449 --> 00:09:10,140
+for
+
+229
+00:09:10,140 --> 00:09:13,440
+say the Play Store or from any other you
+
+230
+00:09:13,440 --> 00:09:15,810
+know distribution channel where the user
+
+231
+00:09:15,810 --> 00:09:17,370
+you know may or may not be aware that
+
+232
+00:09:17,370 --> 00:09:19,010
+this application is a web application
+
+233
+00:09:19,010 --> 00:09:21,089
+we're going to continue as well to
+
+234
+00:09:21,089 --> 00:09:23,190
+delegate more permissions and match OS
+
+235
+00:09:23,190 --> 00:09:25,560
+preferences over the next few releases
+
+236
+00:09:25,560 --> 00:09:27,990
+got it so this will make the experience
+
+237
+00:09:27,990 --> 00:09:30,690
+more seamless to users regardless of the
+
+238
+00:09:30,690 --> 00:09:32,670
+technology that developer used to build
+
+239
+00:09:32,670 --> 00:09:36,240
+app another frequent request developers
+
+240
+00:09:36,240 --> 00:09:38,940
+sometimes feel that when they make and
+
+241
+00:09:38,940 --> 00:09:40,800
+write an Android app using pdaboy and
+
+242
+00:09:40,800 --> 00:09:42,899
+treszura web activity they should have a
+
+243
+00:09:42,899 --> 00:09:44,910
+communication channel between the native
+
+244
+00:09:44,910 --> 00:09:47,370
+application and the web app this would
+
+245
+00:09:47,370 --> 00:09:49,500
+allow them to use native platform
+
+246
+00:09:49,500 --> 00:09:51,720
+capabilities where an equivalent on the
+
+247
+00:09:51,720 --> 00:09:54,360
+web doesn't exist already is this
+
+248
+00:09:54,360 --> 00:09:57,089
+something that is being considered I'm
+
+249
+00:09:57,089 --> 00:09:58,230
+really glad you asked this question
+
+250
+00:09:58,230 --> 00:10:00,149
+because this is exactly the kind of
+
+251
+00:10:00,149 --> 00:10:01,970
+product question that I really love and
+
+252
+00:10:01,970 --> 00:10:04,440
+I'd like to hear from our audience on
+
+253
+00:10:04,440 --> 00:10:07,350
+this one so today you can pass
+
+254
+00:10:07,350 --> 00:10:09,480
+parameters into a trusted with activity
+
+255
+00:10:09,480 --> 00:10:11,880
+when you launch it and you can use
+
+256
+00:10:11,880 --> 00:10:14,790
+intents to leave the trust of activity
+
+257
+00:10:14,790 --> 00:10:17,160
+and pass some information into another
+
+258
+00:10:17,160 --> 00:10:20,160
+activity inside of your app and we're
+
+259
+00:10:20,160 --> 00:10:22,290
+considering adding support for a message
+
+260
+00:10:22,290 --> 00:10:24,720
+bus for example we could extend post
+
+261
+00:10:24,720 --> 00:10:27,899
+message to enable a bus with this
+
+262
+00:10:27,899 --> 00:10:30,209
+functionality however I don't have use
+
+263
+00:10:30,209 --> 00:10:32,519
+cases from developers on exactly what
+
+264
+00:10:32,519 --> 00:10:35,040
+they need here most capabilities are
+
+265
+00:10:35,040 --> 00:10:36,930
+already in the web platform or are
+
+266
+00:10:36,930 --> 00:10:40,320
+planned in you know it herb plant as
+
+267
+00:10:40,320 --> 00:10:42,630
+part of the fugu effort to add web
+
+268
+00:10:42,630 --> 00:10:45,990
+capabilities to the web platform so if
+
+269
+00:10:45,990 --> 00:10:47,459
+the web platform has missing
+
+270
+00:10:47,459 --> 00:10:50,339
+capabilities I'd really rather add that
+
+271
+00:10:50,339 --> 00:10:52,410
+capability to the web then create a
+
+272
+00:10:52,410 --> 00:10:55,290
+message bus to native because if a
+
+273
+00:10:55,290 --> 00:10:56,399
+capability is part of the web platform
+
+274
+00:10:56,399 --> 00:10:58,350
+then it's gonna work everywhere and
+
+275
+00:10:58,350 --> 00:11:00,149
+developers only need to have one code
+
+276
+00:11:00,149 --> 00:11:02,880
+base which is simpler and that code base
+
+277
+00:11:02,880 --> 00:11:06,480
+will work in multiple browsers whether
+
+278
+00:11:06,480 --> 00:11:08,070
+the app is installed or not installed
+
+279
+00:11:08,070 --> 00:11:11,190
+etc so I'd like to turn this just to do
+
+280
+00:11:11,190 --> 00:11:13,709
+a question for our audience what do you
+
+281
+00:11:13,709 --> 00:11:15,810
+need to do in native code that you can't
+
+282
+00:11:15,810 --> 00:11:19,260
+do today in the web platform and other
+
+283
+00:11:19,260 --> 00:11:20,670
+things we could do to improve the web
+
+284
+00:11:20,670 --> 00:11:22,829
+platform so you wouldn't need to do that
+
+285
+00:11:22,829 --> 00:11:24,030
+in native
+
+286
+00:11:24,030 --> 00:11:25,380
+perhaps it's something that could only
+
+287
+00:11:25,380 --> 00:11:27,360
+be done in native and you really need
+
+288
+00:11:27,360 --> 00:11:29,220
+that message bus I'd really like to hear
+
+289
+00:11:29,220 --> 00:11:31,620
+from you about this cool I'm also
+
+290
+00:11:31,620 --> 00:11:33,300
+looking forward to hear from folks on
+
+291
+00:11:33,300 --> 00:11:35,760
+Twitter or if you're watching this live
+
+292
+00:11:35,760 --> 00:11:39,300
+on the live chat many developers have a
+
+293
+00:11:39,300 --> 00:11:41,550
+native application and prompting users
+
+294
+00:11:41,550 --> 00:11:43,710
+who install a PDA in the in the browser
+
+295
+00:11:43,710 --> 00:11:45,360
+when they already have the native app
+
+296
+00:11:45,360 --> 00:11:48,660
+installed can lead some confusion is
+
+297
+00:11:48,660 --> 00:11:50,520
+there a way to prevent the prompts from
+
+298
+00:11:50,520 --> 00:11:52,560
+showing when the native app is already
+
+299
+00:11:52,560 --> 00:11:55,680
+installed so that's a great question
+
+300
+00:11:55,680 --> 00:11:57,570
+it's also probably one of the the top
+
+301
+00:11:57,570 --> 00:11:59,760
+concerns that I hear from teams that are
+
+302
+00:11:59,760 --> 00:12:01,650
+implementing a progressive web app it's
+
+303
+00:12:01,650 --> 00:12:03,360
+it's called channel conflict and it
+
+304
+00:12:03,360 --> 00:12:05,630
+arises where you're not sure which
+
+305
+00:12:05,630 --> 00:12:07,950
+experience is going to be best for the
+
+306
+00:12:07,950 --> 00:12:10,500
+user so I think the most important thing
+
+307
+00:12:10,500 --> 00:12:13,110
+for developers to know is that you do
+
+308
+00:12:13,110 --> 00:12:15,390
+have full control over the promotion a
+
+309
+00:12:15,390 --> 00:12:17,970
+PW install so you know you don't need to
+
+310
+00:12:17,970 --> 00:12:21,150
+worry about the browser promoting your
+
+311
+00:12:21,150 --> 00:12:22,920
+PW a if you don't want it to there are
+
+312
+00:12:22,920 --> 00:12:25,620
+ways you can prevent the browser from
+
+313
+00:12:25,620 --> 00:12:27,840
+promoting the installation of your PW a
+
+314
+00:12:27,840 --> 00:12:30,030
+if for example you have a native app so
+
+315
+00:12:30,030 --> 00:12:31,440
+let's let's talk about how that works
+
+316
+00:12:31,440 --> 00:12:35,130
+first in the web app manifest there's a
+
+317
+00:12:35,130 --> 00:12:36,330
+couple of fields you should know about
+
+318
+00:12:36,330 --> 00:12:38,250
+one is called the related applications
+
+319
+00:12:38,250 --> 00:12:39,510
+field and this is where you can list
+
+320
+00:12:39,510 --> 00:12:42,540
+native apps for Android and iOS and then
+
+321
+00:12:42,540 --> 00:12:44,100
+there's another boolean field called
+
+322
+00:12:44,100 --> 00:12:46,110
+prefer related apps and if this is set
+
+323
+00:12:46,110 --> 00:12:48,060
+to true the browser's not going to
+
+324
+00:12:48,060 --> 00:12:50,870
+promote the install of your PW a
+
+325
+00:12:50,870 --> 00:12:53,250
+secondly there's an event that fires
+
+326
+00:12:53,250 --> 00:12:55,530
+when a PW a passes the install ability
+
+327
+00:12:55,530 --> 00:12:57,930
+check in the browser and when this
+
+328
+00:12:57,930 --> 00:13:00,750
+happens developers can call a prevent
+
+329
+00:13:00,750 --> 00:13:03,060
+default method and that's gonna block
+
+330
+00:13:03,060 --> 00:13:05,880
+any promotion of the PW a install in
+
+331
+00:13:05,880 --> 00:13:08,970
+browser UI finally there's a new
+
+332
+00:13:08,970 --> 00:13:11,070
+JavaScript API just landed earlier this
+
+333
+00:13:11,070 --> 00:13:12,960
+year called get installed related apps
+
+334
+00:13:12,960 --> 00:13:15,690
+and this is gonna let developers inspect
+
+335
+00:13:15,690 --> 00:13:18,780
+if the user has native apps installed on
+
+336
+00:13:18,780 --> 00:13:20,700
+the device that are associated with the
+
+337
+00:13:20,700 --> 00:13:22,320
+origin that the user is currently on and
+
+338
+00:13:22,320 --> 00:13:24,660
+just to be clear this isn't gonna let
+
+339
+00:13:24,660 --> 00:13:26,490
+you see any app that the user happens to
+
+340
+00:13:26,490 --> 00:13:28,470
+have installed in the device the app has
+
+341
+00:13:28,470 --> 00:13:30,150
+to be associated with the origin that
+
+342
+00:13:30,150 --> 00:13:34,140
+the user is on this API does allow for a
+
+343
+00:13:34,140 --> 00:13:36,450
+lot of programmatic flexibility for
+
+344
+00:13:36,450 --> 00:13:37,490
+developers so it means you
+
+345
+00:13:37,490 --> 00:13:39,740
+you have full control which experience
+
+346
+00:13:39,740 --> 00:13:41,990
+do you want to promote to the user you
+
+347
+00:13:41,990 --> 00:13:45,350
+could use for example user behavior you
+
+348
+00:13:45,350 --> 00:13:47,270
+could provide the user with preferences
+
+349
+00:13:47,270 --> 00:13:50,270
+in your HTML it's really up to you how
+
+350
+00:13:50,270 --> 00:13:52,880
+you want to use this control but it does
+
+351
+00:13:52,880 --> 00:13:54,470
+give you as the developer a lot of
+
+352
+00:13:54,470 --> 00:13:56,690
+control over what you promote to the
+
+353
+00:13:56,690 --> 00:14:01,610
+user and when it happens so this means I
+
+354
+00:14:01,610 --> 00:14:03,350
+can use this API to check my
+
+355
+00:14:03,350 --> 00:14:05,390
+notifications installed and make
+
+356
+00:14:05,390 --> 00:14:07,430
+decisions like showing that sounds crane
+
+357
+00:14:07,430 --> 00:14:10,820
+prompt or not what if my native app is
+
+358
+00:14:10,820 --> 00:14:12,620
+using trusted web activity willed is a
+
+359
+00:14:12,620 --> 00:14:16,070
+pee I use to return so yes absolutely
+
+360
+00:14:16,070 --> 00:14:17,839
+this does mean that you can use the API
+
+361
+00:14:17,839 --> 00:14:20,450
+to check your native app is installed at
+
+362
+00:14:20,450 --> 00:14:22,250
+Russell web activity is really just an
+
+363
+00:14:22,250 --> 00:14:25,100
+Android app so it will show up just like
+
+364
+00:14:25,100 --> 00:14:27,800
+any other Android app and to say this
+
+365
+00:14:27,800 --> 00:14:30,709
+API will return it it will also return
+
+366
+00:14:30,709 --> 00:14:34,040
+if the if the app is a it has been
+
+367
+00:14:34,040 --> 00:14:35,720
+installed from the web browser so a PWA
+
+368
+00:14:35,720 --> 00:14:36,950
+installed from the web browser will also
+
+369
+00:14:36,950 --> 00:14:38,600
+get returned by kit installed related
+
+370
+00:14:38,600 --> 00:14:42,950
+apps cool on the developer experiences
+
+371
+00:14:42,950 --> 00:14:44,959
+side we've been working on tools like
+
+372
+00:14:44,959 --> 00:14:45,800
+bubble wrap
+
+373
+00:14:45,800 --> 00:14:47,870
+to help developers view their project to
+
+374
+00:14:47,870 --> 00:14:49,790
+use interest of web activity but many
+
+375
+00:14:49,790 --> 00:14:51,560
+developers is you wonder if it wouldn't
+
+376
+00:14:51,560 --> 00:14:53,390
+be easier if you could just copy paste
+
+377
+00:14:53,390 --> 00:14:55,459
+in your own to the Play Store that's a
+
+378
+00:14:55,459 --> 00:14:56,420
+great question
+
+379
+00:14:56,420 --> 00:14:57,950
+so the reason why we've been focusing
+
+380
+00:14:57,950 --> 00:15:00,320
+our efforts on making this easier for
+
+381
+00:15:00,320 --> 00:15:03,860
+developers on bubble wrap is that we
+
+382
+00:15:03,860 --> 00:15:06,740
+could create a much more powerful much
+
+383
+00:15:06,740 --> 00:15:10,630
+more flexible system for developers for
+
+384
+00:15:10,630 --> 00:15:13,579
+building Android apps using a
+
+385
+00:15:13,579 --> 00:15:15,709
+command-line utility like bubble wrap
+
+386
+00:15:15,709 --> 00:15:17,649
+then what we could do in a web interface
+
+387
+00:15:17,649 --> 00:15:21,140
+so app stores are really a different
+
+388
+00:15:21,140 --> 00:15:22,940
+ecosystem and they have different
+
+389
+00:15:22,940 --> 00:15:26,240
+requirements and policies and we believe
+
+390
+00:15:26,240 --> 00:15:28,130
+that developers should have powerful
+
+391
+00:15:28,130 --> 00:15:30,440
+tools that they need to rethink the
+
+392
+00:15:30,440 --> 00:15:32,360
+experience of their applications for
+
+393
+00:15:32,360 --> 00:15:34,399
+this environment and we also want to
+
+394
+00:15:34,399 --> 00:15:36,709
+avoid giving developers the perception
+
+395
+00:15:36,709 --> 00:15:38,120
+that they could just drop a website into
+
+396
+00:15:38,120 --> 00:15:39,470
+the store without thinking about that
+
+397
+00:15:39,470 --> 00:15:41,930
+experience so there are all kinds of
+
+398
+00:15:41,930 --> 00:15:43,430
+design decisions that should go into
+
+399
+00:15:43,430 --> 00:15:45,529
+building an Android app whether or not
+
+400
+00:15:45,529 --> 00:15:48,320
+it's a PWA powering that up for example
+
+401
+00:15:48,320 --> 00:15:49,610
+you know what's the splash screen it'll
+
+402
+00:15:49,610 --> 00:15:51,379
+look like when you're gonna hide it when
+
+403
+00:15:51,379 --> 00:15:54,439
+to show content didi notifications there
+
+404
+00:15:54,439 --> 00:15:55,489
+wouldn't be that's this kind of
+
+405
+00:15:55,489 --> 00:15:57,259
+flexibility for configuring these
+
+406
+00:15:57,259 --> 00:16:00,079
+options with a web interface that being
+
+407
+00:16:00,079 --> 00:16:01,789
+said we wanted to be as easy as possible
+
+408
+00:16:01,789 --> 00:16:04,549
+so we've worked to streamline it to the
+
+409
+00:16:04,549 --> 00:16:06,649
+maximum extent that we can with bubble
+
+410
+00:16:06,649 --> 00:16:10,489
+wrap and make it a powerful but flexible
+
+411
+00:16:10,489 --> 00:16:13,159
+and easy-to-use developer tool what
+
+412
+00:16:13,159 --> 00:16:16,159
+about police or policies do Android apps
+
+413
+00:16:16,159 --> 00:16:18,229
+that use PW inside the tricity web
+
+414
+00:16:18,229 --> 00:16:20,239
+activity Stu needs to comply to those
+
+415
+00:16:20,239 --> 00:16:22,039
+policies I think you said the magic word
+
+416
+00:16:22,039 --> 00:16:23,959
+there which is Android app it doesn't
+
+417
+00:16:23,959 --> 00:16:25,519
+matter how your Android app is built
+
+418
+00:16:25,519 --> 00:16:28,339
+whether it's built using PWA s and web
+
+419
+00:16:28,339 --> 00:16:29,959
+technology or whether it's built using
+
+420
+00:16:29,959 --> 00:16:33,109
+Java or : play policies apply to all
+
+421
+00:16:33,109 --> 00:16:34,789
+Android apps distributed in the Play
+
+422
+00:16:34,789 --> 00:16:36,949
+Store and therefore they also apply to
+
+423
+00:16:36,949 --> 00:16:39,199
+Android apps built using progressive web
+
+424
+00:16:39,199 --> 00:16:40,549
+apps gotcha
+
+425
+00:16:40,549 --> 00:16:43,759
+so same same store policies apply what
+
+426
+00:16:43,759 --> 00:16:45,769
+about applications designed for children
+
+427
+00:16:45,769 --> 00:16:48,199
+can developers use web technology those
+
+428
+00:16:48,199 --> 00:16:48,499
+apps
+
+429
+00:16:48,499 --> 00:16:51,079
+if the target audience for your
+
+430
+00:16:51,079 --> 00:16:53,329
+application is children you need to
+
+431
+00:16:53,329 --> 00:16:55,669
+comply with the Play family policy
+
+432
+00:16:55,669 --> 00:16:58,100
+requirements and these requirements are
+
+433
+00:16:58,100 --> 00:17:00,499
+intended to help keep minors safe from
+
+434
+00:17:00,499 --> 00:17:02,389
+inappropriate content unfortunately
+
+435
+00:17:02,389 --> 00:17:04,970
+that's really difficult for the review
+
+436
+00:17:04,970 --> 00:17:07,549
+teams to evaluate with web apps where
+
+437
+00:17:07,549 --> 00:17:10,220
+the content can change and not only can
+
+438
+00:17:10,220 --> 00:17:12,230
+the first party content change but it's
+
+439
+00:17:12,230 --> 00:17:13,909
+really easy to include third party
+
+440
+00:17:13,909 --> 00:17:15,230
+content inside of a web application
+
+441
+00:17:15,230 --> 00:17:17,779
+which can be unintentionally
+
+442
+00:17:17,779 --> 00:17:19,579
+inappropriate let's imagine that you
+
+443
+00:17:19,579 --> 00:17:21,589
+were using you know an advertising
+
+444
+00:17:21,589 --> 00:17:23,419
+network or something else where you're
+
+445
+00:17:23,419 --> 00:17:25,250
+loading content in from a third party
+
+446
+00:17:25,250 --> 00:17:26,659
+site you might not be able to verify
+
+447
+00:17:26,659 --> 00:17:29,149
+yourself for sure whether or not that
+
+448
+00:17:29,149 --> 00:17:30,559
+content is always going to be
+
+449
+00:17:30,559 --> 00:17:33,409
+appropriate so for the time being it's
+
+450
+00:17:33,409 --> 00:17:36,080
+not possible to build Android apps using
+
+451
+00:17:36,080 --> 00:17:38,330
+trusted web activity that comply with
+
+452
+00:17:38,330 --> 00:17:40,460
+Play family policy we are working on
+
+453
+00:17:40,460 --> 00:17:42,139
+ways to make this possible in the future
+
+454
+00:17:42,139 --> 00:17:44,899
+got it so it seems PWAs are crossing
+
+455
+00:17:44,899 --> 00:17:46,580
+over ecosystems and developers need to
+
+456
+00:17:46,580 --> 00:17:49,100
+adjust some of their expectations from
+
+457
+00:17:49,100 --> 00:17:51,919
+that developers using trusted web
+
+458
+00:17:51,919 --> 00:17:54,169
+tivities are also expected to fulfill
+
+459
+00:17:54,169 --> 00:17:56,509
+your quality criteria is that wide that
+
+460
+00:17:56,509 --> 00:18:00,169
+criteria exists yeah nobody wants an app
+
+461
+00:18:00,169 --> 00:18:01,730
+store that's gonna be cluttered with
+
+462
+00:18:01,730 --> 00:18:04,369
+low-quality apps and we also want
+
+463
+00:18:04,369 --> 00:18:05,149
+developers to
+
+464
+00:18:05,149 --> 00:18:06,649
+succeed with their apps in the Play
+
+465
+00:18:06,649 --> 00:18:08,119
+Store keep in mind something that's
+
+466
+00:18:08,119 --> 00:18:09,320
+really different about distributing
+
+467
+00:18:09,320 --> 00:18:12,289
+through the Play Store than it is to you
+
+468
+00:18:12,289 --> 00:18:14,059
+know just sort of build a PWA on your
+
+469
+00:18:14,059 --> 00:18:16,639
+own site is that these apps have user
+
+470
+00:18:16,639 --> 00:18:19,190
+ratings and reviews and we want to make
+
+471
+00:18:19,190 --> 00:18:20,570
+sure that developers are set up for
+
+472
+00:18:20,570 --> 00:18:23,359
+success to get good ratings and reviews
+
+473
+00:18:23,359 --> 00:18:25,869
+on an aunt for their app so at a minimum
+
+474
+00:18:25,869 --> 00:18:28,789
+users expect apps that they install from
+
+475
+00:18:28,789 --> 00:18:30,979
+the Play Store to look and feel app like
+
+476
+00:18:30,979 --> 00:18:34,129
+to be fast to work offline and that's
+
+477
+00:18:34,129 --> 00:18:36,379
+why we have quality criteria for pwe
+
+478
+00:18:36,379 --> 00:18:38,149
+than in the App Store and this is
+
+479
+00:18:38,149 --> 00:18:39,649
+exactly what progressive web app
+
+480
+00:18:39,649 --> 00:18:42,559
+criteria has been intended to do from
+
+481
+00:18:42,559 --> 00:18:44,929
+the very beginning so first I want to
+
+482
+00:18:44,929 --> 00:18:46,789
+share that there are certain types of
+
+483
+00:18:46,789 --> 00:18:47,899
+events that can happen to a web
+
+484
+00:18:47,899 --> 00:18:49,609
+application that are effectively a crash
+
+485
+00:18:49,609 --> 00:18:52,429
+and these are things like you know a 404
+
+486
+00:18:52,429 --> 00:18:55,129
+happening these are things like failing
+
+487
+00:18:55,129 --> 00:18:57,049
+an offline check when the user goes
+
+488
+00:18:57,049 --> 00:18:59,960
+offline and returning to chromed I know
+
+489
+00:18:59,960 --> 00:19:03,349
+this is effectively a crash failing the
+
+490
+00:19:03,349 --> 00:19:05,210
+digital asset links verification which
+
+491
+00:19:05,210 --> 00:19:06,499
+is something you need to do with a
+
+492
+00:19:06,499 --> 00:19:08,269
+trusted web activity to verify that you
+
+493
+00:19:08,269 --> 00:19:10,820
+are the owner of the content and the
+
+494
+00:19:10,820 --> 00:19:11,899
+owner of the application in the app
+
+495
+00:19:11,899 --> 00:19:14,089
+store so if any of these things happen
+
+496
+00:19:14,089 --> 00:19:17,960
+starting in chrome 86 in October we are
+
+497
+00:19:17,960 --> 00:19:20,059
+going to be mapping those crashes into
+
+498
+00:19:20,059 --> 00:19:22,940
+Android vitals crash events and you will
+
+499
+00:19:22,940 --> 00:19:25,700
+see Android apps begin to crash if you
+
+500
+00:19:25,700 --> 00:19:27,710
+if users are running into 404s in your
+
+501
+00:19:27,710 --> 00:19:29,299
+application etc so that's just something
+
+502
+00:19:29,299 --> 00:19:30,499
+that developers should be aware of and
+
+503
+00:19:30,499 --> 00:19:32,839
+we're we're making another announcement
+
+504
+00:19:32,839 --> 00:19:34,969
+with more details about this the second
+
+505
+00:19:34,969 --> 00:19:38,330
+thing is on the performance side right
+
+506
+00:19:38,330 --> 00:19:40,999
+now don't have a date to announce with
+
+507
+00:19:40,999 --> 00:19:42,919
+respect to enforcement of enforce of
+
+508
+00:19:42,919 --> 00:19:44,899
+performance but developers should be
+
+509
+00:19:44,899 --> 00:19:47,690
+aware that the criteria is a full batch
+
+510
+00:19:47,690 --> 00:19:50,479
+PWA and a light has performance score of
+
+511
+00:19:50,479 --> 00:19:51,830
+80 or better and you can use
+
+512
+00:19:51,830 --> 00:19:54,289
+webpagetest.org slash easy or PageSpeed
+
+513
+00:19:54,289 --> 00:19:56,690
+insights against your start URL as the
+
+514
+00:19:56,690 --> 00:19:58,580
+fastest way to check whether or not
+
+515
+00:19:58,580 --> 00:20:00,169
+you're meeting this criteria because
+
+516
+00:20:00,169 --> 00:20:03,080
+having the app launched quickly is an
+
+517
+00:20:03,080 --> 00:20:04,759
+essential part of having a great
+
+518
+00:20:04,759 --> 00:20:07,429
+application experience for your users we
+
+519
+00:20:07,429 --> 00:20:09,440
+will be providing a lot of notice as to
+
+520
+00:20:09,440 --> 00:20:11,359
+when enforcement will begin it will be
+
+521
+00:20:11,359 --> 00:20:14,059
+in 2021 it won't be in 2020 for the
+
+522
+00:20:14,059 --> 00:20:17,119
+performance and full batch PWA scores so
+
+523
+00:20:17,119 --> 00:20:17,740
+Xbox
+
+524
+00:20:17,740 --> 00:20:19,630
+hear more about this later in the year
+
+525
+00:20:19,630 --> 00:20:23,620
+so less one tutor has recently launched
+
+526
+00:20:23,620 --> 00:20:24,340
+their pdaboy
+
+527
+00:20:24,340 --> 00:20:26,679
+on the chrome s Playstore which was
+
+528
+00:20:26,679 --> 00:20:29,080
+quite exciting can you tell us more
+
+529
+00:20:29,080 --> 00:20:31,540
+about how they did how they did it and
+
+530
+00:20:31,540 --> 00:20:33,880
+when it is this is becoming january
+
+531
+00:20:33,880 --> 00:20:36,400
+available i'm really excited about this
+
+532
+00:20:36,400 --> 00:20:38,230
+right now this is an early access
+
+533
+00:20:38,230 --> 00:20:40,330
+program and it requires manual
+
+534
+00:20:40,330 --> 00:20:41,470
+intervention from our team members so
+
+535
+00:20:41,470 --> 00:20:42,880
+it's not something that we can extend to
+
+536
+00:20:42,880 --> 00:20:44,920
+everyone in the community but we're
+
+537
+00:20:44,920 --> 00:20:46,480
+working on getting it to general
+
+538
+00:20:46,480 --> 00:20:48,850
+availability and when that rolls out
+
+539
+00:20:48,850 --> 00:20:50,710
+it'll be possible for everyone to just
+
+540
+00:20:50,710 --> 00:20:52,900
+do this themselves I'll give you a hint
+
+541
+00:20:52,900 --> 00:20:54,790
+it uses trusted web activity so if
+
+542
+00:20:54,790 --> 00:20:56,020
+you're building a great trusted web
+
+543
+00:20:56,020 --> 00:20:56,559
+activity
+
+544
+00:20:56,559 --> 00:21:00,400
+it'll be really easy to make your
+
+545
+00:21:00,400 --> 00:21:01,809
+progressive web app available in the
+
+546
+00:21:01,809 --> 00:21:04,300
+Chrome West Play Store in the future and
+
+547
+00:21:04,300 --> 00:21:06,130
+I hope we could share more about this in
+
+548
+00:21:06,130 --> 00:21:08,770
+the second half of the year so what are
+
+549
+00:21:08,770 --> 00:21:10,330
+soda web activities are coming to Chrome
+
+550
+00:21:10,330 --> 00:21:13,870
+OS nice well I think we covers a lot I
+
+551
+00:21:13,870 --> 00:21:16,420
+wish we had more time to discuss our
+
+552
+00:21:16,420 --> 00:21:18,820
+YouTube and though so for those of you
+
+553
+00:21:18,820 --> 00:21:21,010
+who are watching please do reach out to
+
+554
+00:21:21,010 --> 00:21:22,120
+us or Twitter if you want to give
+
+555
+00:21:22,120 --> 00:21:24,250
+feedback and if you're joining watching
+
+556
+00:21:24,250 --> 00:21:26,020
+this live please join us on the live
+
+557
+00:21:26,020 --> 00:21:28,059
+chat we'll see you there and thanks so
+
+558
+00:21:28,059 --> 00:21:28,780
+much for watching
+
+559
+00:21:28,780 --> 00:21:30,710
+yes thanks for watching
+
+560
+00:21:30,710 --> 00:21:37,230
+[Music]
+
+561
+00:21:37,230 --> 00:21:41,950
+[Applause]
+
+562
+00:21:41,960 --> 00:21:44,880
+[Music]
+

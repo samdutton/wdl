@@ -1,0 +1,677 @@
+1
+00:00:00,560 --> 00:00:03,410
+
+[Music]
+
+2
+00:00:03,410 --> 00:00:06,150
+[Applause]
+
+3
+00:00:06,150 --> 00:00:12,720
+[Music]
+
+4
+00:00:12,730 --> 00:00:15,849
+hi I'm Damian a well because he's thing
+
+5
+00:00:15,849 --> 00:00:18,550
+consultant at Google in this talk you
+
+6
+00:00:18,550 --> 00:00:19,810
+will learn how to define an install
+
+7
+00:00:19,810 --> 00:00:21,550
+strategy across all your mobile
+
+8
+00:00:21,550 --> 00:00:24,250
+experiences letting your users install
+
+9
+00:00:24,250 --> 00:00:26,380
+your app is one of the best ways to keep
+
+10
+00:00:26,380 --> 00:00:29,230
+them engaged today you can achieve that
+
+11
+00:00:29,230 --> 00:00:31,779
+in different ways let's start with
+
+12
+00:00:31,779 --> 00:00:34,149
+native app installs if you have a native
+
+13
+00:00:34,149 --> 00:00:35,710
+application you might think that this
+
+14
+00:00:35,710 --> 00:00:37,930
+might be the best platform to promote to
+
+15
+00:00:37,930 --> 00:00:40,930
+all your users and for some of them this
+
+16
+00:00:40,930 --> 00:00:43,840
+might be true but for some users native
+
+17
+00:00:43,840 --> 00:00:46,060
+apps can have some disadvantages too
+
+18
+00:00:46,060 --> 00:00:48,460
+the most common one is storage
+
+19
+00:00:48,460 --> 00:00:51,070
+constraints making space for a new app
+
+20
+00:00:51,070 --> 00:00:53,490
+may mean removing valuable content
+
+21
+00:00:53,490 --> 00:00:56,380
+freeing up storage is also the number
+
+22
+00:00:56,380 --> 00:00:58,690
+one reason users remove apps from their
+
+23
+00:00:58,690 --> 00:01:02,020
+devices there's also the issue of
+
+24
+00:01:02,020 --> 00:01:04,809
+available bandwidth especially for users
+
+25
+00:01:04,809 --> 00:01:07,149
+on slow connections and expensive data
+
+26
+00:01:07,149 --> 00:01:11,110
+plans finally moving to a store creates
+
+27
+00:01:11,110 --> 00:01:13,329
+additional friction and delays a user
+
+28
+00:01:13,329 --> 00:01:15,189
+action that could be performed directly
+
+29
+00:01:15,189 --> 00:01:18,009
+in the web a great alternative to this
+
+30
+00:01:18,009 --> 00:01:20,109
+is allowing users to install your
+
+31
+00:01:20,109 --> 00:01:22,060
+progress he web app from the browser
+
+32
+00:01:22,060 --> 00:01:24,549
+through another home screen prompt you
+
+33
+00:01:24,549 --> 00:01:26,530
+can also upload your PWA to the play
+
+34
+00:01:26,530 --> 00:01:29,350
+store using trusted web activity in this
+
+35
+00:01:29,350 --> 00:01:31,840
+example came to under a real estate
+
+36
+00:01:31,840 --> 00:01:34,509
+company from Brazil was able to reuse
+
+37
+00:01:34,509 --> 00:01:37,780
+the same codebase in the world and the
+
+38
+00:01:37,780 --> 00:01:39,670
+Play Store while offering a great
+
+39
+00:01:39,670 --> 00:01:42,429
+experience to users let's take a look at
+
+40
+00:01:42,429 --> 00:01:45,189
+another example all your rooms is one of
+
+41
+00:01:45,189 --> 00:01:46,929
+the largest hospitality companies in
+
+42
+00:01:46,929 --> 00:01:49,060
+India they have a very large user base
+
+43
+00:01:49,060 --> 00:01:51,459
+coming from a variety of devices and
+
+44
+00:01:51,459 --> 00:01:53,859
+networks they have built different
+
+45
+00:01:53,859 --> 00:01:56,170
+versions of their mobile experience to
+
+46
+00:01:56,170 --> 00:01:58,529
+satisfy the needs of all their users
+
+47
+00:01:58,529 --> 00:02:01,209
+first I created a native application for
+
+48
+00:02:01,209 --> 00:02:02,920
+the Play Store for the most
+
+49
+00:02:02,920 --> 00:02:05,109
+sophisticated users this could be the
+
+50
+00:02:05,109 --> 00:02:07,569
+best choice all you light is a
+
+51
+00:02:07,569 --> 00:02:09,819
+progressive web app uploaded to Play
+
+52
+00:02:09,819 --> 00:02:12,190
+Store be a trusted web activity it
+
+53
+00:02:12,190 --> 00:02:13,930
+provides the same functionality of the
+
+54
+00:02:13,930 --> 00:02:17,170
+nav bar well occupying only 7% of the
+
+55
+00:02:17,170 --> 00:02:20,080
+space finally for users that visit the
+
+56
+00:02:20,080 --> 00:02:22,420
+site directly by typing the URL or
+
+57
+00:02:22,420 --> 00:02:25,239
+clicking on a link or offers the chance
+
+58
+00:02:25,239 --> 00:02:26,560
+of installing the pedo
+
+59
+00:02:26,560 --> 00:02:29,290
+directly from the home screen having all
+
+60
+00:02:29,290 --> 00:02:32,080
+these ways to achieve app installs is
+
+61
+00:02:32,080 --> 00:02:35,020
+great but how can you combine all these
+
+62
+00:02:35,020 --> 00:02:37,510
+offerings to increase installation rates
+
+63
+00:02:37,510 --> 00:02:39,970
+well I Bodi make your apps compete with
+
+64
+00:02:39,970 --> 00:02:42,160
+each other let's discuss some strategies
+
+65
+00:02:42,160 --> 00:02:44,130
+to combine different install offerings
+
+66
+00:02:44,130 --> 00:02:46,420
+the first strategy is to show the
+
+67
+00:02:46,420 --> 00:02:48,340
+different options in the same screen
+
+68
+00:02:48,340 --> 00:02:50,739
+this is a simple approach that might
+
+69
+00:02:50,739 --> 00:02:53,410
+just work for many users the challenge
+
+70
+00:02:53,410 --> 00:02:55,569
+is to be able to communicate the value
+
+71
+00:02:55,569 --> 00:02:58,060
+proposition to distinguish clearly one
+
+72
+00:02:58,060 --> 00:03:00,310
+from the other but instead of delegating
+
+73
+00:03:00,310 --> 00:03:02,860
+the choice completely to users we can
+
+74
+00:03:02,860 --> 00:03:05,680
+make the life easier the idea of the
+
+75
+00:03:05,680 --> 00:03:07,510
+following strategies is to make some
+
+76
+00:03:07,510 --> 00:03:11,049
+inferences for example by tracking users
+
+77
+00:03:11,049 --> 00:03:14,530
+behavior and device characteristics we
+
+78
+00:03:14,530 --> 00:03:18,280
+call this heuristic based approaches the
+
+79
+00:03:18,280 --> 00:03:20,650
+first one is web installed as fallback
+
+80
+00:03:20,650 --> 00:03:23,319
+in this strategy you can start showing
+
+81
+00:03:23,319 --> 00:03:25,569
+the native app installed prompt if the
+
+82
+00:03:25,569 --> 00:03:27,940
+user doesn't install the app and keeps
+
+83
+00:03:27,940 --> 00:03:30,280
+visiting to your website chances are
+
+84
+00:03:30,280 --> 00:03:32,250
+that the web is their platform of choice
+
+85
+00:03:32,250 --> 00:03:34,540
+after a while you can start promoting
+
+86
+00:03:34,540 --> 00:03:37,480
+your pillow EA to these users this
+
+87
+00:03:37,480 --> 00:03:39,600
+strategy can be implemented very easily
+
+88
+00:03:39,600 --> 00:03:42,700
+for example by using cookies to drag
+
+89
+00:03:42,700 --> 00:03:45,489
+user behavior the group of users that
+
+90
+00:03:45,489 --> 00:03:47,140
+this means the abun huh
+
+91
+00:03:47,140 --> 00:03:48,880
+keep coming several times to the side
+
+92
+00:03:48,880 --> 00:03:51,040
+might be good candidates for a web
+
+93
+00:03:51,040 --> 00:03:53,470
+install offering but before showing the
+
+94
+00:03:53,470 --> 00:03:55,989
+web install call-to-action there are two
+
+95
+00:03:55,989 --> 00:03:59,170
+more things to take into account the
+
+96
+00:03:59,170 --> 00:04:01,209
+first one make sure that the user hasn't
+
+97
+00:04:01,209 --> 00:04:03,489
+already installed your native app or
+
+98
+00:04:03,489 --> 00:04:06,880
+your PDA by other means the Getty store
+
+99
+00:04:06,880 --> 00:04:10,380
+related apps API can help you check that
+
+100
+00:04:10,380 --> 00:04:13,420
+the second is actually a UX best
+
+101
+00:04:13,420 --> 00:04:16,810
+practice to maximize the opt-in rate for
+
+102
+00:04:16,810 --> 00:04:19,000
+your web install prompts you might want
+
+103
+00:04:19,000 --> 00:04:22,030
+to use the double permission pattern in
+
+104
+00:04:22,030 --> 00:04:25,120
+this example shows AG web install icon
+
+105
+00:04:25,120 --> 00:04:27,700
+after capturing the before installed
+
+106
+00:04:27,700 --> 00:04:30,130
+prompt event when the user clicks on it
+
+107
+00:04:30,130 --> 00:04:32,229
+they trigger the standard Add to Home
+
+108
+00:04:32,229 --> 00:04:34,389
+screen prompt if you want to learn about
+
+109
+00:04:34,389 --> 00:04:36,789
+UX patterns for web permissions like
+
+110
+00:04:36,789 --> 00:04:38,129
+this one check
+
+111
+00:04:38,129 --> 00:04:40,860
+Deshea stock safe permissions for the
+
+112
+00:04:40,860 --> 00:04:44,669
+capable web at crontab Sammy 2019 let's
+
+113
+00:04:44,669 --> 00:04:46,610
+move now to the second strategy
+
+114
+00:04:46,610 --> 00:04:49,349
+intuitively users on slow networks or
+
+115
+00:04:49,349 --> 00:04:51,659
+low-end devices might be more inclined
+
+116
+00:04:51,659 --> 00:04:53,099
+to download light apps
+
+117
+00:04:53,099 --> 00:04:56,279
+therefore if it's possible to identify a
+
+118
+00:04:56,279 --> 00:04:59,129
+user's device one could prioritize the
+
+119
+00:04:59,129 --> 00:05:01,949
+light up over the heavier native app
+
+120
+00:05:01,949 --> 00:05:04,259
+installed version you can implement this
+
+121
+00:05:04,259 --> 00:05:06,539
+by writing a function checking for
+
+122
+00:05:06,539 --> 00:05:08,729
+device characteristics to decide which
+
+123
+00:05:08,729 --> 00:05:11,189
+prompt to show if it's a low-end device
+
+124
+00:05:11,189 --> 00:05:14,580
+a light up if it's a high-end device you
+
+125
+00:05:14,580 --> 00:05:16,919
+can offer the core native app inside the
+
+126
+00:05:16,919 --> 00:05:19,080
+function the by signals can be obtained
+
+127
+00:05:19,080 --> 00:05:21,779
+in two ways the first one is by using
+
+128
+00:05:21,779 --> 00:05:24,509
+javascript api s-- like device memory
+
+129
+00:05:24,509 --> 00:05:27,059
+hard work on currency or the network
+
+130
+00:05:27,059 --> 00:05:29,639
+information API the second one is by
+
+131
+00:05:29,639 --> 00:05:32,189
+using client hints which can be inferred
+
+132
+00:05:32,189 --> 00:05:35,009
+from the header of the HTTP request to
+
+133
+00:05:35,009 --> 00:05:37,229
+use them you need to send an asset CH
+
+134
+00:05:37,229 --> 00:05:39,449
+gathering your response indicating the
+
+135
+00:05:39,449 --> 00:05:41,550
+type of hints you want to receive for
+
+136
+00:05:41,550 --> 00:05:44,369
+example device memory after that you
+
+137
+00:05:44,369 --> 00:05:46,289
+will start receiving these hints in the
+
+138
+00:05:46,289 --> 00:05:49,679
+header of the HCP request finally you
+
+139
+00:05:49,679 --> 00:05:51,899
+can use this information to map to a
+
+140
+00:05:51,899 --> 00:05:54,329
+device category and use that later to
+
+141
+00:05:54,329 --> 00:05:56,939
+decide which prompt to show if you want
+
+142
+00:05:56,939 --> 00:05:58,439
+to learn techniques on how to map the
+
+143
+00:05:58,439 --> 00:06:00,689
+buy signals to device categories
+
+144
+00:06:00,689 --> 00:06:03,389
+check out adaptive loading a talk that
+
+145
+00:06:03,389 --> 00:06:06,569
+was given at random Sammy 2019 prepping
+
+146
+00:06:06,569 --> 00:06:08,219
+us today you can offer different
+
+147
+00:06:08,219 --> 00:06:10,229
+channels to users to install your model
+
+148
+00:06:10,229 --> 00:06:12,719
+experiences for example you could offer
+
+149
+00:06:12,719 --> 00:06:15,689
+an ad but ap delay available in the Play
+
+150
+00:06:15,689 --> 00:06:18,029
+Store and iWeb installed from the user
+
+151
+00:06:18,029 --> 00:06:20,699
+screen then you can define a heuristic
+
+152
+00:06:20,699 --> 00:06:22,740
+to show the most suitable install
+
+153
+00:06:22,740 --> 00:06:25,050
+offering to a particular user you can
+
+154
+00:06:25,050 --> 00:06:27,149
+create a very simple one based on the
+
+155
+00:06:27,149 --> 00:06:29,459
+user behavior on your site for example
+
+156
+00:06:29,459 --> 00:06:31,829
+by tracking how often they come to it or
+
+157
+00:06:31,829 --> 00:06:32,759
+you can go for a more sophisticated
+
+158
+00:06:32,759 --> 00:06:36,149
+approach when mapping the buy signals to
+
+159
+00:06:36,149 --> 00:06:37,679
+device categories and show different
+
+160
+00:06:37,679 --> 00:06:40,019
+install offerings depending if the
+
+161
+00:06:40,019 --> 00:06:43,559
+device is low mid or high end we
+
+162
+00:06:43,559 --> 00:06:45,089
+encourage you to experiment with these
+
+163
+00:06:45,089 --> 00:06:47,759
+techniques for example by running a be
+
+164
+00:06:47,759 --> 00:06:50,159
+test and to reach out to us on Twitter
+
+165
+00:06:50,159 --> 00:06:52,010
+to share your experiences
+
+166
+00:06:52,010 --> 00:06:54,020
+I hope you continue enjoying what the
+
+167
+00:06:54,020 --> 00:06:56,510
+Bligh's thanks for watching
+
+168
+00:06:56,510 --> 00:07:03,000
+[Music]
+
+169
+00:07:03,000 --> 00:07:05,190
+[Applause]
+

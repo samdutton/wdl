@@ -1,0 +1,1189 @@
+1
+00:00:00,560 --> 00:00:03,410
+
+[Music]
+
+2
+00:00:03,410 --> 00:00:05,660
+[Applause]
+
+3
+00:00:05,660 --> 00:00:12,320
+[Music]
+
+4
+00:00:12,320 --> 00:00:16,199
+hi everyone thanks for joining I'm PJ
+
+5
+00:00:16,199 --> 00:00:18,449
+I'm a product manager on the chrome web
+
+6
+00:00:18,449 --> 00:00:19,830
+platform team responsible for
+
+7
+00:00:19,830 --> 00:00:22,500
+progressive web apps notifications and
+
+8
+00:00:22,500 --> 00:00:24,539
+permissions today's talk is about
+
+9
+00:00:24,539 --> 00:00:26,369
+quieter notification permission prompts
+
+10
+00:00:26,369 --> 00:00:28,769
+and how recent changes to how chrome
+
+11
+00:00:28,769 --> 00:00:31,170
+handles notification permission requests
+
+12
+00:00:31,170 --> 00:00:33,899
+can make browsing for the web a little
+
+13
+00:00:33,899 --> 00:00:34,940
+better for everyone
+
+14
+00:00:34,940 --> 00:00:37,200
+there's also important information in
+
+15
+00:00:37,200 --> 00:00:38,430
+here for developers who use
+
+16
+00:00:38,430 --> 00:00:40,950
+notifications to help you improve your
+
+17
+00:00:40,950 --> 00:00:43,230
+user experience improve your
+
+18
+00:00:43,230 --> 00:00:45,510
+notification accept rates and to tell
+
+19
+00:00:45,510 --> 00:00:47,489
+you about upcoming changes that will
+
+20
+00:00:47,489 --> 00:00:50,250
+detect and flag abuse abuse of
+
+21
+00:00:50,250 --> 00:00:53,149
+notification prompts or content if
+
+22
+00:00:53,149 --> 00:00:55,680
+you're not familiar with them web
+
+23
+00:00:55,680 --> 00:00:57,480
+notifications are channel for
+
+24
+00:00:57,480 --> 00:00:59,129
+communicating timely and contextually
+
+25
+00:00:59,129 --> 00:01:01,920
+relevant information to the user mostly
+
+26
+00:01:01,920 --> 00:01:03,270
+these work just like push notifications
+
+27
+00:01:03,270 --> 00:01:06,180
+in mobile apps except they can also work
+
+28
+00:01:06,180 --> 00:01:09,060
+on desktop on Windows Mac as well as
+
+29
+00:01:09,060 --> 00:01:12,689
+smartphones on Android for example web
+
+30
+00:01:12,689 --> 00:01:14,130
+notifications appear in the notification
+
+31
+00:01:14,130 --> 00:01:16,200
+drawer and on desktop
+
+32
+00:01:16,200 --> 00:01:17,670
+they typically appear in the top right
+
+33
+00:01:17,670 --> 00:01:20,189
+corner of the screen in some cases
+
+34
+00:01:20,189 --> 00:01:22,860
+notifications aren't just helpful they
+
+35
+00:01:22,860 --> 00:01:24,570
+are almost essential to the apps
+
+36
+00:01:24,570 --> 00:01:27,299
+functionality for example if you had an
+
+37
+00:01:27,299 --> 00:01:28,950
+incoming call from a communication app
+
+38
+00:01:28,950 --> 00:01:31,950
+like google google duo or chat that's
+
+39
+00:01:31,950 --> 00:01:32,880
+not something you want to know about
+
+40
+00:01:32,880 --> 00:01:34,350
+later you need to know about it right
+
+41
+00:01:34,350 --> 00:01:37,860
+away of course not everyone uses apps
+
+42
+00:01:37,860 --> 00:01:41,040
+that require notifications and not all
+
+43
+00:01:41,040 --> 00:01:42,570
+websites are putting the needs of their
+
+44
+00:01:42,570 --> 00:01:44,640
+users first and that means that we are
+
+45
+00:01:44,640 --> 00:01:45,810
+seeing a lot of websites out there that
+
+46
+00:01:45,810 --> 00:01:48,210
+are misusing notifications in ways that
+
+47
+00:01:48,210 --> 00:01:51,180
+are annoying or could be abusive before
+
+48
+00:01:51,180 --> 00:01:53,009
+we get into that though I want to talk
+
+49
+00:01:53,009 --> 00:01:54,630
+about how users get enrolled in
+
+50
+00:01:54,630 --> 00:01:57,509
+notifications to receive web
+
+51
+00:01:57,509 --> 00:02:00,090
+notifications a user needs to accept a
+
+52
+00:02:00,090 --> 00:02:03,299
+notification permission requests when
+
+53
+00:02:03,299 --> 00:02:05,640
+websites prompt users out of context for
+
+54
+00:02:05,640 --> 00:02:08,039
+a notification such as when a user first
+
+55
+00:02:08,039 --> 00:02:10,259
+arrives on the web site it can be a
+
+56
+00:02:10,259 --> 00:02:12,510
+pretty annoying distraction both from
+
+57
+00:02:12,510 --> 00:02:13,590
+the browsing experience it's
+
+58
+00:02:13,590 --> 00:02:16,160
+as well as from the website's content
+
+59
+00:02:16,160 --> 00:02:19,860
+worse some abusive websites look for
+
+60
+00:02:19,860 --> 00:02:21,780
+ways to trick users into accepting
+
+61
+00:02:21,780 --> 00:02:23,819
+notifications that are then used to
+
+62
+00:02:23,819 --> 00:02:26,400
+promote malware or undesired content I
+
+63
+00:02:26,400 --> 00:02:28,769
+want to cover why we have notifications
+
+64
+00:02:28,769 --> 00:02:30,090
+in the web platform in the first place
+
+65
+00:02:30,090 --> 00:02:32,430
+in a little bit more depth the web
+
+66
+00:02:32,430 --> 00:02:33,840
+platform is there to enable web
+
+67
+00:02:33,840 --> 00:02:35,459
+developers to create powerful
+
+68
+00:02:35,459 --> 00:02:38,010
+applications and web notifications are
+
+69
+00:02:38,010 --> 00:02:40,440
+part of that toolkit without
+
+70
+00:02:40,440 --> 00:02:42,480
+notification support there would be
+
+71
+00:02:42,480 --> 00:02:44,400
+entire types of apps that would be
+
+72
+00:02:44,400 --> 00:02:46,920
+simply impossible to build using web
+
+73
+00:02:46,920 --> 00:02:50,130
+technology so for example messaging apps
+
+74
+00:02:50,130 --> 00:02:52,440
+calendars ecommerce for food delivery
+
+75
+00:02:52,440 --> 00:02:55,140
+notifiers taxi or ride-sharing apps all
+
+76
+00:02:55,140 --> 00:02:57,780
+dependent notifications to provide a
+
+77
+00:02:57,780 --> 00:03:00,150
+timely tap on the shoulder to the user
+
+78
+00:03:00,150 --> 00:03:02,910
+and well you can imagine that some of
+
+79
+00:03:02,910 --> 00:03:04,200
+these apps might be usable without
+
+80
+00:03:04,200 --> 00:03:06,090
+notifications you could see that most of
+
+81
+00:03:06,090 --> 00:03:07,680
+the time you're probably going to want
+
+82
+00:03:07,680 --> 00:03:11,069
+one we've also all equally experienced
+
+83
+00:03:11,069 --> 00:03:12,690
+some of the misuse of notifications
+
+84
+00:03:12,690 --> 00:03:14,299
+though that includes things like
+
+85
+00:03:14,299 --> 00:03:18,090
+unwanted marketing promotions or content
+
+86
+00:03:18,090 --> 00:03:19,530
+that just isn't very important or
+
+87
+00:03:19,530 --> 00:03:21,989
+relevant to us at a given moment to
+
+88
+00:03:21,989 --> 00:03:23,579
+address this problem starting in Chrome
+
+89
+00:03:23,579 --> 00:03:25,829
+ad that was released in January of 2020
+
+90
+00:03:25,829 --> 00:03:28,380
+we started making changes to how these
+
+91
+00:03:28,380 --> 00:03:30,480
+notifications request work to help make
+
+92
+00:03:30,480 --> 00:03:31,940
+browsing the web safer and less
+
+93
+00:03:31,940 --> 00:03:34,349
+interruptive we're gonna get into that
+
+94
+00:03:34,349 --> 00:03:37,739
+new UI in the next slide in chrome 80 we
+
+95
+00:03:37,739 --> 00:03:40,139
+added quite notifications UI quite
+
+96
+00:03:40,139 --> 00:03:42,810
+notification UI is less interruptive but
+
+97
+00:03:42,810 --> 00:03:44,940
+it still lets the users know that the
+
+98
+00:03:44,940 --> 00:03:47,069
+request has been made there's a little
+
+99
+00:03:47,069 --> 00:03:49,200
+bit of animation to catch the eye but on
+
+100
+00:03:49,200 --> 00:03:51,750
+desktop the dialogue is in the omnibox
+
+101
+00:03:51,750 --> 00:03:54,030
+so it doesn't actually cover any part of
+
+102
+00:03:54,030 --> 00:03:56,160
+the web content on mobile the
+
+103
+00:03:56,160 --> 00:03:57,780
+notification prompt used to be a modal
+
+104
+00:03:57,780 --> 00:04:00,810
+in normal UI but in quiet UI it's an
+
+105
+00:04:00,810 --> 00:04:02,819
+easily dismissed info bar at the bottom
+
+106
+00:04:02,819 --> 00:04:05,459
+of the screen quite notification UI aims
+
+107
+00:04:05,459 --> 00:04:07,260
+to reduce the visual priority and
+
+108
+00:04:07,260 --> 00:04:09,150
+interruptive 'no sub mode vacation
+
+109
+00:04:09,150 --> 00:04:12,030
+requests on desktop what you're seeing
+
+110
+00:04:12,030 --> 00:04:13,829
+in this example on the left you'll
+
+111
+00:04:13,829 --> 00:04:15,599
+notice the bell icon initially animates
+
+112
+00:04:15,599 --> 00:04:17,760
+with text indicating that notifications
+
+113
+00:04:17,760 --> 00:04:20,820
+are blocked on the site in mobile the
+
+114
+00:04:20,820 --> 00:04:23,400
+quiet UI is now an info bar in both of
+
+115
+00:04:23,400 --> 00:04:26,130
+these cases in product help explains to
+
+116
+00:04:26,130 --> 00:04:27,160
+the user
+
+117
+00:04:27,160 --> 00:04:29,080
+why notifications were blocked on the
+
+118
+00:04:29,080 --> 00:04:32,620
+site quite notifications UI was created
+
+119
+00:04:32,620 --> 00:04:34,390
+specifically to address the concerns I
+
+120
+00:04:34,390 --> 00:04:37,390
+mentioned earlier in this talk we
+
+121
+00:04:37,390 --> 00:04:38,740
+received frequent complaints from users
+
+122
+00:04:38,740 --> 00:04:40,870
+in chrome feedback about disruptive
+
+123
+00:04:40,870 --> 00:04:42,480
+notification permission prompts or
+
+124
+00:04:42,480 --> 00:04:45,940
+unwanted notifications that being said
+
+125
+00:04:45,940 --> 00:04:48,160
+there are services with tens or hundreds
+
+126
+00:04:48,160 --> 00:04:50,440
+of millions of users like messaging apps
+
+127
+00:04:50,440 --> 00:04:52,840
+and calendars that are depending on
+
+128
+00:04:52,840 --> 00:04:54,970
+timely web notifications every single
+
+129
+00:04:54,970 --> 00:04:57,640
+day let's talk for a moment about how
+
+130
+00:04:57,640 --> 00:04:59,770
+users get enrolled in quiet notification
+
+131
+00:04:59,770 --> 00:05:01,840
+UI there's several ways that this can
+
+132
+00:05:01,840 --> 00:05:04,750
+happen first users could just enroll
+
+133
+00:05:04,750 --> 00:05:07,390
+themselves manually by changing their
+
+134
+00:05:07,390 --> 00:05:10,590
+preferences in Chrome settings second
+
+135
+00:05:10,590 --> 00:05:12,970
+sites that have very low accept rates
+
+136
+00:05:12,970 --> 00:05:14,950
+for notification permission requests
+
+137
+00:05:14,950 --> 00:05:17,170
+will be automatically enrolled in quiet
+
+138
+00:05:17,170 --> 00:05:19,600
+notifications UI and this is currently
+
+139
+00:05:19,600 --> 00:05:21,850
+sites that have the lowest few
+
+140
+00:05:21,850 --> 00:05:24,400
+percentile of notification accept rates
+
+141
+00:05:24,400 --> 00:05:26,980
+so the absolute rate needed for quite
+
+142
+00:05:26,980 --> 00:05:29,380
+notification UI does change over time
+
+143
+00:05:29,380 --> 00:05:31,660
+because we are using percentiles we'll
+
+144
+00:05:31,660 --> 00:05:33,250
+also periodically increase the accept
+
+145
+00:05:33,250 --> 00:05:35,290
+pre percentile that's needed to preserve
+
+146
+00:05:35,290 --> 00:05:38,950
+normal notification UI we always keep a
+
+147
+00:05:38,950 --> 00:05:41,050
+control group of users that are in
+
+148
+00:05:41,050 --> 00:05:43,540
+normal notification permission UI so
+
+149
+00:05:43,540 --> 00:05:46,930
+that if a site's accept rates improve we
+
+150
+00:05:46,930 --> 00:05:48,760
+can remove it from quiet UI and
+
+151
+00:05:48,760 --> 00:05:52,180
+enforcement third there are some users
+
+152
+00:05:52,180 --> 00:05:54,010
+who almost never accept any notification
+
+153
+00:05:54,010 --> 00:05:55,930
+permission requests these users simply
+
+154
+00:05:55,930 --> 00:05:58,240
+don't want notifications and for these
+
+155
+00:05:58,240 --> 00:06:00,100
+users we adaptively enable quite
+
+156
+00:06:00,100 --> 00:06:02,230
+notification mode on their behalf in
+
+157
+00:06:02,230 --> 00:06:04,570
+Chrome settings if they repeatedly block
+
+158
+00:06:04,570 --> 00:06:07,690
+notification requests as sites improve
+
+159
+00:06:07,690 --> 00:06:09,940
+their behavior and use of notification
+
+160
+00:06:09,940 --> 00:06:12,130
+permission requests we expect that there
+
+161
+00:06:12,130 --> 00:06:13,630
+will be fewer and fewer users who are
+
+162
+00:06:13,630 --> 00:06:16,480
+adaptively placed in quiet notification
+
+163
+00:06:16,480 --> 00:06:20,890
+UI mode finally and this is starting in
+
+164
+00:06:20,890 --> 00:06:23,830
+chrome 84 which is coming up soon we're
+
+165
+00:06:23,830 --> 00:06:25,360
+going to begin enforcing against abusive
+
+166
+00:06:25,360 --> 00:06:27,580
+notification prompts the try to mislead
+
+167
+00:06:27,580 --> 00:06:29,500
+users are fishing for private
+
+168
+00:06:29,500 --> 00:06:32,140
+information or promoting malware in this
+
+169
+00:06:32,140 --> 00:06:34,150
+case in addition to quite notifications
+
+170
+00:06:34,150 --> 00:06:36,940
+UI the user is going to be advised in
+
+171
+00:06:36,940 --> 00:06:38,650
+the notification prompt that the site
+
+172
+00:06:38,650 --> 00:06:41,200
+may be trying to trick them so
+
+173
+00:06:41,200 --> 00:06:42,730
+what should you do to make sure your
+
+174
+00:06:42,730 --> 00:06:43,840
+website is not enrolled in quite
+
+175
+00:06:43,840 --> 00:06:46,270
+notification UI well first and foremost
+
+176
+00:06:46,270 --> 00:06:47,680
+if your prompting users to enroll
+
+177
+00:06:47,680 --> 00:06:49,570
+notifications as soon as they arrive on
+
+178
+00:06:49,570 --> 00:06:52,060
+your website please stop doing that this
+
+179
+00:06:52,060 --> 00:06:53,410
+is the easiest way to improve your
+
+180
+00:06:53,410 --> 00:06:55,930
+notification accept rate very few users
+
+181
+00:06:55,930 --> 00:06:57,430
+will accept a notification from a site
+
+182
+00:06:57,430 --> 00:06:59,380
+they're visiting for the first time and
+
+183
+00:06:59,380 --> 00:07:02,020
+if you think about it why would they
+
+184
+00:07:02,020 --> 00:07:03,910
+we're all experiencing information
+
+185
+00:07:03,910 --> 00:07:06,250
+overload wait until you know your user
+
+186
+00:07:06,250 --> 00:07:08,470
+better and you know you can add value
+
+187
+00:07:08,470 --> 00:07:11,470
+for your user before you prompt them you
+
+188
+00:07:11,470 --> 00:07:13,510
+can and should prompt your user to
+
+189
+00:07:13,510 --> 00:07:15,880
+accept notification when there's a clear
+
+190
+00:07:15,880 --> 00:07:17,920
+user benefit and in the context of the
+
+191
+00:07:17,920 --> 00:07:20,190
+user's journey in your application
+
+192
+00:07:20,190 --> 00:07:22,240
+websites that ask for notification
+
+193
+00:07:22,240 --> 00:07:23,560
+permission in the context where the
+
+194
+00:07:23,560 --> 00:07:25,540
+benefit is clear the user have 80%
+
+195
+00:07:25,540 --> 00:07:27,880
+accept rates or higher that should be
+
+196
+00:07:27,880 --> 00:07:30,010
+your goal even if you do the best
+
+197
+00:07:30,010 --> 00:07:31,510
+possible job with your notification
+
+198
+00:07:31,510 --> 00:07:34,060
+prompt to UX it's possible that some of
+
+199
+00:07:34,060 --> 00:07:36,400
+your users may be in quiet notification
+
+200
+00:07:36,400 --> 00:07:38,560
+UI mode so the first thing you want to
+
+201
+00:07:38,560 --> 00:07:40,450
+check here is to make sure that the
+
+202
+00:07:40,450 --> 00:07:42,730
+accept rates on your site or what you
+
+203
+00:07:42,730 --> 00:07:45,430
+really expect them to be notification
+
+204
+00:07:45,430 --> 00:07:47,770
+accept rate data is in the chrome user
+
+205
+00:07:47,770 --> 00:07:49,480
+experience report which is a public
+
+206
+00:07:49,480 --> 00:07:50,890
+database containing important
+
+207
+00:07:50,890 --> 00:07:53,080
+information about real-world chrome
+
+208
+00:07:53,080 --> 00:07:55,540
+metrics for popular destinations on the
+
+209
+00:07:55,540 --> 00:07:58,060
+web there's a minimum number of users
+
+210
+00:07:58,060 --> 00:08:00,430
+and decisions that are required for data
+
+211
+00:08:00,430 --> 00:08:02,110
+to be available and the chrome user
+
+212
+00:08:02,110 --> 00:08:04,210
+experience report and that's to help
+
+213
+00:08:04,210 --> 00:08:06,850
+with preserving visitor privacy so if
+
+214
+00:08:06,850 --> 00:08:08,410
+your site doesn't have data and the
+
+215
+00:08:08,410 --> 00:08:10,330
+chrome user experience report you may
+
+216
+00:08:10,330 --> 00:08:12,040
+need to get that information from
+
+217
+00:08:12,040 --> 00:08:12,820
+somewhere else
+
+218
+00:08:12,820 --> 00:08:15,670
+for example most notifications service
+
+219
+00:08:15,670 --> 00:08:18,490
+providers will have this instrumented so
+
+220
+00:08:18,490 --> 00:08:20,770
+that you can check your accept rates or
+
+221
+00:08:20,770 --> 00:08:22,900
+if you've rolled your own notifications
+
+222
+00:08:22,900 --> 00:08:24,610
+implementation you may need to add your
+
+223
+00:08:24,610 --> 00:08:27,880
+own instrumentation it's also a good
+
+224
+00:08:27,880 --> 00:08:29,380
+idea to look at the notification accept
+
+225
+00:08:29,380 --> 00:08:31,780
+rates of sites that are like yours in
+
+226
+00:08:31,780 --> 00:08:33,580
+the chrome user experience report so you
+
+227
+00:08:33,580 --> 00:08:34,990
+can get a sense for what the benchmark
+
+228
+00:08:34,990 --> 00:08:37,300
+accept rates are and aim to be better
+
+229
+00:08:37,300 --> 00:08:40,540
+than those the article linked here in
+
+230
+00:08:40,540 --> 00:08:42,400
+the slide will give you more details
+
+231
+00:08:42,400 --> 00:08:43,810
+about how to use the chrome user
+
+232
+00:08:43,810 --> 00:08:45,760
+experience data set to learn more about
+
+233
+00:08:45,760 --> 00:08:47,440
+users notification permission prompt
+
+234
+00:08:47,440 --> 00:08:51,100
+decisions on your website so the second
+
+235
+00:08:51,100 --> 00:08:53,140
+thing you need to think about is how can
+
+236
+00:08:53,140 --> 00:08:54,550
+you make your notification requests
+
+237
+00:08:54,550 --> 00:08:54,910
+boring
+
+238
+00:08:54,910 --> 00:08:56,710
+context I know I mentioned this before
+
+239
+00:08:56,710 --> 00:08:58,780
+but it bears repeating you want to make
+
+240
+00:08:58,780 --> 00:09:00,250
+absolutely sure that you're asking for
+
+241
+00:09:00,250 --> 00:09:02,560
+notification permission at a moment in
+
+242
+00:09:02,560 --> 00:09:04,210
+the users journey that makes sense to
+
+243
+00:09:04,210 --> 00:09:06,220
+them in this example we're showing a
+
+244
+00:09:06,220 --> 00:09:07,780
+notification request the first time the
+
+245
+00:09:07,780 --> 00:09:10,180
+user receives a response to their first
+
+246
+00:09:10,180 --> 00:09:13,240
+chat this is a perfect moment even with
+
+247
+00:09:13,240 --> 00:09:14,890
+quiet notification UI it should be
+
+248
+00:09:14,890 --> 00:09:16,960
+obvious to the user why they would want
+
+249
+00:09:16,960 --> 00:09:19,750
+to accept notifications the activity and
+
+250
+00:09:19,750 --> 00:09:21,850
+motion in the web app combined with the
+
+251
+00:09:21,850 --> 00:09:23,890
+motion of the browser prompt should be
+
+252
+00:09:23,890 --> 00:09:25,480
+sufficient cues for the user to enroll
+
+253
+00:09:25,480 --> 00:09:27,940
+in notifications if they want them if
+
+254
+00:09:27,940 --> 00:09:30,310
+your user doesn't accept notifications
+
+255
+00:09:30,310 --> 00:09:33,220
+with this in context pattern there's a
+
+256
+00:09:33,220 --> 00:09:34,450
+pretty good chance that they just don't
+
+257
+00:09:34,450 --> 00:09:36,310
+want notifications and you should
+
+258
+00:09:36,310 --> 00:09:39,220
+respect that decision before I finish I
+
+259
+00:09:39,220 --> 00:09:40,600
+want to share a little bit about what's
+
+260
+00:09:40,600 --> 00:09:43,300
+coming next for notifications first
+
+261
+00:09:43,300 --> 00:09:45,190
+we're planning to increase the accept
+
+262
+00:09:45,190 --> 00:09:47,440
+rate percentile that's needed to have
+
+263
+00:09:47,440 --> 00:09:50,170
+normal notification prompts since this
+
+264
+00:09:50,170 --> 00:09:51,730
+is a percentile as well something to
+
+265
+00:09:51,730 --> 00:09:53,470
+keep in mind is that if other sites are
+
+266
+00:09:53,470 --> 00:09:55,210
+improving their notification UX and
+
+267
+00:09:55,210 --> 00:09:57,910
+you're not your site may be slipping
+
+268
+00:09:57,910 --> 00:10:00,280
+into a lower percentile and quite
+
+269
+00:10:00,280 --> 00:10:01,990
+notifications may be activated for your
+
+270
+00:10:01,990 --> 00:10:03,970
+site if your site is a notification
+
+271
+00:10:03,970 --> 00:10:06,520
+accept rate of over 50 percent you're in
+
+272
+00:10:06,520 --> 00:10:08,860
+safe territory but we recommend aiming
+
+273
+00:10:08,860 --> 00:10:12,070
+for 80 percent or better second chrome
+
+274
+00:10:12,070 --> 00:10:14,140
+places a high priority on user privacy
+
+275
+00:10:14,140 --> 00:10:16,540
+and security and we intend to take more
+
+276
+00:10:16,540 --> 00:10:18,430
+steps to protect users from abuse of
+
+277
+00:10:18,430 --> 00:10:20,590
+notification in the future that includes
+
+278
+00:10:20,590 --> 00:10:23,020
+more protections from usage notification
+
+279
+00:10:23,020 --> 00:10:26,320
+content as well as retroactive action to
+
+280
+00:10:26,320 --> 00:10:28,180
+help users who may have already enrolled
+
+281
+00:10:28,180 --> 00:10:30,040
+in notifications from abusive sites
+
+282
+00:10:30,040 --> 00:10:33,490
+prior to the release of chrome 84 most
+
+283
+00:10:33,490 --> 00:10:35,200
+important as we improve the
+
+284
+00:10:35,200 --> 00:10:37,360
+signal-to-noise ratio of the web
+
+285
+00:10:37,360 --> 00:10:39,910
+notification ecosystem we hope users
+
+286
+00:10:39,910 --> 00:10:42,250
+will come to view notifications as being
+
+287
+00:10:42,250 --> 00:10:45,130
+more helpful if this happens it means
+
+288
+00:10:45,130 --> 00:10:46,930
+we're doing a good job protecting users
+
+289
+00:10:46,930 --> 00:10:48,970
+from unwanted notification prompts an
+
+290
+00:10:48,970 --> 00:10:52,090
+unwanted notification content ultimately
+
+291
+00:10:52,090 --> 00:10:53,590
+this will help developers who use
+
+292
+00:10:53,590 --> 00:10:55,300
+notifications for key functionality in
+
+293
+00:10:55,300 --> 00:10:57,340
+their apps as users are more likely to
+
+294
+00:10:57,340 --> 00:10:59,320
+accept notifications when they have less
+
+295
+00:10:59,320 --> 00:11:01,270
+reason to be worried about spammy or
+
+296
+00:11:01,270 --> 00:11:03,340
+abusive notifications thanks again for
+
+297
+00:11:03,340 --> 00:11:05,370
+joining today everyone have a great day
+

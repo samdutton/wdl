@@ -1,0 +1,469 @@
+1
+00:00:11,600 --> 00:00:16,530
+Hi everyone. My name is Mathias and I’m
+here to tell you what’s new in Puppeteer!
+
+2
+00:00:16,530 --> 00:00:20,580
+But before we can do that, we should
+probably talk about what Puppeteer is in
+
+3
+00:00:20,580 --> 00:00:25,770
+the first place. Puppeteer is a browser
+automation library for Node.js. It lets you
+
+4
+00:00:25,770 --> 00:00:30,030
+control a browser using a simple and
+modern JavaScript API. After installing
+
+5
+00:00:30,030 --> 00:00:35,309
+it using `npm install puppeteer` you can
+`require('puppeteer')` in your Node.js script
+
+6
+00:00:35,309 --> 00:00:41,640
+and start automating. The first step to
+browser automation is… to launch an
+
+7
+00:00:41,640 --> 00:00:48,449
+actual browser and with Puppeteer, that’s
+just one line of code. Next, we open a new
+
+8
+00:00:48,449 --> 00:00:54,540
+page. This is equivalent to opening a new
+tab in your browser. Now let’s navigate
+
+9
+00:00:54,540 --> 00:00:59,309
+to a URL. This line of code ensures that
+the page has finished loading before
+
+10
+00:00:59,309 --> 00:01:05,670
+continuing with the rest of the script.
+Then we take a screenshot and save it to
+
+11
+00:01:05,670 --> 00:01:11,760
+a file before finally closing the
+browser. And that’s it — that’s the entire
+
+12
+00:01:11,760 --> 00:01:16,229
+script! We did all of that with just a
+few lines of code. And Puppeteer can do
+
+13
+00:01:16,229 --> 00:01:21,479
+much more: you can generate PDFs, evaluate
+JavaScript in pages, enter text in input
+
+14
+00:01:21,479 --> 00:01:26,189
+fields, click on elements… Almost anything
+you would manually do when using a
+
+15
+00:01:26,189 --> 00:01:31,409
+browser can be automated using Puppeteer.
+The Puppeteer project is fully open source
+
+16
+00:01:31,409 --> 00:01:35,250
+and has received contributions from
+individual contributors all around the
+
+17
+00:01:35,250 --> 00:01:40,020
+world as well as from companies like
+Mozilla, Sauce Labs, and Microsoft. At
+
+18
+00:01:40,020 --> 00:01:44,219
+Google, the Puppeteer team consists of
+Chrome engineers who also work on DevTools.
+
+19
+00:01:44,219 --> 00:01:48,450
+This might sound a little
+strange at first, but it actually makes
+
+20
+00:01:48,450 --> 00:01:53,399
+sense, because Puppeteer is built on top
+of the same underlying protocol that DevTools
+
+21
+00:01:53,399 --> 00:01:57,990
+also uses to communicate with the
+Chromium back-end. Because of this,
+
+22
+00:01:57,990 --> 00:02:02,130
+Puppeteer also gives you access to
+advanced browser functionality that is
+
+23
+00:02:02,130 --> 00:02:07,259
+usually only available through DevTools.
+For example, you might know that DevTools
+
+24
+00:02:07,259 --> 00:02:11,930
+lets you emulate print media so that you
+can easily debug print styles.
+
+25
+00:02:11,930 --> 00:02:17,340
+Well, Puppeteer lets you do the same
+thing in an automated script. Here we
+
+26
+00:02:17,340 --> 00:02:22,680
+call `page.emulateMediaType` to force
+print styles and then we save the result
+
+27
+00:02:22,680 --> 00:02:28,920
+as a PDF. Okay, now that you know what
+Puppeteer is, what it can do, and who is
+
+28
+00:02:28,920 --> 00:02:35,069
+working on it, let’s take a look at some
+recent feature additions. Similar to
+
+29
+00:02:35,069 --> 00:02:39,930
+emulating print styles, we recently added
+DevTools support for emulating light and
+
+30
+00:02:39,930 --> 00:02:47,069
+dark mode as well as other so-called “CSS
+media features”. We then shipped a new
+
+31
+00:02:47,069 --> 00:02:51,900
+Puppeteer API that lets you perform the
+same emulation programmatically. This
+
+32
+00:02:51,900 --> 00:02:56,340
+Puppeteer script takes two screenshots
+of your web app: one in light mode, and
+
+33
+00:02:56,340 --> 00:03:03,569
+one in dark mode. It works independently
+of your operating system settings. One of
+
+34
+00:03:03,569 --> 00:03:08,790
+my favorite features on web.dev/live
+is the schedule which adapts to your
+
+35
+00:03:08,790 --> 00:03:13,439
+local timezone. I live in Germany, so when
+I view the schedule I see something like
+
+36
+00:03:13,439 --> 00:03:19,530
+this. Today’s event started at 2:00 PM
+for me, but someone in Tokyo for example
+
+37
+00:03:19,530 --> 00:03:24,719
+would see a different time — for them the
+event started at 9:00 PM. I love that
+
+38
+00:03:24,719 --> 00:03:28,769
+the website just tells me what I need to
+know in my local time. Nobody likes doing
+
+39
+00:03:28,769 --> 00:03:33,870
+timezone math! To make it easier to
+test this kind of timezone-aware
+
+40
+00:03:33,870 --> 00:03:38,569
+functionality, we added DevTools support
+for emulating arbitrary time zones.
+
+41
+00:03:38,569 --> 00:03:43,620
+Yesterday’s event started on June 30th
+at 6 PM for me, but for someone in
+
+42
+00:03:43,620 --> 00:03:51,389
+Tokyo it was already 1 AM on July 1st.
+In addition to the new DevTools
+
+43
+00:03:51,389 --> 00:03:56,000
+functionality, we also added a new API to
+Puppeteer to let you change time zones
+
+44
+00:03:56,000 --> 00:04:01,409
+programmatically. This script emulates
+various time zones and then executes
+
+45
+00:04:01,409 --> 00:04:06,269
+some timezone-dependent JavaScript in the
+page context. We’re logging the same date
+
+46
+00:04:06,269 --> 00:04:13,500
+but in two different time zones, and that
+produces different output. Here’s another
+
+47
+00:04:13,500 --> 00:04:18,870
+example. This Puppeteer script forces the
+Tokyo time zone, then loads the web.dev LIVE
+
+48
+00:04:18,870 --> 00:04:23,669
+page, and finally takes a screenshot
+of just the schedule, similar to the
+
+49
+00:04:23,669 --> 00:04:27,590
+side-by-side screenshots we saw earlier.
+
+50
+00:04:28,340 --> 00:04:33,060
+DevTools recently gained support for
+simulating the effect of various vision
+
+51
+00:04:33,060 --> 00:04:36,759
+deficiencies, including blurred vision
+and color vision deficiencies.
+
+52
+00:04:36,759 --> 00:04:41,830
+This can help you identify accessibility
+issues related to color, such as bad
+
+53
+00:04:41,830 --> 00:04:48,009
+contrast. And guess what? We added a
+corresponding Puppeteer API that lets
+
+54
+00:04:48,009 --> 00:04:52,180
+you apply these simulations
+programmatically! This script takes a
+
+55
+00:04:52,180 --> 00:04:55,749
+screenshot of the web app after
+simulating blurred vision, achromatopsia
+
+56
+00:04:55,749 --> 00:05:01,749
+(or full color blindness), and deuteranopia
+which is red-green color blindness.
+
+57
+00:05:01,749 --> 00:05:06,039
+One feature we’re still experimenting
+with is the ability to register and use
+
+58
+00:05:06,039 --> 00:05:10,839
+custom selector query handlers. Many
+Puppeteer APIs deal with selector
+
+59
+00:05:10,839 --> 00:05:15,610
+strings, which by default use querySelector
+or querySelectorAll to find
+
+60
+00:05:15,610 --> 00:05:19,149
+elements in the page. We’ve heard from
+users that they want to be able to
+
+61
+00:05:19,149 --> 00:05:23,319
+provide their own selector query
+handlers with custom logic, and this new
+
+62
+00:05:23,319 --> 00:05:28,210
+feature now makes that possible. You can
+imagine providing a custom `hasText`
+
+63
+00:05:28,210 --> 00:05:32,919
+handler which looks for DOM nodes
+containing a string of text. Or maybe you
+
+64
+00:05:32,919 --> 00:05:36,879
+want to select elements across shadow
+DOM boundaries, which querySelector
+
+65
+00:05:36,879 --> 00:05:43,810
+doesn’t let you do. There’s one more
+feature I want to talk about, and it’s a
+
+66
+00:05:43,810 --> 00:05:47,279
+little different from all these API
+additions we’ve been covering until now.
+
+67
+00:05:47,279 --> 00:05:52,779
+Let’s go back to our very first example:
+launching a browser, navigating to a URL,
+
+68
+00:05:52,779 --> 00:05:59,349
+and taking a screenshot. Puppeteer was
+originally built for Chrome so when you
+
+69
+00:05:59,349 --> 00:06:05,860
+call `puppeteer.launch` it launches a
+Chromium browser by default. You can now
+
+70
+00:06:05,860 --> 00:06:12,129
+also specify this explicitly by using
+the `product` option. Okay, so we added a
+
+71
+00:06:12,129 --> 00:06:16,689
+new `product` option… by itself that’s
+probably not very interesting. But here
+
+72
+00:06:16,689 --> 00:06:22,749
+comes the exciting part! Instead of
+Chrome you can now specify Firefox and
+
+73
+00:06:22,749 --> 00:06:28,809
+then use the same Puppeteer API to test
+a real Firefox browser. By changing just
+
+74
+00:06:28,809 --> 00:06:34,449
+this one line we are now automating
+Firefox instead of Chrome. Firefox
+
+75
+00:06:34,449 --> 00:06:39,039
+support for Puppeteer is the result of an
+ongoing collaboration with Mozilla. Part
+
+76
+00:06:39,039 --> 00:06:42,580
+of this effort involves patching
+Puppeteer itself, but a big chunk of the
+
+77
+00:06:42,580 --> 00:06:47,199
+work happens in the Firefox codebase. The
+Puppeteer Firefox implementation is
+
+78
+00:06:47,199 --> 00:06:50,590
+still experimental and so not all the
+Puppeteer APIs
+
+79
+00:06:50,590 --> 00:06:55,390
+are yet compatible with Firefox, but
+Mozilla has been making great progress
+
+80
+00:06:55,390 --> 00:07:01,150
+here. In fact, as of mid-May, exactly 319
+out of the 638
+
+81
+00:07:01,150 --> 00:07:04,780
+tests in Puppeteer’s test suite are
+passing on Firefox —
+
+82
+00:07:04,780 --> 00:07:10,480
+that’s exactly 50%! We’re
+hoping to ship Puppeteer with more
+
+83
+00:07:10,480 --> 00:07:14,770
+complete Firefox support soon.
+Longer-term we would love to support
+
+84
+00:07:14,770 --> 00:07:18,970
+Safari as well, and we’re actively working
+on making that happen in collaboration
+
+85
+00:07:18,970 --> 00:07:22,900
+with other browser vendors. We believe
+the right way to get to a fully
+
+86
+00:07:22,900 --> 00:07:26,620
+cross-browser Puppeteer is by
+standardizing a protocol that all
+
+87
+00:07:26,620 --> 00:07:30,040
+browsers can implement, instead of
+building on top of the proprietary
+
+88
+00:07:30,040 --> 00:07:35,230
+Chrome DevTools Protocol. In addition to
+all those new features, a lot of work has
+
+89
+00:07:35,230 --> 00:07:39,640
+been going on behind the scenes of
+Puppeteer. We recently finished migrating
+
+90
+00:07:39,640 --> 00:07:43,390
+the code base to TypeScript, we
+simplified our test runner, we
+
+91
+00:07:43,390 --> 00:07:48,190
+considerably improve the robustness of
+our continuous integration setup, and our
+
+92
+00:07:48,190 --> 00:07:52,300
+documentation keeps getting better and
+better. This work is often less user-
+
+93
+00:07:52,300 --> 00:07:56,440
+visible, but it’s crucially important
+because it enables us to iterate more
+
+94
+00:07:56,440 --> 00:08:01,690
+quickly and more confidently. I hope you
+enjoyed this overview of what’s new in
+

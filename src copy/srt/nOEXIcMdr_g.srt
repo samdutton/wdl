@@ -1,0 +1,1165 @@
+1
+00:00:00,560 --> 00:00:03,410
+
+[Music]
+
+2
+00:00:03,410 --> 00:00:06,140
+[Applause]
+
+3
+00:00:06,140 --> 00:00:12,520
+[Music]
+
+4
+00:00:12,530 --> 00:00:15,809
+hey there I'm Ben Morse I'm a developer
+
+5
+00:00:15,809 --> 00:00:18,210
+advocate working on the web and on amps
+
+6
+00:00:18,210 --> 00:00:20,369
+and I'm crystal Lambert technically a
+
+7
+00:00:20,369 --> 00:00:22,529
+writer working for the web on the ant
+
+8
+00:00:22,529 --> 00:00:24,359
+project we're here to talk about
+
+9
+00:00:24,359 --> 00:00:25,800
+something we think it's pretty cool
+
+10
+00:00:25,800 --> 00:00:28,050
+a new way to run javascript in web
+
+11
+00:00:28,050 --> 00:00:30,900
+workers with amp awesome let's get
+
+12
+00:00:30,900 --> 00:00:33,649
+started but then what is this slide
+
+13
+00:00:33,649 --> 00:00:37,170
+JavaScript foe I love JavaScript it lets
+
+14
+00:00:37,170 --> 00:00:38,820
+me do whatever I want
+
+15
+00:00:38,820 --> 00:00:41,280
+sure javascript is amazing Ismay the
+
+16
+00:00:41,280 --> 00:00:43,590
+modern web possible but we both know
+
+17
+00:00:43,590 --> 00:00:45,270
+that many websites are too slow and
+
+18
+00:00:45,270 --> 00:00:47,280
+that's partially caused by lots of
+
+19
+00:00:47,280 --> 00:00:49,320
+JavaScript this one of the reasons like
+
+20
+00:00:49,320 --> 00:00:50,700
+people like this are staring at their
+
+21
+00:00:50,700 --> 00:00:52,680
+phones waiting for our sites to load
+
+22
+00:00:52,680 --> 00:00:54,449
+yeah that's no good
+
+23
+00:00:54,449 --> 00:00:56,789
+you think the more JavaScript the better
+
+24
+00:00:56,789 --> 00:00:59,190
+I could write more code to make things
+
+25
+00:00:59,190 --> 00:01:00,989
+quicker well it's like too much ice
+
+26
+00:01:00,989 --> 00:01:03,329
+cream or time spent at home you don't
+
+27
+00:01:03,329 --> 00:01:06,210
+want to overdo it well what about these
+
+28
+00:01:06,210 --> 00:01:08,490
+web workers I hear you can use them to
+
+29
+00:01:08,490 --> 00:01:11,250
+get JavaScript off the main thread but
+
+30
+00:01:11,250 --> 00:01:13,320
+I'm not sure how to get started yeah it
+
+31
+00:01:13,320 --> 00:01:15,240
+can be pretty intimidating because the
+
+32
+00:01:15,240 --> 00:01:18,240
+and another thing amp doesn't let me
+
+33
+00:01:18,240 --> 00:01:20,909
+write my own JavaScript period huh
+
+34
+00:01:20,909 --> 00:01:23,400
+can we make a video about that - well
+
+35
+00:01:23,400 --> 00:01:25,409
+conveniently crystal this video can be
+
+36
+00:01:25,409 --> 00:01:27,630
+about both those things because Anthony
+
+37
+00:01:27,630 --> 00:01:30,329
+provides an easy way to use workers so
+
+38
+00:01:30,329 --> 00:01:31,409
+we're going to show JavaScript
+
+39
+00:01:31,409 --> 00:01:33,030
+developers how amp makes it easy to try
+
+40
+00:01:33,030 --> 00:01:35,700
+web workers and people are already using
+
+41
+00:01:35,700 --> 00:01:37,350
+apt I'll show how you can write your own
+
+42
+00:01:37,350 --> 00:01:38,670
+JavaScript without breaking apps
+
+43
+00:01:38,670 --> 00:01:42,060
+performance guarantees for everyone is a
+
+44
+00:01:42,060 --> 00:01:43,409
+nice way to run JavaScript
+
+45
+00:01:43,409 --> 00:01:44,670
+anyway it's unlikely to harm your web
+
+46
+00:01:44,670 --> 00:01:47,490
+vital scores oh yeah I'm hearing lots
+
+47
+00:01:47,490 --> 00:01:52,530
+about this Web vitals that's uh our page
+
+48
+00:01:52,530 --> 00:01:54,840
+is first input delay largest content
+
+49
+00:01:54,840 --> 00:01:57,000
+full pay and cumulative layout shift
+
+50
+00:01:57,000 --> 00:01:59,759
+right those are the three so let's get
+
+51
+00:01:59,759 --> 00:02:00,270
+going
+
+52
+00:02:00,270 --> 00:02:03,390
+another slide what is this a guy
+
+53
+00:02:03,390 --> 00:02:05,369
+knitting yeah it's a transition slide
+
+54
+00:02:05,369 --> 00:02:09,239
+well it does remind me why is the web
+
+55
+00:02:09,239 --> 00:02:11,039
+single threaded
+
+56
+00:02:11,039 --> 00:02:13,709
+I mean every modern OS has multiple
+
+57
+00:02:13,709 --> 00:02:16,739
+threads why hasn't the web caught it
+
+58
+00:02:16,739 --> 00:02:18,870
+honestly it's just how browsers and
+
+59
+00:02:18,870 --> 00:02:21,239
+JavaScript have always been I mean of
+
+60
+00:02:21,239 --> 00:02:22,560
+course modern browsers can multitask
+
+61
+00:02:22,560 --> 00:02:24,599
+they can't be more than one thing at a
+
+62
+00:02:24,599 --> 00:02:25,170
+time
+
+63
+00:02:25,170 --> 00:02:26,969
+but each browser to have as a single
+
+64
+00:02:26,969 --> 00:02:29,430
+thread for the UI only one process can
+
+65
+00:02:29,430 --> 00:02:31,530
+make changes to the screen at a time
+
+66
+00:02:31,530 --> 00:02:33,629
+that means JavaScript can block the
+
+67
+00:02:33,629 --> 00:02:36,120
+browser from doing things and vice versa
+
+68
+00:02:36,120 --> 00:02:37,379
+but wait
+
+69
+00:02:37,379 --> 00:02:40,409
+javascript is asynchronous right so
+
+70
+00:02:40,409 --> 00:02:42,659
+whenever an event gets fired doesn't the
+
+71
+00:02:42,659 --> 00:02:44,670
+event handlers code start running right
+
+72
+00:02:44,670 --> 00:02:47,310
+away well sure but all the code in a web
+
+73
+00:02:47,310 --> 00:02:49,739
+page still runs in a single thread this
+
+74
+00:02:49,739 --> 00:02:51,930
+diagram illustrates JavaScript event
+
+75
+00:02:51,930 --> 00:02:54,989
+loop so the browser fires an event you
+
+76
+00:02:54,989 --> 00:02:57,150
+have an event handler that code runs
+
+77
+00:02:57,150 --> 00:02:59,700
+until it's done as other events fire
+
+78
+00:02:59,700 --> 00:03:03,689
+they get added to a queue mmm I see so
+
+79
+00:03:03,689 --> 00:03:05,549
+if my code is handling one event and
+
+80
+00:03:05,549 --> 00:03:08,730
+another event fires the browser just
+
+81
+00:03:08,730 --> 00:03:11,250
+can't spin up another thread instead it
+
+82
+00:03:11,250 --> 00:03:12,840
+has to wait for that event in the queue
+
+83
+00:03:12,840 --> 00:03:15,180
+right it has to wait until the current
+
+84
+00:03:15,180 --> 00:03:17,760
+code is done let's say the user taps a
+
+85
+00:03:17,760 --> 00:03:19,290
+button while your code is running a long
+
+86
+00:03:19,290 --> 00:03:22,109
+task well a JavaScript can't handle it
+
+87
+00:03:22,109 --> 00:03:23,970
+any other event until your task
+
+88
+00:03:23,970 --> 00:03:26,790
+completes so the next bit of code will
+
+89
+00:03:26,790 --> 00:03:29,760
+be delayed we're still the browser may
+
+90
+00:03:29,760 --> 00:03:31,530
+be unable to change the UI because it's
+
+91
+00:03:31,530 --> 00:03:34,229
+waiting for your code I guess if it
+
+92
+00:03:34,229 --> 00:03:35,790
+weren't that way everything would just
+
+93
+00:03:35,790 --> 00:03:38,220
+be fighting for control over the dom and
+
+94
+00:03:38,220 --> 00:03:40,620
+you'd have race conditions and general
+
+95
+00:03:40,620 --> 00:03:43,470
+cam oh yeah and unfortunately to make
+
+96
+00:03:43,470 --> 00:03:45,479
+JavaScript thread safe we'd have to
+
+97
+00:03:45,479 --> 00:03:47,699
+completely rewrite it all right this is
+
+98
+00:03:47,699 --> 00:03:51,060
+making some sense not only can excessive
+
+99
+00:03:51,060 --> 00:03:52,859
+JavaScript make your page slow to load
+
+100
+00:03:52,859 --> 00:03:55,349
+it can also make the page slow to
+
+101
+00:03:55,349 --> 00:03:58,260
+respond to users interactions I'm
+
+102
+00:03:58,260 --> 00:03:59,879
+guessing this is where web workers
+
+103
+00:03:59,879 --> 00:04:02,729
+coming yes javascript in a web worker
+
+104
+00:04:02,729 --> 00:04:05,040
+runs in a different thread and this is
+
+105
+00:04:05,040 --> 00:04:07,109
+not a new idea where brokers have been
+
+106
+00:04:07,109 --> 00:04:10,650
+around for about 10 years okay 10 years
+
+107
+00:04:10,650 --> 00:04:12,659
+that's longer than I've been working on
+
+108
+00:04:12,659 --> 00:04:15,239
+the web why am I just learning about
+
+109
+00:04:15,239 --> 00:04:17,220
+them I think because they're limited
+
+110
+00:04:17,220 --> 00:04:19,620
+made them harder to use workers can't
+
+111
+00:04:19,620 --> 00:04:21,359
+cause race conditions with other workers
+
+112
+00:04:21,359 --> 00:04:24,060
+or the main thread because they lack ax
+
+113
+00:04:24,060 --> 00:04:27,090
+padam or the global scope instead
+
+114
+00:04:27,090 --> 00:04:28,800
+auricular communicates with the main
+
+115
+00:04:28,800 --> 00:04:30,330
+thread by passing messages back and
+
+116
+00:04:30,330 --> 00:04:32,760
+forth each message contains an object
+
+117
+00:04:32,760 --> 00:04:34,740
+there are light rays that make this
+
+118
+00:04:34,740 --> 00:04:37,800
+simpler notably calm linked by Surma and
+
+119
+00:04:37,800 --> 00:04:40,500
+worker eyes by Jason Miller but workers
+
+120
+00:04:40,500 --> 00:04:44,190
+can't access the Dom so workers are
+
+121
+00:04:44,190 --> 00:04:46,530
+great for doing long tasks off the main
+
+122
+00:04:46,530 --> 00:04:49,110
+thread but what if you want access to
+
+123
+00:04:49,110 --> 00:04:51,810
+the Dom that's a big obstacle and that's
+
+124
+00:04:51,810 --> 00:04:53,669
+where I am script comes to the rescue
+
+125
+00:04:53,669 --> 00:04:55,740
+I knew at some point we were gonna bring
+
+126
+00:04:55,740 --> 00:05:00,090
+amp into this we did so in 2018 the amp
+
+127
+00:05:00,090 --> 00:05:01,740
+project released an open source library
+
+128
+00:05:01,740 --> 00:05:04,560
+called worker Dom worker Dom makes a
+
+129
+00:05:04,560 --> 00:05:06,210
+copy of the Dom for the workers use
+
+130
+00:05:06,210 --> 00:05:09,270
+worker Dom also recreates a subset of
+
+131
+00:05:09,270 --> 00:05:11,700
+the standard Dom API this lets the
+
+132
+00:05:11,700 --> 00:05:13,560
+worker manipulate the DOM and make
+
+133
+00:05:13,560 --> 00:05:15,630
+changes on the page using standard
+
+134
+00:05:15,630 --> 00:05:18,270
+techniques worker Dom keeps the copy of
+
+135
+00:05:18,270 --> 00:05:20,810
+the DOM and the real Dom in sync so
+
+136
+00:05:20,810 --> 00:05:23,820
+something changes in the real Dom worker
+
+137
+00:05:23,820 --> 00:05:25,800
+Dom sends a message to the worker to
+
+138
+00:05:25,800 --> 00:05:28,500
+make that change and the copy and if
+
+139
+00:05:28,500 --> 00:05:30,539
+your record changes its copy worker Dom
+
+140
+00:05:30,539 --> 00:05:32,460
+sends a message over to the real DOM and
+
+141
+00:05:32,460 --> 00:05:34,500
+the same change gets made there
+
+142
+00:05:34,500 --> 00:05:37,950
+so I heard you say amp is all this only
+
+143
+00:05:37,950 --> 00:05:40,050
+true for amp or can I use worker dawn
+
+144
+00:05:40,050 --> 00:05:42,270
+with a different stack you can import
+
+145
+00:05:42,270 --> 00:05:44,070
+worker Dhamma to your own project but
+
+146
+00:05:44,070 --> 00:05:46,860
+worker Dom is super useful for amp since
+
+147
+00:05:46,860 --> 00:05:48,630
+it provides a way to run JavaScript in a
+
+148
+00:05:48,630 --> 00:05:50,970
+sandbox where it can't run rampant and
+
+149
+00:05:50,970 --> 00:05:54,000
+break amps performance guarantees and
+
+150
+00:05:54,000 --> 00:05:55,800
+encapsulate swagger Dom in a component
+
+151
+00:05:55,800 --> 00:05:58,860
+called amp script this is a little
+
+152
+00:05:58,860 --> 00:06:02,220
+abstract can you show me some code code
+
+153
+00:06:02,220 --> 00:06:06,660
+I understand ok fine let's make a basic
+
+154
+00:06:06,660 --> 00:06:08,610
+hello world example with Apps Script in
+
+155
+00:06:08,610 --> 00:06:11,190
+the body we inserted an amp script
+
+156
+00:06:11,190 --> 00:06:13,470
+components the Dhamma contains gets
+
+157
+00:06:13,470 --> 00:06:15,930
+passed to the worker so here to the
+
+158
+00:06:15,930 --> 00:06:18,479
+worker that entire DOM is that h1 tag
+
+159
+00:06:18,479 --> 00:06:20,930
+next we put our code in a script tag
+
+160
+00:06:20,930 --> 00:06:23,039
+whoa that's weird
+
+161
+00:06:23,039 --> 00:06:26,400
+you set the type to plain text instead
+
+162
+00:06:26,400 --> 00:06:29,160
+of text JavaScript yeah we did that's
+
+163
+00:06:29,160 --> 00:06:30,300
+what the browser won't see it as
+
+164
+00:06:30,300 --> 00:06:32,270
+JavaScript and just executed immediately
+
+165
+00:06:32,270 --> 00:06:35,250
+instead an script finds the coda puts
+
+166
+00:06:35,250 --> 00:06:37,790
+into a worker so the code in this script
+
+167
+00:06:37,790 --> 00:06:40,190
+grabs the first h1 tag in the DOM and
+
+168
+00:06:40,190 --> 00:06:42,530
+appends a comma and the word world
+
+169
+00:06:42,530 --> 00:06:45,740
+right on page load and does that work
+
+170
+00:06:45,740 --> 00:06:50,060
+look magic that was pretty quick let's
+
+171
+00:06:50,060 --> 00:06:54,320
+watch it again I'm overwhelmed well okay
+
+172
+00:06:54,320 --> 00:06:56,510
+it's not Gmail but that world was really
+
+173
+00:06:56,510 --> 00:06:59,240
+and truly added by a web worker can you
+
+174
+00:06:59,240 --> 00:06:59,750
+prove it
+
+175
+00:06:59,750 --> 00:07:02,720
+if we open dev tools and go to the
+
+176
+00:07:02,720 --> 00:07:05,210
+sources tab and click over here we can
+
+177
+00:07:05,210 --> 00:07:07,100
+see our script right under the code
+
+178
+00:07:07,100 --> 00:07:09,650
+added by M script okay that's kind of
+
+179
+00:07:09,650 --> 00:07:11,690
+cool here's how that looks in a full web
+
+180
+00:07:11,690 --> 00:07:13,490
+page I have looked some things out for
+
+181
+00:07:13,490 --> 00:07:15,530
+simplicity's sake but you can see that
+
+182
+00:07:15,530 --> 00:07:17,780
+as with all amp pages were loading amps
+
+183
+00:07:17,780 --> 00:07:20,150
+runtime scripts we're also including the
+
+184
+00:07:20,150 --> 00:07:21,500
+JavaScript that makes the Emma scripts
+
+185
+00:07:21,500 --> 00:07:24,890
+work so do you always have to include
+
+186
+00:07:24,890 --> 00:07:27,410
+your JavaScript in line like that it's
+
+187
+00:07:27,410 --> 00:07:30,140
+not really a best practice yeah that's a
+
+188
+00:07:30,140 --> 00:07:32,150
+good point we can also store the
+
+189
+00:07:32,150 --> 00:07:34,490
+JavaScript in his own file by using am
+
+190
+00:07:34,490 --> 00:07:37,760
+scripts source attribute like this so
+
+191
+00:07:37,760 --> 00:07:40,610
+that example works but it's not really
+
+192
+00:07:40,610 --> 00:07:43,580
+that useful could we say add that world
+
+193
+00:07:43,580 --> 00:07:46,760
+when the user presses a button okay fine
+
+194
+00:07:46,760 --> 00:07:49,250
+let's add your HTML a button that says
+
+195
+00:07:49,250 --> 00:07:52,160
+hello who will write JavaScript that
+
+196
+00:07:52,160 --> 00:07:54,350
+grabs that button and adds a handler for
+
+197
+00:07:54,350 --> 00:07:55,910
+the click event when you click the
+
+198
+00:07:55,910 --> 00:07:58,730
+button it works its magic let's try it
+
+199
+00:07:58,730 --> 00:08:01,850
+out so there's hello there's our button
+
+200
+00:08:01,850 --> 00:08:05,870
+and look hello world okay let's go a
+
+201
+00:08:05,870 --> 00:08:09,980
+little crazy super neato what else can
+
+202
+00:08:09,980 --> 00:08:10,400
+we do
+
+203
+00:08:10,400 --> 00:08:13,190
+does am script let us do a fetch does it
+
+204
+00:08:13,190 --> 00:08:15,160
+ever hears that hello world example
+
+205
+00:08:15,160 --> 00:08:17,750
+modified to retrieve the word world from
+
+206
+00:08:17,750 --> 00:08:20,540
+an endpoint workers natively support
+
+207
+00:08:20,540 --> 00:08:23,750
+fetch XML HTTP requests and even
+
+208
+00:08:23,750 --> 00:08:24,470
+WebSockets
+
+209
+00:08:24,470 --> 00:08:28,070
+okay this is getting pretty cool but
+
+210
+00:08:28,070 --> 00:08:29,090
+this is amp right
+
+211
+00:08:29,090 --> 00:08:31,430
+how does amp just let me write any
+
+212
+00:08:31,430 --> 00:08:33,410
+JavaScript I want well that's a good
+
+213
+00:08:33,410 --> 00:08:33,890
+point
+
+214
+00:08:33,890 --> 00:08:36,110
+amp tries hard to guarantee you low
+
+215
+00:08:36,110 --> 00:08:38,419
+cumulative layout shift to keep page
+
+216
+00:08:38,419 --> 00:08:41,090
+elements from moving around if your code
+
+217
+00:08:41,090 --> 00:08:42,740
+makes mutations to the page that would
+
+218
+00:08:42,740 --> 00:08:44,210
+really disturb the page layout and
+
+219
+00:08:44,210 --> 00:08:46,160
+preserves the right to disallow those
+
+220
+00:08:46,160 --> 00:08:49,220
+changes or even shut the worker down if
+
+221
+00:08:49,220 --> 00:08:50,960
+you're on script container can't change
+
+222
+00:08:50,960 --> 00:08:53,480
+it can't disturb the page as much and
+
+223
+00:08:53,480 --> 00:08:55,850
+that gives you more freedom that's why I
+
+224
+00:08:55,850 --> 00:08:57,470
+specified the height and width here in
+
+225
+00:08:57,470 --> 00:08:59,870
+the HTML and why I didn't choose amps
+
+226
+00:08:59,870 --> 00:09:02,180
+container layout there's a lot to this
+
+227
+00:09:02,180 --> 00:09:04,220
+so check the documentation on amp dough
+
+228
+00:09:04,220 --> 00:09:08,030
+for details hold on can I just use amp
+
+229
+00:09:08,030 --> 00:09:09,980
+script to inject more scripts into the
+
+230
+00:09:09,980 --> 00:09:12,710
+DOM nope you're working with virtual Dom
+
+231
+00:09:12,710 --> 00:09:14,360
+not gonna work
+
+232
+00:09:14,360 --> 00:09:16,880
+fair enough but I see something about
+
+233
+00:09:16,880 --> 00:09:18,680
+not allowing more than a hundred and
+
+234
+00:09:18,680 --> 00:09:21,110
+fifty kilobytes of JavaScript is that on
+
+235
+00:09:21,110 --> 00:09:23,810
+a page level that's right 150 K is per
+
+236
+00:09:23,810 --> 00:09:26,150
+page but I could still fit jQuery into
+
+237
+00:09:26,150 --> 00:09:28,640
+that and up I can just copy in my
+
+238
+00:09:28,640 --> 00:09:30,350
+favorite image slider and charter
+
+239
+00:09:30,350 --> 00:09:32,090
+libraries well remember the word Kadam
+
+240
+00:09:32,090 --> 00:09:34,100
+is recreated um API that supports in its
+
+241
+00:09:34,100 --> 00:09:36,410
+own JavaScript if we're Kodama supported
+
+242
+00:09:36,410 --> 00:09:38,690
+the whole Dom API it would be cumbersome
+
+243
+00:09:38,690 --> 00:09:40,670
+and huge it would slow down pages
+
+244
+00:09:40,670 --> 00:09:42,560
+enormous ly it's a pretty few
+
+245
+00:09:42,560 --> 00:09:44,240
+third-party libraries are going to work
+
+246
+00:09:44,240 --> 00:09:48,170
+right out of the box okay and what's the
+
+247
+00:09:48,170 --> 00:09:50,330
+best way to use Apps Script well one way
+
+248
+00:09:50,330 --> 00:09:51,860
+is to use vanilla JavaScript while
+
+249
+00:09:51,860 --> 00:09:53,450
+keeping an eye on this table of
+
+250
+00:09:53,450 --> 00:09:55,700
+supported api's there is quite a bit
+
+251
+00:09:55,700 --> 00:09:56,320
+there
+
+252
+00:09:56,320 --> 00:10:01,340
+wait react can I use react yes that's
+
+253
+00:10:01,340 --> 00:10:03,590
+the other way react uses a very specific
+
+254
+00:10:03,590 --> 00:10:06,470
+subset of the Dom API so the worker Dom
+
+255
+00:10:06,470 --> 00:10:08,150
+teammates sure that subset is well
+
+256
+00:10:08,150 --> 00:10:11,600
+supported okay but I've used react
+
+257
+00:10:11,600 --> 00:10:14,600
+before my react bundle might need to
+
+258
+00:10:14,600 --> 00:10:16,040
+break that hundred and fifty kilobyte
+
+259
+00:10:16,040 --> 00:10:17,750
+limit yeah that's why it's probably
+
+260
+00:10:17,750 --> 00:10:20,930
+better to use pre act instead pre act as
+
+261
+00:10:20,930 --> 00:10:23,030
+highly compatible with react but it's
+
+262
+00:10:23,030 --> 00:10:25,910
+only three K minified in gzipped for
+
+263
+00:10:25,910 --> 00:10:28,100
+projects with more code pre actives
+
+264
+00:10:28,100 --> 00:10:31,190
+probably the way to go here I've made
+
+265
+00:10:31,190 --> 00:10:33,890
+the button example using pre act I find
+
+266
+00:10:33,890 --> 00:10:35,960
+it easier to write the debug the JSX in
+
+267
+00:10:35,960 --> 00:10:37,880
+a simpler environment and then build it
+
+268
+00:10:37,880 --> 00:10:40,840
+into my amp page so let's build this
+
+269
+00:10:40,840 --> 00:10:44,780
+let's start up our server and there's
+
+270
+00:10:44,780 --> 00:10:46,600
+our page with our button it works
+
+271
+00:10:46,600 --> 00:10:50,480
+alright that was a lot if only there was
+
+272
+00:10:50,480 --> 00:10:54,050
+an ant script tutorial out there wait a
+
+273
+00:10:54,050 --> 00:10:56,510
+minute didn't you and I already make one
+
+274
+00:10:56,510 --> 00:10:59,480
+of those yeah you want to take the next
+
+275
+00:10:59,480 --> 00:11:02,660
+slide of course that tutorial is a great
+
+276
+00:11:02,660 --> 00:11:04,190
+introduction to amp script
+
+277
+00:11:04,190 --> 00:11:08,420
+head on over to go ant dev slash learned
+
+278
+00:11:08,420 --> 00:11:11,870
+- script to get started and then keep on
+
+279
+00:11:11,870 --> 00:11:13,820
+going remember that what Kadam is still
+
+280
+00:11:13,820 --> 00:11:16,160
+quite new if you have feature requests
+
+281
+00:11:16,160 --> 00:11:18,350
+or find things that are missing please
+
+282
+00:11:18,350 --> 00:11:21,200
+get involved on github help improve it
+
+283
+00:11:21,200 --> 00:11:24,260
+in conclusion web workers can help you
+
+284
+00:11:24,260 --> 00:11:26,090
+keep JavaScript from slowing down your
+
+285
+00:11:26,090 --> 00:11:28,580
+web pages amp script is a nice way to
+
+286
+00:11:28,580 --> 00:11:30,740
+try this technique out you can find all
+
+287
+00:11:30,740 --> 00:11:33,070
+the code from this talk here on glitch
+
+288
+00:11:33,070 --> 00:11:35,480
+thanks for listening and let's get to
+
+289
+00:11:35,480 --> 00:11:40,640
+work on putting workers to work for you
+
+290
+00:11:40,640 --> 00:11:47,130
+[Music]
+
+291
+00:11:47,130 --> 00:11:49,330
+[Applause]
+

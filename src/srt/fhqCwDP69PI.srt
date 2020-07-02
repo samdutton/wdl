@@ -1,0 +1,837 @@
+1
+00:00:00,560 --> 00:00:03,410
+
+[Music]
+
+2
+00:00:03,410 --> 00:00:08,130
+[Applause]
+
+3
+00:00:08,140 --> 00:00:11,480
+[Music]
+
+4
+00:00:11,480 --> 00:00:15,299
+hi I'm Liam a web ecosystem consultant
+
+5
+00:00:15,299 --> 00:00:17,910
+at Google this talk will explore how
+
+6
+00:00:17,910 --> 00:00:19,920
+different companies are building fast
+
+7
+00:00:19,920 --> 00:00:22,380
+are resilient experiences in the world
+
+8
+00:00:22,380 --> 00:00:24,720
+we'll use the war box libraries to show
+
+9
+00:00:24,720 --> 00:00:27,090
+how to implement four different patterns
+
+10
+00:00:27,090 --> 00:00:29,490
+in your site but all of these features
+
+11
+00:00:29,490 --> 00:00:32,040
+can also be implemented by manually
+
+12
+00:00:32,040 --> 00:00:35,550
+writing the serviceworker code our first
+
+13
+00:00:35,550 --> 00:00:37,530
+pattern is called resilient search
+
+14
+00:00:37,530 --> 00:00:40,050
+experiences and can be applied to any
+
+15
+00:00:40,050 --> 00:00:42,450
+site that offers some type of search
+
+16
+00:00:42,450 --> 00:00:45,390
+functionality when a user searches for a
+
+17
+00:00:45,390 --> 00:00:47,850
+topic in Google search for Chrome in
+
+18
+00:00:47,850 --> 00:00:49,820
+Android devices and loses connection
+
+19
+00:00:49,820 --> 00:00:52,079
+instead of the standard Network error
+
+20
+00:00:52,079 --> 00:00:54,629
+page they are presented with a custom
+
+21
+00:00:54,629 --> 00:00:57,210
+offline page asking if they want to opt
+
+22
+00:00:57,210 --> 00:01:00,480
+in for notifications if the user accepts
+
+23
+00:01:00,480 --> 00:01:02,280
+the permission once the connection is
+
+24
+00:01:02,280 --> 00:01:04,439
+back they will receive a web push
+
+25
+00:01:04,439 --> 00:01:06,510
+notification informing that the search
+
+26
+00:01:06,510 --> 00:01:08,970
+result is ready clicking on the
+
+27
+00:01:08,970 --> 00:01:10,950
+notification will take the user to the
+
+28
+00:01:10,950 --> 00:01:13,590
+result screen this is a great way of
+
+29
+00:01:13,590 --> 00:01:16,049
+keeping the user engaged while letting
+
+30
+00:01:16,049 --> 00:01:18,270
+them complete the task they were looking
+
+31
+00:01:18,270 --> 00:01:21,330
+for at the heart of this implementation
+
+32
+00:01:21,330 --> 00:01:24,360
+is the background sync API which lets
+
+33
+00:01:24,360 --> 00:01:26,610
+you differ actions until the user has
+
+34
+00:01:26,610 --> 00:01:30,000
+stable connectivity in war box this can
+
+35
+00:01:30,000 --> 00:01:33,240
+be implemented very easily first you can
+
+36
+00:01:33,240 --> 00:01:35,369
+define the network only cache in a
+
+37
+00:01:35,369 --> 00:01:37,710
+strategy for the search endpoint so this
+
+38
+00:01:37,710 --> 00:01:41,400
+request always go to the network then
+
+39
+00:01:41,400 --> 00:01:43,619
+you can pass it background sync plug-in
+
+40
+00:01:43,619 --> 00:01:46,020
+to take care of the offline scenarios
+
+41
+00:01:46,020 --> 00:01:49,140
+let's see how the plugin looks like the
+
+42
+00:01:49,140 --> 00:01:50,490
+waterboxx background scene plugin
+
+43
+00:01:50,490 --> 00:01:52,979
+receives the name of a queue to store
+
+44
+00:01:52,979 --> 00:01:56,280
+failed requests to be retried later the
+
+45
+00:01:56,280 --> 00:01:58,649
+plug-in also receives an unseen callback
+
+46
+00:01:58,649 --> 00:02:00,750
+which will be called once the connection
+
+47
+00:02:00,750 --> 00:02:03,390
+is recovered inside the callback you can
+
+48
+00:02:03,390 --> 00:02:06,180
+retrieve any fail request process them
+
+49
+00:02:06,180 --> 00:02:09,030
+and inform the user of the result for
+
+50
+00:02:09,030 --> 00:02:12,060
+example with a notification before
+
+51
+00:02:12,060 --> 00:02:14,099
+moving to the next pattern let's take a
+
+52
+00:02:14,099 --> 00:02:15,990
+look at an important detail for
+
+53
+00:02:15,990 --> 00:02:18,690
+this implementation you might have
+
+54
+00:02:18,690 --> 00:02:20,640
+noticed that the notification permission
+
+55
+00:02:20,640 --> 00:02:22,470
+is requested when the user loses
+
+56
+00:02:22,470 --> 00:02:25,380
+connection at that point the user
+
+57
+00:02:25,380 --> 00:02:27,330
+understands the value of the service and
+
+58
+00:02:27,330 --> 00:02:29,640
+knows that the notification will deliver
+
+59
+00:02:29,640 --> 00:02:33,420
+timely and relevant updates this is an
+
+60
+00:02:33,420 --> 00:02:35,670
+example of the good implementation of
+
+61
+00:02:35,670 --> 00:02:39,060
+the web push permission our next pattern
+
+62
+00:02:39,060 --> 00:02:41,490
+is adaptive loading with service workers
+
+63
+00:02:41,490 --> 00:02:43,500
+and will allow you to provide a fast
+
+64
+00:02:43,500 --> 00:02:45,720
+experience regardless of the network and
+
+65
+00:02:45,720 --> 00:02:48,930
+the device tara is one of the biggest
+
+66
+00:02:48,930 --> 00:02:51,540
+media sites in brazil they have a large
+
+67
+00:02:51,540 --> 00:02:53,940
+user base coming from slow and fast
+
+68
+00:02:53,940 --> 00:02:56,540
+connections to provide a more reliable
+
+69
+00:02:56,540 --> 00:02:59,640
+experience to all their users they are
+
+70
+00:02:59,640 --> 00:03:01,980
+combining service workers and the
+
+71
+00:03:01,980 --> 00:03:04,650
+network information API to deliver lower
+
+72
+00:03:04,650 --> 00:03:07,770
+quality images to users on 2g or 3G
+
+73
+00:03:07,770 --> 00:03:10,890
+connections tera Duda strategy to the
+
+74
+00:03:10,890 --> 00:03:13,290
+next level when users are navigating on
+
+75
+00:03:13,290 --> 00:03:15,570
+slow connections they deliver the amp
+
+76
+00:03:15,570 --> 00:03:18,330
+version of the articles which are more
+
+77
+00:03:18,330 --> 00:03:20,130
+lightweight and tend to perform better
+
+78
+00:03:20,130 --> 00:03:23,880
+under these conditions to implement this
+
+79
+00:03:23,880 --> 00:03:26,370
+functionality in war box you can first
+
+80
+00:03:26,370 --> 00:03:29,330
+apply a cache first strategy to images
+
+81
+00:03:29,330 --> 00:03:31,800
+then you can pass an exploration plugin
+
+82
+00:03:31,800 --> 00:03:33,720
+to limit the number of entries in the
+
+83
+00:03:33,720 --> 00:03:37,050
+cache you can extend this strategy by
+
+84
+00:03:37,050 --> 00:03:39,630
+creating a custom plugin that we will
+
+85
+00:03:39,630 --> 00:03:43,290
+call adaptive loading plug-in decided
+
+86
+00:03:43,290 --> 00:03:45,240
+plug-in you can listen for the request
+
+87
+00:03:45,240 --> 00:03:47,910
+will fetch callback that will be called
+
+88
+00:03:47,910 --> 00:03:50,730
+before the request is made so you can
+
+89
+00:03:50,730 --> 00:03:53,550
+apply a transformation to it inside the
+
+90
+00:03:53,550 --> 00:03:55,590
+callback you can check the connection
+
+91
+00:03:55,590 --> 00:03:58,290
+type if it's a slow connection you can
+
+92
+00:03:58,290 --> 00:04:00,900
+create a new URL for a lower image
+
+93
+00:04:00,900 --> 00:04:04,350
+quality finally you can create a new
+
+94
+00:04:04,350 --> 00:04:07,320
+request based on that URL and fetch the
+
+95
+00:04:07,320 --> 00:04:09,840
+most appropriate image file according to
+
+96
+00:04:09,840 --> 00:04:12,900
+these conditions if you are using cloud
+
+97
+00:04:12,900 --> 00:04:15,300
+inari there's a war box cloud in re
+
+98
+00:04:15,300 --> 00:04:18,030
+plug-in making this feature even easier
+
+99
+00:04:18,030 --> 00:04:21,810
+to implement check it out as you might
+
+100
+00:04:21,810 --> 00:04:23,970
+have noticed the first two buttons have
+
+101
+00:04:23,970 --> 00:04:26,729
+some things in common we have combined
+
+102
+00:04:26,729 --> 00:04:28,680
+the functionality of runtime caching
+
+103
+00:04:28,680 --> 00:04:29,950
+strategies with
+
+104
+00:04:29,950 --> 00:04:32,860
+plugins this shows one of the benefits
+
+105
+00:04:32,860 --> 00:04:35,650
+of using were box allowing you to extend
+
+106
+00:04:35,650 --> 00:04:38,440
+the standard features in a very easy way
+
+107
+00:04:38,440 --> 00:04:40,960
+let's move now to the second part of the
+
+108
+00:04:40,960 --> 00:04:44,770
+dock our third pattern is called instant
+
+109
+00:04:44,770 --> 00:04:47,620
+navigation experiences and it's useful
+
+110
+00:04:47,620 --> 00:04:51,220
+for any type of site performing a task
+
+111
+00:04:51,220 --> 00:04:53,800
+in a website might involve several steps
+
+112
+00:04:53,800 --> 00:04:56,200
+each of them meaning a navigation
+
+113
+00:04:56,200 --> 00:04:59,320
+request navigation request live request
+
+114
+00:04:59,320 --> 00:05:02,260
+for HTML pages are normally satisfied
+
+115
+00:05:02,260 --> 00:05:05,140
+via the network this means using a cache
+
+116
+00:05:05,140 --> 00:05:08,230
+control header of no cache or a max age
+
+117
+00:05:08,230 --> 00:05:10,840
+of zero to ensure that the response is
+
+118
+00:05:10,840 --> 00:05:14,620
+reasonably fresh having to go against
+
+119
+00:05:14,620 --> 00:05:17,200
+the network means that each navigation
+
+120
+00:05:17,200 --> 00:05:20,260
+might be slow or at the least not
+
+121
+00:05:20,260 --> 00:05:22,960
+reliably fast to speed up these
+
+122
+00:05:22,960 --> 00:05:25,000
+navigations you can apply a technique
+
+123
+00:05:25,000 --> 00:05:28,660
+called prefetching in this example
+
+124
+00:05:28,660 --> 00:05:29,770
+MercadoLibre
+
+125
+00:05:29,770 --> 00:05:31,690
+the largest e-commerce site in latin
+
+126
+00:05:31,690 --> 00:05:34,600
+america dynamically shakes lien prefetch
+
+127
+00:05:34,600 --> 00:05:37,360
+tags in listing pages to accelerate
+
+128
+00:05:37,360 --> 00:05:40,030
+parts of its law but prefetching is not
+
+129
+00:05:40,030 --> 00:05:44,020
+only useful for ecommerce sites Italian
+
+130
+00:05:44,020 --> 00:05:46,120
+sports port out-build Giulia sport
+
+131
+00:05:46,120 --> 00:05:48,790
+you see service workers to prefetch the
+
+132
+00:05:48,790 --> 00:05:50,740
+most popular posts that appear in the
+
+133
+00:05:50,740 --> 00:05:53,020
+home page before the user even clicks on
+
+134
+00:05:53,020 --> 00:05:56,080
+them as a result load time for
+
+135
+00:05:56,080 --> 00:05:58,720
+navigation two articles have improved by
+
+136
+00:05:58,720 --> 00:06:02,200
+78% and the number of article
+
+137
+00:06:02,200 --> 00:06:06,570
+impressions has increased in 45%
+
+138
+00:06:06,570 --> 00:06:09,280
+prefetching is commonly implemented by
+
+139
+00:06:09,280 --> 00:06:12,490
+using a resource hint in your pages link
+
+140
+00:06:12,490 --> 00:06:15,550
+prefetch the tag tells the browser to
+
+141
+00:06:15,550 --> 00:06:17,440
+fetch a resource at the lowest priority
+
+142
+00:06:17,440 --> 00:06:21,100
+and keep it in the HTTP cache for five
+
+143
+00:06:21,100 --> 00:06:25,060
+minutes in the serviceworker side you
+
+144
+00:06:25,060 --> 00:06:28,450
+can intercept requests for HTML pages so
+
+145
+00:06:28,450 --> 00:06:30,610
+that you can extend the lifetime of the
+
+146
+00:06:30,610 --> 00:06:32,740
+prefetch resource beyond the five
+
+147
+00:06:32,740 --> 00:06:36,040
+minutes window for HTML pages as
+
+148
+00:06:36,040 --> 00:06:38,680
+tailwater revalidate strategy is a good
+
+149
+00:06:38,680 --> 00:06:41,380
+option to respond quickly from the cache
+
+150
+00:06:41,380 --> 00:06:43,540
+while simultaneously keeping it
+
+151
+00:06:43,540 --> 00:06:46,660
+to date before moving to the final
+
+152
+00:06:46,660 --> 00:06:49,000
+pattern there's a slight variation of
+
+153
+00:06:49,000 --> 00:06:51,070
+this technique if there are using
+
+154
+00:06:51,070 --> 00:06:53,170
+resource hints in the page some
+
+155
+00:06:53,170 --> 00:06:54,640
+developers prefer to delegate
+
+156
+00:06:54,640 --> 00:06:56,530
+prefetching completely to the
+
+157
+00:06:56,530 --> 00:06:59,380
+serviceworker for that you need to
+
+158
+00:06:59,380 --> 00:07:01,870
+implement a page to serviceworker
+
+159
+00:07:01,870 --> 00:07:04,510
+communication technique the war box
+
+160
+00:07:04,510 --> 00:07:06,700
+window package allows you to do that
+
+161
+00:07:06,700 --> 00:07:08,350
+so if you're interested on following
+
+162
+00:07:08,350 --> 00:07:11,100
+that route you can check that out
+
+163
+00:07:11,100 --> 00:07:14,140
+we have reached the end of our talk
+
+164
+00:07:14,140 --> 00:07:17,800
+our final pattern is app shell UX with
+
+165
+00:07:17,800 --> 00:07:20,410
+service workers and it's useful if you
+
+166
+00:07:20,410 --> 00:07:22,900
+want to make multi-page apps feel like
+
+167
+00:07:22,900 --> 00:07:26,770
+single page applications Dirk has become
+
+168
+00:07:26,770 --> 00:07:28,630
+one of the favorite platforms for
+
+169
+00:07:28,630 --> 00:07:31,000
+software developers the architecture of
+
+170
+00:07:31,000 --> 00:07:34,630
+their side is a multi-page up their team
+
+171
+00:07:34,630 --> 00:07:36,220
+was interested in the benefits of the
+
+172
+00:07:36,220 --> 00:07:38,650
+app shell model but didn't want to incur
+
+173
+00:07:38,650 --> 00:07:41,290
+in a measure architectural change so
+
+174
+00:07:41,290 --> 00:07:43,750
+let's see what they did first they
+
+175
+00:07:43,750 --> 00:07:46,300
+created partials for the header and the
+
+176
+00:07:46,300 --> 00:07:49,660
+footer of the homepage these assets are
+
+177
+00:07:49,660 --> 00:07:51,760
+added to the cache at the serviceworker
+
+178
+00:07:51,760 --> 00:07:54,520
+install event what's commonly referred
+
+179
+00:07:54,520 --> 00:07:58,510
+to us pre-caching the content of the
+
+180
+00:07:58,510 --> 00:08:00,880
+page is the only part that's actually
+
+181
+00:08:00,880 --> 00:08:02,950
+being fetched from the network when
+
+182
+00:08:02,950 --> 00:08:06,160
+navigating but the key ingredient of
+
+183
+00:08:06,160 --> 00:08:09,000
+this solution is the usage of streaming
+
+184
+00:08:09,000 --> 00:08:12,070
+thanks to that bytes can start being
+
+185
+00:08:12,070 --> 00:08:14,530
+painted in the screen before the full
+
+186
+00:08:14,530 --> 00:08:18,070
+response is ready war box you can start
+
+187
+00:08:18,070 --> 00:08:20,440
+by creating a regular expression too
+
+188
+00:08:20,440 --> 00:08:23,710
+much request for patience then you can
+
+189
+00:08:23,710 --> 00:08:25,720
+pass an array of stream responses to
+
+190
+00:08:25,720 --> 00:08:28,660
+compose for the header of the footer you
+
+191
+00:08:28,660 --> 00:08:31,930
+can use a cache first strategy for the
+
+192
+00:08:31,930 --> 00:08:35,500
+content you can use a network first all
+
+193
+00:08:35,500 --> 00:08:38,080
+these streaming sources will be composed
+
+194
+00:08:38,080 --> 00:08:40,590
+by war box and sent to the client
+
+195
+00:08:40,590 --> 00:08:43,810
+thanks to streams the header can start
+
+196
+00:08:43,810 --> 00:08:45,520
+being painted as soon as you speak up
+
+197
+00:08:45,520 --> 00:08:47,500
+from the cache without having to wait
+
+198
+00:08:47,500 --> 00:08:51,640
+for the full response we have seen for
+
+199
+00:08:51,640 --> 00:08:53,530
+advanced patterns for speed and
+
+200
+00:08:53,530 --> 00:08:56,560
+resilience as a complement of this talk
+
+201
+00:08:56,560 --> 00:08:57,250
+will be
+
+202
+00:08:57,250 --> 00:08:59,440
+loading guides and cold ups so you can
+
+203
+00:08:59,440 --> 00:09:02,200
+see them in more detail please check web
+
+204
+00:09:02,200 --> 00:09:04,990
+dev slash progressive elapse and web dev
+
+205
+00:09:04,990 --> 00:09:08,170
+slash reliable thanks for watching
+
+206
+00:09:08,170 --> 00:09:14,670
+[Music]
+
+207
+00:09:14,670 --> 00:09:16,920
+[Applause]
+
+208
+00:09:16,920 --> 00:09:18,899
+[Music]
+
+209
+00:09:18,899 --> 00:09:19,400
+you
+

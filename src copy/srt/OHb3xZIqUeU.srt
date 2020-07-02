@@ -1,0 +1,3441 @@
+1
+00:00:00,570 --> 00:00:03,380
+
+[Music]
+
+2
+00:00:03,380 --> 00:00:05,680
+[Applause]
+
+3
+00:00:05,680 --> 00:00:11,330
+[Music]
+
+4
+00:00:11,330 --> 00:00:14,099
+hi everybody I'm Paul Lewis and I'm
+
+5
+00:00:14,099 --> 00:00:16,529
+Philip Walton okay so we thought today
+
+6
+00:00:16,529 --> 00:00:18,480
+what we do is we would talk about the
+
+7
+00:00:18,480 --> 00:00:21,630
+core web vitals inside of dev tools now
+
+8
+00:00:21,630 --> 00:00:25,050
+I know about the dev tools side in fact
+
+9
+00:00:25,050 --> 00:00:27,510
+I implemented some of the core word
+
+10
+00:00:27,510 --> 00:00:30,630
+vitals in side of dev tools but Phil
+
+11
+00:00:30,630 --> 00:00:31,920
+you're more of the person that knows
+
+12
+00:00:31,920 --> 00:00:33,899
+about the actual metrics where they came
+
+13
+00:00:33,899 --> 00:00:35,550
+from and that kind of stuff right that's
+
+14
+00:00:35,550 --> 00:00:37,200
+right I know a lot about the metrics I
+
+15
+00:00:37,200 --> 00:00:39,809
+work on the chrome team working with
+
+16
+00:00:39,809 --> 00:00:40,980
+some of the people that were helping to
+
+17
+00:00:40,980 --> 00:00:42,930
+define the metrics and standardized them
+
+18
+00:00:42,930 --> 00:00:44,760
+in browsers but I don't really know much
+
+19
+00:00:44,760 --> 00:00:47,280
+about how they work in dev tools so Paul
+
+20
+00:00:47,280 --> 00:00:48,450
+you're a great person for me to talk to
+
+21
+00:00:48,450 --> 00:00:51,090
+here let's let's dive in and see what we
+
+22
+00:00:51,090 --> 00:00:54,239
+can what we can find out okay so I guess
+
+23
+00:00:54,239 --> 00:00:55,860
+I plan may still have a bit of a
+
+24
+00:00:55,860 --> 00:00:58,079
+conversation to go back and forth we'll
+
+25
+00:00:58,079 --> 00:01:00,329
+be diving in and our dev tools having a
+
+26
+00:01:00,329 --> 00:01:02,280
+bit of a discussion about these metrics
+
+27
+00:01:02,280 --> 00:01:04,460
+and just trying to kind of explore
+
+28
+00:01:04,460 --> 00:01:06,510
+understand and share what's kind of
+
+29
+00:01:06,510 --> 00:01:09,030
+going on there so I guess the first one
+
+30
+00:01:09,030 --> 00:01:12,270
+that I was kind of thinking about when
+
+31
+00:01:12,270 --> 00:01:15,900
+we were discussing this was LCP and FCP
+
+32
+00:01:15,900 --> 00:01:17,790
+so there guess the first thing to kind
+
+33
+00:01:17,790 --> 00:01:20,490
+of talk about is what are what are they
+
+34
+00:01:20,490 --> 00:01:22,950
+like where do they come from you know
+
+35
+00:01:22,950 --> 00:01:26,180
+these are both paint metrics so FCP is
+
+36
+00:01:26,180 --> 00:01:29,100
+first content for paint it's tan it
+
+37
+00:01:29,100 --> 00:01:31,619
+represents the first point in time that
+
+38
+00:01:31,619 --> 00:01:33,960
+the browser is able to paint any content
+
+39
+00:01:33,960 --> 00:01:36,869
+on the screen and LCP is largest
+
+40
+00:01:36,869 --> 00:01:39,390
+contentful paint and that represents the
+
+41
+00:01:39,390 --> 00:01:41,729
+largest single text node or image
+
+42
+00:01:41,729 --> 00:01:43,710
+element on the page and the idea between
+
+43
+00:01:43,710 --> 00:01:46,950
+these two is that FCP represents like
+
+44
+00:01:46,950 --> 00:01:48,509
+the first time the user sees something
+
+45
+00:01:48,509 --> 00:01:52,470
+and an LCP represents when you know the
+
+46
+00:01:52,470 --> 00:01:54,930
+main contents of the page has painted I
+
+47
+00:01:54,930 --> 00:01:56,790
+mean in general whatever the largest
+
+48
+00:01:56,790 --> 00:01:58,860
+thing on the largest image or text node
+
+49
+00:01:58,860 --> 00:02:01,049
+on the screen is generally the thing
+
+50
+00:02:01,049 --> 00:02:02,579
+that the user is going to notice and so
+
+51
+00:02:02,579 --> 00:02:04,469
+that kind of represents once the page is
+
+52
+00:02:04,469 --> 00:02:06,630
+really loaded so I guess for a lot of
+
+53
+00:02:06,630 --> 00:02:07,950
+people then the first thing they're
+
+54
+00:02:07,950 --> 00:02:10,259
+gonna think of certainly for the largest
+
+55
+00:02:10,259 --> 00:02:12,030
+content for paint will be something like
+
+56
+00:02:12,030 --> 00:02:14,280
+a hero element or something
+
+57
+00:02:14,280 --> 00:02:16,140
+yeah they can a big image at the top of
+
+58
+00:02:16,140 --> 00:02:18,980
+the page for example absolutely okay
+
+59
+00:02:18,980 --> 00:02:21,720
+right but it's not always that I'm
+
+60
+00:02:21,720 --> 00:02:23,790
+guessing because you could be deep
+
+61
+00:02:23,790 --> 00:02:26,340
+linking into some content like further
+
+62
+00:02:26,340 --> 00:02:28,290
+down the page and everything else yeah
+
+63
+00:02:28,290 --> 00:02:31,350
+that's up so I okay I tell you what
+
+64
+00:02:31,350 --> 00:02:32,610
+we'll do then let's take it I've got a
+
+65
+00:02:32,610 --> 00:02:34,910
+page here actually I've got this page on
+
+66
+00:02:34,910 --> 00:02:38,820
+web dev we perform it to tab open inside
+
+67
+00:02:38,820 --> 00:02:42,750
+of dev tools and I guess the the goal
+
+68
+00:02:42,750 --> 00:02:46,500
+here is going to be to show FCP and LCP
+
+69
+00:02:46,500 --> 00:02:49,170
+in context and I have web dev open here
+
+70
+00:02:49,170 --> 00:02:52,560
+on a page in the performance section
+
+71
+00:02:52,560 --> 00:02:55,800
+around using image Sirians to optimize
+
+72
+00:02:55,800 --> 00:02:56,850
+images so if you've not seen this
+
+73
+00:02:56,850 --> 00:02:59,730
+content definitely worth a look it's a
+
+74
+00:02:59,730 --> 00:03:03,110
+great art okay and we have yeah we have
+
+75
+00:03:03,110 --> 00:03:06,150
+I'm DCI can deep link into this section
+
+76
+00:03:06,150 --> 00:03:09,990
+right with the right and so this I guess
+
+77
+00:03:09,990 --> 00:03:11,880
+would become our hero image right and an
+
+78
+00:03:11,880 --> 00:03:13,880
+interesting point to make here is that
+
+79
+00:03:13,880 --> 00:03:16,350
+the hero image is not necessarily going
+
+80
+00:03:16,350 --> 00:03:18,360
+to be above the fold like in this case
+
+81
+00:03:18,360 --> 00:03:20,190
+you're loading a page
+
+82
+00:03:20,190 --> 00:03:22,050
+halfway down have we scroll down the
+
+83
+00:03:22,050 --> 00:03:25,860
+page and so LCP is always you know it's
+
+84
+00:03:25,860 --> 00:03:27,120
+only going to consider elements that are
+
+85
+00:03:27,120 --> 00:03:28,440
+actually visible to the user on the
+
+86
+00:03:28,440 --> 00:03:33,300
+screen right great points so this is
+
+87
+00:03:33,300 --> 00:03:35,040
+what's going to make this brilliant but
+
+88
+00:03:35,040 --> 00:03:36,030
+interesting so what I'm going to do is
+
+89
+00:03:36,030 --> 00:03:38,190
+I'm actually gonna going to go to fast
+
+90
+00:03:38,190 --> 00:03:40,170
+three G so in the performance tab you
+
+91
+00:03:40,170 --> 00:03:42,030
+can open the capture settings here I'm
+
+92
+00:03:42,030 --> 00:03:44,610
+going to change just online oh it's a
+
+93
+00:03:44,610 --> 00:03:46,220
+fast 3d so we're just going to switch to
+
+94
+00:03:46,220 --> 00:03:49,140
+a slow down on the performance you see
+
+95
+00:03:49,140 --> 00:03:51,840
+this little exclamation mark shows up
+
+96
+00:03:51,840 --> 00:03:53,670
+saying Network throttling throttling is
+
+97
+00:03:53,670 --> 00:03:55,560
+enabled and I'm gonna I'm gonna slow
+
+98
+00:03:55,560 --> 00:03:57,660
+down the CPU just a little bit and you
+
+99
+00:03:57,660 --> 00:03:58,920
+doing this just so that we can see
+
+100
+00:03:58,920 --> 00:04:00,209
+things you're doing this to simulate
+
+101
+00:04:00,209 --> 00:04:01,920
+maybe a lower powered device or
+
+102
+00:04:01,920 --> 00:04:04,500
+something like that correct yeah yeah I
+
+103
+00:04:04,500 --> 00:04:06,330
+am but right now as well what I wanted
+
+104
+00:04:06,330 --> 00:04:08,370
+to do is if I take a recording with
+
+105
+00:04:08,370 --> 00:04:10,620
+things just slow down a little bit it
+
+106
+00:04:10,620 --> 00:04:13,110
+might be easier to just to see what's
+
+107
+00:04:13,110 --> 00:04:15,380
+going on because I happen to be
+
+108
+00:04:15,380 --> 00:04:17,790
+somewhere in my house is actually a
+
+109
+00:04:17,790 --> 00:04:19,260
+really good internet connection so I
+
+110
+00:04:19,260 --> 00:04:22,530
+don't particularly see network latency
+
+111
+00:04:22,530 --> 00:04:25,320
+quite as much as you would in other
+
+112
+00:04:25,320 --> 00:04:26,760
+cases say you know if you're on a mobile
+
+113
+00:04:26,760 --> 00:04:27,930
+device out and
+
+114
+00:04:27,930 --> 00:04:29,520
+so I just thought let's just try this
+
+115
+00:04:29,520 --> 00:04:30,660
+and see what happens so I'm gonna hit
+
+116
+00:04:30,660 --> 00:04:32,910
+record I'm gonna hit command shift are
+
+117
+00:04:32,910 --> 00:04:37,650
+to do a reload okay and I'm gonna stop
+
+118
+00:04:37,650 --> 00:04:41,460
+and we can discuss what we see okay let
+
+119
+00:04:41,460 --> 00:04:44,699
+me just wrap this up here now the first
+
+120
+00:04:44,699 --> 00:04:47,160
+thing to notice I suppose would be the
+
+121
+00:04:47,160 --> 00:04:51,120
+timings row here to have to remind
+
+122
+00:04:51,120 --> 00:04:52,590
+ourselves what these are Dom content
+
+123
+00:04:52,590 --> 00:04:53,970
+loaded this has been around forever
+
+124
+00:04:53,970 --> 00:04:57,289
+hasn't it yeah but there is first paint
+
+125
+00:04:57,289 --> 00:05:00,419
+first content for paint first meaningful
+
+126
+00:05:00,419 --> 00:05:01,650
+paint which we could talk about a little
+
+127
+00:05:01,650 --> 00:05:03,510
+bit I suppose largest content for
+
+128
+00:05:03,510 --> 00:05:04,490
+painting you can see this actually
+
+129
+00:05:04,490 --> 00:05:07,289
+highlighted our screenshot here and then
+
+130
+00:05:07,289 --> 00:05:10,110
+the load event now I can use the keys on
+
+131
+00:05:10,110 --> 00:05:14,400
+the keyboard to come into a little bit
+
+132
+00:05:14,400 --> 00:05:15,870
+closer zoom in a little bit on this
+
+133
+00:05:15,870 --> 00:05:18,720
+particular area of interest and you see
+
+134
+00:05:18,720 --> 00:05:21,690
+here I suppose the first content for
+
+135
+00:05:21,690 --> 00:05:27,060
+paint is presumably happening and then
+
+136
+00:05:27,060 --> 00:05:28,530
+the largest content for paint is
+
+137
+00:05:28,530 --> 00:05:30,449
+happening slightly later that's right
+
+138
+00:05:30,449 --> 00:05:31,889
+now I think we can get a little bit more
+
+139
+00:05:31,889 --> 00:05:34,199
+info about this because first content
+
+140
+00:05:34,199 --> 00:05:35,729
+for paint is happening and then the
+
+141
+00:05:35,729 --> 00:05:37,139
+largest content for paper which implies
+
+142
+00:05:37,139 --> 00:05:40,520
+to me that the image is coming in after
+
+143
+00:05:40,520 --> 00:05:42,990
+the initial page content so we're
+
+144
+00:05:42,990 --> 00:05:44,190
+drawing something we're painting
+
+145
+00:05:44,190 --> 00:05:46,260
+something and then we're painting the
+
+146
+00:05:46,260 --> 00:05:48,210
+image after the fact so let's just even
+
+147
+00:05:48,210 --> 00:05:51,840
+do that with screenshots on mm-hm and we
+
+148
+00:05:51,840 --> 00:05:55,849
+will record again and see what we get
+
+149
+00:05:55,849 --> 00:06:01,560
+okay I'll stop there and hopefully I
+
+150
+00:06:01,560 --> 00:06:05,370
+just leave this a little bit and we
+
+151
+00:06:05,370 --> 00:06:08,050
+might see
+
+152
+00:06:08,060 --> 00:06:14,070
+okay so roundabout fact I wonder if I
+
+153
+00:06:14,070 --> 00:06:15,690
+can just bring this in a little bit
+
+154
+00:06:15,690 --> 00:06:19,260
+further let me just see if I can drag
+
+155
+00:06:19,260 --> 00:06:22,500
+that down throw this a little bit okay
+
+156
+00:06:22,500 --> 00:06:24,539
+that might be as clear as this is gonna
+
+157
+00:06:24,539 --> 00:06:27,050
+get I wonder
+
+158
+00:06:27,050 --> 00:06:29,820
+yeah it is okay I tell you what we're
+
+159
+00:06:29,820 --> 00:06:30,990
+gonna do we're going to make this a
+
+160
+00:06:30,990 --> 00:06:32,310
+little bit clearer because what's
+
+161
+00:06:32,310 --> 00:06:33,630
+happening is we're actually seeing the
+
+162
+00:06:33,630 --> 00:06:36,060
+page content before I did the refresh
+
+163
+00:06:36,060 --> 00:06:38,219
+and then slightly after so I can do I
+
+164
+00:06:38,219 --> 00:06:40,080
+can if I take this and I go to about
+
+165
+00:06:40,080 --> 00:06:41,580
+blank mr. sheean
+
+166
+00:06:41,580 --> 00:06:43,050
+testing way to do this testing if you're
+
+167
+00:06:43,050 --> 00:06:45,810
+ever curious about it record it from
+
+168
+00:06:45,810 --> 00:06:48,569
+about blank so that you start without
+
+169
+00:06:48,569 --> 00:06:50,370
+anything on the page can that can make
+
+170
+00:06:50,370 --> 00:06:52,349
+it easier to find your screenshot so I'm
+
+171
+00:06:52,349 --> 00:06:56,699
+gonna go paste in the URL here but not
+
+172
+00:06:56,699 --> 00:06:58,560
+hit enter not go to that yet okay hit
+
+173
+00:06:58,560 --> 00:07:02,610
+record okay and now go there okay yeah
+
+174
+00:07:02,610 --> 00:07:04,199
+hopefully that will make it a little
+
+175
+00:07:04,199 --> 00:07:07,319
+easier to see what's going on okay so
+
+176
+00:07:07,319 --> 00:07:11,039
+you see we've gone from here into the
+
+177
+00:07:11,039 --> 00:07:12,360
+screenshots we see this we see the
+
+178
+00:07:12,360 --> 00:07:14,219
+original page content the top of the
+
+179
+00:07:14,219 --> 00:07:18,419
+page and then we're going down to our
+
+180
+00:07:18,419 --> 00:07:20,219
+deep link just below that so my
+
+181
+00:07:20,219 --> 00:07:24,030
+assumption is if we if we bring our zoom
+
+182
+00:07:24,030 --> 00:07:30,150
+in here then around about here in fact
+
+183
+00:07:30,150 --> 00:07:36,539
+we can just is this here yeah OOP you
+
+184
+00:07:36,539 --> 00:07:37,770
+see we're just right on this line here
+
+185
+00:07:37,770 --> 00:07:40,139
+where we go from nothing to something
+
+186
+00:07:40,139 --> 00:07:43,020
+right nothing to something is exactly
+
+187
+00:07:43,020 --> 00:07:44,219
+the point where we actually start to see
+
+188
+00:07:44,219 --> 00:07:48,240
+this this the first read is the context
+
+189
+00:07:48,240 --> 00:07:49,469
+for paint coming in yeah this is the
+
+190
+00:07:49,469 --> 00:07:51,990
+first thing that the user sees but it's
+
+191
+00:07:51,990 --> 00:07:53,789
+not the main thing that they wanted to
+
+192
+00:07:53,789 --> 00:07:54,990
+see when they were when they were
+
+193
+00:07:54,990 --> 00:07:58,440
+loading the page yeah in fact is saying
+
+194
+00:07:58,440 --> 00:07:59,669
+the largest content for paint at this
+
+195
+00:07:59,669 --> 00:08:02,629
+point is actually this piece of text now
+
+196
+00:08:02,629 --> 00:08:04,919
+let's try it one more time from her just
+
+197
+00:08:04,919 --> 00:08:06,810
+a really really dial it in I wasn't
+
+198
+00:08:06,810 --> 00:08:09,750
+going to go for slow 3G I'm gonna go to
+
+199
+00:08:09,750 --> 00:08:12,509
+about blank again and I'm gonna hit
+
+200
+00:08:12,509 --> 00:08:16,440
+record and I'm gonna see what happens I
+
+201
+00:08:16,440 --> 00:08:17,430
+feel like we're gonna see something
+
+202
+00:08:17,430 --> 00:08:19,979
+reasonable here let's process that
+
+203
+00:08:19,979 --> 00:08:22,860
+profile okay there we go
+
+204
+00:08:22,860 --> 00:08:24,960
+this I think is starting to make more
+
+205
+00:08:24,960 --> 00:08:30,889
+sense to me over here there we go okay
+
+206
+00:08:30,889 --> 00:08:33,269
+Wow there we are
+
+207
+00:08:33,269 --> 00:08:40,080
+first content for paint is here there
+
+208
+00:08:40,080 --> 00:08:45,959
+okay and then much later Boop there
+
+209
+00:08:45,959 --> 00:08:49,200
+comes our image okay which is slightly
+
+210
+00:08:49,200 --> 00:08:51,959
+over to the right here and there so I
+
+211
+00:08:51,959 --> 00:08:54,959
+can select that area and as from the
+
+212
+00:08:54,959 --> 00:08:57,540
+based on the screenshots roughly there
+
+213
+00:08:57,540 --> 00:08:59,459
+and I say that's the first content for
+
+214
+00:08:59,459 --> 00:09:01,110
+paint and then if I select later on in
+
+215
+00:09:01,110 --> 00:09:03,180
+the screenshots there thanks Allah
+
+216
+00:09:03,180 --> 00:09:04,350
+that's the largest content for paint
+
+217
+00:09:04,350 --> 00:09:06,899
+which is high in me down okay let's nice
+
+218
+00:09:06,899 --> 00:09:09,600
+that dev tools shows you exactly what
+
+219
+00:09:09,600 --> 00:09:10,950
+element on the page is the largest
+
+220
+00:09:10,950 --> 00:09:12,890
+content for paint
+
+221
+00:09:12,890 --> 00:09:16,890
+absolutely I can't resist I know we're
+
+222
+00:09:16,890 --> 00:09:18,810
+going to talk about layout shifts next
+
+223
+00:09:18,810 --> 00:09:20,610
+but why don't just jump the gun a little
+
+224
+00:09:20,610 --> 00:09:22,550
+bit we actually have a layout shift
+
+225
+00:09:22,550 --> 00:09:25,170
+showing up between first at content for
+
+226
+00:09:25,170 --> 00:09:27,450
+paint and largest content for paint and
+
+227
+00:09:27,450 --> 00:09:32,490
+I think based on this I think the reason
+
+228
+00:09:32,490 --> 00:09:34,560
+is because we're going from no image to
+
+229
+00:09:34,560 --> 00:09:36,360
+image it's pushing the content down
+
+230
+00:09:36,360 --> 00:09:38,399
+their terrain so I think we're seeing
+
+231
+00:09:38,399 --> 00:09:42,060
+the page content move so my guess is if
+
+232
+00:09:42,060 --> 00:09:43,950
+we were to go and find this image here
+
+233
+00:09:43,950 --> 00:09:46,020
+in the elements panel we're gonna see
+
+234
+00:09:46,020 --> 00:09:48,300
+that it doesn't actually have yeah it
+
+235
+00:09:48,300 --> 00:09:49,770
+doesn't have width and height attribute
+
+236
+00:09:49,770 --> 00:09:53,810
+set yeah and I think that's basically
+
+237
+00:09:53,810 --> 00:09:57,750
+causing this to happen so if you will
+
+238
+00:09:57,750 --> 00:09:59,850
+come and we'll talk about layout shifts
+
+239
+00:09:59,850 --> 00:10:01,410
+more in a second but the reason this
+
+240
+00:10:01,410 --> 00:10:03,270
+page is shifting is because we have an
+
+241
+00:10:03,270 --> 00:10:06,570
+image here that that loads when it loads
+
+242
+00:10:06,570 --> 00:10:09,990
+loads asynchronously essentially and it
+
+243
+00:10:09,990 --> 00:10:12,390
+when it's loaded it pushes the rest of
+
+244
+00:10:12,390 --> 00:10:13,860
+the page content down if we added width
+
+245
+00:10:13,860 --> 00:10:15,959
+and height attributes to this image we
+
+246
+00:10:15,959 --> 00:10:18,300
+wouldn't see we wouldn't see that layout
+
+247
+00:10:18,300 --> 00:10:19,649
+shift as I said we'll come back to that
+
+248
+00:10:19,649 --> 00:10:21,000
+more anymore yeah that's a good general
+
+249
+00:10:21,000 --> 00:10:23,220
+I guess that's practice though just let
+
+250
+00:10:23,220 --> 00:10:25,290
+everybody know always put width and
+
+251
+00:10:25,290 --> 00:10:27,779
+height attributes on your images that
+
+252
+00:10:27,779 --> 00:10:29,850
+way the browser can render the space
+
+253
+00:10:29,850 --> 00:10:32,279
+that it needs it can it can allocate a
+
+254
+00:10:32,279 --> 00:10:34,250
+space that it needs to render them
+
+255
+00:10:34,250 --> 00:10:36,269
+before it actually finished loading
+
+256
+00:10:36,269 --> 00:10:38,160
+loading the image so then you don't get
+
+257
+00:10:38,160 --> 00:10:41,940
+that layout shipped exactly the other
+
+258
+00:10:41,940 --> 00:10:44,120
+thing I think we should talk about
+
+259
+00:10:44,120 --> 00:10:48,209
+before we move on is how to optimize for
+
+260
+00:10:48,209 --> 00:10:50,820
+this particular situation so what would
+
+261
+00:10:50,820 --> 00:10:52,560
+you suggest if somebody said I need to
+
+262
+00:10:52,560 --> 00:10:53,910
+get first content for paint
+
+263
+00:10:53,910 --> 00:10:56,699
+largest contentful paint nearer the star
+
+264
+00:10:56,699 --> 00:10:58,500
+that is taking too long to get to these
+
+265
+00:10:58,500 --> 00:11:00,930
+numbers these numbers are too high do
+
+266
+00:11:00,930 --> 00:11:02,490
+you have a do you have a kind of go to
+
+267
+00:11:02,490 --> 00:11:04,050
+list of things you would say to them
+
+268
+00:11:04,050 --> 00:11:05,940
+yeah well definitely one thing that you
+
+269
+00:11:05,940 --> 00:11:10,319
+you don't want to you know ever block I
+
+270
+00:11:10,319 --> 00:11:11,899
+mean ideally you don't ever block
+
+271
+00:11:11,899 --> 00:11:14,759
+painting on more than kind of one
+
+272
+00:11:14,759 --> 00:11:16,709
+network request that initial network
+
+273
+00:11:16,709 --> 00:11:18,630
+request that you make ticket the page
+
+274
+00:11:18,630 --> 00:11:20,399
+content you want to be able to paint at
+
+275
+00:11:20,399 --> 00:11:22,920
+that point if you have additional
+
+276
+00:11:22,920 --> 00:11:24,779
+requests like request for fonts or style
+
+277
+00:11:24,779 --> 00:11:26,519
+sheets or other things that are
+
+278
+00:11:26,519 --> 00:11:28,589
+preventing you know the browser from
+
+279
+00:11:28,589 --> 00:11:30,720
+painting that will just delay the time
+
+280
+00:11:30,720 --> 00:11:34,019
+when that paint can happen and so you
+
+281
+00:11:34,019 --> 00:11:35,790
+know I mean sometimes you know it
+
+282
+00:11:35,790 --> 00:11:38,130
+depending upon the design you're working
+
+283
+00:11:38,130 --> 00:11:39,870
+with you don't have a choice but in in
+
+284
+00:11:39,870 --> 00:11:41,699
+an ideal world you would want to be able
+
+285
+00:11:41,699 --> 00:11:44,339
+to paint right away and so looks like in
+
+286
+00:11:44,339 --> 00:11:48,209
+this case on web dev we are able to
+
+287
+00:11:48,209 --> 00:11:51,000
+paint pretty quickly and then and that's
+
+288
+00:11:51,000 --> 00:11:53,160
+why first paint is happening you know at
+
+289
+00:11:53,160 --> 00:11:55,259
+the beginning and then the browser is
+
+290
+00:11:55,259 --> 00:11:56,940
+loading this image and then larges can
+
+291
+00:11:56,940 --> 00:11:58,649
+different paint happens as soon as that
+
+292
+00:11:58,649 --> 00:12:01,769
+image gets loaded in exactly yeah I
+
+293
+00:12:01,769 --> 00:12:04,050
+think what we're actually also seeing
+
+294
+00:12:04,050 --> 00:12:09,300
+here is the app CSS which is the main
+
+295
+00:12:09,300 --> 00:12:12,449
+stylesheet and the fonts as well okay my
+
+296
+00:12:12,449 --> 00:12:14,160
+guess is that they are going to be
+
+297
+00:12:14,160 --> 00:12:16,199
+blocking based on the you can see that
+
+298
+00:12:16,199 --> 00:12:18,300
+when I roll over them the network panel
+
+299
+00:12:18,300 --> 00:12:21,180
+here saying highest which is the
+
+300
+00:12:21,180 --> 00:12:23,550
+priority that's been assigned to the CSS
+
+301
+00:12:23,550 --> 00:12:25,680
+and the reason I guess is because the
+
+302
+00:12:25,680 --> 00:12:27,630
+CSS is going to be blocking the render
+
+303
+00:12:27,630 --> 00:12:28,649
+which is what you were saying
+
+304
+00:12:28,649 --> 00:12:30,449
+so that's why I think some people would
+
+305
+00:12:30,449 --> 00:12:32,069
+inline that but I guess if we go ahead
+
+306
+00:12:32,069 --> 00:12:35,339
+and take a quick look in our head and if
+
+307
+00:12:35,339 --> 00:12:37,649
+we can find we could search for it but
+
+308
+00:12:37,649 --> 00:12:39,930
+I'm gonna link well link rel there's the
+
+309
+00:12:39,930 --> 00:12:41,160
+stylesheet yeah you see there's a
+
+310
+00:12:41,160 --> 00:12:43,079
+stylesheet for the fonts and right below
+
+311
+00:12:43,079 --> 00:12:46,860
+it up dot CSS and so this would be a
+
+312
+00:12:46,860 --> 00:12:48,870
+classic case of here's a style sheet
+
+313
+00:12:48,870 --> 00:12:50,459
+it's gonna block render because the
+
+314
+00:12:50,459 --> 00:12:52,620
+browser crow is gonna take a look at
+
+315
+00:12:52,620 --> 00:12:53,819
+that and go well I need to wait and see
+
+316
+00:12:53,819 --> 00:12:55,319
+what styles are before I render anything
+
+317
+00:12:55,319 --> 00:12:57,630
+right absolutely so there can be
+
+318
+00:12:57,630 --> 00:12:59,730
+something that we can sometimes take a
+
+319
+00:12:59,730 --> 00:13:01,589
+look at say with blocky JavaScript right
+
+320
+00:13:01,589 --> 00:13:04,490
+yeah we see that one sometimes I guess
+
+321
+00:13:04,490 --> 00:13:06,540
+gets in the way can you something like
+
+322
+00:13:06,540 --> 00:13:07,240
+differently
+
+323
+00:13:07,240 --> 00:13:08,860
+sometimes her here this referred to as
+
+324
+00:13:08,860 --> 00:13:11,890
+critical CSS where you identify just the
+
+325
+00:13:11,890 --> 00:13:14,310
+CSS that is needed to layout the page
+
+326
+00:13:14,310 --> 00:13:16,870
+not necessarily style all the components
+
+327
+00:13:16,870 --> 00:13:18,910
+on your entire site and so you can
+
+328
+00:13:18,910 --> 00:13:22,089
+inline just that CSS content in the head
+
+329
+00:13:22,089 --> 00:13:23,529
+of your document and so then you're not
+
+330
+00:13:23,529 --> 00:13:25,029
+blocking on an additional Network
+
+331
+00:13:25,029 --> 00:13:26,560
+request in order to paint something on
+
+332
+00:13:26,560 --> 00:13:31,420
+the page exactly Yeah right so that that
+
+333
+00:13:31,420 --> 00:13:33,220
+was FCP and they'll seep in as I say
+
+334
+00:13:33,220 --> 00:13:36,730
+you'll you will find those on the
+
+335
+00:13:36,730 --> 00:13:40,930
+timings track here in dev tools okay so
+
+336
+00:13:40,930 --> 00:13:42,550
+next up
+
+337
+00:13:42,550 --> 00:13:44,140
+layout shifts now we talked about this
+
+338
+00:13:44,140 --> 00:13:45,910
+very briefly just now yeah but with
+
+339
+00:13:45,910 --> 00:13:47,649
+these two down here but where does it
+
+340
+00:13:47,649 --> 00:13:49,240
+come from what what's the history of the
+
+341
+00:13:49,240 --> 00:13:50,980
+layout shift and cumulative layout
+
+342
+00:13:50,980 --> 00:13:52,180
+shifting I think I've also heard it
+
+343
+00:13:52,180 --> 00:13:54,370
+called yes so the metric name cumulative
+
+344
+00:13:54,370 --> 00:13:57,339
+layout shift or CLS for short is a
+
+345
+00:13:57,339 --> 00:13:59,130
+metric that tries to capture the
+
+346
+00:13:59,130 --> 00:14:01,810
+experience of visual stability on a page
+
+347
+00:14:01,810 --> 00:14:04,270
+you probably everyone's probably had
+
+348
+00:14:04,270 --> 00:14:07,870
+this you know experience where you go to
+
+349
+00:14:07,870 --> 00:14:11,380
+a website and you go to tap on you know
+
+350
+00:14:11,380 --> 00:14:13,240
+a button or something and right before
+
+351
+00:14:13,240 --> 00:14:14,740
+you tap on it it shifts out from
+
+352
+00:14:14,740 --> 00:14:16,000
+underneath you it's a very frustrating
+
+353
+00:14:16,000 --> 00:14:18,160
+experience even if you're not
+
+354
+00:14:18,160 --> 00:14:19,240
+interacting with the page you're just
+
+355
+00:14:19,240 --> 00:14:22,480
+reading it if you know some images late
+
+356
+00:14:22,480 --> 00:14:23,740
+loading them and just pop in some ads
+
+357
+00:14:23,740 --> 00:14:27,010
+pop in the content changes like a number
+
+358
+00:14:27,010 --> 00:14:28,149
+of things gonna happen and you lose your
+
+359
+00:14:28,149 --> 00:14:29,800
+place as you're reading and it's it's
+
+360
+00:14:29,800 --> 00:14:31,180
+just not the greatest experience as a
+
+361
+00:14:31,180 --> 00:14:33,959
+user from the user users point of view
+
+362
+00:14:33,959 --> 00:14:37,779
+so cumulative layout shift is a metric
+
+363
+00:14:37,779 --> 00:14:39,579
+that attempts to quantify that
+
+364
+00:14:39,579 --> 00:14:42,940
+experience and so there's a couple
+
+365
+00:14:42,940 --> 00:14:45,420
+pieces there but a layout shift is
+
+366
+00:14:45,420 --> 00:14:49,270
+anytime an element on the page between
+
+367
+00:14:49,270 --> 00:14:52,120
+one frame and the next frame it's start
+
+368
+00:14:52,120 --> 00:14:54,970
+position changes and so this will happen
+
+369
+00:14:54,970 --> 00:14:56,380
+like in this case that we just saw an
+
+370
+00:14:56,380 --> 00:14:59,410
+image loads in and it pushes the text
+
+371
+00:14:59,410 --> 00:15:02,020
+below it down and so the image that the
+
+372
+00:15:02,020 --> 00:15:03,459
+layout shift was not on the image the
+
+373
+00:15:03,459 --> 00:15:05,410
+layout shift was on the text below the
+
+374
+00:15:05,410 --> 00:15:07,570
+image that on the previous frame it had
+
+375
+00:15:07,570 --> 00:15:09,700
+you know an X and y position of
+
+376
+00:15:09,700 --> 00:15:11,920
+something and then on the next frame it
+
+377
+00:15:11,920 --> 00:15:13,660
+was pushed lower and so it's position
+
+378
+00:15:13,660 --> 00:15:16,959
+change so it's a bit you know tough to
+
+379
+00:15:16,959 --> 00:15:21,220
+explain but the CLS
+
+380
+00:15:21,220 --> 00:15:24,339
+is a measure of both how much of the
+
+381
+00:15:24,339 --> 00:15:26,230
+page content moved and also how far it
+
+382
+00:15:26,230 --> 00:15:28,420
+moved and so if the entire page content
+
+383
+00:15:28,420 --> 00:15:30,040
+shifts from being fully visible on the
+
+384
+00:15:30,040 --> 00:15:32,079
+page to not visible at all that would be
+
+385
+00:15:32,079 --> 00:15:35,379
+a CLS of one if that happened 20 times
+
+386
+00:15:35,379 --> 00:15:36,879
+throughout the page lifecycle that would
+
+387
+00:15:36,879 --> 00:15:39,970
+be a CLS of 20 you know and then if it
+
+388
+00:15:39,970 --> 00:15:41,829
+moves kind of half of the screen
+
+389
+00:15:41,829 --> 00:15:45,009
+distance and the the image itself is
+
+390
+00:15:45,009 --> 00:15:47,019
+only filling up half the screen that
+
+391
+00:15:47,019 --> 00:15:49,959
+would be roughly you know 0.25 CLS you
+
+392
+00:15:49,959 --> 00:15:51,610
+can go read more about how to calculate
+
+393
+00:15:51,610 --> 00:15:53,019
+CLS and whether the dev is a little bit
+
+394
+00:15:53,019 --> 00:15:54,879
+too complicated to explain now but that
+
+395
+00:15:54,879 --> 00:15:56,649
+gives you a sense it's a measure of kind
+
+396
+00:15:56,649 --> 00:15:58,899
+of how much visible instability there is
+
+397
+00:15:58,899 --> 00:16:01,839
+on the page okay so as we talked about
+
+398
+00:16:01,839 --> 00:16:03,879
+before then we have this one layout
+
+399
+00:16:03,879 --> 00:16:08,560
+shift here and so on first this is
+
+400
+00:16:08,560 --> 00:16:09,910
+probably the better one of the two to
+
+401
+00:16:09,910 --> 00:16:12,819
+actually demonstrate this and when you
+
+402
+00:16:12,819 --> 00:16:14,470
+click on this and it's in this
+
+403
+00:16:14,470 --> 00:16:15,610
+experience track if you don't get this
+
+404
+00:16:15,610 --> 00:16:17,889
+experience track in dev tools it means
+
+405
+00:16:17,889 --> 00:16:20,319
+that we didn't detect any layout shifts
+
+406
+00:16:20,319 --> 00:16:22,209
+in that particular recording if you do
+
+407
+00:16:22,209 --> 00:16:24,040
+find that it's there then you'll see
+
+408
+00:16:24,040 --> 00:16:25,689
+that it's populated with these kind of
+
+409
+00:16:25,689 --> 00:16:28,240
+records now you can click on this and it
+
+410
+00:16:28,240 --> 00:16:30,519
+will take you off to the detailed
+
+411
+00:16:30,519 --> 00:16:33,370
+information about CLS but what we try
+
+412
+00:16:33,370 --> 00:16:34,720
+and do is we try and give you a sense of
+
+413
+00:16:34,720 --> 00:16:36,699
+the score and the cumulative score of
+
+414
+00:16:36,699 --> 00:16:38,470
+buzzwords about what's going on but we
+
+415
+00:16:38,470 --> 00:16:41,050
+also try and highlight for you you see
+
+416
+00:16:41,050 --> 00:16:43,240
+you go going from an image here that's
+
+417
+00:16:43,240 --> 00:16:46,149
+11 by 11 and we show it as this very
+
+418
+00:16:46,149 --> 00:16:49,990
+small overlay on the on the left hand
+
+419
+00:16:49,990 --> 00:16:55,360
+side there to a much bigger 801 by 4 1 4
+
+420
+00:16:55,360 --> 00:16:57,939
+so one of the the items that I actually
+
+421
+00:16:57,939 --> 00:17:00,189
+have to do in this area you can see
+
+422
+00:17:00,189 --> 00:17:02,319
+actually have a few going on here which
+
+423
+00:17:02,319 --> 00:17:03,610
+are profit probably other images that
+
+424
+00:17:03,610 --> 00:17:06,939
+are being shifted you know as we as we
+
+425
+00:17:06,939 --> 00:17:09,280
+make our way through and let me let me
+
+426
+00:17:09,280 --> 00:17:11,260
+just one of the things I wanted to step
+
+427
+00:17:11,260 --> 00:17:12,549
+back for a second and just talk about
+
+428
+00:17:12,549 --> 00:17:14,140
+why somebody would do this I mean
+
+429
+00:17:14,140 --> 00:17:16,030
+typically you'll you know you'll run
+
+430
+00:17:16,030 --> 00:17:18,000
+lighthouse on a page or you'll go to
+
+431
+00:17:18,000 --> 00:17:20,860
+search consoles new corbels report or
+
+432
+00:17:20,860 --> 00:17:22,419
+the chrome user experience report and
+
+433
+00:17:22,419 --> 00:17:24,579
+you'll see that you know you have layout
+
+434
+00:17:24,579 --> 00:17:26,020
+shifting happening on your page and you
+
+435
+00:17:26,020 --> 00:17:27,640
+might be wondering to yourself ok but I
+
+436
+00:17:27,640 --> 00:17:30,070
+don't see it when I visit my page so
+
+437
+00:17:30,070 --> 00:17:31,390
+where is this layout shifting happening
+
+438
+00:17:31,390 --> 00:17:33,610
+and so then dev tools is a great place
+
+439
+00:17:33,610 --> 00:17:34,960
+to debug that into
+
+440
+00:17:34,960 --> 00:17:37,090
+you know figure out which page on your
+
+441
+00:17:37,090 --> 00:17:38,860
+site has layout shifting and then load
+
+442
+00:17:38,860 --> 00:17:41,140
+it up in dev tools under the throttling
+
+443
+00:17:41,140 --> 00:17:42,520
+conditions that you know Paul showed
+
+444
+00:17:42,520 --> 00:17:44,529
+earlier and then you know look and see
+
+445
+00:17:44,529 --> 00:17:45,760
+what dev tools was telling you is
+
+446
+00:17:45,760 --> 00:17:46,929
+shifting because that's how you can
+
+447
+00:17:46,929 --> 00:17:48,700
+figure out what's causing the layout
+
+448
+00:17:48,700 --> 00:17:50,080
+shift and then you know you know what
+
+449
+00:17:50,080 --> 00:17:51,880
+you need to do to fix it yeah and
+
+450
+00:17:51,880 --> 00:17:53,950
+there's more I have to do here to be
+
+451
+00:17:53,950 --> 00:17:55,570
+clear I think one of the things that is
+
+452
+00:17:55,570 --> 00:17:57,190
+missing from this which is actually
+
+453
+00:17:57,190 --> 00:17:58,529
+available in the data I just need to
+
+454
+00:17:58,529 --> 00:18:01,270
+plummet through is which elements are we
+
+455
+00:18:01,270 --> 00:18:02,679
+talking about but I can show you that
+
+456
+00:18:02,679 --> 00:18:04,690
+we've got these areas but we it does
+
+457
+00:18:04,690 --> 00:18:06,130
+feel like we're missing a bit of
+
+458
+00:18:06,130 --> 00:18:07,630
+information about exactly which elements
+
+459
+00:18:07,630 --> 00:18:09,789
+it is like we do with LCP we highlight
+
+460
+00:18:09,789 --> 00:18:11,679
+the image that we're actually you know
+
+461
+00:18:11,679 --> 00:18:13,899
+referring to here we should be able to
+
+462
+00:18:13,899 --> 00:18:17,590
+do the same here so by the time this
+
+463
+00:18:17,590 --> 00:18:19,480
+goes out and you're watching this give
+
+464
+00:18:19,480 --> 00:18:21,010
+it a try in Chrome Canary because I
+
+465
+00:18:21,010 --> 00:18:22,570
+might have been able to land the feature
+
+466
+00:18:22,570 --> 00:18:24,520
+by then yeah I'm not making any promises
+
+467
+00:18:24,520 --> 00:18:26,169
+but that would be good with it and just
+
+468
+00:18:26,169 --> 00:18:28,770
+um yeah just as a kind of a quick point
+
+469
+00:18:28,770 --> 00:18:31,059
+there there's often two pieces to a
+
+470
+00:18:31,059 --> 00:18:32,980
+layout chef there's the there's the
+
+471
+00:18:32,980 --> 00:18:35,110
+element that shifted and then there's
+
+472
+00:18:35,110 --> 00:18:37,840
+the element that caused it to shift and
+
+473
+00:18:37,840 --> 00:18:39,520
+so sometimes you know figuring out one
+
+474
+00:18:39,520 --> 00:18:42,100
+or the other can be helpful in fixing
+
+475
+00:18:42,100 --> 00:18:44,080
+because it looks like here that it's
+
+476
+00:18:44,080 --> 00:18:48,370
+showing the image that came in but
+
+477
+00:18:48,370 --> 00:18:50,440
+adding images so adding elements of the
+
+478
+00:18:50,440 --> 00:18:52,870
+Dom doesn't in itself cause layout shift
+
+479
+00:18:52,870 --> 00:18:54,520
+but if adding an element of the Dom
+
+480
+00:18:54,520 --> 00:18:58,029
+moves the elements below it then that
+
+481
+00:18:58,029 --> 00:19:00,880
+would cause a layout shift right because
+
+482
+00:19:00,880 --> 00:19:02,890
+the the default size of this image looks
+
+483
+00:19:02,890 --> 00:19:06,549
+to be 11 by 11 pixels to begin with and
+
+484
+00:19:06,549 --> 00:19:08,770
+then when it when it gets populated with
+
+485
+00:19:08,770 --> 00:19:13,120
+the actual pixel data it pushes down the
+
+486
+00:19:13,120 --> 00:19:14,980
+rest of the page content which I guess
+
+487
+00:19:14,980 --> 00:19:19,899
+justifies be the layout shift there yeah
+
+488
+00:19:19,899 --> 00:19:25,149
+yeah okay so that's that's that you know
+
+489
+00:19:25,149 --> 00:19:27,399
+if you've got like we said earlier if
+
+490
+00:19:27,399 --> 00:19:28,690
+you put width and height on these things
+
+491
+00:19:28,690 --> 00:19:30,669
+that will help but you can also have I
+
+492
+00:19:30,669 --> 00:19:32,950
+mean let me show you this other one even
+
+493
+00:19:32,950 --> 00:19:34,240
+on the Google home page this privacy
+
+494
+00:19:34,240 --> 00:19:36,820
+reminder down here if I take a recording
+
+495
+00:19:36,820 --> 00:19:41,590
+here and I just refresh this page we're
+
+496
+00:19:41,590 --> 00:19:43,870
+gonna see a layout shift here and
+
+497
+00:19:43,870 --> 00:19:46,299
+similarly we've got this here which is
+
+498
+00:19:46,299 --> 00:19:48,790
+going from down here and
+
+499
+00:19:48,790 --> 00:19:51,760
+I presume there's some JavaScript or
+
+500
+00:19:51,760 --> 00:19:53,500
+something like that that's looking to
+
+501
+00:19:53,500 --> 00:19:55,570
+see whether the privacy reminders been
+
+502
+00:19:55,570 --> 00:19:58,180
+seen and if not it pushes that content
+
+503
+00:19:58,180 --> 00:20:00,820
+on them and so again this is probably
+
+504
+00:20:00,820 --> 00:20:02,470
+JavaScript based and you're gonna know
+
+505
+00:20:02,470 --> 00:20:05,440
+in your own apps we know what's going on
+
+506
+00:20:05,440 --> 00:20:07,720
+what is it third-party content is it
+
+507
+00:20:07,720 --> 00:20:10,080
+your own JavaScript is your own Styles
+
+508
+00:20:10,080 --> 00:20:12,790
+right and it's a case of so digging into
+
+509
+00:20:12,790 --> 00:20:15,160
+the specifics of your application to try
+
+510
+00:20:15,160 --> 00:20:17,650
+and figure out exactly you know what's
+
+511
+00:20:17,650 --> 00:20:19,180
+triggering now like what could be
+
+512
+00:20:19,180 --> 00:20:21,610
+happening there in order to figure it
+
+513
+00:20:21,610 --> 00:20:22,930
+out so that's just you know a couple of
+
+514
+00:20:22,930 --> 00:20:25,510
+examples of the layout shifting that you
+
+515
+00:20:25,510 --> 00:20:25,990
+can see
+
+516
+00:20:25,990 --> 00:20:28,150
+yeah and just you know right what one
+
+517
+00:20:28,150 --> 00:20:29,980
+thing to keep in mind is that in an
+
+518
+00:20:29,980 --> 00:20:31,600
+ideal world you would have no layout
+
+519
+00:20:31,600 --> 00:20:34,000
+shifts on your page but sometimes it's
+
+520
+00:20:34,000 --> 00:20:35,020
+unavoidable
+
+521
+00:20:35,020 --> 00:20:37,180
+and so the you know the threshold that
+
+522
+00:20:37,180 --> 00:20:39,220
+we recommend you know folks stay below
+
+523
+00:20:39,220 --> 00:20:43,090
+is is 0.1 and so it looks here that you
+
+524
+00:20:43,090 --> 00:20:45,160
+know this layout shift is is quite a bit
+
+525
+00:20:45,160 --> 00:20:47,920
+below that and so even though you know
+
+526
+00:20:47,920 --> 00:20:51,310
+you still want to be at at at 0 if you
+
+527
+00:20:51,310 --> 00:20:55,090
+can as long as you're below 0.14 you
+
+528
+00:20:55,090 --> 00:20:57,040
+know 75% of your users you're usually in
+
+529
+00:20:57,040 --> 00:20:59,620
+good shape so you say 0.1 I guess that's
+
+530
+00:20:59,620 --> 00:21:02,890
+like for page load because that's where
+
+531
+00:21:02,890 --> 00:21:06,130
+a lot of these all of these metrics are
+
+532
+00:21:06,130 --> 00:21:08,380
+aimed at page load right now right yeah
+
+533
+00:21:08,380 --> 00:21:09,880
+so that's actually a really good point
+
+534
+00:21:09,880 --> 00:21:11,590
+I'm glad to have it up
+
+535
+00:21:11,590 --> 00:21:14,050
+CLS measures layout ships that happen
+
+536
+00:21:14,050 --> 00:21:16,240
+during the entire lifecycle of the page
+
+537
+00:21:16,240 --> 00:21:18,670
+from when you load the page until when
+
+538
+00:21:18,670 --> 00:21:21,760
+you unload the page even if you leave
+
+539
+00:21:21,760 --> 00:21:23,530
+the page open for you know days or weeks
+
+540
+00:21:23,530 --> 00:21:26,590
+it does measure that entire time whereas
+
+541
+00:21:26,590 --> 00:21:28,750
+here in dev tools you ran a trace and
+
+542
+00:21:28,750 --> 00:21:31,690
+you got you saw the layout shift that
+
+543
+00:21:31,690 --> 00:21:33,190
+happened during that trace and so in
+
+544
+00:21:33,190 --> 00:21:35,560
+this particular case CLS was only
+
+545
+00:21:35,560 --> 00:21:37,990
+measuring shifts for a small period of
+
+546
+00:21:37,990 --> 00:21:40,210
+time it's important that developers keep
+
+547
+00:21:40,210 --> 00:21:43,120
+that in mind because you know the layout
+
+548
+00:21:43,120 --> 00:21:46,030
+the the actual metric definition is for
+
+549
+00:21:46,030 --> 00:21:48,100
+the entire lifespan of the page so if
+
+550
+00:21:48,100 --> 00:21:50,200
+you run a lighthouse trace or a web page
+
+551
+00:21:50,200 --> 00:21:52,630
+test trace or even in dev tools and you
+
+552
+00:21:52,630 --> 00:21:54,760
+see a certain value and it's below 0.1
+
+553
+00:21:54,760 --> 00:21:57,010
+the threshold it just mentioned just
+
+554
+00:21:57,010 --> 00:21:58,870
+keep in mind that you have to actually
+
+555
+00:21:58,870 --> 00:22:01,240
+be measuring it the entire time you know
+
+556
+00:22:01,240 --> 00:22:02,780
+that that's that's the
+
+557
+00:22:02,780 --> 00:22:05,510
+the the metric the measure that counts
+
+558
+00:22:05,510 --> 00:22:08,420
+is the entire lifecycle of the page also
+
+559
+00:22:08,420 --> 00:22:10,250
+I think in this area we should talk
+
+560
+00:22:10,250 --> 00:22:12,680
+about perhaps the the metrics themselves
+
+561
+00:22:12,680 --> 00:22:16,250
+as a bit of an evolving art I mean we
+
+562
+00:22:16,250 --> 00:22:17,870
+have for example first meaningful paint
+
+563
+00:22:17,870 --> 00:22:20,780
+up here but this isn't one of the
+
+564
+00:22:20,780 --> 00:22:22,550
+metrics that we would mention and say
+
+565
+00:22:22,550 --> 00:22:23,780
+something like core web vitals and
+
+566
+00:22:23,780 --> 00:22:27,380
+there's also no metric as far as I'm
+
+567
+00:22:27,380 --> 00:22:28,970
+aware for something like animation
+
+568
+00:22:28,970 --> 00:22:32,150
+performance so that's true I guess my
+
+569
+00:22:32,150 --> 00:22:33,770
+question to you is what's going on there
+
+570
+00:22:33,770 --> 00:22:35,690
+why have we got a metric here that we
+
+571
+00:22:35,690 --> 00:22:37,760
+wouldn't refer to and why do we not yet
+
+572
+00:22:37,760 --> 00:22:39,200
+have a metric for something that we
+
+573
+00:22:39,200 --> 00:22:41,120
+might be interested in tracking what's
+
+574
+00:22:41,120 --> 00:22:43,520
+the kind of history and story there yeah
+
+575
+00:22:43,520 --> 00:22:44,210
+that's a good question
+
+576
+00:22:44,210 --> 00:22:48,350
+so FMP our first meaningful paint if you
+
+577
+00:22:48,350 --> 00:22:50,960
+remember from a previous you know trace
+
+578
+00:22:50,960 --> 00:22:55,130
+that that you did Paul FOP was right
+
+579
+00:22:55,130 --> 00:22:59,990
+next to FP FCP and then LCP was Lena
+
+580
+00:22:59,990 --> 00:23:01,670
+later in the page load so what actually
+
+581
+00:23:01,670 --> 00:23:03,410
+ended up happening was that oh yeah and
+
+582
+00:23:03,410 --> 00:23:04,580
+it looks like that's that's the case
+
+583
+00:23:04,580 --> 00:23:04,970
+here
+
+584
+00:23:04,970 --> 00:23:08,330
+so yeah after a bunch of testing I mean
+
+585
+00:23:08,330 --> 00:23:10,070
+F and P is essentially it's a different
+
+586
+00:23:10,070 --> 00:23:11,570
+metric it has a different meaning than
+
+587
+00:23:11,570 --> 00:23:14,120
+LCP and after a bunch of research we
+
+588
+00:23:14,120 --> 00:23:16,580
+found out that FMP actually wasn't as
+
+589
+00:23:16,580 --> 00:23:19,910
+accurate at predicting when the main you
+
+590
+00:23:19,910 --> 00:23:22,250
+know what most people consider to be the
+
+591
+00:23:22,250 --> 00:23:24,500
+most important content of the page you
+
+592
+00:23:24,500 --> 00:23:26,270
+know the most meaningful part of the
+
+593
+00:23:26,270 --> 00:23:27,620
+page the metric itself has the word
+
+594
+00:23:27,620 --> 00:23:30,260
+meaningful in the name but it turns out
+
+595
+00:23:30,260 --> 00:23:32,270
+that LCP is actually a better predictor
+
+596
+00:23:32,270 --> 00:23:34,430
+and so as we come up with metrics that
+
+597
+00:23:34,430 --> 00:23:35,990
+are better at capturing the user
+
+598
+00:23:35,990 --> 00:23:37,730
+experience will you know kind of
+
+599
+00:23:37,730 --> 00:23:39,590
+deprecated older metrics and replace
+
+600
+00:23:39,590 --> 00:23:42,890
+them with with newer metrics but you
+
+601
+00:23:42,890 --> 00:23:43,880
+know we do recognize that that's
+
+602
+00:23:43,880 --> 00:23:45,680
+happened a bunch over the years and I'm
+
+603
+00:23:45,680 --> 00:23:47,690
+sure developers are getting tired of
+
+604
+00:23:47,690 --> 00:23:49,610
+hearing new metrics announced all the
+
+605
+00:23:49,610 --> 00:23:51,050
+time and so one of the things that we
+
+606
+00:23:51,050 --> 00:23:53,270
+did with core web vitals with the web
+
+607
+00:23:53,270 --> 00:23:54,830
+files initiative and specifically with
+
+608
+00:23:54,830 --> 00:23:56,660
+core web idols is we're committing to
+
+609
+00:23:56,660 --> 00:23:59,960
+you know only introducing metrics at
+
+610
+00:23:59,960 --> 00:24:02,360
+most once a year for the the core set of
+
+611
+00:24:02,360 --> 00:24:04,610
+web vitals and so developers are
+
+612
+00:24:04,610 --> 00:24:06,650
+following along they can bring you know
+
+613
+00:24:06,650 --> 00:24:08,720
+gives them a little bit of stability if
+
+614
+00:24:08,720 --> 00:24:09,680
+they're building a business on these
+
+615
+00:24:09,680 --> 00:24:11,480
+metrics or you know predictability if
+
+616
+00:24:11,480 --> 00:24:13,280
+they just kind of don't want to have to
+
+617
+00:24:13,280 --> 00:24:15,230
+you know always be following along with
+
+618
+00:24:15,230 --> 00:24:16,490
+the latest and so
+
+619
+00:24:16,490 --> 00:24:19,760
+you know recently we announced LCP was
+
+620
+00:24:19,760 --> 00:24:21,590
+one of the core wet vitals and an FMP
+
+621
+00:24:21,590 --> 00:24:23,330
+was not one of the core Mon vitals and
+
+622
+00:24:23,330 --> 00:24:24,620
+like over time that will probably be
+
+623
+00:24:24,620 --> 00:24:26,690
+deprecated so you also bet also asked
+
+624
+00:24:26,690 --> 00:24:29,960
+about animation performance this is
+
+625
+00:24:29,960 --> 00:24:31,340
+definitely a metric that we're looking
+
+626
+00:24:31,340 --> 00:24:34,760
+at for the future maybe you know in 2021
+
+627
+00:24:34,760 --> 00:24:38,480
+or 2022 so we know that the set of core
+
+628
+00:24:38,480 --> 00:24:40,309
+web vitals doesn't capture the entire
+
+629
+00:24:40,309 --> 00:24:42,530
+you know the entire story of user
+
+630
+00:24:42,530 --> 00:24:44,770
+experience and we're hoping that over
+
+631
+00:24:44,770 --> 00:24:47,660
+time we can improve it and animation
+
+632
+00:24:47,660 --> 00:24:49,520
+performance is definitely a metric that
+
+633
+00:24:49,520 --> 00:24:51,080
+are a definitely an area of performance
+
+634
+00:24:51,080 --> 00:24:53,030
+that we're exploring I think the last
+
+635
+00:24:53,030 --> 00:24:54,530
+one that we talked about talking about
+
+636
+00:24:54,530 --> 00:24:57,890
+if I gather right yep I think I did it
+
+637
+00:24:57,890 --> 00:25:00,710
+was first input first input delay which
+
+638
+00:25:00,710 --> 00:25:06,290
+is not directly shown in dev tools so
+
+639
+00:25:06,290 --> 00:25:08,210
+what is it's not sometimes called fi D
+
+640
+00:25:08,210 --> 00:25:12,230
+right what is that and and why yes so
+
+641
+00:25:12,230 --> 00:25:15,800
+first input delay or fit or F ID for
+
+642
+00:25:15,800 --> 00:25:19,880
+short represents the time from when the
+
+643
+00:25:19,880 --> 00:25:22,070
+user you know interacts with the page of
+
+644
+00:25:22,070 --> 00:25:25,429
+taps on the screen or you know clicks a
+
+645
+00:25:25,429 --> 00:25:28,850
+key a keyboard key to the point when the
+
+646
+00:25:28,850 --> 00:25:31,970
+browser is able to respond to that input
+
+647
+00:25:31,970 --> 00:25:36,020
+event so this can you might think that
+
+648
+00:25:36,020 --> 00:25:37,040
+it's always going to be instantaneous
+
+649
+00:25:37,040 --> 00:25:39,170
+like you you know you click on the
+
+650
+00:25:39,170 --> 00:25:40,220
+screen and then something will happen
+
+651
+00:25:40,220 --> 00:25:41,840
+but as users we kind of know that that's
+
+652
+00:25:41,840 --> 00:25:44,059
+not the case oftentimes you know we've
+
+653
+00:25:44,059 --> 00:25:46,309
+all had the experience of clicking on
+
+654
+00:25:46,309 --> 00:25:47,660
+something or tapping on something and
+
+655
+00:25:47,660 --> 00:25:50,210
+not having an instant response and so
+
+656
+00:25:50,210 --> 00:25:53,000
+this can happen if you know there's a
+
+657
+00:25:53,000 --> 00:25:55,190
+bunch of JavaScript running on the page
+
+658
+00:25:55,190 --> 00:25:57,410
+maybe you have a large JavaScript file
+
+659
+00:25:57,410 --> 00:25:59,600
+that the browser is currently parsing
+
+660
+00:25:59,600 --> 00:26:01,640
+and executing and then so if at that
+
+661
+00:26:01,640 --> 00:26:04,070
+exact time a user taps on the screen
+
+662
+00:26:04,070 --> 00:26:06,230
+then the browser has to wait a little
+
+663
+00:26:06,230 --> 00:26:08,240
+bit of time before it can respond to
+
+664
+00:26:08,240 --> 00:26:11,570
+that input event and so f ID quantifies
+
+665
+00:26:11,570 --> 00:26:16,490
+like that duration of of time and you
+
+666
+00:26:16,490 --> 00:26:18,170
+mentioned they it's not exposed directly
+
+667
+00:26:18,170 --> 00:26:19,700
+in dev tools and the reason is because
+
+668
+00:26:19,700 --> 00:26:22,250
+I'm assuming you know here you're the
+
+669
+00:26:22,250 --> 00:26:24,080
+one who helped implement this but first
+
+670
+00:26:24,080 --> 00:26:26,090
+input delay requires an input it
+
+671
+00:26:26,090 --> 00:26:30,410
+requires a user and so you know
+
+672
+00:26:30,410 --> 00:26:32,780
+in many lab scenarios there is no user
+
+673
+00:26:32,780 --> 00:26:34,850
+and so you can't always measure first
+
+674
+00:26:34,850 --> 00:26:36,800
+input delay that way but we have another
+
+675
+00:26:36,800 --> 00:26:39,620
+metric called total blocking time that
+
+676
+00:26:39,620 --> 00:26:42,400
+quantifies just that we do have yeah
+
+677
+00:26:42,400 --> 00:26:44,180
+that's great and that quantifies how
+
+678
+00:26:44,180 --> 00:26:46,490
+often the main thread how much of the
+
+679
+00:26:46,490 --> 00:26:49,130
+main like how much time the main thread
+
+680
+00:26:49,130 --> 00:26:52,520
+is blocked and a block main thread as I
+
+681
+00:26:52,520 --> 00:26:54,920
+just mentioned contributes to you know
+
+682
+00:26:54,920 --> 00:26:57,320
+the likelihood that a user will interact
+
+683
+00:26:57,320 --> 00:26:59,030
+with a page but the browser won't be
+
+684
+00:26:59,030 --> 00:27:01,070
+able to respond right away so you said
+
+685
+00:27:01,070 --> 00:27:03,200
+that total blocking time is in dev tools
+
+686
+00:27:03,200 --> 00:27:05,660
+can you show me where that is yes oh I
+
+687
+00:27:05,660 --> 00:27:09,590
+see their screen I have I have long
+
+688
+00:27:09,590 --> 00:27:11,930
+tests over here and I yeah it is down
+
+689
+00:27:11,930 --> 00:27:13,640
+there and it's currently says it's
+
+690
+00:27:13,640 --> 00:27:14,870
+unavailable and I'll talk about that
+
+691
+00:27:14,870 --> 00:27:16,490
+more a little bit I've been working on
+
+692
+00:27:16,490 --> 00:27:19,340
+that feature in fact today so I can tell
+
+693
+00:27:19,340 --> 00:27:20,300
+you a little bit more about what's going
+
+694
+00:27:20,300 --> 00:27:23,510
+on there too so what others I've come to
+
+695
+00:27:23,510 --> 00:27:26,450
+web dev and I've cleared it and I'm just
+
+696
+00:27:26,450 --> 00:27:27,800
+going to record and I'm gonna hit
+
+697
+00:27:27,800 --> 00:27:32,780
+refresh and I don't expect here that I'm
+
+698
+00:27:32,780 --> 00:27:35,840
+gonna see any particular blocking time
+
+699
+00:27:35,840 --> 00:27:38,300
+because I've got a first machine I'm on
+
+700
+00:27:38,300 --> 00:27:40,100
+a good connection and yeah you can see
+
+701
+00:27:40,100 --> 00:27:42,200
+right down at the bottom here we have
+
+702
+00:27:42,200 --> 00:27:43,580
+total blocking time and it's currently
+
+703
+00:27:43,580 --> 00:27:45,110
+set to zero millisecond right
+
+704
+00:27:45,110 --> 00:27:47,540
+so what that roughly translates to over
+
+705
+00:27:47,540 --> 00:27:49,340
+here is when we zoom in on these
+
+706
+00:27:49,340 --> 00:27:52,280
+top-level tasks which are on the main
+
+707
+00:27:52,280 --> 00:27:53,420
+thread
+
+708
+00:27:53,420 --> 00:27:56,630
+we have no task that goes over 50
+
+709
+00:27:56,630 --> 00:27:58,460
+milliseconds so 50 milliseconds is our
+
+710
+00:27:58,460 --> 00:28:01,310
+threshold for hey this task is long and
+
+711
+00:28:01,310 --> 00:28:04,100
+it's it's gonna contribute to the the
+
+712
+00:28:04,100 --> 00:28:05,690
+blocking time right because what we want
+
+713
+00:28:05,690 --> 00:28:07,310
+to do is we want to keep a track on on
+
+714
+00:28:07,310 --> 00:28:09,980
+tasks that that go over 50 milliseconds
+
+715
+00:28:09,980 --> 00:28:11,090
+because they're the ones that are most
+
+716
+00:28:11,090 --> 00:28:13,100
+likely were the user to interact they're
+
+717
+00:28:13,100 --> 00:28:15,250
+the ones that are most likely to prevent
+
+718
+00:28:15,250 --> 00:28:17,390
+the browser from being able to respond
+
+719
+00:28:17,390 --> 00:28:19,220
+in in an adequate amount of time right
+
+720
+00:28:19,220 --> 00:28:21,770
+so we currently have no tasks block to
+
+721
+00:28:21,770 --> 00:28:25,810
+blocking time is defined as any time
+
+722
+00:28:25,810 --> 00:28:28,490
+greater than 50 milliseconds in a task
+
+723
+00:28:28,490 --> 00:28:30,920
+so if a task is right forty nine
+
+724
+00:28:30,920 --> 00:28:32,480
+milliseconds there's zero blocking time
+
+725
+00:28:32,480 --> 00:28:35,120
+and if a task is 51 milliseconds there's
+
+726
+00:28:35,120 --> 00:28:37,040
+one millisecond of blocking time and
+
+727
+00:28:37,040 --> 00:28:38,900
+just out of curiosity some people asked
+
+728
+00:28:38,900 --> 00:28:41,510
+why you know why 50 milliseconds what's
+
+729
+00:28:41,510 --> 00:28:44,210
+the thinking behind that yes
+
+730
+00:28:44,210 --> 00:28:47,030
+the answer is that the idea you might
+
+731
+00:28:47,030 --> 00:28:48,890
+have heard of rail the rail performance
+
+732
+00:28:48,890 --> 00:28:50,540
+model and you've heard often times
+
+733
+00:28:50,540 --> 00:28:51,710
+people say you should always respond
+
+734
+00:28:51,710 --> 00:28:54,560
+within 100 milliseconds of user input
+
+735
+00:28:54,560 --> 00:28:56,480
+and so the question is why is 50
+
+736
+00:28:56,480 --> 00:28:57,980
+milliseconds to the blocking time and
+
+737
+00:28:57,980 --> 00:28:59,810
+the idea there is that if you ever have
+
+738
+00:28:59,810 --> 00:29:02,780
+if you keep all of your tasks below 50
+
+739
+00:29:02,780 --> 00:29:04,130
+milliseconds then there's never
+
+740
+00:29:04,130 --> 00:29:07,040
+situation where two tasks can't both run
+
+741
+00:29:07,040 --> 00:29:10,130
+within the 100 millisecond threshold and
+
+742
+00:29:10,130 --> 00:29:11,840
+so that's kind of if people are
+
+743
+00:29:11,840 --> 00:29:13,490
+wondering why that 50 millisecond time
+
+744
+00:29:13,490 --> 00:29:15,500
+exists and why we chose that for the the
+
+745
+00:29:15,500 --> 00:29:18,340
+magic number with total blocking time
+
+746
+00:29:18,340 --> 00:29:21,110
+exactly and of course if you were doing
+
+747
+00:29:21,110 --> 00:29:24,080
+an animation then your task time really
+
+748
+00:29:24,080 --> 00:29:26,030
+should be under like 10 or - that's
+
+749
+00:29:26,030 --> 00:29:28,820
+irregular seconds so so we'd sort of it
+
+750
+00:29:28,820 --> 00:29:30,890
+you got to be context aware the 50
+
+751
+00:29:30,890 --> 00:29:32,330
+milliseconds number is a it's a great
+
+752
+00:29:32,330 --> 00:29:34,640
+number to have in mind especially for
+
+753
+00:29:34,640 --> 00:29:36,500
+load performance but it does change
+
+754
+00:29:36,500 --> 00:29:38,390
+depending on the context and whether
+
+755
+00:29:38,390 --> 00:29:40,490
+you'll say animating or not now what as
+
+756
+00:29:40,490 --> 00:29:43,780
+I said we have no tasks here that are
+
+757
+00:29:43,780 --> 00:29:46,640
+running long and now and if I got a
+
+758
+00:29:46,640 --> 00:29:48,680
+trace like this from somebody I would be
+
+759
+00:29:48,680 --> 00:29:50,930
+very happy perfect I would say listen oh
+
+760
+00:29:50,930 --> 00:29:53,540
+yeah I wouldn't complain at this at all
+
+761
+00:29:53,540 --> 00:29:54,890
+but what I can do is I can least
+
+762
+00:29:54,890 --> 00:29:57,200
+simulate a slower device like I did
+
+763
+00:29:57,200 --> 00:29:59,510
+before over my capture settings I'm
+
+764
+00:29:59,510 --> 00:30:01,160
+going to go to like a six time slowdown
+
+765
+00:30:01,160 --> 00:30:03,260
+and I'm expecting that this 25
+
+766
+00:30:03,260 --> 00:30:05,390
+milliseconds here is gonna run long so
+
+767
+00:30:05,390 --> 00:30:06,530
+this is some JavaScript that's being
+
+768
+00:30:06,530 --> 00:30:08,630
+evaluated so I'm going 6 times slow down
+
+769
+00:30:08,630 --> 00:30:10,970
+I'm gonna hit record and I'm gonna
+
+770
+00:30:10,970 --> 00:30:14,540
+refresh again okay I want to do two
+
+771
+00:30:14,540 --> 00:30:15,890
+things I'm gonna stop the recording a
+
+772
+00:30:15,890 --> 00:30:17,270
+little bit earlier than I did last time
+
+773
+00:30:17,270 --> 00:30:20,180
+but the first thing to notice here is
+
+774
+00:30:20,180 --> 00:30:22,160
+our tasks are now longer because of the
+
+775
+00:30:22,160 --> 00:30:22,580
+slowdown
+
+776
+00:30:22,580 --> 00:30:26,030
+and if i zoom in on this task it's a
+
+777
+00:30:26,030 --> 00:30:28,640
+hundred and seventy-six mm 0.5 five
+
+778
+00:30:28,640 --> 00:30:31,520
+milliseconds and you said it's qualified
+
+779
+00:30:31,520 --> 00:30:33,470
+for being a long task goodbye what's a
+
+780
+00:30:33,470 --> 00:30:35,840
+hundred and twenty six point five five
+
+781
+00:30:35,840 --> 00:30:39,740
+milliseconds okay so what we do is after
+
+782
+00:30:39,740 --> 00:30:41,810
+the 50 millisecond point on this task we
+
+783
+00:30:41,810 --> 00:30:43,970
+do this candy striping here and we also
+
+784
+00:30:43,970 --> 00:30:47,360
+pop a red triangle up into the top right
+
+785
+00:30:47,360 --> 00:30:49,100
+hand corner so that when you're looking
+
+786
+00:30:49,100 --> 00:30:51,020
+at a glance like zoomed out you get a
+
+787
+00:30:51,020 --> 00:30:53,180
+sense of just how many of your tasks are
+
+788
+00:30:53,180 --> 00:30:54,470
+running a bit long
+
+789
+00:30:54,470 --> 00:30:57,440
+I think almost universally here the ones
+
+790
+00:30:57,440 --> 00:30:58,370
+that are running
+
+791
+00:30:58,370 --> 00:31:00,920
+javascript-based yeah so if you if you
+
+792
+00:31:00,920 --> 00:31:02,960
+again you know are looking at the chrome
+
+793
+00:31:02,960 --> 00:31:04,430
+user experience report or search
+
+794
+00:31:04,430 --> 00:31:06,770
+consoles core web files report and you
+
+795
+00:31:06,770 --> 00:31:08,300
+see that you have a first input delay
+
+796
+00:31:08,300 --> 00:31:10,460
+that's higher than you would have
+
+797
+00:31:10,460 --> 00:31:12,380
+expected for a certain page I think this
+
+798
+00:31:12,380 --> 00:31:13,820
+is a great example of how you would go
+
+799
+00:31:13,820 --> 00:31:15,950
+about debugging that so like you might
+
+800
+00:31:15,950 --> 00:31:18,620
+you know be on your fast MacBook Pro
+
+801
+00:31:18,620 --> 00:31:21,050
+laptop or something and not see any long
+
+802
+00:31:21,050 --> 00:31:22,400
+tasks but if you go into dev tools and
+
+803
+00:31:22,400 --> 00:31:25,220
+you throttle the CPU and then you start
+
+804
+00:31:25,220 --> 00:31:26,840
+seeing a bunch of long tests like shown
+
+805
+00:31:26,840 --> 00:31:28,790
+here and that would help explain why
+
+806
+00:31:28,790 --> 00:31:31,430
+because if a user tried to interact with
+
+807
+00:31:31,430 --> 00:31:33,350
+the page during one of these long tests
+
+808
+00:31:33,350 --> 00:31:35,330
+the browser would not be able to respond
+
+809
+00:31:35,330 --> 00:31:37,070
+it would have to wait until the task
+
+810
+00:31:37,070 --> 00:31:39,290
+completed before it could run those
+
+811
+00:31:39,290 --> 00:31:40,250
+event handlers
+
+812
+00:31:40,250 --> 00:31:42,470
+yes supporting and sing unavailable
+
+813
+00:31:42,470 --> 00:31:43,790
+there in the bottom in dev tools what
+
+814
+00:31:43,790 --> 00:31:46,550
+does what does that mean yeah so
+
+815
+00:31:46,550 --> 00:31:48,080
+sometimes we do say unavailable the
+
+816
+00:31:48,080 --> 00:31:50,630
+reason is we wait for blink to tell us
+
+817
+00:31:50,630 --> 00:31:55,160
+when it's happy for us to declare the
+
+818
+00:31:55,160 --> 00:31:56,930
+page interactive and at that point it
+
+819
+00:31:56,930 --> 00:31:58,520
+tells us how much blocking time it
+
+820
+00:31:58,520 --> 00:32:01,070
+measured and so sometimes if the trace
+
+821
+00:32:01,070 --> 00:32:02,390
+isn't long enough we don't actually get
+
+822
+00:32:02,390 --> 00:32:04,280
+that information so what I've been
+
+823
+00:32:04,280 --> 00:32:05,900
+working on actually recently is adding
+
+824
+00:32:05,900 --> 00:32:07,280
+in an estimate which is essentially
+
+825
+00:32:07,280 --> 00:32:09,530
+counting up the amount of candy striping
+
+826
+00:32:09,530 --> 00:32:10,820
+that we're getting right in those
+
+827
+00:32:10,820 --> 00:32:12,110
+top-level records so that we can at
+
+828
+00:32:12,110 --> 00:32:13,970
+least give you an estimate even if blink
+
+829
+00:32:13,970 --> 00:32:16,190
+hasn't given us the kind of official
+
+830
+00:32:16,190 --> 00:32:17,960
+answer so hopefully you should see that
+
+831
+00:32:17,960 --> 00:32:20,210
+in Chrome Canary them soon yeah that
+
+832
+00:32:20,210 --> 00:32:21,130
+makes sense
+
+833
+00:32:21,130 --> 00:32:23,350
+because yeah total blocking time is
+
+834
+00:32:23,350 --> 00:32:25,370
+technically the definition is the amount
+
+835
+00:32:25,370 --> 00:32:27,980
+of blocking time between first content
+
+836
+00:32:27,980 --> 00:32:30,380
+for paint and time to interactive and so
+
+837
+00:32:30,380 --> 00:32:31,730
+it makes sense that dev tools would wait
+
+838
+00:32:31,730 --> 00:32:34,250
+until the browser is interactive but
+
+839
+00:32:34,250 --> 00:32:35,240
+yeah that doesn't seem like a good
+
+840
+00:32:35,240 --> 00:32:38,510
+feature to just give like in an
+
+841
+00:32:38,510 --> 00:32:41,030
+unofficial total when it's not
+
+842
+00:32:41,030 --> 00:32:44,330
+interactive yeah exactly so now we've
+
+843
+00:32:44,330 --> 00:32:46,700
+talked about FCP LCP layout shifting and
+
+844
+00:32:46,700 --> 00:32:52,460
+long tasks and if ID or fit uh yeah if I
+
+845
+00:32:52,460 --> 00:32:54,470
+was a developer who wanted to know more
+
+846
+00:32:54,470 --> 00:32:56,300
+about these things as well as playing
+
+847
+00:32:56,300 --> 00:32:57,710
+within dev tools where would I go and
+
+848
+00:32:57,710 --> 00:32:58,580
+get more information
+
+849
+00:32:58,580 --> 00:32:59,810
+that's a great question you can go to
+
+850
+00:32:59,810 --> 00:33:03,440
+web dev slash vitals and that will have
+
+851
+00:33:03,440 --> 00:33:04,880
+you know all the information about the
+
+852
+00:33:04,880 --> 00:33:06,590
+definitions of the metrics links to
+
+853
+00:33:06,590 --> 00:33:09,470
+guides and how to optimize for them you
+
+854
+00:33:09,470 --> 00:33:11,240
+know links to more information about all
+
+855
+00:33:11,240 --> 00:33:12,029
+the tools that's
+
+856
+00:33:12,029 --> 00:33:13,080
+work them and everything like that so
+
+857
+00:33:13,080 --> 00:33:15,119
+definitely the best place is to go to
+
+858
+00:33:15,119 --> 00:33:17,980
+web dev slash vitals
+
+859
+00:33:17,980 --> 00:33:24,440
+[Music]
+
+860
+00:33:24,440 --> 00:33:26,720
+[Applause]
+

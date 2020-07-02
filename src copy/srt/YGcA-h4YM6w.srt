@@ -1,0 +1,581 @@
+1
+00:00:00,560 --> 00:00:10,110
+
+[Music]
+
+2
+00:00:10,120 --> 00:00:12,410
+hi everyone thanks for joining me my
+
+3
+00:00:12,410 --> 00:00:14,269
+name is Rick disco me I'm an engineer
+
+4
+00:00:14,269 --> 00:00:15,740
+and developer advocate on web
+
+5
+00:00:15,740 --> 00:00:17,140
+transparency projects at Google
+
+6
+00:00:17,140 --> 00:00:19,099
+including the chrome user experience
+
+7
+00:00:19,099 --> 00:00:22,550
+support or crux for short as you may
+
+8
+00:00:22,550 --> 00:00:24,140
+know crux is a powerful data set
+
+9
+00:00:24,140 --> 00:00:26,180
+containing insights about how real users
+
+10
+00:00:26,180 --> 00:00:28,399
+experience the web and this data set
+
+11
+00:00:28,399 --> 00:00:30,349
+goes all the way back to late 2017 and
+
+12
+00:00:30,349 --> 00:00:32,239
+includes data from over 18 million
+
+13
+00:00:32,239 --> 00:00:35,780
+websites this will be a somewhat
+
+14
+00:00:35,780 --> 00:00:37,820
+advanced presentation so if you want to
+
+15
+00:00:37,820 --> 00:00:39,649
+brush up on the basics you can visit the
+
+16
+00:00:39,649 --> 00:00:42,050
+crux docks at bitly slash chrome UX
+
+17
+00:00:42,050 --> 00:00:43,789
+report to learn about things like
+
+18
+00:00:43,789 --> 00:00:46,190
+metrics dimensions best practices and
+
+19
+00:00:46,190 --> 00:00:49,399
+more what I'll be sharing with you today
+
+20
+00:00:49,399 --> 00:00:51,530
+are a few pro tips for mining the
+
+21
+00:00:51,530 --> 00:00:53,749
+low-level data set on bigquery for
+
+22
+00:00:53,749 --> 00:00:54,949
+insights about how users are
+
+23
+00:00:54,949 --> 00:00:57,890
+experiencing the web so by now I'm sure
+
+24
+00:00:57,890 --> 00:01:00,140
+you've heard of core web vitals there
+
+25
+00:01:00,140 --> 00:01:01,789
+are the most important UX metrics we
+
+26
+00:01:01,789 --> 00:01:03,409
+think you should be looking at in 2020
+
+27
+00:01:03,409 --> 00:01:08,200
+the list includes LCP FID and CLS in
+
+28
+00:01:08,200 --> 00:01:10,640
+fact Kruk supports all three of these
+
+29
+00:01:10,640 --> 00:01:12,590
+metrics and has months of data across
+
+30
+00:01:12,590 --> 00:01:14,300
+millions of websites so let's head over
+
+31
+00:01:14,300 --> 00:01:16,190
+to bigquery to see what we can find here
+
+32
+00:01:16,190 --> 00:01:18,590
+I'm querying the metrics summary table
+
+33
+00:01:18,590 --> 00:01:19,910
+which is a really quick and easy way to
+
+34
+00:01:19,910 --> 00:01:22,070
+get high-level stats about a website's
+
+35
+00:01:22,070 --> 00:01:24,830
+core web vitals you can see here that
+
+36
+00:01:24,830 --> 00:01:26,240
+we're extracting the percent of user
+
+37
+00:01:26,240 --> 00:01:27,560
+experiences that meet the good
+
+38
+00:01:27,560 --> 00:01:31,640
+thresholds for LCP FID and CLS as well
+
+39
+00:01:31,640 --> 00:01:35,780
+as metrics 75th percentiles all of these
+
+40
+00:01:35,780 --> 00:01:37,520
+stats are pre computed for you so you
+
+41
+00:01:37,520 --> 00:01:39,320
+can spend more time finding insights and
+
+42
+00:01:39,320 --> 00:01:45,590
+less time writing queries this summary
+
+43
+00:01:45,590 --> 00:01:47,360
+table is also much smaller and more
+
+44
+00:01:47,360 --> 00:01:49,310
+efficient you can see it processes only
+
+45
+00:01:49,310 --> 00:01:51,170
+about a hundred megabytes so you
+
+46
+00:01:51,170 --> 00:01:52,220
+shouldn't have any concerns about
+
+47
+00:01:52,220 --> 00:01:53,930
+exceeding your one terabyte of free
+
+48
+00:01:53,930 --> 00:01:57,350
+monthly quota the raw data still exists
+
+49
+00:01:57,350 --> 00:01:59,150
+if you need access to specific histogram
+
+50
+00:01:59,150 --> 00:02:01,370
+bins but almost everything you need is
+
+51
+00:02:01,370 --> 00:02:04,160
+here in the materialized data set if
+
+52
+00:02:04,160 --> 00:02:05,660
+you've ever queried the raw data you'll
+
+53
+00:02:05,660 --> 00:02:07,040
+know that there are several useful
+
+54
+00:02:07,040 --> 00:02:08,509
+dimensions that you can drill down on
+
+55
+00:02:08,509 --> 00:02:12,890
+like month device type and country so
+
+56
+00:02:12,890 --> 00:02:14,180
+let's look at a few examples of doing
+
+57
+00:02:14,180 --> 00:02:16,450
+that efficiently with the summary table
+
+58
+00:02:16,450 --> 00:02:18,860
+the first thing we'll do is modify this
+
+59
+00:02:18,860 --> 00:02:20,840
+query to see how the core web vitals
+
+60
+00:02:20,840 --> 00:02:23,660
+have changed in recent months to do that
+
+61
+00:02:23,660 --> 00:02:25,130
+we need to change our where clause to
+
+62
+00:02:25,130 --> 00:02:27,800
+include all releases in 2020 by setting
+
+63
+00:02:27,800 --> 00:02:29,690
+the condition to date greater than 20
+
+64
+00:02:29,690 --> 00:02:37,820
+2001 oh 1 or January 2020 next we
+
+65
+00:02:37,820 --> 00:02:39,170
+include the year and month of the
+
+66
+00:02:39,170 --> 00:02:41,090
+release and the select clause so we can
+
+67
+00:02:41,090 --> 00:02:46,190
+see it in the output the difference
+
+68
+00:02:46,190 --> 00:02:48,440
+between year month and date is that the
+
+69
+00:02:48,440 --> 00:02:50,690
+tables are partitioned by date while the
+
+70
+00:02:50,690 --> 00:02:52,250
+yeren month corresponds to the table
+
+71
+00:02:52,250 --> 00:02:57,350
+names in the raw data set and finally we
+
+72
+00:02:57,350 --> 00:02:59,150
+can sort the results chronologically and
+
+73
+00:02:59,150 --> 00:03:10,400
+run the query you can see from the
+
+74
+00:03:10,400 --> 00:03:12,380
+results that web dev has had relatively
+
+75
+00:03:12,380 --> 00:03:14,180
+stable and good user experience this
+
+76
+00:03:14,180 --> 00:03:16,700
+year but what if we want to break this
+
+77
+00:03:16,700 --> 00:03:18,530
+down by desktop and phone experiences
+
+78
+00:03:18,530 --> 00:03:20,510
+for that all we need to do is change
+
+79
+00:03:20,510 --> 00:03:27,380
+over to the device summary table will
+
+80
+00:03:27,380 --> 00:03:29,150
+restrict the results to only desktop in
+
+81
+00:03:29,150 --> 00:03:31,489
+phone results now tablet is available
+
+82
+00:03:31,489 --> 00:03:42,850
+but it's less interesting
+
+83
+00:03:42,860 --> 00:03:45,000
+next we'll add the device name to the
+
+84
+00:03:45,000 --> 00:03:47,040
+select clause and secondary sort by it
+
+85
+00:03:47,040 --> 00:03:48,720
+to keep the ordering of the results
+
+86
+00:03:48,720 --> 00:03:56,490
+consistent I'm going to run this query
+
+87
+00:03:56,490 --> 00:03:57,720
+but there's one thing I wanted to show
+
+88
+00:03:57,720 --> 00:04:00,120
+you in the results these percentages are
+
+89
+00:04:00,120 --> 00:04:01,800
+out of all user experiences on the
+
+90
+00:04:01,800 --> 00:04:03,960
+origin not just the percent of desktop
+
+91
+00:04:03,960 --> 00:04:06,000
+experiences or the percent of phone
+
+92
+00:04:06,000 --> 00:04:08,190
+experiences for boring technical reasons
+
+93
+00:04:08,190 --> 00:04:10,140
+so one less thing we need to do is
+
+94
+00:04:10,140 --> 00:04:12,300
+normalize these distributions so it
+
+95
+00:04:12,300 --> 00:04:13,680
+doesn't matter that desktop is more
+
+96
+00:04:13,680 --> 00:04:15,840
+popular than phone to do that we just
+
+97
+00:04:15,840 --> 00:04:29,420
+divide the metric by the total
+
+98
+00:04:29,430 --> 00:04:31,810
+now we have comparable results between
+
+99
+00:04:31,810 --> 00:04:33,550
+devices and we can see that desktop
+
+100
+00:04:33,550 --> 00:04:35,080
+actually trends slightly better than
+
+101
+00:04:35,080 --> 00:04:38,080
+phone and finally what if we want to
+
+102
+00:04:38,080 --> 00:04:39,819
+break this down even further by users
+
+103
+00:04:39,819 --> 00:04:41,979
+countries for that we can change over to
+
+104
+00:04:41,979 --> 00:04:50,349
+the country summary table for
+
+105
+00:04:50,349 --> 00:04:52,060
+demonstration purposes let's restrict
+
+106
+00:04:52,060 --> 00:04:53,560
+the results to two countries with very
+
+107
+00:04:53,560 --> 00:04:55,780
+different experiences Korea and Nigeria
+
+108
+00:04:55,780 --> 00:05:08,050
+and focus only on desktop now we could
+
+109
+00:05:08,050 --> 00:05:09,520
+write the country code to the results
+
+110
+00:05:09,520 --> 00:05:10,780
+but I wanted to show you one other cool
+
+111
+00:05:10,780 --> 00:05:12,849
+trick the crux data set includes an
+
+112
+00:05:12,849 --> 00:05:14,590
+experimental function to map country
+
+113
+00:05:14,590 --> 00:05:33,380
+codes to full names
+
+114
+00:05:33,390 --> 00:05:36,190
+and the last thing we'll do before
+
+115
+00:05:36,190 --> 00:05:37,990
+running the query is to sort by country
+
+116
+00:05:37,990 --> 00:05:49,210
+rather than device the results tell a
+
+117
+00:05:49,210 --> 00:05:50,890
+really interesting story about the
+
+118
+00:05:50,890 --> 00:05:52,780
+disparity and user experience by country
+
+119
+00:05:52,780 --> 00:05:54,790
+and bakery was able to analyze this in
+
+120
+00:05:54,790 --> 00:05:56,860
+only a couple of seconds and using only
+
+121
+00:05:56,860 --> 00:06:00,550
+about a gigabyte of data so that's it
+
+122
+00:06:00,550 --> 00:06:02,170
+these are just a few quick examples of
+
+123
+00:06:02,170 --> 00:06:03,700
+the power of the bigquery data set and
+
+124
+00:06:03,700 --> 00:06:05,410
+it doesn't have to be mysterious or
+
+125
+00:06:05,410 --> 00:06:07,390
+expensive I hope you start exploring the
+
+126
+00:06:07,390 --> 00:06:09,040
+data set and finding insights about the
+
+127
+00:06:09,040 --> 00:06:11,530
+state of the web you can find links to
+
+128
+00:06:11,530 --> 00:06:12,910
+all the resources and queries we
+
+129
+00:06:12,910 --> 00:06:14,110
+discussed in the description and
+
+130
+00:06:14,110 --> 00:06:16,480
+comments of this YouTube video if you
+
+131
+00:06:16,480 --> 00:06:17,710
+have any questions at all we have a
+
+132
+00:06:17,710 --> 00:06:20,070
+whole support network set up for you you
+
+133
+00:06:20,070 --> 00:06:22,600
+can find me on twitter at rick Viscomi
+
+134
+00:06:22,600 --> 00:06:25,260
+and i also tweet from a chrome UX report
+
+135
+00:06:25,260 --> 00:06:27,520
+we have announcement and discussion
+
+136
+00:06:27,520 --> 00:06:29,230
+groups for important product updates and
+
+137
+00:06:29,230 --> 00:06:31,690
+support we have the crux cookbook on
+
+138
+00:06:31,690 --> 00:06:33,160
+github where you can find example
+
+139
+00:06:33,160 --> 00:06:35,530
+queries for common problems and finally
+
+140
+00:06:35,530 --> 00:06:37,300
+we have crux office hours where we can
+
+141
+00:06:37,300 --> 00:06:38,560
+meet virtually and get your questions
+
+142
+00:06:38,560 --> 00:06:40,690
+answered I hope you found this useful
+
+143
+00:06:40,690 --> 00:06:42,310
+please hit the thumbs up if you did
+
+144
+00:06:42,310 --> 00:06:49,959
+thanks for watching everyone
+
+145
+00:06:49,969 --> 00:06:51,600
+you
+

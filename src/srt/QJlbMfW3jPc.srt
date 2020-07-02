@@ -1,0 +1,825 @@
+1
+00:00:00,570 --> 00:00:03,410
+
+[Music]
+
+2
+00:00:03,410 --> 00:00:08,130
+[Applause]
+
+3
+00:00:08,140 --> 00:00:11,750
+[Music]
+
+4
+00:00:11,750 --> 00:00:15,240
+hi my name is Andrew bandeja and in this
+
+5
+00:00:15,240 --> 00:00:17,279
+video I'm going to show you how to use
+
+6
+00:00:17,279 --> 00:00:19,710
+your progressive web app inside an
+
+7
+00:00:19,710 --> 00:00:21,869
+android application without writing a
+
+8
+00:00:21,869 --> 00:00:24,810
+single line of native code progressive
+
+9
+00:00:24,810 --> 00:00:26,340
+web apps or petaboys
+
+10
+00:00:26,340 --> 00:00:29,010
+combine the reach of the web with the
+
+11
+00:00:29,010 --> 00:00:31,019
+capabilities that were almost available
+
+12
+00:00:31,019 --> 00:00:33,149
+to native apps if you are new to
+
+13
+00:00:33,149 --> 00:00:36,180
+petaboys read more about them on webdive
+
+14
+00:00:36,180 --> 00:00:39,899
+slash progressive - web - apps it is
+
+15
+00:00:39,899 --> 00:00:42,149
+natural that developers building great
+
+16
+00:00:42,149 --> 00:00:42,780
+petaboys
+
+17
+00:00:42,780 --> 00:00:45,480
+wants to reuse those experiences inside
+
+18
+00:00:45,480 --> 00:00:47,750
+their Android applications in the past
+
+19
+00:00:47,750 --> 00:00:50,190
+possible ways for developer to use their
+
+20
+00:00:50,190 --> 00:00:52,260
+progressive web app inside an Android
+
+21
+00:00:52,260 --> 00:00:54,480
+application included using the Android
+
+22
+00:00:54,480 --> 00:00:56,600
+webview or embedding a browser engine
+
+23
+00:00:56,600 --> 00:00:59,129
+the webview doesn't provide support for
+
+24
+00:00:59,129 --> 00:01:01,289
+many of the new capabilities on the web
+
+25
+00:01:01,289 --> 00:01:03,920
+like push notifications or web Bluetooth
+
+26
+00:01:03,920 --> 00:01:07,350
+so the output can be a super experienced
+
+27
+00:01:07,350 --> 00:01:09,320
+compared to the pdaboy it's built on
+
+28
+00:01:09,320 --> 00:01:11,970
+creating and maintaining an app with an
+
+29
+00:01:11,970 --> 00:01:14,610
+embedded browser requires a considerable
+
+30
+00:01:14,610 --> 00:01:16,560
+amount of engineering effort and
+
+31
+00:01:16,560 --> 00:01:19,200
+produces an app that's larger than a
+
+32
+00:01:19,200 --> 00:01:21,689
+native app equivalent at last year's
+
+33
+00:01:21,689 --> 00:01:24,150
+Google i/o we announced trusted web
+
+34
+00:01:24,150 --> 00:01:26,400
+activities which allow developers to use
+
+35
+00:01:26,400 --> 00:01:28,950
+their progressive web app inside an
+
+36
+00:01:28,950 --> 00:01:31,710
+android app in a full-screen tab that is
+
+37
+00:01:31,710 --> 00:01:34,290
+powered and has the same features and
+
+38
+00:01:34,290 --> 00:01:36,570
+capabilities as the browser providing
+
+39
+00:01:36,570 --> 00:01:39,119
+this leads to a small development cost
+
+40
+00:01:39,119 --> 00:01:42,570
+and application size even though Tercel
+
+41
+00:01:42,570 --> 00:01:44,040
+web activities provide a better
+
+42
+00:01:44,040 --> 00:01:46,500
+alternative for using a PWM site and
+
+43
+00:01:46,500 --> 00:01:48,990
+enter that developers to needs some
+
+44
+00:01:48,990 --> 00:01:50,759
+knowledge about native application
+
+45
+00:01:50,759 --> 00:01:54,299
+tooling and development so to create an
+
+46
+00:01:54,299 --> 00:01:56,070
+easier path for developers who want to
+
+47
+00:01:56,070 --> 00:01:58,170
+create their Android app using their
+
+48
+00:01:58,170 --> 00:02:00,659
+pdaboy excited we have created bubble
+
+49
+00:02:00,659 --> 00:02:03,299
+wrap emoji is projects that contains
+
+50
+00:02:03,299 --> 00:02:05,490
+both a library and a common line
+
+51
+00:02:05,490 --> 00:02:07,860
+interface developers can use to generate
+
+52
+00:02:07,860 --> 00:02:09,899
+and build their Android application in
+
+53
+00:02:09,899 --> 00:02:12,660
+the next few minutes I'd like to guide
+
+54
+00:02:12,660 --> 00:02:13,660
+you on how to
+
+55
+00:02:13,660 --> 00:02:15,640
+figure bubble wrap and use it to
+
+56
+00:02:15,640 --> 00:02:17,920
+generate an application from an existing
+
+57
+00:02:17,920 --> 00:02:20,560
+progressive web app I'm going to use
+
+58
+00:02:20,560 --> 00:02:22,600
+Romero woods persistence app as a
+
+59
+00:02:22,600 --> 00:02:25,000
+starting point but you can use any
+
+60
+00:02:25,000 --> 00:02:27,520
+existing progressive web app check the
+
+61
+00:02:27,520 --> 00:02:29,140
+video description for the link to the
+
+62
+00:02:29,140 --> 00:02:31,750
+persistence app who needs to modify the
+
+63
+00:02:31,750 --> 00:02:34,680
+application later so I'll open the app
+
+64
+00:02:34,680 --> 00:02:37,830
+scroll down and click on the code link
+
+65
+00:02:37,830 --> 00:02:41,410
+then I'm going to remix the project so
+
+66
+00:02:41,410 --> 00:02:44,620
+we can modify it we can get the link to
+
+67
+00:02:44,620 --> 00:02:48,010
+the remix tab by clicking on share then
+
+68
+00:02:48,010 --> 00:02:51,910
+live app and then copying the link we
+
+69
+00:02:51,910 --> 00:02:53,710
+are going to need that information soon
+
+70
+00:02:53,710 --> 00:02:56,740
+in order to use bubble wrap we need
+
+71
+00:02:56,740 --> 00:02:59,620
+node.js 10 or above installed on the
+
+72
+00:02:59,620 --> 00:03:02,230
+development computer and optionally an
+
+73
+00:03:02,230 --> 00:03:04,870
+Android device setup in developer mode
+
+74
+00:03:04,870 --> 00:03:07,300
+so we can test the application check the
+
+75
+00:03:07,300 --> 00:03:09,010
+link on the video description for more
+
+76
+00:03:09,010 --> 00:03:11,080
+information on how to setup on an
+
+77
+00:03:11,080 --> 00:03:13,990
+Android device for developer mode bubble
+
+78
+00:03:13,990 --> 00:03:16,420
+wrap builds on top of native SDK tooling
+
+79
+00:03:16,420 --> 00:03:18,820
+so we'll start by downloading the
+
+80
+00:03:18,820 --> 00:03:21,220
+Android common line tools and the Java
+
+81
+00:03:21,220 --> 00:03:24,910
+development kit or JDK version 8 to
+
+82
+00:03:24,910 --> 00:03:26,800
+download the Android common line tools
+
+83
+00:03:26,800 --> 00:03:28,930
+we can use the shortcut on the
+
+84
+00:03:28,930 --> 00:03:31,180
+bubble-wrapped CLI documentation which
+
+85
+00:03:31,180 --> 00:03:32,910
+is a linked on the video description
+
+86
+00:03:32,910 --> 00:03:35,440
+inside the page click on the link for
+
+87
+00:03:35,440 --> 00:03:36,820
+your operating system
+
+88
+00:03:36,820 --> 00:03:39,540
+accept the license and click on download
+
+89
+00:03:39,540 --> 00:03:42,850
+the bubble-wrap CLI documentation also
+
+90
+00:03:42,850 --> 00:03:44,739
+links the corrections version of the
+
+91
+00:03:44,739 --> 00:03:47,650
+Java development kit inside the page
+
+92
+00:03:47,650 --> 00:03:50,170
+choose your operating system event
+
+93
+00:03:50,170 --> 00:03:52,150
+architecture then download the
+
+94
+00:03:52,150 --> 00:03:55,630
+compressive tar file for the JDK in our
+
+95
+00:03:55,630 --> 00:03:58,180
+terminal we now create a directory where
+
+96
+00:03:58,180 --> 00:04:01,690
+we can place both dependencies then we
+
+97
+00:04:01,690 --> 00:04:06,370
+unzip the common line tools and then the
+
+98
+00:04:06,370 --> 00:04:10,540
+Java development kits make sure to take
+
+99
+00:04:10,540 --> 00:04:12,280
+note of the directories where those
+
+100
+00:04:12,280 --> 00:04:14,560
+files were decompressed as we're going
+
+101
+00:04:14,560 --> 00:04:17,020
+to need them later I like to rename the
+
+102
+00:04:17,020 --> 00:04:20,080
+JDK folder to just JDK as it's easier to
+
+103
+00:04:20,080 --> 00:04:23,110
+remember with the penisy is now ready we
+
+104
+00:04:23,110 --> 00:04:25,180
+can install bubble-wrap using NPM
+
+105
+00:04:25,180 --> 00:04:27,690
+install
+
+106
+00:04:27,700 --> 00:04:30,320
+with bubble wrap and its dependencies
+
+107
+00:04:30,320 --> 00:04:32,660
+now installed we can start the creation
+
+108
+00:04:32,660 --> 00:04:35,750
+of the Android app itself let's start by
+
+109
+00:04:35,750 --> 00:04:39,140
+creating a folder for it and now we can
+
+110
+00:04:39,140 --> 00:04:41,150
+initialize the Android project by
+
+111
+00:04:41,150 --> 00:04:43,580
+calling bubble wrap in it and passing
+
+112
+00:04:43,580 --> 00:04:46,300
+the URL to the web manifest to it
+
+113
+00:04:46,300 --> 00:04:49,040
+when bubble wrap runs for the first time
+
+114
+00:04:49,040 --> 00:04:51,290
+it will ask for the location of the JDK
+
+115
+00:04:51,290 --> 00:04:53,720
+and the Android common line tools we
+
+116
+00:04:53,720 --> 00:04:55,940
+downloaded previously while also
+
+117
+00:04:55,940 --> 00:04:57,500
+automatically installing order
+
+118
+00:04:57,500 --> 00:05:01,730
+dependencies then the CLI will ask you
+
+119
+00:05:01,730 --> 00:05:03,560
+to confirm values read from the web
+
+120
+00:05:03,560 --> 00:05:05,720
+manifest and fill in any missing
+
+121
+00:05:05,720 --> 00:05:08,450
+required values needed to create the
+
+122
+00:05:08,450 --> 00:05:11,480
+Android app we can for instance change
+
+123
+00:05:11,480 --> 00:05:14,180
+the Stars URL so that we can use Google
+
+124
+00:05:14,180 --> 00:05:16,760
+Analytics to measure how often our users
+
+125
+00:05:16,760 --> 00:05:18,920
+are opening the pdaboy from the Android
+
+126
+00:05:18,920 --> 00:05:22,790
+app Android applications needs to be
+
+127
+00:05:22,790 --> 00:05:25,160
+signed with a self-generated key in
+
+128
+00:05:25,160 --> 00:05:26,930
+order to be uploaded to the Play Store
+
+129
+00:05:26,930 --> 00:05:29,390
+if bogu rep is unable to find an
+
+130
+00:05:29,390 --> 00:05:31,160
+existing key it will prompt the
+
+131
+00:05:31,160 --> 00:05:34,070
+developer to grade one so let's go ahead
+
+132
+00:05:34,070 --> 00:05:37,190
+and create it and make sure to take note
+
+133
+00:05:37,190 --> 00:05:41,720
+of the password you choose finally we
+
+134
+00:05:41,720 --> 00:05:43,820
+can now invoke bubble wrap build to
+
+135
+00:05:43,820 --> 00:05:50,120
+build the project the comment will
+
+136
+00:05:50,120 --> 00:05:52,250
+output three important things the
+
+137
+00:05:52,250 --> 00:05:54,230
+quality criteria for the peter blake an
+
+138
+00:05:54,230 --> 00:05:56,840
+asset links that json file used to
+
+139
+00:05:56,840 --> 00:05:58,970
+validate the domain open and inside the
+
+140
+00:05:58,970 --> 00:06:01,100
+trusted web activity and assigned
+
+141
+00:06:01,100 --> 00:06:03,080
+android application that can be uploaded
+
+142
+00:06:03,080 --> 00:06:05,690
+to the place where bubble wrap would
+
+143
+00:06:05,690 --> 00:06:07,610
+check the quality criteria against the
+
+144
+00:06:07,610 --> 00:06:09,560
+URL used to launch the trusted web
+
+145
+00:06:09,560 --> 00:06:12,080
+activity we strongly recommend the
+
+146
+00:06:12,080 --> 00:06:14,210
+repeatable passes the called secret area
+
+147
+00:06:14,210 --> 00:06:16,700
+the quality criteria is measured using
+
+148
+00:06:16,700 --> 00:06:19,430
+lighthouse against the start URL and
+
+149
+00:06:19,430 --> 00:06:21,710
+consists of a minimum performance score
+
+150
+00:06:21,710 --> 00:06:24,170
+of 80 and getting the peelable a check
+
+151
+00:06:24,170 --> 00:06:26,710
+in order to be shown in full-screen
+
+152
+00:06:26,710 --> 00:06:28,940
+developers need to implement digital
+
+153
+00:06:28,940 --> 00:06:31,640
+asset links bubble-wrap takes care of
+
+154
+00:06:31,640 --> 00:06:33,050
+the configuration of the android
+
+155
+00:06:33,050 --> 00:06:35,630
+application but there is one extra step
+
+156
+00:06:35,630 --> 00:06:38,150
+that needs to be done in the web app the
+
+157
+00:06:38,150 --> 00:06:41,000
+content of the asset links to JSON file
+
+158
+00:06:41,000 --> 00:06:43,370
+to be made available on dot well-known
+
+159
+00:06:43,370 --> 00:06:46,430
+slash asset link JSON on the root of the
+
+160
+00:06:46,430 --> 00:06:50,090
+domain on my remix project I'll create a
+
+161
+00:06:50,090 --> 00:06:53,090
+dot well-known slash asset links to JSON
+
+162
+00:06:53,090 --> 00:06:56,990
+file then I'll paste the content of the
+
+163
+00:06:56,990 --> 00:07:00,490
+file generated by bubble-wrap into it
+
+164
+00:07:00,490 --> 00:07:03,320
+the application is now fully setup if
+
+165
+00:07:03,320 --> 00:07:05,240
+you have an Android device in developer
+
+166
+00:07:05,240 --> 00:07:07,100
+mode you can now connect it to the
+
+167
+00:07:07,100 --> 00:07:09,680
+computer and run bubble wrapping start
+
+168
+00:07:09,680 --> 00:07:13,430
+to launch the app congratulations you
+
+169
+00:07:13,430 --> 00:07:17,480
+have built an Android app when uploading
+
+170
+00:07:17,480 --> 00:07:19,010
+an application to the Play Store for the
+
+171
+00:07:19,010 --> 00:07:21,290
+first time you ask if the developer
+
+172
+00:07:21,290 --> 00:07:24,470
+wants to use app signing if opting into
+
+173
+00:07:24,470 --> 00:07:26,690
+app signing the Play Store will manage
+
+174
+00:07:26,690 --> 00:07:29,090
+the signing key for you making sure it's
+
+175
+00:07:29,090 --> 00:07:32,240
+not lost this is important as losing the
+
+176
+00:07:32,240 --> 00:07:33,919
+key means it's not possible to update
+
+177
+00:07:33,919 --> 00:07:36,560
+the application on the store anymore but
+
+178
+00:07:36,560 --> 00:07:39,169
+it also means that the final key used to
+
+179
+00:07:39,169 --> 00:07:41,180
+signed application will be different
+
+180
+00:07:41,180 --> 00:07:42,890
+than the one is generated by bubble wrap
+
+181
+00:07:42,890 --> 00:07:45,740
+to update the asset link start JSON file
+
+182
+00:07:45,740 --> 00:07:48,350
+we needs information on the key used by
+
+183
+00:07:48,350 --> 00:07:50,780
+the Play Store this information can be
+
+184
+00:07:50,780 --> 00:07:52,940
+found by clicking on the add links item
+
+185
+00:07:52,940 --> 00:07:55,880
+on the menu on the left and copying the
+
+186
+00:07:55,880 --> 00:07:58,550
+details for the fingerprint and using is
+
+187
+00:07:58,550 --> 00:08:00,800
+to update asset links dot JSON file on
+
+188
+00:08:00,800 --> 00:08:04,160
+the web app it is possible to use both
+
+189
+00:08:04,160 --> 00:08:06,229
+fingerprints in the application check
+
+190
+00:08:06,229 --> 00:08:08,150
+out the video description for a link on
+
+191
+00:08:08,150 --> 00:08:10,190
+how to add both case to the application
+
+192
+00:08:10,190 --> 00:08:12,950
+booboo wrap removes friction for web
+
+193
+00:08:12,950 --> 00:08:14,900
+developers who wants to open repeatably
+
+194
+00:08:14,900 --> 00:08:17,930
+in an android app I'm a fan of comma
+
+195
+00:08:17,930 --> 00:08:20,030
+line tools if you are more like a
+
+196
+00:08:20,030 --> 00:08:22,580
+graphical user interface person checkout
+
+197
+00:08:22,580 --> 00:08:25,310
+peel away builder it uses bubble wrap as
+
+198
+00:08:25,310 --> 00:08:27,320
+a library to power their Android
+
+199
+00:08:27,320 --> 00:08:29,690
+application generation and that's all
+
+200
+00:08:29,690 --> 00:08:31,910
+for bubble wrap today make sure to check
+
+201
+00:08:31,910 --> 00:08:33,560
+the github repo and drop us some
+
+202
+00:08:33,560 --> 00:08:35,690
+feedback and if you're watching this
+
+203
+00:08:35,690 --> 00:08:38,659
+live jump into our live chat and tell us
+
+204
+00:08:38,659 --> 00:08:41,539
+what you think thanks for watching
+
+205
+00:08:41,539 --> 00:08:48,030
+[Music]
+
+206
+00:08:48,030 --> 00:08:50,210
+[Applause]
+

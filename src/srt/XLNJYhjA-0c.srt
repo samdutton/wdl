@@ -1,0 +1,578 @@
+1
+00:00:12,000 --> 00:00:15,050
+Hi, everyone. I'm Eiji and today I'm going to talk about
+
+2
+00:00:15,300 --> 00:00:16,300
+COOP and COEP.
+
+3
+00:00:18,300 --> 00:00:20,640
+COOP and COEP are names of HTTP headers that let
+
+4
+00:00:21,260 --> 00:00:24,140
+your web page opt-in to a special state called
+
+5
+00:00:24,180 --> 00:00:27,440
+'Cross-origin isolated' and gain access to powerful
+
+6
+00:00:27,440 --> 00:00:29,600
+features such as SharedArrayBuffers acrros platforms,
+
+7
+00:00:29,600 --> 00:00:30,610
+performance.measureMemory(), JS
+
+8
+00:00:33,900 --> 00:00:35,150
+Self Profiling API.
+
+9
+00:00:36,360 --> 00:00:39,200
+If you are interested in using a powerful feature from this
+
+10
+00:00:39,200 --> 00:00:42,200
+growing list, you will need to opt-in to COOP and COEP.
+
+11
+00:00:42,620 --> 00:00:45,290
+Also, if you own on a CDN or provide
+
+12
+00:00:46,120 --> 00:00:48,960
+ads, fonts, images, or other resources that get
+
+13
+00:00:49,080 --> 00:00:51,420
+loaded in different origins across the web, you
+
+14
+00:00:52,130 --> 00:00:53,550
+should also watch this video.
+
+15
+00:00:53,670 --> 00:00:57,220
+I will discuss one HTTP header you can add to ensure
+
+16
+00:00:57,470 --> 00:01:00,510
+all your customers can properly load your resources.
+
+17
+00:01:00,640 --> 00:01:02,640
+With that in mind, let's get started.
+
+18
+00:01:03,010 --> 00:01:05,390
+Composability is a super power of the web.
+
+19
+00:01:06,390 --> 00:01:09,350
+You can enhance your website's capabilities by simply
+
+20
+00:01:09,390 --> 00:01:11,440
+adding resources from different sources.
+
+21
+00:01:11,850 --> 00:01:14,570
+Commonly used services include ads,
+
+22
+00:01:14,820 --> 00:01:17,740
+web fonts, images, videos, maps,
+
+23
+00:01:18,070 --> 00:01:21,200
+identity federation, payment solutions, and so
+
+24
+00:01:21,200 --> 00:01:24,530
+on. These services are quite handy and powerful,
+
+25
+00:01:24,990 --> 00:01:27,620
+but their cross-origin nature contributes to increased
+
+26
+00:01:28,000 --> 00:01:29,960
+risk of information leakage.
+
+27
+00:01:30,460 --> 00:01:33,840
+Malicious parties could take advantage of the situation
+
+28
+00:01:34,290 --> 00:01:37,340
+and exfiltrate information about your users.
+
+29
+00:01:37,670 --> 00:01:41,050
+But browsers do a good job at preventing such scenarios.
+
+30
+00:01:42,220 --> 00:01:45,050
+They keep cross-origin resources separated within a
+
+31
+00:01:45,100 --> 00:01:47,520
+browsing context group when the web page allows that.
+
+32
+00:01:48,100 --> 00:01:50,940
+Browsing context group is a group of tabs, windows, and
+
+33
+00:01:51,770 --> 00:01:53,770
+iframes that share the same context.
+
+34
+00:01:54,400 --> 00:01:57,280
+The same-origin policy is a security feature that restricts
+
+35
+00:01:57,280 --> 00:02:00,280
+how documents and scripts can interact with
+
+36
+00:02:00,280 --> 00:02:03,160
+resources from another origin so that users'
+
+37
+00:02:03,360 --> 00:02:05,200
+information won't accidentally leak.
+
+38
+00:02:06,080 --> 00:02:09,290
+The same-origin policy has been doing a good job keeping
+
+39
+00:02:09,290 --> 00:02:12,210
+the web a safe place... until Spectre
+
+40
+00:02:12,830 --> 00:02:14,830
+was discovered. Spectre is a vulnerability
+
+41
+00:02:16,000 --> 00:02:17,960
+found in CPUs that enables malicious web
+
+42
+00:02:19,130 --> 00:02:22,010
+sites to read memory and the contents across the origin
+
+43
+00:02:22,050 --> 00:02:25,470
+boundaries. This vulnerability can be exploited
+
+44
+00:02:25,680 --> 00:02:28,600
+via features that can act as high-precision timers.
+
+45
+00:02:29,310 --> 00:02:32,230
+This leaves cross-origin resources that are shared
+
+46
+00:02:32,310 --> 00:02:34,770
+in a single browsing context group at risk.
+
+47
+00:02:35,150 --> 00:02:38,190
+Even if they are protected by the same-origin policy,
+
+48
+00:02:38,480 --> 00:02:40,940
+Spectre attacks can bypass that border.
+
+49
+00:02:41,190 --> 00:02:44,200
+As a quick response, browser vendors decided
+
+50
+00:02:44,200 --> 00:02:47,120
+to turn off features that could be used to construct
+
+51
+00:02:47,200 --> 00:02:48,200
+high precision timers.
+
+52
+00:02:48,830 --> 00:02:50,450
+For example, SharedArrayBuffer.
+
+53
+00:02:51,040 --> 00:02:54,370
+To mitigate the risk of Spectre and make powerful features
+
+54
+00:02:54,500 --> 00:02:56,580
+available on the web page, its origin needs
+
+55
+00:02:57,540 --> 00:02:59,300
+to be isolated from others.
+
+56
+00:02:59,420 --> 00:03:02,800
+By isolating origins into separate browsing context groups,
+
+57
+00:03:03,260 --> 00:03:06,220
+Spectre and other exploits that grant permission
+
+58
+00:03:06,340 --> 00:03:09,060
+to read arbitrary memory in the same process
+
+59
+00:03:09,350 --> 00:03:12,350
+are no longer able to read cross-origin contents.
+
+60
+00:03:13,100 --> 00:03:16,310
+This, in turn, allows browsers to bring back
+
+61
+00:03:16,480 --> 00:03:19,320
+the powerful features on pages that are properly
+
+62
+00:03:19,610 --> 00:03:20,610
+isolated.
+
+63
+00:03:20,900 --> 00:03:23,150
+Chrome on desktop enabled 'Site Isolation'.
+
+64
+00:03:24,030 --> 00:03:25,780
+This allowed us to turn SharedArrayBuffer
+
+65
+00:03:26,990 --> 00:03:29,910
+back on on desktops. To achieve more robust
+
+66
+00:03:30,080 --> 00:03:33,370
+isolation, the browser needs an explicit
+
+67
+00:03:33,370 --> 00:03:36,710
+signal from the web site that they want to be isolated
+
+68
+00:03:36,750 --> 00:03:38,330
+from cross-origin resources.
+
+69
+00:03:38,460 --> 00:03:40,750
+That is what COOP and COEP are about.
+
+70
+00:03:41,170 --> 00:03:44,260
+To enable cross-origin isolation, you need to do three
+
+71
+00:03:44,260 --> 00:03:46,720
+things. First, set 'Cross-Origin-Opener-Policy:
+
+72
+00:03:48,340 --> 00:03:50,470
+same-origin' for the main document.
+
+73
+00:03:51,260 --> 00:03:54,480
+Second, make sure cross-origin resources use
+
+74
+00:03:56,480 --> 00:03:57,650
+'Cross-Origin-Resource-Policy: cross-origin', or
+
+75
+00:03:57,900 --> 00:03:59,270
+cross-origin resource sharing.
+
+76
+00:03:59,610 --> 00:04:02,190
+Third, set 'Cross-Origin-Embedder-Policy: require-corp'
+
+77
+00:04:03,820 --> 00:04:04,820
+for the main document.
+
+78
+00:04:05,610 --> 00:04:08,280
+Let's walk through each step to see how they work.
+
+79
+00:04:09,490 --> 00:04:12,200
+When 'Cross-Origin-Opener-Policy: same-origin' is set,
+
+80
+00:04:13,160 --> 00:04:15,960
+any cross-origin window opened from the document
+
+81
+00:04:16,160 --> 00:04:18,920
+will have no access to the opener's DOM - so
+
+82
+00:04:18,920 --> 00:04:20,210
+'window.opener' will will return null.
+
+83
+00:04:24,300 --> 00:04:27,380
+This is how the document achieves isolation from
+
+84
+00:04:27,380 --> 00:04:28,380
+the cross origin window.
+
+85
+00:04:28,720 --> 00:04:31,220
+To create a cross-origin isolated page, you need to
+
+86
+00:04:31,760 --> 00:04:34,310
+make sure all cross-origin resources embedded in the
+
+87
+00:04:34,720 --> 00:04:37,600
+document explicitly allow it to be loaded.
+
+88
+00:04:37,770 --> 00:04:39,560
+There are two ways to achieve this.
+
+89
+00:04:39,900 --> 00:04:42,150
+By setting 'Cross-Origin-Resource-Policy: cross-origin'
+
+90
+00:04:43,020 --> 00:04:45,440
+or applying cross-origin resource sharing.
+
+91
+00:04:46,110 --> 00:04:48,950
+If you serve resources from a different subdomain that you
+
+92
+00:04:49,160 --> 00:04:51,910
+have control of, you can simply apply the
+
+93
+00:04:51,910 --> 00:04:53,660
+'Cross-Origin-Resource-Policy' header.
+
+94
+00:04:54,700 --> 00:04:56,790
+But what about resources you don't have control of?
+
+95
+00:04:57,580 --> 00:05:00,120
+If the resource already supports cross-origin resource
+
+96
+00:05:00,120 --> 00:05:02,000
+sharing, you don't need to do much.
+
+97
+00:05:02,340 --> 00:05:05,420
+Just append the 'crossorigin' attribute where it's needed.
+
+98
+00:05:06,090 --> 00:05:08,800
+For resources that don't support it, you should ask the
+
+99
+00:05:09,050 --> 00:05:11,300
+resource provider to enable the
+
+100
+00:05:11,300 --> 00:05:13,140
+'Cross-Origin-Resource-Policy' header.
+
+101
+00:05:15,560 --> 00:05:17,980
+So here's the action item for owners of CDNs
+
+102
+00:05:18,730 --> 00:05:21,940
+or providers of ads, fonts, images
+
+103
+00:05:22,060 --> 00:05:24,650
+or other resources embedded across the web: please be
+
+104
+00:05:25,020 --> 00:05:27,150
+prepared to serve your contents with
+
+105
+00:05:27,150 --> 00:05:28,860
+'Cross-Origin-Resource-Policy: cross-origin'.
+
+106
+00:05:30,610 --> 00:05:33,830
+Without supporting it, your resources will be blocked
+
+107
+00:05:33,910 --> 00:05:36,490
+in the browser and harm your customer's experience at
+
+108
+00:05:36,910 --> 00:05:37,910
+some point.
+
+109
+00:05:38,410 --> 00:05:40,370
+With 'Cross-Origin-Embedder-Policy: require-corp'
+
+110
+00:05:41,420 --> 00:05:44,500
+you can let the web page only load resources that
+
+111
+00:05:44,590 --> 00:05:46,550
+are explicitly marked as sharable unless
+
+112
+00:05:47,670 --> 00:05:49,670
+they are served from the same origin.
+
+113
+00:05:50,510 --> 00:05:53,140
+For example, an image served from
+
+114
+00:05:53,470 --> 00:05:54,550
+cross-origin without a 'Cross-Origin-Resource-Policy'
+
+115
+00:05:55,760 --> 00:05:57,560
+header will be blocked like this.
+
+116
+00:05:57,720 --> 00:06:00,060
+By setting 'Cross-Origin-Resource-Policy: cross-origin'
+
+117
+00:06:00,230 --> 00:06:02,350
+this image can be displayed.
+
+118
+00:06:02,980 --> 00:06:04,940
+Note that if you use report-only mode of
+
+119
+00:06:05,940 --> 00:06:09,490
+Cross Origin Embedder Policy, you can send reports
+
+120
+00:06:09,690 --> 00:06:12,990
+to a specifed URL without actually blocking
+
+121
+00:06:13,110 --> 00:06:14,120
+those resources.
+
+122
+00:06:14,490 --> 00:06:17,330
+I recommend deploying Cross Origin Embedder Policy,
+
+123
+00:06:17,450 --> 00:06:19,290
+starting with the report-only mode.
+
+124
+00:06:19,950 --> 00:06:22,620
+That way you can confirm that cross-origin isolation is
+
+125
+00:06:23,000 --> 00:06:25,840
+in effect without affecting the end users.
+
+126
+00:06:26,130 --> 00:06:28,420
+Once your page is loaded with COOP and COEP, it
+
+127
+00:06:29,210 --> 00:06:31,550
+should be in the 'cross-origin isolated' state.
+
+128
+00:06:31,760 --> 00:06:34,680
+You can verify 'cross-origin isolated' is in effect
+
+129
+00:06:35,090 --> 00:06:36,100
+by checking
+
+130
+00:06:38,890 --> 00:06:40,390
+'self.crossOriginIsolated' boolean flag in JavaScript. This
+flag
+
+131
+00:06:40,430 --> 00:06:43,640
+is not available in Chrome yet, but it's coming soon.
+
+132
+00:06:43,980 --> 00:06:44,980
+Let's recap.
+
+133
+00:06:45,350 --> 00:06:48,360
+Start testing with COOP and COEP and opt-in to cross-origin
+
+134
+00:06:48,820 --> 00:06:49,820
+isolation today.
+
+135
+00:06:50,650 --> 00:06:53,570
+You can learn how that works and why they are needed
+
+136
+00:06:53,700 --> 00:06:55,030
+in more details at web.dev/coop-coep and
+web.dev/why-coop-coep.
+
+137
+00:07:01,080 --> 00:07:04,370
+If you're an owner of a CDN or provider
+
+138
+00:07:04,500 --> 00:07:07,380
+of ads, fonts, images or other resources,
+
+139
+00:07:08,340 --> 00:07:11,170
+please start adopting cross-origin resource policy.
+
+140
+00:07:12,050 --> 00:07:13,510
+You can learn more at
+
+141
+00:07:15,050 --> 00:07:16,050
+resourcepolicy.fyi
+
+142
+00:07:16,140 --> 00:07:19,260
+Additionally, Sam is covering this topic by showing you
+
+143
+00:07:19,260 --> 00:07:22,390
+how DevTools can help you with a variety of issues,
+
+144
+00:07:22,730 --> 00:07:25,230
+which includes new functionality for COOP and COEP.
+

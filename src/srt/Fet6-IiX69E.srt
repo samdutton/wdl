@@ -1,0 +1,1820 @@
+1
+00:00:12,100 --> 00:00:14,770
+Hello there. My name's Rowan, and I want to chat to you
+
+2
+00:00:15,190 --> 00:00:17,650
+about cookies. Like most delicious things, cookies
+
+3
+00:00:18,320 --> 00:00:21,360
+are great in moderation, but too many of them or
+
+4
+00:00:21,400 --> 00:00:23,740
+messing up the recipe...That's bad news.
+
+5
+00:00:24,360 --> 00:00:25,990
+OK, so what are we going to chat about?
+
+6
+00:00:26,320 --> 00:00:28,370
+Two bits. First, a good HTTP cookie recipe
+
+7
+00:00:29,490 --> 00:00:30,870
+for all occasions.
+
+8
+00:00:31,370 --> 00:00:34,160
+And second, how to work out when your cookies are going
+
+9
+00:00:34,160 --> 00:00:35,830
+wrong. Debugging, essentially.
+
+10
+00:00:36,170 --> 00:00:38,460
+Because discovering bugs in cookies?
+
+11
+00:00:38,960 --> 00:00:41,170
+Gross. We'll worry about that later, though.
+
+12
+00:00:41,250 --> 00:00:42,710
+First, let's get the recipe right.
+
+13
+00:00:43,050 --> 00:00:45,430
+We're going to start with a base that comes from Mike West,
+
+14
+00:00:45,930 --> 00:00:48,430
+who's really one of the head chefs of the cookie world.
+
+15
+00:00:49,010 --> 00:00:51,350
+This cookie recipe should be your starting point.
+
+16
+00:00:51,600 --> 00:00:54,310
+Everything else we do is going to be a variation on this.
+
+17
+00:00:54,480 --> 00:00:55,850
+So let's take a look at it.
+
+18
+00:00:56,940 --> 00:00:59,900
+It's a lot. I know, but it's mostly static.
+
+19
+00:01:00,440 --> 00:01:02,980
+If you set this up as your default configuration, so
+
+20
+00:01:03,440 --> 00:01:06,070
+it's just added automatically, your code still remains
+
+21
+00:01:06,450 --> 00:01:09,240
+as clean as "set a cookie with this name and this value".
+
+22
+00:01:10,160 --> 00:01:12,790
+And all of these attributes or ingredients come with
+
+23
+00:01:12,790 --> 00:01:16,120
+benefits. So let's step through them first.
+
+24
+00:01:16,460 --> 00:01:17,750
+That "__Host" prefix.
+
+25
+00:01:18,210 --> 00:01:20,750
+Now, that's actually going to set up a few rules for us.
+
+26
+00:01:21,170 --> 00:01:22,960
+It's enforcing these first two attributes: "Secure"
+
+27
+00:01:24,210 --> 00:01:25,220
+and "Path=/".
+
+28
+00:01:26,380 --> 00:01:28,890
+"Secure" means that this cookie will only be set or
+
+29
+00:01:29,510 --> 00:01:31,680
+sent over HTTPS connections.
+
+30
+00:01:32,390 --> 00:01:35,350
+If you haven't fully migrated your site to HTTPS, now
+
+31
+00:01:35,390 --> 00:01:37,440
+is really the time to make that a priority.
+
+32
+00:01:37,890 --> 00:01:40,480
+Browsers are getting more and more functionality behind
+
+33
+00:01:40,520 --> 00:01:42,770
+HTTPS and being more explicit in communicating
+
+34
+00:01:43,690 --> 00:01:46,820
+to users that plain HTTP isn't secure.
+
+35
+00:01:47,570 --> 00:01:49,660
+Now "Path=/" is interesting.
+
+36
+00:01:49,950 --> 00:01:52,200
+And we need to look at that along with another attribute
+
+37
+00:01:52,280 --> 00:01:53,620
+that "__Host" is enforcing.
+
+38
+00:01:54,160 --> 00:01:57,210
+But in this case, enforcing that it is not included.
+
+39
+00:01:57,540 --> 00:01:58,540
+And that's "Domain".
+
+40
+00:01:59,040 --> 00:02:01,670
+No "Domain" means the cookie uses the current document
+
+41
+00:02:02,090 --> 00:02:04,630
+origin and does not include subdomains.
+
+42
+00:02:05,010 --> 00:02:08,010
+And "Path=/" means that it's sent for all
+
+43
+00:02:08,050 --> 00:02:09,590
+requests to the origin.
+
+44
+00:02:10,090 --> 00:02:12,260
+So if I set a __Host cookie for example.com,
+
+45
+00:02:13,310 --> 00:02:15,600
+it will go on every request to example.com, but
+
+46
+00:02:16,390 --> 00:02:17,390
+not to images.example.com.
+
+47
+00:02:19,270 --> 00:02:20,400
+There you go, that was three-in-one.
+
+48
+00:02:21,060 --> 00:02:23,690
+"__Host" prefix gives you "Secure", top-level "Path" and
+
+49
+00:02:24,480 --> 00:02:25,480
+no "Domain".
+
+50
+00:02:25,940 --> 00:02:28,030
+Next up is the "HTTPonly" attribute.
+
+51
+00:02:28,700 --> 00:02:31,160
+This means that the cookie will only be sent in request
+
+52
+00:02:31,160 --> 00:02:33,490
+headers and is not available to JavaScript via
+
+53
+00:02:33,700 --> 00:02:34,700
+document.cookie.
+
+54
+00:02:35,330 --> 00:02:38,460
+To clarify, you can trigger requests from JavaScript
+
+55
+00:02:38,540 --> 00:02:39,790
+like fetch or XmlHttpRequest.
+
+56
+00:02:41,710 --> 00:02:44,540
+And if you've specified including credentials, cookies,
+
+57
+00:02:44,630 --> 00:02:47,170
+including HttpOnly cookies will be sent.
+
+58
+00:02:47,800 --> 00:02:50,180
+They're just not visible to those client-side scripts in
+
+59
+00:02:50,180 --> 00:02:53,180
+any way. So in the event that any of those scripts on
+
+60
+00:02:53,180 --> 00:02:56,140
+your site have been compromised or malicious, you've at
+
+61
+00:02:56,140 --> 00:02:58,810
+least limited their access to potentially sensitive cookie
+
+62
+00:02:58,810 --> 00:02:59,810
+data.
+
+63
+00:03:00,100 --> 00:03:01,770
+Finally, a personal favorite.
+
+64
+00:03:02,150 --> 00:03:03,150
+It's SameSite.
+
+65
+00:03:03,440 --> 00:03:04,480
+Specifically, "SameSite=Lax".
+
+66
+00:03:05,940 --> 00:03:09,150
+And what "SameSite=Lax" does is restrict the cookie to only
+
+67
+00:03:09,150 --> 00:03:11,660
+be sent on requests that match the current browsing
+
+68
+00:03:11,860 --> 00:03:14,870
+context. In other words, the top level site
+
+69
+00:03:14,910 --> 00:03:17,620
+the user is currently visiting and is right there in that
+
+70
+00:03:17,620 --> 00:03:18,620
+location bar.
+
+71
+00:03:19,370 --> 00:03:22,330
+Putting that all together, we have a nicely contained first
+
+72
+00:03:22,330 --> 00:03:23,330
+party cookie.
+
+73
+00:03:23,790 --> 00:03:26,630
+This is an ideal cookie for controlling your user session,
+
+74
+00:03:27,000 --> 00:03:28,590
+set by your server-side framework.
+
+75
+00:03:29,210 --> 00:03:30,220
+And let's talk about why.
+
+76
+00:03:30,670 --> 00:03:32,800
+What this gives you some pretty reasonable protection
+
+77
+00:03:32,800 --> 00:03:34,680
+against cross-site request forgery.
+
+78
+00:03:35,140 --> 00:03:38,140
+The attack works like this, let's say you have a blog where
+
+79
+00:03:38,140 --> 00:03:40,310
+users need to be signed in to post content.
+
+80
+00:03:40,680 --> 00:03:43,600
+And that content submission is just a form submission or an
+
+81
+00:03:43,600 --> 00:03:44,600
+API call.
+
+82
+00:03:45,020 --> 00:03:48,230
+If one of those signed in users visits a malicious site,
+
+83
+00:03:48,650 --> 00:03:51,650
+it can trigger a request to that content posting
+
+84
+00:03:51,650 --> 00:03:54,740
+endpoint with some kind of spammy or abusive content.
+
+85
+00:03:55,490 --> 00:03:58,330
+If the cookies aren't protected, the browser may well send
+
+86
+00:03:58,660 --> 00:04:01,620
+them. And when the blog server receives that request,
+
+87
+00:04:01,750 --> 00:04:04,290
+it's going to look like it came from the signed in user.
+
+88
+00:04:04,750 --> 00:04:06,790
+And it's going to post that content with their name
+
+89
+00:04:06,790 --> 00:04:09,840
+attached, but not with our cookie recipe they can't.
+
+90
+00:04:10,630 --> 00:04:13,840
+"SameSite=Lax" is what's protecting us against this attack.
+
+91
+00:04:14,430 --> 00:04:17,430
+The malicious site can make the request, but because the
+
+92
+00:04:17,430 --> 00:04:20,430
+user isn't actually on the blogging site, the site
+
+93
+00:04:20,430 --> 00:04:22,980
+is no match and therefore no cookie.
+
+94
+00:04:24,060 --> 00:04:25,150
+There are some other benefits too.
+
+95
+00:04:25,900 --> 00:04:28,190
+The "Secure" attribute means that we're going over HTTPS,
+
+96
+00:04:29,190 --> 00:04:32,190
+so other people lurking on the same network can't steal
+
+97
+00:04:32,190 --> 00:04:35,160
+our cookie. Look up Firesheep if you want to see
+
+98
+00:04:35,160 --> 00:04:38,030
+how someone created an extension to demo just how easy this
+
+99
+00:04:38,160 --> 00:04:40,910
+kind of session hijacking over HTTP was.
+
+100
+00:04:41,540 --> 00:04:42,540
+Next up, HttpOnly.
+
+101
+00:04:43,580 --> 00:04:46,210
+Like we said, that means the cookie can't be stolen by
+
+102
+00:04:46,370 --> 00:04:49,250
+malicious client side JavaScript, like a third party
+
+103
+00:04:49,250 --> 00:04:51,800
+dependency getting hacked and then included on your site.
+
+104
+00:04:52,760 --> 00:04:54,760
+Now let's talk about tweaking this recipe for your own
+
+105
+00:04:54,800 --> 00:04:57,720
+taste. If the "__Host" prefix is too restrictive,
+
+106
+00:04:57,800 --> 00:05:00,220
+like maybe you have a new site and you've set it up with
+
+107
+00:05:00,220 --> 00:05:03,100
+subdomains for each topic like "finance." and "politics.",
+
+108
+00:05:04,100 --> 00:05:06,520
+but you still want one session across all of those.
+
+109
+00:05:06,940 --> 00:05:09,940
+For that, you could use the "__Secure" prefix instead
+
+110
+00:05:10,110 --> 00:05:11,360
+and specify "Domain".
+
+111
+00:05:12,110 --> 00:05:15,320
+So far, these examples don't have any kind of expiry date
+
+112
+00:05:15,320 --> 00:05:18,070
+set on them. That means they expire when the browser
+
+113
+00:05:18,070 --> 00:05:21,160
+session ends. Which sounds short, but in
+
+114
+00:05:21,160 --> 00:05:24,200
+reality, a lot of people leave their browser open for a
+
+115
+00:05:24,200 --> 00:05:27,500
+long time or I have a session restoring feature
+
+116
+00:05:27,540 --> 00:05:29,710
+that also brings back all those cookies.
+
+117
+00:05:30,420 --> 00:05:32,960
+Now, there isn't a default right answer here.
+
+118
+00:05:33,090 --> 00:05:34,670
+It's down to your use case.
+
+119
+00:05:35,130 --> 00:05:38,220
+But what I would say is if it's something short term,
+
+120
+00:05:38,340 --> 00:05:41,470
+like a token for a form submission, then use "Max-Age".
+
+121
+00:05:42,310 --> 00:05:44,720
+Since you just specify the number of seconds until it
+
+122
+00:05:44,720 --> 00:05:46,270
+expires. Nice and simple.
+
+123
+00:05:46,980 --> 00:05:50,020
+If it's something more permanent, like a theme preference,
+
+124
+00:05:50,440 --> 00:05:53,440
+then use "Expires" and set it maybe a year
+
+125
+00:05:53,440 --> 00:05:54,570
+in the future.
+
+126
+00:05:55,030 --> 00:05:57,200
+I wouldn't use it for anything short term because it's a
+
+127
+00:05:57,200 --> 00:05:59,660
+date format. So you have to think about time zones, clock
+
+128
+00:06:00,280 --> 00:06:01,870
+changes, incorrect clocks.
+
+129
+00:06:01,950 --> 00:06:04,080
+It's it's a nightmare. I'm not even gonna show you that
+
+130
+00:06:04,080 --> 00:06:07,040
+one. Remember, you can always reset that
+
+131
+00:06:07,040 --> 00:06:09,170
+expiry date on future requests, but then if
+
+132
+00:06:10,080 --> 00:06:12,710
+the user doesn't visit your site for ages, you can also
+
+133
+00:06:12,710 --> 00:06:14,300
+ensure the browser cleans up for you.
+
+134
+00:06:14,710 --> 00:06:16,010
+And that just seems polite.
+
+135
+00:06:16,260 --> 00:06:17,470
+No one wants stale cookies.
+
+136
+00:06:18,260 --> 00:06:20,510
+We can also use the "SameSite" attribute to lock things
+
+137
+00:06:20,510 --> 00:06:22,930
+down a bit more. But it's really for quite specific
+
+138
+00:06:22,930 --> 00:06:23,930
+situations.
+
+139
+00:06:24,180 --> 00:06:27,180
+We talked about "SameSite=Lax", which allows cookies to be
+
+140
+00:06:27,180 --> 00:06:29,100
+sent on top-level navigations.
+
+141
+00:06:29,230 --> 00:06:31,900
+For example, I want my session to be sent when I first
+
+142
+00:06:32,190 --> 00:06:33,900
+visit the site because I want to see my signed-in
+
+143
+00:06:34,730 --> 00:06:37,690
+experience. "SameSite" can also be set to "Strict".
+
+144
+00:06:37,940 --> 00:06:40,570
+Which means I really have to be on the site already
+
+145
+00:06:40,950 --> 00:06:42,160
+or the cookie won't be sent.
+
+146
+00:06:43,240 --> 00:06:45,410
+This is useful for protecting form submission.
+
+147
+00:06:45,660 --> 00:06:47,250
+So that blog posting example?
+
+148
+00:06:47,790 --> 00:06:50,170
+If you set up a "SameSite=Strict"" cookie.
+
+149
+00:06:50,330 --> 00:06:51,790
+Pretty much the same as your session.
+
+150
+00:06:52,250 --> 00:06:55,210
+But you treat it like a token for "write" permission
+
+151
+00:06:55,630 --> 00:06:58,380
+and validate that it's included on that form submission.
+
+152
+00:06:58,630 --> 00:07:00,930
+Then you can be pretty sure it came from the user
+
+153
+00:07:00,930 --> 00:07:03,300
+submitting the form actually on your site.
+
+154
+00:07:04,140 --> 00:07:06,260
+Sometimes you do need that cross-site data, though.
+
+155
+00:07:06,890 --> 00:07:09,390
+Now, while the long-term goal is to stop supporting
+
+156
+00:07:09,430 --> 00:07:11,810
+cross-site cookies and bring in better mechanisms for
+
+157
+00:07:11,850 --> 00:07:13,230
+enabling that functionality.
+
+158
+00:07:13,560 --> 00:07:16,110
+We can still do some interim work to clean up those cookies
+
+159
+00:07:16,110 --> 00:07:18,320
+right now. The really important thing is that
+
+160
+00:07:19,070 --> 00:07:21,990
+you make the intent to send that cross-site data
+
+161
+00:07:22,200 --> 00:07:23,200
+totally explicit.
+
+162
+00:07:23,870 --> 00:07:27,080
+For that, we can turn the "SameSite" dial the other way
+
+163
+00:07:27,200 --> 00:07:28,160
+with "SameSite=None".
+
+164
+00:07:29,290 --> 00:07:31,080
+That tells the browser that there are no "SameSite"
+
+165
+00:07:31,460 --> 00:07:34,580
+restrictions and it can send the cookie whenever.
+
+166
+00:07:35,250 --> 00:07:37,300
+It does require "Secure" as well, though.
+
+167
+00:07:37,670 --> 00:07:40,590
+No restrictions on "Site" doesn't mean no restrictions
+
+168
+00:07:40,630 --> 00:07:43,970
+at all. Now, even if you don't like the default recipe,
+
+169
+00:07:44,090 --> 00:07:47,100
+I strongly recommend you move to setting an explicit
+
+170
+00:07:47,100 --> 00:07:48,520
+"SameSite" value on your cookies.
+
+171
+00:07:48,930 --> 00:07:50,930
+Chrome is moving to treat cookies as "SameSite=Lax"
+
+172
+00:07:51,940 --> 00:07:54,940
+by default for Chrome version 80 and up
+
+173
+00:07:55,310 --> 00:07:57,570
+with the release of Chrome 84 Stable.
+
+174
+00:07:58,150 --> 00:08:00,690
+That's around July 14th, two weeks from this initial
+
+175
+00:08:01,150 --> 00:08:04,360
+broadcast date. If you're watching this on the Premiere or
+
+176
+00:08:04,530 --> 00:08:06,910
+even sooner, if you're already watching this in the future.
+
+177
+00:08:07,620 --> 00:08:10,660
+or in the past. Anyway, the important thing is
+
+178
+00:08:10,790 --> 00:08:13,580
+cookies without a "SameSite" attribute will be treated as
+
+179
+00:08:13,750 --> 00:08:14,750
+"SameSite=Lax".
+
+180
+00:08:15,380 --> 00:08:17,500
+In other words, first party by default.
+
+181
+00:08:18,170 --> 00:08:20,800
+If you need cross-site with third-party cookies, they
+
+182
+00:08:21,260 --> 00:08:24,380
+must be set with "SameSite=none" and "Secure".
+
+183
+00:08:25,220 --> 00:08:28,220
+OK, so that's all simple enough for me to say, but
+
+184
+00:08:28,350 --> 00:08:31,270
+I know a lot of you are maintaining legacy or complex sites
+
+185
+00:08:31,390 --> 00:08:34,640
+where, to be honest, you don't always know
+
+186
+00:08:34,640 --> 00:08:36,650
+how or why those cookies are being set.
+
+187
+00:08:37,150 --> 00:08:39,770
+Told you were going to talk about debugging, so let's do
+
+188
+00:08:39,770 --> 00:08:40,780
+it.
+
+189
+00:08:42,190 --> 00:08:44,860
+First. Let's get our environment setup, starting with the
+
+190
+00:08:44,950 --> 00:08:48,070
+browser. Cookies are persistent, meaning that you've
+
+191
+00:08:48,070 --> 00:08:50,080
+probably got a lot hanging around in your browser.
+
+192
+00:08:50,410 --> 00:08:53,290
+On top of that, browser settings and extensions
+
+193
+00:08:53,370 --> 00:08:54,710
+can also affect their behavior.
+
+194
+00:08:55,500 --> 00:08:58,330
+Because of that, I strongly recommend testing with a clean
+
+195
+00:08:58,710 --> 00:09:01,840
+slate. That means either setting up a new profile
+
+196
+00:09:01,840 --> 00:09:04,420
+using a separate Chrome channel like Beta or Canary,
+
+197
+00:09:05,010 --> 00:09:08,180
+or use incognito mode across all of those, though.
+
+198
+00:09:08,550 --> 00:09:11,060
+Make sure that you don't have any extensions installed.
+
+199
+00:09:11,140 --> 00:09:13,520
+And check your user settings to ensure you're not blocking
+
+200
+00:09:13,520 --> 00:09:16,770
+third-party cookies or just blocking cookies in general.
+
+201
+00:09:17,350 --> 00:09:19,810
+Now, we can make sure the browser is enforcing the new
+
+202
+00:09:19,810 --> 00:09:23,110
+behavior. I'm going to pop
+
+203
+00:09:23,110 --> 00:09:24,860
+in chrome://flags
+
+204
+00:09:26,950 --> 00:09:28,490
+here and what I'm going to do is
+
+205
+00:09:30,120 --> 00:09:32,290
+search for cookies.
+
+206
+00:09:32,910 --> 00:09:35,000
+Now, the two that I want to ensure are enabled are
+
+207
+00:09:36,580 --> 00:09:38,460
+"SameSite by default cookies" here and
+
+208
+00:09:39,710 --> 00:09:42,500
+"cookies without SameSite must be secure" here.
+
+209
+00:09:43,760 --> 00:09:46,340
+There are a couple of other messages in here, a couple of
+
+210
+00:09:46,340 --> 00:09:48,840
+other flags that you can set. So if you look through, you
+
+211
+00:09:48,840 --> 00:09:52,560
+can also see this one "enable experimental
+
+212
+00:09:52,560 --> 00:09:53,560
+cookie features".
+
+213
+00:09:53,930 --> 00:09:57,310
+Now, what this will do is turn on all of the upcoming
+
+214
+00:09:57,310 --> 00:10:00,270
+changes. So this is actually great for general
+
+215
+00:10:00,270 --> 00:10:02,400
+testing. If you just want to check that, you know, your
+
+216
+00:10:02,400 --> 00:10:04,360
+site can behave well in the future.
+
+217
+00:10:04,780 --> 00:10:07,900
+But when you are trying to isolate individual bugs,
+
+218
+00:10:08,200 --> 00:10:11,120
+you can use the individual flags to toggle that behavior
+
+219
+00:10:11,160 --> 00:10:13,700
+on and off. Now, when you've changed a flag, you are
+
+220
+00:10:14,200 --> 00:10:17,370
+going to have to restart your web browser here
+
+221
+00:10:17,580 --> 00:10:20,170
+so that those flags take effect.
+
+222
+00:10:21,040 --> 00:10:23,380
+Now, I already have restarted and I have a test
+
+223
+00:10:24,300 --> 00:10:25,960
+site set up on samesite-sandbox.glitch.me.
+
+224
+00:10:28,680 --> 00:10:31,680
+And if you've got all the flags enabled when
+
+225
+00:10:31,680 --> 00:10:34,850
+you go there, you should see all this nice, soothing green.
+
+226
+00:10:35,350 --> 00:10:37,600
+Any red or orange Xs in there.
+
+227
+00:10:37,890 --> 00:10:40,770
+Go back, check your cookie settings, check your flags.
+
+228
+00:10:41,440 --> 00:10:43,860
+With all of that configured, I'm going to walk you through
+
+229
+00:10:43,860 --> 00:10:46,690
+this excellent debugging guide, which comes from Lily Chen,
+
+230
+00:10:46,690 --> 00:10:48,150
+one of the engineers working on SameSite.
+
+231
+00:10:48,820 --> 00:10:51,360
+So don't worry, if you don't catch everything I do in this
+
+232
+00:10:51,360 --> 00:10:54,370
+video, it's all written down in there and there's a link
+
+233
+00:10:54,490 --> 00:10:55,830
+in the info.
+
+234
+00:10:56,200 --> 00:10:58,910
+And going to keep using the SameSite sandbox for testing.
+
+235
+00:10:59,000 --> 00:11:00,420
+The code is all on Glitch.
+
+236
+00:11:00,460 --> 00:11:02,750
+If you expand the info there you can find a link.
+
+237
+00:11:02,830 --> 00:11:05,880
+Feel free to remix this if you want to run your own version
+
+238
+00:11:05,880 --> 00:11:08,630
+or try some different combinations of cookies and so on.
+
+239
+00:11:09,510 --> 00:11:11,680
+Let's open up DevTools and start poking around.
+
+240
+00:11:12,260 --> 00:11:14,720
+I'm going to start on the Console tab.
+
+241
+00:11:15,470 --> 00:11:18,520
+And you'll probably see some warnings, but we're
+
+242
+00:11:18,520 --> 00:11:19,890
+going to be cleaning those up.
+
+243
+00:11:20,230 --> 00:11:22,770
+So what you actually want to look for, if you're on a
+
+244
+00:11:22,770 --> 00:11:25,190
+recent enough version of Chrome, like 84 and onwards,
+
+245
+00:11:25,770 --> 00:11:27,780
+is the Issues tab here.
+
+246
+00:11:28,030 --> 00:11:30,820
+So the warnings are going to show you the same information
+
+247
+00:11:30,860 --> 00:11:33,990
+that Issues tab does, but the Issues tab is much
+
+248
+00:11:33,990 --> 00:11:35,530
+clearer, much more actionable.
+
+249
+00:11:36,160 --> 00:11:39,290
+Sam's got a video where he goes through the full tour on
+
+250
+00:11:39,290 --> 00:11:41,330
+that. So I'm going to go through this pretty quick.
+
+251
+00:11:41,710 --> 00:11:43,920
+Let's take a look. It's tap on "go to issues".
+
+252
+00:11:45,000 --> 00:11:47,800
+The first thing it tells us is that we want to reload the
+
+253
+00:11:47,840 --> 00:11:49,550
+page to get that full capture.
+
+254
+00:11:49,590 --> 00:11:52,300
+So let's take that advice and reload.
+
+255
+00:11:53,180 --> 00:11:55,470
+Now, you can see I've got some issues that have come up.
+
+256
+00:11:55,850 --> 00:11:56,850
+Let's take a look.
+
+257
+00:11:57,350 --> 00:12:00,600
+Now, the first one we've got is "mark cross-site cookies
+
+258
+00:12:00,680 --> 00:12:02,020
+as secure".
+
+259
+00:12:02,390 --> 00:12:06,110
+Let's expand that and see what's going on inside.
+
+260
+00:12:06,480 --> 00:12:09,280
+So you can see that this one is telling me that I've got a
+
+261
+00:12:09,280 --> 00:12:12,400
+cookie that's marked with "SameSite=none", but
+
+262
+00:12:12,610 --> 00:12:14,360
+it's missing the "Secure" attribute.
+
+263
+00:12:15,030 --> 00:12:17,620
+If I scroll down a bit more, I can also see I've got some
+
+264
+00:12:17,620 --> 00:12:20,200
+affected resources so I can expand that out.
+
+265
+00:12:20,620 --> 00:12:23,290
+And that is going to show me exactly the cookie that's
+
+266
+00:12:23,460 --> 00:12:26,580
+affected. If I click on that cookie here
+
+267
+00:12:27,090 --> 00:12:29,550
+and see it takes me to the Network tab up here.
+
+268
+00:12:30,000 --> 00:12:32,800
+I can expand that so we can see a bit of what's going on.
+
+269
+00:12:33,760 --> 00:12:36,840
+And it's using this filter entry to basically
+
+270
+00:12:36,840 --> 00:12:38,220
+filter that down, too.
+
+271
+00:12:38,890 --> 00:12:41,970
+So you can see it's filtered it specifically to the
+
+272
+00:12:41,970 --> 00:12:44,850
+cookie name that has the problem, so it is showing me all
+
+273
+00:12:44,850 --> 00:12:47,900
+the requests that include that specific cookie.
+
+274
+00:12:49,610 --> 00:12:51,860
+We'll come back to the network tab in a minute.
+
+275
+00:12:51,860 --> 00:12:53,360
+So hold on to that.
+
+276
+00:12:53,780 --> 00:12:55,240
+And we'll take a look at the other issue first.
+
+277
+00:12:56,410 --> 00:12:59,280
+So back in here, let's scroll down again
+
+278
+00:12:59,780 --> 00:13:01,200
+and expand that.
+
+279
+00:13:01,540 --> 00:13:04,710
+The second issue is telling me
+
+280
+00:13:04,750 --> 00:13:08,250
+that I have some cookies that don't specify
+
+281
+00:13:08,290 --> 00:13:09,750
+a "SameSite" attribute at all.
+
+282
+00:13:09,790 --> 00:13:12,420
+So the browser just doesn't know what to do with that
+
+283
+00:13:12,420 --> 00:13:15,470
+cookie. Maybe we're OK with it being first party,
+
+284
+00:13:15,510 --> 00:13:17,220
+but we haven't told anyone.
+
+285
+00:13:17,220 --> 00:13:19,970
+So let's take a look at the cookies that are affected in
+
+286
+00:13:20,220 --> 00:13:22,310
+there. So I'm going to expand this again.
+
+287
+00:13:22,680 --> 00:13:26,100
+And you can see I've got two cookies
+
+288
+00:13:26,190 --> 00:13:27,190
+affected.
+
+289
+00:13:28,100 --> 00:13:30,020
+Right well now, we know where the problems are.
+
+290
+00:13:30,270 --> 00:13:32,860
+Let's go over to the Network tab to take a look in detail.
+
+291
+00:13:33,730 --> 00:13:36,110
+This is a pretty simple site, so there aren't that many
+
+292
+00:13:36,110 --> 00:13:39,200
+requests. In reality, you've probably got far more to wade
+
+293
+00:13:39,200 --> 00:13:41,410
+through. So let's look at some ways that you can filter
+
+294
+00:13:41,410 --> 00:13:42,410
+that down.
+
+295
+00:13:42,740 --> 00:13:44,870
+What I'm gonna do is right-click in here and
+
+296
+00:13:45,750 --> 00:13:49,290
+go to header options where I can enable cookies
+
+297
+00:13:49,630 --> 00:13:52,460
+and also set cookies.
+
+298
+00:13:53,550 --> 00:13:56,760
+So this is going to show me each of the requests.
+
+299
+00:13:56,920 --> 00:13:59,090
+And how many cookies they are sending.
+
+300
+00:13:59,550 --> 00:14:02,430
+And how many cookies are being set by the set cookie header
+
+301
+00:14:02,560 --> 00:14:04,020
+in the response.
+
+302
+00:14:05,310 --> 00:14:07,560
+The other part of the puzzle then is this "Has
+
+303
+00:14:08,350 --> 00:14:10,230
+blocked cookies" toggle up here.
+
+304
+00:14:10,520 --> 00:14:13,730
+Now, if I turn that on, you can see one
+
+305
+00:14:13,730 --> 00:14:15,690
+of our requests is disappearing.
+
+306
+00:14:16,110 --> 00:14:19,030
+So when I have this on, it's filtering out all the requests
+
+307
+00:14:19,410 --> 00:14:21,570
+that are not being altered in any way.
+
+308
+00:14:21,910 --> 00:14:24,990
+So we've got a pretty good idea that it's these two that
+
+309
+00:14:24,990 --> 00:14:26,540
+are responsible for the issues.
+
+310
+00:14:27,540 --> 00:14:29,920
+Back on the table, let's look at the request of the page
+
+311
+00:14:29,920 --> 00:14:33,000
+first. So tap on there and
+
+312
+00:14:33,040 --> 00:14:35,250
+on the cookies tab over here.
+
+313
+00:14:35,710 --> 00:14:38,090
+I can see that I have one of my response cookies
+
+314
+00:14:38,670 --> 00:14:41,010
+highlighted. So I'm gonna hover over that.
+
+315
+00:14:41,550 --> 00:14:44,760
+And that info bar is telling us that
+
+316
+00:14:44,850 --> 00:14:47,640
+this is the cookie that's got the "SameSite=none", but is
+
+317
+00:14:47,770 --> 00:14:49,190
+missing the "Secure" flag.
+
+318
+00:14:49,640 --> 00:14:51,150
+So I've got the name.
+
+319
+00:14:51,190 --> 00:14:53,690
+I've got the value. Hopefully that's enough for you to
+
+320
+00:14:53,690 --> 00:14:56,320
+track it down the back end and get that secure flag
+
+321
+00:14:56,690 --> 00:14:58,650
+set. Okay, but we had another issue that
+
+322
+00:14:59,740 --> 00:15:01,070
+was listed as well.
+
+323
+00:15:01,110 --> 00:15:03,820
+So let's take a look at the second request.
+
+324
+00:15:03,950 --> 00:15:04,950
+That's cookies.json.
+
+325
+00:15:06,160 --> 00:15:07,870
+Now, this one looks fairly quiet.
+
+326
+00:15:07,950 --> 00:15:11,250
+So the thing we want to do here is enable this show
+
+327
+00:15:11,250 --> 00:15:13,000
+filtered out request cookies.
+
+328
+00:15:13,920 --> 00:15:16,550
+Suddenly, there's a lot more going on here.
+
+329
+00:15:17,130 --> 00:15:20,090
+Now, what this is showing us is all the cookies that
+
+330
+00:15:20,130 --> 00:15:23,050
+could have been included on that request but were
+
+331
+00:15:23,090 --> 00:15:24,640
+restricted for some reason.
+
+332
+00:15:25,010 --> 00:15:27,270
+Now, some of them are for the right reasons.
+
+333
+00:15:27,310 --> 00:15:30,100
+So you can see here we've got a cookie that has "SameSite=
+
+334
+00:15:30,560 --> 00:15:33,600
+Strict" and that's not included in the cross-site request.
+
+335
+00:15:33,980 --> 00:15:35,110
+Got one that says "SameSite=Lax".
+
+336
+00:15:36,190 --> 00:15:38,730
+Same deal. We don't want it on the cross-site request.
+
+337
+00:15:39,400 --> 00:15:41,900
+But then we've got these two where they've got a blank
+
+338
+00:15:42,450 --> 00:15:43,410
+"SameSite" value.
+
+339
+00:15:43,820 --> 00:15:46,830
+Now, that means that the browser is treating them as
+
+340
+00:15:47,080 --> 00:15:48,950
+"SameSite=Lax" and therefore restricting them.
+
+341
+00:15:49,330 --> 00:15:52,670
+This might be because you didn't specify a SameSite value,
+
+342
+00:15:52,920 --> 00:15:55,880
+but it might also be because you've got an invalid value in
+
+343
+00:15:55,880 --> 00:15:58,710
+there. So get into your code and look for those SameSite
+
+344
+00:15:58,880 --> 00:16:01,170
+attributes. And check the spelling to make sure there are
+
+345
+00:16:01,170 --> 00:16:02,470
+no typos in there as well.
+
+346
+00:16:03,590 --> 00:16:06,050
+Now, DevTools is great for this kind of interactive
+
+347
+00:16:06,050 --> 00:16:08,470
+exploration, but we can also explore the data for
+
+348
+00:16:09,060 --> 00:16:10,560
+a whole series of requests.
+
+349
+00:16:11,100 --> 00:16:13,230
+This is helpful if you need to grab the data for a
+
+350
+00:16:13,230 --> 00:16:15,480
+particular situation, like maybe it's one user
+
+351
+00:16:16,480 --> 00:16:18,690
+with a particular account type who has been able to
+
+352
+00:16:18,690 --> 00:16:21,070
+reproduce this problem and you can't necessarily
+
+353
+00:16:21,650 --> 00:16:23,990
+sit down with them at their machine for a good debugging
+
+354
+00:16:23,990 --> 00:16:24,990
+session together.
+
+355
+00:16:25,780 --> 00:16:27,950
+For this, we're going to capture a network log.
+
+356
+00:16:28,240 --> 00:16:29,870
+So open up a new tab.
+
+357
+00:16:30,040 --> 00:16:31,040
+Go to chrome://net-export.
+
+358
+00:16:34,670 --> 00:16:37,540
+If you've been doing a whole bunch of these, then you may
+
+359
+00:16:37,540 --> 00:16:39,590
+need to click "start over" on that.
+
+360
+00:16:40,630 --> 00:16:43,420
+And what we want to make sure of, in the options, is that
+
+361
+00:16:43,510 --> 00:16:46,220
+we say "include cookies and credentials".
+
+362
+00:16:46,430 --> 00:16:47,970
+Because that's what we're trying to test.
+
+363
+00:16:48,390 --> 00:16:50,220
+But just be mindful that including all
+
+364
+00:16:51,390 --> 00:16:54,310
+of this means that you may be logging some sensitive user
+
+365
+00:16:54,310 --> 00:16:57,060
+data. So treat it in exactly the same way that you would
+
+366
+00:16:57,440 --> 00:17:00,270
+with any other. Make sure that you have the consent to log
+
+367
+00:17:00,270 --> 00:17:02,780
+it. Make sure that you're controlling access to that log
+
+368
+00:17:03,150 --> 00:17:05,240
+and delete it when you're done debugging the issue.
+
+369
+00:17:05,990 --> 00:17:08,070
+OK, press "Start Logging to Disk".
+
+370
+00:17:09,120 --> 00:17:12,580
+And I am just going to save that in my downloads directory.
+
+371
+00:17:13,410 --> 00:17:16,330
+OK. Now do not close this tab because this is what's doing
+
+372
+00:17:16,330 --> 00:17:18,960
+the recording. But we are going to switch back over to our
+
+373
+00:17:18,960 --> 00:17:22,000
+test site, and I am just going to reload
+
+374
+00:17:22,000 --> 00:17:24,050
+the page to capture that behavior.
+
+375
+00:17:24,720 --> 00:17:27,800
+Now, in reality, what you want to do is capture the
+
+376
+00:17:27,800 --> 00:17:30,430
+entire user journey that you're trying to debug.
+
+377
+00:17:31,060 --> 00:17:33,810
+At a minimum, it's got to be the section that is causing
+
+378
+00:17:33,810 --> 00:17:36,270
+the problem. But often you should probably try and start
+
+379
+00:17:36,600 --> 00:17:39,560
+maybe from like user sign in or wherever the cookies are
+
+380
+00:17:39,560 --> 00:17:42,070
+being set because you probably want to capture that
+
+381
+00:17:42,440 --> 00:17:43,530
+interaction as well.
+
+382
+00:17:44,280 --> 00:17:47,110
+OK. Once you're done, we're going to switch back over to
+
+383
+00:17:47,110 --> 00:17:49,280
+our Network tab and we're going to say "stop
+
+384
+00:17:50,030 --> 00:17:51,030
+logging".
+
+385
+00:17:51,370 --> 00:17:54,330
+Now, you can say like "show file" here
+
+386
+00:17:54,660 --> 00:17:57,120
+and you can see that it's just a JSON file in this
+
+387
+00:17:57,330 --> 00:17:58,790
+directory. You can take a look at it.
+
+388
+00:17:58,960 --> 00:18:01,250
+It is pretty big and it's pretty verbose.
+
+389
+00:18:01,340 --> 00:18:04,050
+So what we want to do is make use of the NetLog
+
+390
+00:18:04,510 --> 00:18:07,510
+viewer tool which is linked from this page.
+
+391
+00:18:07,930 --> 00:18:11,260
+So you go there and I'm going to go to the hosted
+
+392
+00:18:11,260 --> 00:18:12,260
+version here.
+
+393
+00:18:12,970 --> 00:18:16,020
+Now I choose my file, which is
+
+394
+00:18:16,060 --> 00:18:17,310
+just there, chrome-export-log.
+
+395
+00:18:19,900 --> 00:18:22,360
+And there we go. You can see that I've got a whole bunch of
+
+396
+00:18:22,360 --> 00:18:25,190
+information about the logging that I've just done.
+
+397
+00:18:25,530 --> 00:18:28,700
+You can see my Chrome version, you can see the OS info.
+
+398
+00:18:29,410 --> 00:18:31,910
+What you can also see is if you dive
+
+399
+00:18:32,370 --> 00:18:35,370
+into this where you've got features here,
+
+400
+00:18:35,790 --> 00:18:38,660
+you can see all the flags that I've got enabled.
+
+401
+00:18:38,710 --> 00:18:39,920
+I've been playing with quite a few of them.
+
+402
+00:18:40,750 --> 00:18:43,920
+But there's also "cookies without SameSite must be secure"
+
+403
+00:18:44,040 --> 00:18:45,050
+embedded in there.
+
+404
+00:18:45,500 --> 00:18:48,630
+The stuff we're looking for, though, related to the cookies
+
+405
+00:18:48,720 --> 00:18:51,010
+is over in the Events section.
+
+406
+00:18:51,180 --> 00:18:52,390
+So I'm going to go over here.
+
+407
+00:18:52,890 --> 00:18:55,970
+And as you can see, I've got 200 events to deal
+
+408
+00:18:55,970 --> 00:18:57,730
+with. So this is pretty verbose.
+
+409
+00:18:57,770 --> 00:18:59,810
+This is all of the requests that Chrome is
+
+410
+00:19:00,850 --> 00:19:03,440
+sending, kind of all of the network related events,
+
+411
+00:19:03,770 --> 00:19:06,780
+including extensions, including other tabs.
+
+412
+00:19:07,110 --> 00:19:08,990
+So let's filter this down to something
+
+413
+00:19:10,400 --> 00:19:13,370
+a bit more useful. I want to type and it is
+
+414
+00:19:13,490 --> 00:19:14,450
+"URL_REQUEST".
+
+415
+00:19:17,290 --> 00:19:20,000
+Make sure there's no space after that column
+
+416
+00:19:20,620 --> 00:19:22,580
+and there you go. That's a bit more manageable.
+
+417
+00:19:22,880 --> 00:19:25,340
+You can see that there's a bunch of other things going on
+
+418
+00:19:25,340 --> 00:19:28,550
+in there, but I can see my SameSite sandbox
+
+419
+00:19:28,630 --> 00:19:31,300
+requests. These are the ones that I'm interested in.
+
+420
+00:19:32,800 --> 00:19:35,350
+Let's find that cookies.json one.
+
+421
+00:19:35,970 --> 00:19:39,230
+And inside of here, it's this string
+
+422
+00:19:39,230 --> 00:19:40,310
+that I'm interested in, "COOKIE_INCLUSION_STATUS".
+
+423
+00:19:42,310 --> 00:19:45,060
+Now, what that's telling me is basically why a cookie was
+
+424
+00:19:45,110 --> 00:19:47,020
+or wasn't included in the request.
+
+425
+00:19:47,650 --> 00:19:50,780
+And if I look through there, you can see each
+
+426
+00:19:50,780 --> 00:19:52,820
+of the different ones.
+
+427
+00:19:53,280 --> 00:19:54,660
+So I've got.
+
+428
+00:19:54,780 --> 00:19:56,030
+Let's see what we got in here.
+
+429
+00:19:56,080 --> 00:19:59,700
+"COOKIE_INCLUSION_STATUS" is
+
+430
+00:19:59,830 --> 00:20:01,040
+"exclude" because that's "SameSite=Strict".
+
+431
+00:20:02,080 --> 00:20:04,420
+That's one of the ones that we wanted excluded.
+
+432
+00:20:05,130 --> 00:20:07,500
+We've got one up here, that is "ck03",
+
+433
+00:20:08,210 --> 00:20:11,300
+that is excluded because "SameSite" was unspecified.
+
+434
+00:20:11,470 --> 00:20:12,930
+So it was treated as lax.
+
+435
+00:20:13,760 --> 00:20:16,800
+The search over here lets you do quite
+
+436
+00:20:16,800 --> 00:20:19,390
+a bit. So if I want to find where a particular cookie
+
+437
+00:20:20,020 --> 00:20:22,980
+is set, for example, let's say "ck02", I
+
+438
+00:20:22,980 --> 00:20:25,100
+can actually just search for that header value.
+
+439
+00:20:25,690 --> 00:20:28,610
+So "set-cookie:ck02".
+
+440
+00:20:29,900 --> 00:20:31,150
+There it is.
+
+441
+00:20:31,610 --> 00:20:33,990
+And then if I just control+F in here as well, for the
+
+442
+00:20:33,990 --> 00:20:37,160
+"set-cookie". There you go, you can see
+
+443
+00:20:37,280 --> 00:20:39,240
+all of the response cookies.
+
+444
+00:20:39,870 --> 00:20:42,330
+And if I look at that, that's my "ck02" one,
+
+445
+00:20:43,290 --> 00:20:45,960
+"SameSite=none". That's missing a "Secure" attribute on
+
+446
+00:20:45,960 --> 00:20:47,840
+there. And that's it.
+
+447
+00:20:48,130 --> 00:20:50,500
+So now you know how to debug your cookie issues.
+
+448
+00:20:50,590 --> 00:20:53,130
+And when you find them, you've got the recipe to put them
+
+449
+00:20:53,130 --> 00:20:56,180
+right. Remember, it's all about being explicit
+
+450
+00:20:56,220 --> 00:20:58,100
+on where you want that cookie sent.
+
+451
+00:20:58,850 --> 00:21:00,100
+We've got more on this theme.
+
+452
+00:21:00,140 --> 00:21:02,600
+You can watch Eiji's video talking you through some of the
+
+453
+00:21:02,600 --> 00:21:04,810
+other resources you can isolate with COOP and COEP.
+
+454
+00:21:05,640 --> 00:21:08,360
+And you can also come back to see me and Maud have more
+
+455
+00:21:08,690 --> 00:21:09,730
+header related fun.
+

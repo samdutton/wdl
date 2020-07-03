@@ -1,0 +1,572 @@
+1
+00:00:10,200 --> 00:00:10,990
+Hi, everyone.
+
+2
+00:00:10,990 --> 00:00:12,410
+This is Eiji. Today.
+
+3
+00:00:12,490 --> 00:00:14,200
+I'm going to talk about Web Payments.
+
+4
+00:00:15,750 --> 00:00:18,160
+Web Payments is the name of the W3C Working Group and a set
+
+5
+00:00:18,210 --> 00:00:20,830
+of standard APIs that brings dedicated payment
+
+6
+00:00:20,830 --> 00:00:23,460
+functionalities to the browsers for the first time in the
+
+7
+00:00:23,460 --> 00:00:24,670
+history of the web.
+
+8
+00:00:26,090 --> 00:00:29,130
+There are several specifications under Web Payments, but
+
+9
+00:00:29,130 --> 00:00:32,510
+the two most important ones are Payment Request API
+
+10
+00:00:33,260 --> 00:00:34,560
+and Payment Handler API.
+
+11
+00:00:36,310 --> 00:00:38,980
+The Payment Request API provides a standardized way to
+
+12
+00:00:39,230 --> 00:00:42,150
+invoke a browser-mediated low friction payment flow
+
+13
+00:00:42,190 --> 00:00:44,650
+on the web, similar to what users might already be
+
+14
+00:00:45,150 --> 00:00:47,190
+familiar with in many native apps.
+
+15
+00:00:48,360 --> 00:00:51,450
+The Payment Handler API allows payment apps to plug
+
+16
+00:00:51,450 --> 00:00:53,910
+into the Payment Request API to enable form-free
+
+17
+00:00:54,530 --> 00:00:55,540
+payments on the Web.
+
+18
+00:00:56,410 --> 00:00:58,580
+Here's how a web payment flow starts.
+
+19
+00:00:59,460 --> 00:01:01,460
+A website invokes a Payment Request API.
+
+20
+00:01:02,290 --> 00:01:04,880
+Customer's preferred payment app is launched inside a
+
+21
+00:01:05,000 --> 00:01:06,050
+special modal window.
+
+22
+00:01:06,920 --> 00:01:10,010
+The customer interacts with a payment app to confirm and
+
+23
+00:01:10,010 --> 00:01:11,220
+authorize the transaction.
+
+24
+00:01:11,590 --> 00:01:14,220
+The payment app returns a payment credential that can be
+
+25
+00:01:14,220 --> 00:01:15,430
+verified and processed.
+
+26
+00:01:16,140 --> 00:01:18,520
+There has been some confusion between Web Payments APIs,
+
+27
+00:01:19,270 --> 00:01:22,150
+and wallet-specific JavaScript APIs.
+
+28
+00:01:22,900 --> 00:01:25,320
+To clarify, Web Payments APIs are low-level web platform
+
+29
+00:01:25,730 --> 00:01:29,070
+primitives that are W3C standard proposals.
+
+30
+00:01:30,360 --> 00:01:32,410
+Digital wallets such as Google Pay provide
+
+31
+00:01:33,360 --> 00:01:36,410
+JavaScript APIs that can be built on top of
+
+32
+00:01:36,410 --> 00:01:37,410
+the Web Payments APIs.
+
+33
+00:01:38,410 --> 00:01:41,410
+Support for Web Payments APIs across browsers is
+
+34
+00:01:41,410 --> 00:01:43,790
+progressing slowly but steadily.
+
+35
+00:01:45,040 --> 00:01:48,550
+Today, outside of Chrome, limited support is available
+
+36
+00:01:48,710 --> 00:01:51,670
+in Safari, Samsung Internet, Edge,
+
+37
+00:01:52,050 --> 00:01:53,050
+Opera, and Brave.
+
+38
+00:01:54,470 --> 00:01:57,470
+Mozilla is working on adding support to Firefox
+
+39
+00:01:57,640 --> 00:01:58,640
+as well.
+
+40
+00:01:58,930 --> 00:02:02,270
+There are two ways an existing payment app can integrate
+
+41
+00:02:02,310 --> 00:02:03,560
+with Payment Request API.
+
+42
+00:02:04,270 --> 00:02:07,230
+The best option for a payment app with an existing
+
+43
+00:02:07,230 --> 00:02:10,280
+web-based flow is to implement the Payment Handler
+
+44
+00:02:10,320 --> 00:02:12,240
+API by adding a service worker to their
+
+45
+00:02:13,280 --> 00:02:14,820
+existing payment experience.
+
+46
+00:02:16,370 --> 00:02:19,200
+A payment app that is primarily a native app
+
+47
+00:02:19,490 --> 00:02:22,370
+can integrate with Chrome on Android using the Pay
+
+48
+00:02:22,460 --> 00:02:23,410
+intent.
+
+49
+00:02:23,870 --> 00:02:26,420
+It's been a few years since Web Payments was announced.
+
+50
+00:02:27,670 --> 00:02:30,380
+Some of you might be curious what's been going on in the
+
+51
+00:02:30,380 --> 00:02:31,380
+meantime.
+
+52
+00:02:32,130 --> 00:02:35,090
+The short answer is that we've been actively working on it.
+
+53
+00:02:36,090 --> 00:02:39,220
+Recently, our focus has moved from trying to figure out
+
+54
+00:02:39,430 --> 00:02:42,480
+how Payment Request API can be directly valuable to
+
+55
+00:02:42,480 --> 00:02:45,770
+merchants, to how the APIs can enable
+
+56
+00:02:45,940 --> 00:02:47,980
+better payment app experiences on the web.
+
+57
+00:02:49,110 --> 00:02:50,530
+Let me tell you a bit more about it.
+
+58
+00:02:51,360 --> 00:02:54,030
+We started by focusing on making the Payment Request API
+
+59
+00:02:54,490 --> 00:02:57,780
+directly valuable to the end merchants by including
+
+60
+00:02:57,780 --> 00:03:00,540
+a payment method called 'basic card,' which was designed
+
+61
+00:03:00,830 --> 00:03:03,450
+to give merchants a direct alternative to
+
+62
+00:03:03,830 --> 00:03:05,120
+form-based credit card payments.
+
+63
+00:03:06,170 --> 00:03:08,840
+With 'basic card,' customers can just select a credit card
+
+64
+00:03:09,090 --> 00:03:11,250
+stored in the browser to make payments.
+
+65
+00:03:12,170 --> 00:03:14,760
+We've learned that building a compelling payment flow
+
+66
+00:03:14,840 --> 00:03:17,390
+requires much more than just returning a credit card
+
+67
+00:03:17,550 --> 00:03:18,550
+number.
+
+68
+00:03:18,800 --> 00:03:21,470
+That's why we are switching gears to focus on enabling
+
+69
+00:03:21,930 --> 00:03:23,890
+payment apps through the Web Payments APIs.
+
+70
+00:03:25,020 --> 00:03:27,730
+This means freezing future development on Chrome's built-in
+
+71
+00:03:28,060 --> 00:03:31,190
+basic-card support for now except bug fixes, and
+
+72
+00:03:31,270 --> 00:03:33,900
+eventually deprecating the support for basic card.
+
+73
+00:03:34,990 --> 00:03:38,320
+Today, to complete a payment on the Web, a user often
+
+74
+00:03:38,320 --> 00:03:41,410
+has to fill a long form and follow multiple steps
+
+75
+00:03:41,530 --> 00:03:43,120
+through pop-ups and redirects.
+
+76
+00:03:45,120 --> 00:03:47,960
+Web Payments APIs enable a much more streamlined flow where
+
+77
+00:03:47,960 --> 00:03:50,540
+a user can complete all payment steps without leaving
+
+78
+00:03:51,090 --> 00:03:52,800
+the context of the checkout page.
+
+79
+00:03:53,630 --> 00:03:56,470
+For developers, building an equivalent payment flow
+
+80
+00:03:56,510 --> 00:03:59,590
+requires intricate cross-site coordination using
+
+81
+00:03:59,800 --> 00:04:01,600
+iframes, cookies, and postMessages.
+
+82
+00:04:03,560 --> 00:04:05,930
+Some of these mechanisms are being phased out by
+
+83
+00:04:06,600 --> 00:04:09,520
+browser vendors as they are also easily abused
+
+84
+00:04:09,690 --> 00:04:12,230
+by trackers that invade users' privacy.
+
+85
+00:04:13,980 --> 00:04:17,110
+The Web Payments APIs provide a consistent and robust
+
+86
+00:04:17,200 --> 00:04:20,280
+alternative for managing such coordinations, and we are
+
+87
+00:04:20,280 --> 00:04:22,910
+working hard to ensure compatibility with the evolving
+
+88
+00:04:23,490 --> 00:04:24,790
+Web Privacy landscape.
+
+89
+00:04:27,330 --> 00:04:29,870
+Until browser interoperatbility is improved, we recommend
+
+90
+00:04:30,080 --> 00:04:33,130
+that most merchants integrate with payment apps using
+
+91
+00:04:33,130 --> 00:04:34,590
+their recommended approach.
+
+92
+00:04:35,550 --> 00:04:38,130
+The payment apps will take care of leveraging the Web
+
+93
+00:04:38,130 --> 00:04:40,890
+Payments APIs where available and appropriate,
+
+94
+00:04:41,470 --> 00:04:44,260
+and gracefully falling back to alternatives elsewhere.
+
+95
+00:04:45,140 --> 00:04:47,230
+Now, what's new in the Web Payments?
+
+96
+00:04:47,850 --> 00:04:50,730
+Let me cover four exciting new functionalities today.
+
+97
+00:04:51,850 --> 00:04:54,360
+Skip-the-sheet is a UX optimization
+
+98
+00:04:54,820 --> 00:04:57,780
+that allows the user to skip directly to a payment
+
+99
+00:04:57,780 --> 00:05:00,360
+app if there is only one eligible choice.
+
+100
+00:05:01,200 --> 00:05:04,240
+This provides a more streamlined flow for payment apps
+
+101
+00:05:04,490 --> 00:05:06,830
+that are launched from branded buttons.
+
+102
+00:05:08,080 --> 00:05:10,870
+Delegation is a new feature in the Payment Handler API
+
+103
+00:05:11,290 --> 00:05:14,000
+that allows a payment app to provide all the information
+
+104
+00:05:14,130 --> 00:05:16,920
+requested by the merchant, including shipping and contact
+
+105
+00:05:17,340 --> 00:05:18,340
+information.
+
+106
+00:05:18,970 --> 00:05:21,930
+Previously, this information used to always come from the
+
+107
+00:05:21,970 --> 00:05:22,970
+browser.
+
+108
+00:05:23,470 --> 00:05:26,760
+This enhances the capability for a payment app to handle
+
+109
+00:05:26,810 --> 00:05:28,890
+the entirety of a payment flow.
+
+110
+00:05:29,730 --> 00:05:32,400
+Together, delegation and skip-the-sheet enable payment
+
+111
+00:05:32,770 --> 00:05:35,860
+apps to more easily transition their existing
+
+112
+00:05:35,860 --> 00:05:37,820
+flows to the Payment Handler API.
+
+113
+00:05:38,780 --> 00:05:41,570
+Another experimental feature that I'm excited about
+
+114
+00:05:41,780 --> 00:05:43,160
+is a Digital Goods API.
+
+115
+00:05:43,990 --> 00:05:46,620
+It is designed to be used together with the Payment Request
+
+116
+00:05:46,660 --> 00:05:48,580
+API to allow web apps to invoke billing
+
+117
+00:05:49,750 --> 00:05:52,960
+flows provided by native app stores to provide
+
+118
+00:05:53,080 --> 00:05:56,130
+in-app-purchase experiences that are difficult
+
+119
+00:05:56,130 --> 00:05:57,550
+to achieve on the web today.
+
+120
+00:05:58,420 --> 00:06:01,260
+For example, the Digital Goods API can be used
+
+121
+00:06:01,380 --> 00:06:03,840
+to enable payments for apps in the Play Store that
+
+122
+00:06:04,430 --> 00:06:05,850
+use Trusted Web Activities.
+
+123
+00:06:06,890 --> 00:06:09,930
+Last, but not least, we have made WebAuthn available in
+
+124
+00:06:09,930 --> 00:06:13,100
+the Payment Handler UI so that payment apps can use
+
+125
+00:06:13,140 --> 00:06:15,690
+a biometric sensor to let users sign-in or authorize
+
+126
+00:06:16,440 --> 00:06:17,440
+payments.
+
+127
+00:06:17,940 --> 00:06:21,070
+We also believe WebAuthn is a critical technology to
+
+128
+00:06:21,110 --> 00:06:24,070
+enable low-friction payment authorization on the
+
+129
+00:06:24,070 --> 00:06:27,280
+web and eventually replace today's browser
+
+130
+00:06:27,280 --> 00:06:28,990
+fingerprinting based solutions.
+
+131
+00:06:29,700 --> 00:06:32,620
+We are actively exploring a tighter integration
+
+132
+00:06:32,710 --> 00:06:34,580
+between WebAuthn and Web Payments.
+
+133
+00:06:35,330 --> 00:06:38,420
+In this video, we have looked back at what is Web Payments,
+
+134
+00:06:38,750 --> 00:06:41,920
+why has the focus shifted to payment apps, and what's
+
+135
+00:06:41,920 --> 00:06:42,920
+coming next.
+
+136
+00:06:43,340 --> 00:06:45,840
+If you're interested to learn more we have recently
+
+137
+00:06:46,140 --> 00:06:48,970
+published a new set of documents at web.dev/payments.
+
+138
+00:06:50,640 --> 00:06:52,350
+OK. That's everything today from our team.
+
+139
+00:06:53,560 --> 00:06:56,600
+I hope it's been helpful for all of you learning a bit
+
+140
+00:06:56,600 --> 00:06:59,150
+about cookies. COOP and COEP, DevTools.
+
+141
+00:06:59,730 --> 00:07:02,780
+User-Agent, Referer, sign-in, and
+
+142
+00:07:02,780 --> 00:07:03,780
+payments!
+
+143
+00:07:04,200 --> 00:07:07,070
+That's a lot and we will continue to share more with you.
+

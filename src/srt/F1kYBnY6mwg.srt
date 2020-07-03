@@ -1,0 +1,2912 @@
+1
+00:00:13,200 --> 00:00:14,160
+Hello, mate!
+
+2
+00:00:14,160 --> 00:00:14,830
+Hello!
+
+3
+00:00:14,830 --> 00:00:16,580
+This is like remote 203, isn't it?
+
+4
+00:00:16,700 --> 00:00:17,290
+It's good.
+
+5
+00:00:17,290 --> 00:00:18,750
+It's, yeah, it's weird.
+
+6
+00:00:19,410 --> 00:00:22,080
+It's like so we have almost all the technology that we need
+
+7
+00:00:22,080 --> 00:00:24,840
+to make this work without feeling different
+
+8
+00:00:25,210 --> 00:00:26,210
+but it's still different.
+
+9
+00:00:27,000 --> 00:00:28,380
+We'll let other people be the judge of that.
+
+10
+00:00:28,550 --> 00:00:29,260
+If it works or not.
+
+11
+00:00:29,260 --> 00:00:30,470
+That's true.
+
+12
+00:00:30,840 --> 00:00:33,550
+So I'm here to talk about image compression.
+
+13
+00:00:33,640 --> 00:00:35,180
+It's something I've been wanting to talk about for a long
+
+14
+00:00:35,180 --> 00:00:36,180
+time, right?
+
+15
+00:00:36,560 --> 00:00:38,390
+I mean, we wrote an entire app around it.
+
+16
+00:00:39,350 --> 00:00:41,940
+We did. And we are gonna be seeing that as part of this
+
+17
+00:00:41,940 --> 00:00:42,850
+talk.
+
+18
+00:00:42,850 --> 00:00:43,810
+Nice, I like it.
+
+19
+00:00:43,810 --> 00:00:46,900
+If you look at the studies they do across web pages, like,
+
+20
+00:00:46,940 --> 00:00:49,190
+images are the biggest thing on the page.
+
+21
+00:00:49,400 --> 00:00:52,320
+50% around about of each page is just -
+
+22
+00:00:53,570 --> 00:00:56,870
+50% of the bytes that go over the wire for any given page
+
+23
+00:00:56,910 --> 00:00:58,700
+are on average images.
+
+24
+00:00:58,830 --> 00:01:01,250
+Yeah. And sometimes for fun I'll go and take just like some
+
+25
+00:01:01,250 --> 00:01:04,250
+images from a web page and like recompress them.
+
+26
+00:01:04,710 --> 00:01:07,920
+And usually I can half the size of them without losing
+
+27
+00:01:08,050 --> 00:01:09,460
+any of the visual fidelity.
+
+28
+00:01:09,710 --> 00:01:11,720
+So it's just like so much stuff on the web could just be
+
+29
+00:01:11,800 --> 00:01:14,890
+compressed better. Either by using a different format,
+
+30
+00:01:15,220 --> 00:01:18,470
+a better encoder, or just like better settings within
+
+31
+00:01:18,760 --> 00:01:19,720
+a particular encoder.
+
+32
+00:01:19,720 --> 00:01:21,230
+Yeah, that's what I found as well.
+
+33
+00:01:21,270 --> 00:01:24,020
+I recently had a little experiment and felt like even
+
+34
+00:01:24,100 --> 00:01:27,110
+without like going into like the very
+
+35
+00:01:27,110 --> 00:01:29,530
+deep settings of an encoder, often
+
+36
+00:01:30,110 --> 00:01:32,490
+people just don't optimize their images at all.
+
+37
+00:01:32,530 --> 00:01:34,740
+And just like doing the default setting in Squoosh will
+
+38
+00:01:34,740 --> 00:01:36,910
+already give you a really decent compression
+
+39
+00:01:37,780 --> 00:01:40,580
+rate without losing visual fidelity.
+
+40
+00:01:41,200 --> 00:01:43,080
+So if you're watching this at home, if you're the kind of
+
+41
+00:01:43,080 --> 00:01:45,670
+person who just like saves your images out of Photoshop for
+
+42
+00:01:45,670 --> 00:01:48,000
+the web, then this is the talk for you.
+
+43
+00:01:48,420 --> 00:01:51,300
+Cause I have things to discuss because I think you're
+
+44
+00:01:51,300 --> 00:01:53,260
+missing out on huge performance gains.
+
+45
+00:01:53,670 --> 00:01:55,090
+So I want to dive into image codecs.
+
+46
+00:01:55,090 --> 00:01:57,340
+I want to show how they work, and I want to explore some of
+
+47
+00:01:57,340 --> 00:01:58,680
+the lesser known settings.
+
+48
+00:01:58,800 --> 00:02:00,760
+So here are the formats.
+
+49
+00:02:01,180 --> 00:02:03,020
+Right. We've got lossy JPEG, and WebP.
+
+50
+00:02:03,100 --> 00:02:05,060
+We got lossless, PNG, GIF, and also WebP.
+
+51
+00:02:06,190 --> 00:02:07,860
+Hang on, my friend. Hang on.
+
+52
+00:02:09,360 --> 00:02:11,230
+You put GIFs under lossless?
+
+53
+00:02:12,990 --> 00:02:14,030
+They are lossless.
+
+54
+00:02:15,950 --> 00:02:17,700
+But they're 256 colors?
+
+55
+00:02:18,280 --> 00:02:21,200
+Yes, but you make that change before compression.
+
+56
+00:02:21,290 --> 00:02:24,410
+Like the GIF compressor won't accept images more
+
+57
+00:02:24,410 --> 00:02:25,580
+than 256 colors.
+
+58
+00:02:25,710 --> 00:02:27,960
+So that's a step you have to run before the compression.
+
+59
+00:02:28,170 --> 00:02:29,250
+It's lossless. Trust me.
+
+60
+00:02:29,880 --> 00:02:30,000
+Fine.
+
+61
+00:02:30,000 --> 00:02:32,170
+Because we are going to do the same for PNG as well, but
+
+62
+00:02:33,510 --> 00:02:34,470
+I've got a question for you.
+
+63
+00:02:34,760 --> 00:02:37,300
+If you have a digital drawing,
+
+64
+00:02:38,760 --> 00:02:41,050
+like a drawing that's been created on a computer, which
+
+65
+00:02:41,050 --> 00:02:42,140
+format would you use for this?
+
+66
+00:02:43,640 --> 00:02:45,020
+If at all possible, SVG.
+
+67
+00:02:46,730 --> 00:02:49,310
+Yep, I agree with you because, in fact, it can be any
+
+68
+00:02:49,650 --> 00:02:51,230
+resolution, so it's ideal for drawings.
+
+69
+00:02:51,650 --> 00:02:54,490
+But sometimes the drawing is really complex,
+
+70
+00:02:54,690 --> 00:02:57,650
+so they're actually smaller and much faster as a lossless
+
+71
+00:02:57,700 --> 00:02:58,700
+image.
+
+72
+00:02:59,360 --> 00:03:01,740
+But then again, if the drawing has a lot of gradients and
+
+73
+00:03:01,740 --> 00:03:04,290
+shading, it might actually be smaller and acceptable
+
+74
+00:03:04,750 --> 00:03:07,660
+in a lossy format without it looking bad to the user.
+
+75
+00:03:08,290 --> 00:03:10,920
+So a lot of talks and articles I see about like image
+
+76
+00:03:10,920 --> 00:03:13,460
+compression, they try and bucket kinds of images into
+
+77
+00:03:13,460 --> 00:03:15,460
+formats. And I think that can be misleading.
+
+78
+00:03:15,460 --> 00:03:18,260
+So instead instead, what I want to do is on a talk about
+
+79
+00:03:18,590 --> 00:03:20,930
+what these formats actually spend their bytes on.
+
+80
+00:03:21,850 --> 00:03:22,300
+Yeah.
+
+81
+00:03:22,300 --> 00:03:25,470
+So lossy of images, it's like sharp
+
+82
+00:03:25,520 --> 00:03:26,890
+edges. They really struggle with that.
+
+83
+00:03:26,930 --> 00:03:29,690
+That will that will increase the size of the image.
+
+84
+00:03:30,560 --> 00:03:33,570
+And also small details in undetailed
+
+85
+00:03:34,020 --> 00:03:35,980
+areas. That's, kind of, that sounds confusing.
+
+86
+00:03:36,070 --> 00:03:38,200
+So we'll look at a few examples of that in a moment.
+
+87
+00:03:38,950 --> 00:03:42,030
+For lossless, it's color change, especially unpredictable
+
+88
+00:03:42,030 --> 00:03:44,280
+color change. It's another thing we'll look at some
+
+89
+00:03:44,280 --> 00:03:45,290
+examples of that.
+
+90
+00:03:45,660 --> 00:03:48,370
+And also, total number of colors impacts the file size as
+
+91
+00:03:48,370 --> 00:03:50,790
+well. With vector, number of shapes and also shape
+
+92
+00:03:51,540 --> 00:03:52,540
+complexity.
+
+93
+00:03:53,090 --> 00:03:55,000
+There's a little difference with
+
+94
+00:03:56,260 --> 00:03:59,170
+vector, and that's the complexity of the shapes will
+
+95
+00:03:59,260 --> 00:04:02,050
+actually introduce a CPU cost in the way it doesn't with
+
+96
+00:04:02,090 --> 00:04:04,470
+the other formats. So that's, that's something to bear in
+
+97
+00:04:04,470 --> 00:04:07,270
+mind. That's the TL;DR of this talk.
+
+98
+00:04:07,600 --> 00:04:08,600
+Really. That's it.
+
+99
+00:04:08,930 --> 00:04:09,480
+Done.
+
+100
+00:04:09,480 --> 00:04:12,480
+Well, thanks for doing this and I'll see you next time.
+
+101
+00:04:12,900 --> 00:04:14,570
+Bye bye. No, no.
+
+102
+00:04:14,730 --> 00:04:16,980
+I want to get to know these codecs in detail.
+
+103
+00:04:17,030 --> 00:04:18,030
+I'm going to dive in.
+
+104
+00:04:18,240 --> 00:04:21,570
+Well, just to be clear, these are categories of codecs,
+
+105
+00:04:21,570 --> 00:04:24,120
+as you say. Like each of these categories has multiple
+
+106
+00:04:24,120 --> 00:04:25,120
+codecs to offer.
+
+107
+00:04:25,780 --> 00:04:29,000
+And I think the basic advice should be that you just
+
+108
+00:04:29,040 --> 00:04:30,540
+try the same image.
+
+109
+00:04:30,870 --> 00:04:33,670
+Like, if you don't know which category your image falls in
+
+110
+00:04:34,170 --> 00:04:36,300
+just try the image in all of these codecs.
+
+111
+00:04:36,500 --> 00:04:39,670
+That's kind of the ideal process, right?
+
+112
+00:04:40,380 --> 00:04:43,220
+Yes. But you can make some educated guesses based on your
+
+113
+00:04:43,590 --> 00:04:45,010
+knowledge of how these things work.
+
+114
+00:04:45,350 --> 00:04:47,470
+So Surma, have a look at this.
+
+115
+00:04:47,510 --> 00:04:50,230
+I know this is difficult because you're watching this over
+
+116
+00:04:50,230 --> 00:04:53,100
+WebRTC, so these demos are slightly limited.
+
+117
+00:04:54,020 --> 00:04:56,020
+Do you notice anything about this picture?
+
+118
+00:04:58,280 --> 00:05:01,320
+Yeah. If it's not the stream compression, then
+
+119
+00:05:01,320 --> 00:05:04,700
+I'd say the clouds have blocky
+
+120
+00:05:04,780 --> 00:05:07,240
+artifacts, going about.
+
+121
+00:05:07,830 --> 00:05:09,330
+I think that is just stream compression.
+
+122
+00:05:10,120 --> 00:05:11,370
+Ah OK, then let's try this again.
+
+123
+00:05:15,750 --> 00:05:17,500
+When you say notice, do you want me to find something that
+
+124
+00:05:17,500 --> 00:05:20,420
+is wrong with the image or just something
+
+125
+00:05:20,710 --> 00:05:23,590
+that should help me make a guess on which codec is best for
+
+126
+00:05:23,720 --> 00:05:24,720
+this?
+
+127
+00:05:25,090 --> 00:05:26,390
+Well, I'll tell you what, if you haven't noticed it
+
+128
+00:05:26,390 --> 00:05:27,930
+straight away, then that's good enough for me.
+
+129
+00:05:28,640 --> 00:05:31,730
+So if at home, if you're watching this in full HD,
+
+130
+00:05:32,480 --> 00:05:35,560
+that's 1920 by 1080 - obviously, you're getting
+
+131
+00:05:35,650 --> 00:05:37,730
+video compression on top of that, so you're not seeing
+
+132
+00:05:37,730 --> 00:05:40,820
+exactly what I'm seeing - but this picture, the
+
+133
+00:05:40,820 --> 00:05:43,990
+brightness data is full HD 1920
+
+134
+00:05:44,070 --> 00:05:46,990
+by 1080, but the color data in this image
+
+135
+00:05:47,240 --> 00:05:48,200
+is 96 by 54.
+
+136
+00:05:49,080 --> 00:05:51,160
+That's 0.3%
+
+137
+00:05:52,370 --> 00:05:55,040
+of the data and you barely notice
+
+138
+00:05:55,710 --> 00:05:59,250
+it. Closer, you can start to see a bit discoloration
+
+139
+00:05:59,340 --> 00:06:00,460
+around some of the fencing.
+
+140
+00:06:00,630 --> 00:06:02,630
+One of the fence posts was turned into a ghost.
+
+141
+00:06:05,010 --> 00:06:06,970
+Yeah, like, if you have that little resolution for the
+
+142
+00:06:07,010 --> 00:06:09,720
+colors, the colors will start bleeding across boundaries,
+
+143
+00:06:10,310 --> 00:06:12,810
+even though the light data still gives the contour.
+
+144
+00:06:12,850 --> 00:06:15,440
+So that's -
+
+145
+00:06:15,980 --> 00:06:16,980
+really...yeah.
+
+146
+00:06:17,770 --> 00:06:19,690
+And this is because you've got but eyes Surma.
+
+147
+00:06:20,320 --> 00:06:23,030
+Like, you have these terrible human eyes that are really
+
+148
+00:06:23,490 --> 00:06:25,990
+bad at seeing changes in color, but you're actually pretty
+
+149
+00:06:25,990 --> 00:06:26,990
+good seeing changes in brightness though.
+
+150
+00:06:27,820 --> 00:06:29,910
+So I'm going take this image and I'm going to flip it
+
+151
+00:06:29,910 --> 00:06:32,790
+around so that the brightness detail is low resolution, but
+
+152
+00:06:33,040 --> 00:06:34,830
+the color detail is high resolution.
+
+153
+00:06:35,500 --> 00:06:36,500
+And here it is.
+
+154
+00:06:37,500 --> 00:06:40,460
+And the first thing you'll notice is it looks
+
+155
+00:06:40,460 --> 00:06:43,050
+bad, but it is the same amount of data just flipped
+
+156
+00:06:43,050 --> 00:06:44,050
+around.
+
+157
+00:06:44,880 --> 00:06:46,220
+Here, it looks fine.
+
+158
+00:06:48,050 --> 00:06:50,300
+You can't go this extreme in all examples.
+
+159
+00:06:50,350 --> 00:06:53,140
+So here's a image that has a bit more
+
+160
+00:06:53,890 --> 00:06:55,230
+complex data around color.
+
+161
+00:06:55,270 --> 00:06:57,600
+You can see this yellow stripe and the red stripe on the
+
+162
+00:06:57,600 --> 00:06:59,980
+car. It's like there's some details, quite blocky.
+
+163
+00:07:00,360 --> 00:07:03,190
+But as we start increasing the amount of color data, again,
+
+164
+00:07:04,650 --> 00:07:07,240
+it becomes difficult to notice. With this image, once
+
+165
+00:07:07,740 --> 00:07:10,780
+I get the color data to around 5% of
+
+166
+00:07:10,780 --> 00:07:13,790
+the brightness data, it becomes impossible to notice for
+
+167
+00:07:13,790 --> 00:07:14,490
+me.
+
+168
+00:07:14,490 --> 00:07:17,500
+Now, I can build a little webapp to research this.
+
+169
+00:07:17,500 --> 00:07:17,910
+Of course you did.
+
+170
+00:07:17,910 --> 00:07:20,580
+This first is the first WebGL I ever wrote,
+
+171
+00:07:21,040 --> 00:07:22,040
+Surma.
+
+172
+00:07:23,460 --> 00:07:24,420
+Oh, you did it with WebGL. That's fun!
+
+173
+00:07:24,420 --> 00:07:25,960
+Yes. To do the color conversion.
+
+174
+00:07:26,260 --> 00:07:29,090
+So it's something you can - I'll put a link to this so you
+
+175
+00:07:29,090 --> 00:07:30,970
+can throw your own images at it. You can get some cool
+
+176
+00:07:30,970 --> 00:07:33,760
+effects. You can see the individual color channels because
+
+177
+00:07:33,810 --> 00:07:35,220
+this is what lossy codecs do.
+
+178
+00:07:36,100 --> 00:07:38,770
+They call it chroma subsampling it rather than RGB,
+
+179
+00:07:39,480 --> 00:07:41,900
+they do brightness and then two chroma channels, two
+
+180
+00:07:42,560 --> 00:07:45,360
+color channels. And that means they can just discard loads
+
+181
+00:07:45,360 --> 00:07:48,320
+of that color data and save a lot of file size
+
+182
+00:07:48,320 --> 00:07:51,110
+as a result. As you mentioned earlier, you get some color
+
+183
+00:07:51,110 --> 00:07:53,530
+bleeding as a result, but it's barely noticeable,
+
+184
+00:07:53,580 --> 00:07:57,000
+especially in like, photographic imagery.
+
+185
+00:07:59,000 --> 00:08:00,920
+One more thing that lossy codecs do in
+
+186
+00:08:02,080 --> 00:08:05,130
+terms of lossy stuff - it's another quiz for you, Surma.
+
+187
+00:08:05,420 --> 00:08:07,300
+I've made an alteration to this image.
+
+188
+00:08:07,380 --> 00:08:08,840
+Can you see what I have done?
+
+189
+00:08:09,800 --> 00:08:12,800
+There is a very ominous circle between the trees.
+
+190
+00:08:13,300 --> 00:08:15,430
+Yes. I've drawn a circle in the sky.
+
+191
+00:08:15,560 --> 00:08:17,640
+There it is. But that's not all I've done.
+
+192
+00:08:17,640 --> 00:08:19,560
+Down here, I've replaced the brightness
+
+193
+00:08:20,770 --> 00:08:22,230
+data with noise.
+
+194
+00:08:23,060 --> 00:08:24,060
+Just noise.
+
+195
+00:08:26,270 --> 00:08:27,570
+But you don't really notice that at first.
+
+196
+00:08:27,570 --> 00:08:29,490
+And here's the interesting thing.
+
+197
+00:08:29,490 --> 00:08:32,570
+Here's a diff of the image versus the original image.
+
+198
+00:08:32,910 --> 00:08:35,280
+Now, the circle in the sky
+
+199
+00:08:35,910 --> 00:08:38,790
+is so subtle, it barely shows up.
+
+200
+00:08:38,870 --> 00:08:40,540
+In fact, if you are watching this with video compression,
+
+201
+00:08:40,540 --> 00:08:42,960
+it might not be visible at all.
+
+202
+00:08:42,960 --> 00:08:44,130
+I can't see it right now.
+
+203
+00:08:45,790 --> 00:08:48,510
+But the noise in the in the bottom there, it's like a huge
+
+204
+00:08:48,510 --> 00:08:49,510
+difference.
+
+205
+00:08:50,220 --> 00:08:52,220
+But again, you have terrible human eyes.
+
+206
+00:08:52,470 --> 00:08:55,470
+You're good at seeing small changes in what we call low
+
+207
+00:08:55,470 --> 00:08:57,720
+frequency areas, like the sky, there's not a lot going on
+
+208
+00:08:57,720 --> 00:08:59,600
+so you spot that small difference.
+
+209
+00:08:59,890 --> 00:09:02,310
+Whereas you struggle to see the changes in the high
+
+210
+00:09:02,310 --> 00:09:02,730
+frequency.
+
+211
+00:09:02,730 --> 00:09:05,810
+This reminds me a bit of the
+
+212
+00:09:05,900 --> 00:09:09,070
+blind spot that we have in our eyes where our brain fills
+
+213
+00:09:09,070 --> 00:09:11,530
+in the gap for us because I see the circle.
+
+214
+00:09:11,650 --> 00:09:14,030
+And you showed me the diff, and faded back to the
+
+215
+00:09:14,610 --> 00:09:17,240
+full image, I saw the circle and then the shape of the
+
+216
+00:09:17,330 --> 00:09:19,790
+circle started blending into the environment.
+
+217
+00:09:19,790 --> 00:09:21,790
+And now it looks like a bush like, I know the circle is
+
+218
+00:09:21,790 --> 00:09:23,500
+there, but I can't actually quite see it.
+
+219
+00:09:24,000 --> 00:09:26,670
+So I think it's just my brain autocorrecting and I'm quite
+
+220
+00:09:26,670 --> 00:09:28,340
+frustrated with my brain for doing that.
+
+221
+00:09:28,960 --> 00:09:31,300
+It does. And this is something that lossy image codecs
+
+222
+00:09:31,300 --> 00:09:34,260
+like, they take advantage of this.
+
+223
+00:09:35,260 --> 00:09:37,260
+So what they do is they'll take an image like this and
+
+224
+00:09:37,260 --> 00:09:39,010
+they'll divide it into eight by eight blocks.
+
+225
+00:09:39,430 --> 00:09:41,850
+And rather than describe these blocks pixel by pixel, they
+
+226
+00:09:44,190 --> 00:09:47,230
+use this. They multiply these shapes together
+
+227
+00:09:47,810 --> 00:09:49,860
+to form exactly the same image.
+
+228
+00:09:50,070 --> 00:09:51,860
+Like, not at that intensity.
+
+229
+00:09:51,900 --> 00:09:53,740
+Each block can be at a different intensity.
+
+230
+00:09:53,780 --> 00:09:55,320
+It can even be negative.
+
+231
+00:09:55,740 --> 00:09:58,410
+But you can reconstruct any eight by eight image
+
+232
+00:09:58,740 --> 00:09:59,950
+using these shapes.
+
+233
+00:10:00,040 --> 00:10:03,330
+And this blows my mind, like I don't believe this.
+
+234
+00:10:03,580 --> 00:10:05,920
+I still don't believe this, even though I built an app to
+
+235
+00:10:05,920 --> 00:10:06,920
+show it.
+
+236
+00:10:07,290 --> 00:10:10,090
+Look, I've made a little pixel art 203, for HTTP 203.
+
+237
+00:10:10,550 --> 00:10:12,340
+I'm not very good at pixel art, but that's what I tried to
+
+238
+00:10:12,340 --> 00:10:13,340
+do here.
+
+239
+00:10:15,300 --> 00:10:18,260
+But what you see below is all of those shapes at
+
+240
+00:10:18,260 --> 00:10:21,680
+the intensity that it uses to reconstruct that image.
+
+241
+00:10:23,310 --> 00:10:25,730
+So we can actually sort of apply them one by one.
+
+242
+00:10:26,270 --> 00:10:29,060
+And you can see as it does the low frequency things, it
+
+243
+00:10:29,060 --> 00:10:31,570
+starts to build up like this blurry picture.
+
+244
+00:10:32,320 --> 00:10:34,610
+And then as it goes and starts to do the high frequency
+
+245
+00:10:34,610 --> 00:10:37,910
+bits of data, the full image comes into view.
+
+246
+00:10:38,530 --> 00:10:41,450
+It's incredible to me that this actually works, but it
+
+247
+00:10:41,450 --> 00:10:44,410
+does. Doesn't save much data, really.
+
+248
+00:10:45,460 --> 00:10:47,000
+But let's actually take a real bit of the image.
+
+249
+00:10:47,040 --> 00:10:48,580
+This is the picture of the woods from before.
+
+250
+00:10:48,580 --> 00:10:50,130
+I'm going to pick up some of the grass.
+
+251
+00:10:51,920 --> 00:10:53,920
+Now, what lossy codecs will try to do is they'll try and
+
+252
+00:10:53,960 --> 00:10:55,340
+discard some of this data.
+
+253
+00:10:55,760 --> 00:10:57,840
+So you see already it's not using all of those shapes.
+
+254
+00:10:57,880 --> 00:10:59,340
+That's where these zeros are coming from.
+
+255
+00:10:59,760 --> 00:11:02,890
+But as I dropped the quality and this is like,
+
+256
+00:11:03,560 --> 00:11:06,060
+jpeg quality in this case, we can see more and more
+
+257
+00:11:06,560 --> 00:11:08,100
+of those zeros appearing.
+
+258
+00:11:09,190 --> 00:11:11,770
+And the thing about sequences of zeros, they compress
+
+259
+00:11:11,860 --> 00:11:12,860
+really, really well.
+
+260
+00:11:13,190 --> 00:11:15,530
+So we're left with an image that isn't 100% accurate.
+
+261
+00:11:15,690 --> 00:11:18,070
+But this is high frequency data, you don't really notice
+
+262
+00:11:18,360 --> 00:11:19,360
+loads of data are saved.
+
+263
+00:11:19,860 --> 00:11:22,870
+I mean, even here in the side by side view, it is
+
+264
+00:11:22,910 --> 00:11:26,080
+hard to tell which pixels are incorrect.
+
+265
+00:11:26,830 --> 00:11:27,830
+Exactly.
+
+266
+00:11:28,120 --> 00:11:29,420
+But let's take a different example.
+
+267
+00:11:29,580 --> 00:11:32,380
+So this time a curve, which might be part of like a logo or
+
+268
+00:11:32,380 --> 00:11:34,630
+something. And in this case, even a very small
+
+269
+00:11:35,800 --> 00:11:38,220
+drop in quality is introducing noise that is very
+
+270
+00:11:38,840 --> 00:11:41,720
+noticeable, especially if the color is solid on either side
+
+271
+00:11:41,720 --> 00:11:43,720
+of this curve. That's low frequency data.
+
+272
+00:11:44,140 --> 00:11:46,020
+This small amount of noise is really noticeable.
+
+273
+00:11:46,020 --> 00:11:47,640
+It's like the circle in the sky.
+
+274
+00:11:47,730 --> 00:11:50,560
+Right. It's - you'll see it very, very easily.
+
+275
+00:11:51,480 --> 00:11:54,230
+And that's why, like, lossy compression is not very good
+
+276
+00:11:54,400 --> 00:11:56,400
+at sharp lines next to solid color.
+
+277
+00:11:57,360 --> 00:11:59,780
+So now if you look at a picture like this, which is a
+
+278
+00:11:59,780 --> 00:12:02,820
+heavily compressed jpeg and zoomed in, you can see
+
+279
+00:12:02,990 --> 00:12:05,080
+like what it's made of. You can see the color bleed from
+
+280
+00:12:05,080 --> 00:12:07,540
+the subsampling. You can see the eight by eight blocks.
+
+281
+00:12:07,790 --> 00:12:10,580
+You can see those waves that it's using to construct that
+
+282
+00:12:10,790 --> 00:12:13,500
+data. And that's it, you now know how lossy compression
+
+283
+00:12:13,790 --> 00:12:17,010
+works. There's only two elements of loss in both JPEG
+
+284
+00:12:17,340 --> 00:12:19,010
+and WebP, and that's it.
+
+285
+00:12:19,130 --> 00:12:20,130
+You've seen them both now.
+
+286
+00:12:21,510 --> 00:12:24,390
+I have a question because I'm trying to remember
+
+287
+00:12:24,930 --> 00:12:28,310
+WebP, I think, also does
+
+288
+00:12:29,270 --> 00:12:32,560
+this frequency based transfrom - discrete cosine transform,
+
+289
+00:12:32,600 --> 00:12:34,860
+as it's called, the conversion to this frequency patterns
+
+290
+00:12:35,070 --> 00:12:36,070
+and you add them up.
+
+291
+00:12:36,190 --> 00:12:38,030
+And no, yeah that's, that's yeah - that's what we just saw.
+
+292
+00:12:38,150 --> 00:12:38,860
+Yeah.
+
+293
+00:12:38,860 --> 00:12:42,070
+And I think WebP does it also at bigger
+
+294
+00:12:42,200 --> 00:12:45,620
+block sizes. If the - if they are low noise,
+
+295
+00:12:45,780 --> 00:12:47,740
+but I'm not quite sure I remember correctly.
+
+296
+00:12:48,330 --> 00:12:49,830
+Yeah. So WebP is just better.
+
+297
+00:12:50,540 --> 00:12:52,870
+So this is a few of things. Like you say it can use
+
+298
+00:12:52,870 --> 00:12:55,920
+different size squares. It can also, when it starts
+
+299
+00:12:55,920 --> 00:12:59,260
+a square, it can use a nearby square as a starting point.
+
+300
+00:13:01,010 --> 00:13:03,970
+Also, JPEG has to use the same
+
+301
+00:13:04,050 --> 00:13:06,640
+mathematical conversion for every eight by eight block
+
+302
+00:13:07,010 --> 00:13:07,810
+in a given channel.
+
+303
+00:13:07,810 --> 00:13:08,430
+Right.
+
+304
+00:13:08,430 --> 00:13:10,430
+Whereas WebP can you can have four.
+
+305
+00:13:11,140 --> 00:13:13,650
+So it could have a different strategy for like high
+
+306
+00:13:13,770 --> 00:13:15,690
+detailed areas versus low detailed areas.
+
+307
+00:13:16,060 --> 00:13:18,730
+And it has a better lossless compression thing as well.
+
+308
+00:13:18,780 --> 00:13:20,240
+Uses arithmetic compression rather than Huffman.
+
+309
+00:13:21,650 --> 00:13:23,570
+And it has better post decode filters as well.
+
+310
+00:13:23,610 --> 00:13:24,780
+So it is just better.
+
+311
+00:13:26,030 --> 00:13:28,410
+It also supports alpha transparency as well, which JPEG
+
+312
+00:13:28,580 --> 00:13:29,580
+doesn't.
+
+313
+00:13:30,080 --> 00:13:33,500
+So why have I wasted my time talking about JPEG?
+
+314
+00:13:33,870 --> 00:13:34,870
+Well,
+
+315
+00:13:36,920 --> 00:13:39,960
+Safari does not support WebP, it's the only one browser
+
+316
+00:13:40,000 --> 00:13:41,010
+that doesn't.
+
+317
+00:13:41,340 --> 00:13:42,420
+So that's the only benefit of JPEG.
+
+318
+00:13:43,130 --> 00:13:44,130
+Really.
+
+319
+00:13:45,840 --> 00:13:48,850
+We can still use WebP for browsers that support it.
+
+320
+00:13:49,260 --> 00:13:51,520
+This the picture element, so we're serving WebP for
+
+321
+00:13:51,520 --> 00:13:54,140
+browsers that support it and falling back to JPEG for
+
+322
+00:13:54,270 --> 00:13:55,940
+Safari and older browsers.
+
+323
+00:13:56,400 --> 00:13:58,310
+There are also client hints to do on the server side.
+
+324
+00:13:58,360 --> 00:14:00,570
+I'm not going to go into it. I'll put some other - some
+
+325
+00:14:00,570 --> 00:14:02,900
+links for that, if that's what you want to do.
+
+326
+00:14:03,860 --> 00:14:06,530
+So let's actually compress some images.
+
+327
+00:14:08,320 --> 00:14:10,450
+Now, the compression tools and things like Photoshop are
+
+328
+00:14:10,450 --> 00:14:13,290
+not very good, which is one the reasons that
+
+329
+00:14:13,750 --> 00:14:16,580
+we built this - not just us two,
+
+330
+00:14:16,880 --> 00:14:18,880
+it was part of a team. But yes, squoosh.app.
+
+331
+00:14:20,170 --> 00:14:21,550
+This has the latest WebP build.
+
+332
+00:14:21,550 --> 00:14:24,550
+Also has MozJPEG, a really good JPEG encoder from Mozilla.
+
+333
+00:14:25,590 --> 00:14:28,390
+So I'm going to use the F1 image from before,
+
+334
+00:14:29,970 --> 00:14:31,600
+because it was a bit of a tricky one to compress.
+
+335
+00:14:32,350 --> 00:14:33,640
+First thing I'm going to do is zoom it out.
+
+336
+00:14:33,890 --> 00:14:36,940
+So it's the same size as it will appear on the site.
+
+337
+00:14:37,190 --> 00:14:39,150
+So if you've got an image that's gonna be a thousand CSS
+
+338
+00:14:39,560 --> 00:14:41,860
+pixels wide, but you want to look good on a high density
+
+339
+00:14:41,860 --> 00:14:44,440
+screen, you want a 2000 pixel wide image.
+
+340
+00:14:44,650 --> 00:14:47,030
+But then you want to zoom it back out, so it's the size it
+
+341
+00:14:47,110 --> 00:14:48,410
+will actually appear on the screen.
+
+342
+00:14:50,830 --> 00:14:53,790
+Now going to start with WebP in terms of compression and
+
+343
+00:14:53,790 --> 00:14:55,620
+all I'm going to do - I think you mentioned this before -
+
+344
+00:14:55,620 --> 00:14:58,080
+just bring the quality down until it looks bad,
+
+345
+00:14:58,630 --> 00:15:01,130
+you know. And especially with a high density image
+
+346
+00:15:01,630 --> 00:15:04,630
+like this, you will be surprised how low you can go
+
+347
+00:15:06,170 --> 00:15:09,640
+on the quality, like, it's still really barely noticeable.
+
+348
+00:15:10,510 --> 00:15:12,010
+Now, it's really tempting to do
+
+349
+00:15:13,600 --> 00:15:15,680
+this, but please don't like, don't put your nose to the
+
+350
+00:15:15,680 --> 00:15:18,730
+screen. Don't zoom in, because
+
+351
+00:15:18,730 --> 00:15:21,650
+if you do that, it will look bad.
+
+352
+00:15:22,520 --> 00:15:23,780
+It's not going to look good. Right.
+
+353
+00:15:24,940 --> 00:15:26,400
+The more you zoom in, the worse it will look.
+
+354
+00:15:26,610 --> 00:15:28,030
+Oh, look at that. That's disgusting.
+
+355
+00:15:28,610 --> 00:15:31,660
+But honestly, so considering that we are at
+
+356
+00:15:33,240 --> 00:15:36,410
+- that we just removed 98% of
+
+357
+00:15:36,450 --> 00:15:39,540
+the data and it still looks that good
+
+358
+00:15:39,670 --> 00:15:41,750
+even when zoomed in. It's kind of cool.
+
+359
+00:15:42,710 --> 00:15:43,880
+Yeah. Absolutely incredible.
+
+360
+00:15:44,630 --> 00:15:47,590
+So if anyone comes at you and says, like, oh, I took one of
+
+361
+00:15:47,590 --> 00:15:50,340
+the images from your website and I zoomed in by a thousand
+
+362
+00:15:50,340 --> 00:15:53,430
+percent and it looks bad like, just say
+
+363
+00:15:54,510 --> 00:15:57,270
+"OK, zoomer", and ignore them, because that's
+
+364
+00:15:57,980 --> 00:16:00,230
+not what real users are going to do, and you should be
+
+365
+00:16:00,270 --> 00:16:01,900
+optimizing things for real users.
+
+366
+00:16:02,110 --> 00:16:04,690
+So keep it roughly the size it will be on the site.
+
+367
+00:16:05,860 --> 00:16:07,280
+I actually wanted to look into some of these advanced
+
+368
+00:16:07,280 --> 00:16:09,950
+settings in WebP because when we first built Squoosh, I
+
+369
+00:16:09,990 --> 00:16:12,780
+didn't know what these did. I just took the codec did and
+
+370
+00:16:12,820 --> 00:16:14,580
+made a UI for it.
+
+371
+00:16:14,870 --> 00:16:16,580
+There's a lot of it - but, I now know what they do.
+
+372
+00:16:17,330 --> 00:16:18,330
+I did some research.
+
+373
+00:16:20,080 --> 00:16:21,750
+The really interesting ones: auto adjusting the filter,
+
+374
+00:16:21,750 --> 00:16:23,210
+this is a good thing to do.
+
+375
+00:16:23,380 --> 00:16:25,420
+This really slows down the encoding time, but
+
+376
+00:16:27,460 --> 00:16:29,300
+it improves the visual a lot.
+
+377
+00:16:29,670 --> 00:16:31,930
+Now that the filter is actually a decoding filter,
+
+378
+00:16:33,300 --> 00:16:34,720
+it's just what it's going to do to remove that blockiness.
+
+379
+00:16:35,760 --> 00:16:38,430
+But it increases the encoding time because it tries to
+
+380
+00:16:38,430 --> 00:16:41,270
+figure out by looking at the image what the best kind
+
+381
+00:16:41,770 --> 00:16:43,900
+of filtering is going to be.
+
+382
+00:16:45,730 --> 00:16:48,480
+But, yeah, it's just it's just a one bit flag or not one
+
+383
+00:16:48,820 --> 00:16:50,570
+bit. A couple of bits.
+
+384
+00:16:51,150 --> 00:16:53,610
+Three bits, I guess, if there's eight levels of filter
+
+385
+00:16:53,610 --> 00:16:54,620
+sharpness.
+
+386
+00:16:54,820 --> 00:16:55,870
+Yes, exactly.
+
+387
+00:16:56,080 --> 00:16:57,160
+I think that might should be more.
+
+388
+00:16:57,910 --> 00:17:00,040
+I think, I think it might actually go from zero to 100.
+
+389
+00:17:00,120 --> 00:17:02,960
+But so it's probably a byte. The other one
+
+390
+00:17:03,420 --> 00:17:05,500
+that I always knew, Oh, this makes a big change to the
+
+391
+00:17:05,500 --> 00:17:07,380
+image, but I don't know what it's doing. It's a spatial
+
+392
+00:17:07,420 --> 00:17:08,380
+noise shaping.
+
+393
+00:17:09,090 --> 00:17:10,550
+Now, like I said, WebP can have these 4 different
+
+394
+00:17:10,550 --> 00:17:10,800
+strategies...
+
+395
+00:17:10,800 --> 00:17:11,550
+Did we- did we misspell spatial?
+
+396
+00:17:17,100 --> 00:17:18,100
+\h
+\h
+2582
+02:59:26,166 --> 02:59:28,542
+thing is I've actually spelled it wrong in my notes for
+
+397
+00:17:26,020 --> 00:17:27,020
+this video as well.
+
+398
+00:17:28,900 --> 00:17:29,900
+Well, that's a bug report.
+
+399
+00:17:31,240 --> 00:17:33,360
+Yeah, so anyway. So the other option is spatial noise
+
+400
+00:17:33,360 --> 00:17:34,360
+shaping.
+
+401
+00:17:35,450 --> 00:17:37,580
+And so WebP can have these different strategies for
+
+402
+00:17:37,580 --> 00:17:40,660
+different parts of the image. SNS, what that does is it
+
+403
+00:17:40,830 --> 00:17:42,250
+changes the extremity between
+
+404
+00:17:44,000 --> 00:17:45,460
+those different strategies.
+
+405
+00:17:45,750 --> 00:17:48,290
+So higher SNS takes bytes away from the stuff that least
+
+406
+00:17:48,290 --> 00:17:50,880
+needs it and gives it to the stuff that needs it most.
+
+407
+00:17:50,920 --> 00:17:54,510
+It's like Robin Hood for image compression, basically.
+
+408
+00:17:55,130 --> 00:17:57,760
+In some images, turning that up to 100 has a positive
+
+409
+00:17:58,010 --> 00:18:01,180
+result. It doesn't here, 50 is actually a pretty good,
+
+410
+00:18:01,180 --> 00:18:02,180
+pretty good for this image.
+
+411
+00:18:02,350 --> 00:18:03,350
+Can you go too high?
+
+412
+00:18:03,850 --> 00:18:07,020
+And like going higher makes the image worse again?
+
+413
+00:18:07,860 --> 00:18:09,610
+Yeah. So with this image, it does go
+
+414
+00:18:11,030 --> 00:18:12,030
+worse.
+
+415
+00:18:13,030 --> 00:18:13,490
+Interesting.
+
+416
+00:18:13,490 --> 00:18:15,820
+So if I, if I make it extreme here, it's giving
+
+417
+00:18:16,660 --> 00:18:19,370
+more data to the road because that's where the blockiness
+
+418
+00:18:19,370 --> 00:18:22,500
+is. But it starts to introduce like,
+
+419
+00:18:22,750 --> 00:18:24,580
+it makes the tires of the car look bad.
+
+420
+00:18:25,420 --> 00:18:26,420
+I see.
+
+421
+00:18:26,580 --> 00:18:29,090
+You start to notice that the artifacts that - you start to
+
+422
+00:18:29,340 --> 00:18:31,210
+-because it's taking data away from high frequency area,
+
+423
+00:18:31,250 --> 00:18:32,380
+giving it to low frequency.
+
+424
+00:18:33,380 --> 00:18:36,630
+The image of the woods that I had on before, it
+
+425
+00:18:36,800 --> 00:18:38,930
+- actually SNS of 100 works really, really well because it
+
+426
+00:18:38,930 --> 00:18:41,260
+takes lots of data away from the leaves and stuff that you
+
+427
+00:18:41,260 --> 00:18:43,640
+can't you the noise and gives it to the
+
+428
+00:18:44,270 --> 00:18:46,140
+area of the sky. So it works really well.
+
+429
+00:18:47,650 --> 00:18:48,810
+We're gonna need a JPEG as well.
+
+430
+00:18:49,440 --> 00:18:51,150
+So just for fun.
+
+431
+00:18:51,900 --> 00:18:54,900
+I'm going to make the JPEG the same size as the WebP just
+
+432
+00:18:54,900 --> 00:18:58,070
+to show the difference in quality of the compression
+
+433
+00:18:58,070 --> 00:19:00,830
+here. So I have to take - the same again - quality right
+
+434
+00:19:01,240 --> 00:19:03,790
+down til it's about forty kilobytes.
+
+435
+00:19:04,830 --> 00:19:06,330
+I'm going to do what I said not to do.
+
+436
+00:19:07,080 --> 00:19:09,790
+Okay. This looks pretty bad to my eyes right now at this
+
+437
+00:19:09,790 --> 00:19:12,090
+level. But obviously with video compression, it might not
+
+438
+00:19:12,090 --> 00:19:13,590
+be as obvious so I am going to zoom it in.
+
+439
+00:19:16,130 --> 00:19:18,550
+JPEG creates this horrible, blocky effect across the road.
+
+440
+00:19:18,760 --> 00:19:20,640
+And like I said, this is low frequency data.
+
+441
+00:19:20,930 --> 00:19:22,600
+So this is going to be like the circle in the sky.
+
+442
+00:19:22,640 --> 00:19:24,020
+It's a super obvious.
+
+443
+00:19:24,770 --> 00:19:27,190
+Around the yellow strip, the cut, the transition from the
+
+444
+00:19:27,190 --> 00:19:30,230
+yellow strip to the road makes it really obvious where
+
+445
+00:19:30,690 --> 00:19:31,520
+the data's lost.
+
+446
+00:19:31,520 --> 00:19:32,650
+Yeah, you can see the blockiness there.
+
+447
+00:19:32,770 --> 00:19:35,320
+And this is where the filtering that WebP does is
+
+448
+00:19:36,860 --> 00:19:39,110
+much better. So, yeah, I just have to increase the size of
+
+449
+00:19:39,110 --> 00:19:41,910
+the jpeg until that horrible blockiness just goes away.
+
+450
+00:19:42,330 --> 00:19:45,240
+And at that point it's like double the size -
+
+451
+00:19:46,160 --> 00:19:47,580
+over double the size - of the WebP.
+
+452
+00:19:49,670 --> 00:19:51,380
+There are things you can do to improve it if you wanna
+
+453
+00:19:51,420 --> 00:19:52,420
+spend the time.
+
+454
+00:19:53,290 --> 00:19:54,340
+More advanced settings.
+
+455
+00:19:54,590 --> 00:19:56,590
+The most interesting advanced setting here I think is the
+
+456
+00:19:56,590 --> 00:19:57,590
+chroma subsampling.
+
+457
+00:19:58,090 --> 00:19:58,420
+Yeah.
+
+458
+00:19:58,420 --> 00:19:59,680
+This is what we discussed before.
+
+459
+00:19:59,720 --> 00:20:02,640
+Right. This is just reducing that color data, especially if
+
+460
+00:20:02,680 --> 00:20:04,600
+you're on a high density screen. You can get away with
+
+461
+00:20:04,600 --> 00:20:07,060
+less. In fact, most of time I would say you can just turn
+
+462
+00:20:07,060 --> 00:20:10,060
+it up to four. We saw earlier that this particular
+
+463
+00:20:10,060 --> 00:20:13,150
+picture is kind of sensitive to color reduction.
+
+464
+00:20:13,610 --> 00:20:15,480
+So three was it was a good one, but it knocked 10KB off so
+
+465
+00:20:17,280 --> 00:20:18,280
+that's worth having.
+
+466
+00:20:18,570 --> 00:20:21,820
+I also often combine it with the separate chroma quality
+
+467
+00:20:21,820 --> 00:20:24,910
+so that you can basically introduce the blockiness into
+
+468
+00:20:24,910 --> 00:20:27,540
+the colors but not into the brightness, which is much
+
+469
+00:20:27,910 --> 00:20:29,160
+less [inaudible].
+
+470
+00:20:29,160 --> 00:20:31,120
+Interesting. I've never had success with that.
+
+471
+00:20:31,170 --> 00:20:34,250
+I've always - I've tried that and I've never - I've
+
+472
+00:20:34,250 --> 00:20:35,590
+always been unhappy with the results.
+
+473
+00:20:35,590 --> 00:20:38,130
+But yes, like mileage may vary.
+
+474
+00:20:38,460 --> 00:20:41,430
+The option is there. So people can play around with
+
+475
+00:20:41,430 --> 00:20:42,430
+that.
+
+476
+00:20:42,930 --> 00:20:43,930
+Absolutely.
+
+477
+00:20:44,640 --> 00:20:47,430
+But, yeah, I think it's worth in this case, to serve both
+
+478
+00:20:47,430 --> 00:20:49,600
+the WebP and the JPEG because it's like half the size for
+
+479
+00:20:49,600 --> 00:20:50,600
+the browsers that support it.
+
+480
+00:20:51,020 --> 00:20:53,020
+But that's it. That's everything I really had to say about
+
+481
+00:20:53,980 --> 00:20:54,980
+lossy images.
+
+482
+00:20:55,230 --> 00:20:57,980
+Well, you said you had major research about the options.
+
+483
+00:20:58,320 --> 00:21:00,440
+What exactly is pointless spec compliance?
+
+484
+00:21:02,150 --> 00:21:04,780
+Pointless spec complaince removes the
+
+485
+00:21:05,580 --> 00:21:08,660
+progressive encoding and
+
+486
+00:21:08,660 --> 00:21:10,450
+some of the other things that according to a strict
+
+487
+00:21:10,450 --> 00:21:13,370
+interpretation of the JPEG spec, it's not
+
+488
+00:21:13,870 --> 00:21:16,000
+supposed to do that, but everyone supports it and it's good
+
+489
+00:21:16,000 --> 00:21:17,000
+for file size.
+
+490
+00:21:17,210 --> 00:21:19,170
+I thought I would totally put you on the
+
+491
+00:21:20,210 --> 00:21:21,760
+spot, but you actually know the answer. Well done.
+
+492
+00:21:22,840 --> 00:21:24,760
+Well I didn't research the JPEG, but that was one of the
+
+493
+00:21:24,800 --> 00:21:27,430
+ones I knew from looking into the encoder there.
+
+494
+00:21:28,640 --> 00:21:31,230
+So lossless - completely different world.
+
+495
+00:21:31,730 --> 00:21:34,560
+A lossless image describes pixels one at a time
+
+496
+00:21:34,730 --> 00:21:36,900
+from top to bottom, left to right.
+
+497
+00:21:37,690 --> 00:21:40,360
+But rather than describe each color from scratch,
+
+498
+00:21:40,690 --> 00:21:43,650
+it will use some of the surrounding pixels to make
+
+499
+00:21:43,650 --> 00:21:46,030
+a prediction and then it just encodes the difference.
+
+500
+00:21:46,660 --> 00:21:47,910
+There's a number of strategies that it can use.
+
+501
+00:21:47,910 --> 00:21:49,740
+It can look at the pixel to the left, it can look at the
+
+502
+00:21:49,740 --> 00:21:52,710
+pixel above. It can use an average of
+
+503
+00:21:52,790 --> 00:21:54,120
+some of those pixels.
+
+504
+00:21:55,670 --> 00:21:58,750
+But here's the gotcha. It can't change the strategy for
+
+505
+00:21:58,750 --> 00:22:00,840
+every pixel because that would just add too much data.
+
+506
+00:22:01,380 --> 00:22:04,010
+Instead, it has to stick with a particular strategy
+
+507
+00:22:04,430 --> 00:22:06,050
+until it decides to change strategy.
+
+508
+00:22:06,140 --> 00:22:07,720
+Now, PNG can only change strategy
+
+509
+00:22:09,260 --> 00:22:12,270
+at the start of a line. WebP can
+
+510
+00:22:12,350 --> 00:22:15,350
+define 2D blocks of different strategies.
+
+511
+00:22:15,690 --> 00:22:18,440
+But this is why lossless compressers can be really slow,
+
+512
+00:22:18,650 --> 00:22:20,820
+because it's just brute force going through all of these
+
+513
+00:22:20,820 --> 00:22:22,690
+different strategies to figure out which one is best.
+
+514
+00:22:24,570 --> 00:22:26,360
+Like trying all the combinations, but it means this
+
+515
+00:22:26,410 --> 00:22:27,450
+compression works really well.
+
+516
+00:22:27,740 --> 00:22:30,240
+If the pixel next to it is exactly the same or the pixel
+
+517
+00:22:30,240 --> 00:22:32,700
+above is exactly the same, because there's no difference,
+
+518
+00:22:32,700 --> 00:22:34,660
+then really easy to compress.
+
+519
+00:22:35,210 --> 00:22:37,290
+And it's why lossless format struggle with photo data
+
+520
+00:22:37,460 --> 00:22:39,290
+because there's lots of organically changing color.
+
+521
+00:22:41,000 --> 00:22:43,300
+Oh, one more trick that losless things have.
+
+522
+00:22:44,010 --> 00:22:45,880
+If there's 256 colors or less, it just
+
+523
+00:22:47,050 --> 00:22:48,890
+sticks those in a table and it can reference them by
+
+524
+00:22:48,890 --> 00:22:49,510
+number.
+
+525
+00:22:49,510 --> 00:22:51,970
+So rather than every time describing the red, green, blue
+
+526
+00:22:51,970 --> 00:22:55,020
+and alpha, it just says, its color number five, everyone.
+
+527
+00:22:55,100 --> 00:22:56,520
+There it is, pop that in there.
+
+528
+00:22:57,190 --> 00:22:58,440
+And that compresses really, really well.
+
+529
+00:22:58,690 --> 00:23:00,860
+So difference between the formats then.
+
+530
+00:23:01,570 --> 00:23:04,610
+WebP not many people know about the lossless
+
+531
+00:23:04,740 --> 00:23:07,030
+WebP format. It's like a completely different codec.
+
+532
+00:23:07,860 --> 00:23:09,570
+In fact, it is a completely different codec.
+
+533
+00:23:10,320 --> 00:23:12,490
+The only relation between the two is when you do lossy WebP
+
+534
+00:23:12,830 --> 00:23:15,620
+with an alpha channel. It's using the lossless format for
+
+535
+00:23:15,750 --> 00:23:17,960
+the Alpha Channel. Pointless fact for you all.
+
+536
+00:23:18,580 --> 00:23:19,580
+Oh, that's good to know.
+
+537
+00:23:19,880 --> 00:23:21,750
+Yeah, it is - it's just better.
+
+538
+00:23:21,750 --> 00:23:23,920
+It's got more strategies, it's got the 2D thing going on.
+
+539
+00:23:23,920 --> 00:23:24,920
+It compresses better.
+
+540
+00:23:26,300 --> 00:23:29,470
+But you do need the PNG for Safari and
+
+541
+00:23:29,550 --> 00:23:31,180
+that's all we talked about. And just never use GIF.
+
+542
+00:23:31,350 --> 00:23:32,810
+Just don't. Stop it, please.
+
+543
+00:23:33,310 --> 00:23:34,640
+Never use it. It's just - it's bad at everything.
+
+544
+00:23:34,640 --> 00:23:37,020
+It's just bad.
+
+545
+00:23:37,890 --> 00:23:40,150
+So stop using GIF for everything.
+
+546
+00:23:41,610 --> 00:23:42,820
+But let's put this into practice.
+
+547
+00:23:44,070 --> 00:23:47,150
+Back in Squoosh. This time I'm going to use something with
+
+548
+00:23:47,400 --> 00:23:48,400
+a lot of flat color.
+
+549
+00:23:49,410 --> 00:23:51,910
+And I say thanks to Stephen Waller, who donated me some of
+
+550
+00:23:51,910 --> 00:23:53,160
+his artwork to use here.
+
+551
+00:23:53,700 --> 00:23:55,410
+He's an artist I used to work with.
+
+552
+00:23:55,490 --> 00:23:57,460
+He makes these wonderful drawings.
+
+553
+00:23:57,750 --> 00:23:59,870
+Apparently, these are his teammates that he worked with at
+
+554
+00:23:59,870 --> 00:24:02,840
+the time. I didn't ask him about the bear, but
+
+555
+00:24:03,040 --> 00:24:04,040
+fair enough.
+
+556
+00:24:06,050 --> 00:24:07,720
+I would say the first thing to do here - same as before -
+
+557
+00:24:08,220 --> 00:24:10,970
+zoom it out. Like, keep it the same size as it will appear
+
+558
+00:24:10,970 --> 00:24:11,970
+on the site.
+
+559
+00:24:12,760 --> 00:24:14,640
+So the kind of scaling that you would actually use to use
+
+560
+00:24:14,970 --> 00:24:16,600
+the high density devices.
+
+561
+00:24:17,560 --> 00:24:20,600
+And now I'm just gonna go to use WebP because it's
+
+562
+00:24:20,600 --> 00:24:22,520
+the best, I'm gonna pick Lossless.
+
+563
+00:24:24,110 --> 00:24:25,650
+Yep. Completely different codec, whatever.
+
+564
+00:24:26,110 --> 00:24:27,900
+Very few people know about it, but it's really good.
+
+565
+00:24:28,030 --> 00:24:29,030
+We're straight down to 43K.
+
+566
+00:24:30,530 --> 00:24:32,820
+This is a slight loss option which I found very
+
+567
+00:24:33,570 --> 00:24:34,780
+funny. It's great isn't it.
+
+568
+00:24:36,240 --> 00:24:38,580
+What it will do is change the pixels to try and make them
+
+569
+00:24:38,580 --> 00:24:39,580
+more predictable.
+
+570
+00:24:41,080 --> 00:24:43,960
+I actually don't like the visual effect it introduces, but,
+
+571
+00:24:44,130 --> 00:24:45,540
+so I don't really use it.
+
+572
+00:24:45,630 --> 00:24:47,300
+But your mileage may vary.
+
+573
+00:24:47,420 --> 00:24:48,670
+It's fun to play with.
+
+574
+00:24:49,880 --> 00:24:51,720
+But remember when I said earlier that these formats do
+
+575
+00:24:51,720 --> 00:24:53,800
+really well with 256 colors or less?
+
+576
+00:24:54,550 --> 00:24:56,310
+We're going to do that. We're going to reduce the palette
+
+577
+00:24:56,310 --> 00:24:57,310
+down.
+
+578
+00:24:58,020 --> 00:25:00,020
+It doesn't look like this image has a lot of colors, but
+
+579
+00:25:00,020 --> 00:25:02,650
+because of the anti-aliasing around all of the curves, it's
+
+580
+00:25:02,650 --> 00:25:05,060
+got lots of like slight variations, blends of one
+
+581
+00:25:05,730 --> 00:25:06,730
+color to another.
+
+582
+00:25:07,940 --> 00:25:10,440
+I've also changed the codec to browser PNG, and that's just
+
+583
+00:25:10,440 --> 00:25:11,950
+cause it's really fast to compress.
+
+584
+00:25:11,950 --> 00:25:13,950
+So it's going to be - I'm going to get a quick response
+
+585
+00:25:13,990 --> 00:25:15,410
+when I'm changing the number of colors.
+
+586
+00:25:15,990 --> 00:25:17,240
+I'm also going to turn off dithering.
+
+587
+00:25:19,160 --> 00:25:21,870
+If you reduce the number of colors of something, you can
+
+588
+00:25:21,870 --> 00:25:23,960
+get this banding effect that you can see here.
+
+589
+00:25:24,040 --> 00:25:27,210
+Dithering like tries to remove the banding by
+
+590
+00:25:27,250 --> 00:25:30,260
+using like pointillism or like these
+
+591
+00:25:30,260 --> 00:25:31,840
+dots to kind of recreate the shading.
+
+592
+00:25:32,260 --> 00:25:34,470
+It's super effective, but lossless deals well
+
+593
+00:25:35,470 --> 00:25:38,060
+with flat color so it will increase the file size, so
+
+594
+00:25:38,430 --> 00:25:40,350
+I would avoid it unless you really need
+
+595
+00:25:41,480 --> 00:25:42,480
+it.
+
+596
+00:25:43,730 --> 00:25:46,810
+I have compressed a couple of, like, photographs to
+
+597
+00:25:46,810 --> 00:25:49,530
+PNG with dithering and it'll actually look -
+
+598
+00:25:50,230 --> 00:25:52,440
+if you zoom out and have it's small enough - it will
+
+599
+00:25:52,440 --> 00:25:54,610
+actually look almost the same.
+
+600
+00:25:54,740 --> 00:25:56,410
+Often it's imperceptible.
+
+601
+00:25:57,120 --> 00:25:58,990
+Yeah. And there are some times that you need to do that.
+
+602
+00:26:00,240 --> 00:26:02,540
+So now the same as before. I'm just going to reduce the
+
+603
+00:26:02,540 --> 00:26:05,540
+colors as much as possible until it looks
+
+604
+00:26:05,540 --> 00:26:06,540
+bad.
+
+605
+00:26:07,170 --> 00:26:09,210
+And this is why this one the reason we built Squoosh,
+
+606
+00:26:09,460 --> 00:26:11,510
+because it's like, it's so much
+
+607
+00:26:12,550 --> 00:26:15,090
+nicer to do this with a visual response than getting
+
+608
+00:26:15,550 --> 00:26:17,720
+like a computer to try and figure it out because it's not
+
+609
+00:26:17,720 --> 00:26:18,720
+going to do it as well.
+
+610
+00:26:19,010 --> 00:26:22,220
+I'd say important advice - same as before - don't zoom in
+
+611
+00:26:22,520 --> 00:26:23,850
+because it will look bad.
+
+612
+00:26:24,390 --> 00:26:26,230
+You know that you can see the harsh edge here.
+
+613
+00:26:27,520 --> 00:26:29,900
+But zoomed out, you barely notice it.
+
+614
+00:26:29,940 --> 00:26:32,400
+So it's fine. And that's how users are going to see it.
+
+615
+00:26:32,570 --> 00:26:33,570
+So there we go.
+
+616
+00:26:33,900 --> 00:26:35,740
+So we've been able to like, reduce the colors like down to
+
+617
+00:26:35,910 --> 00:26:38,780
+68. And so now if we're gonna go
+
+618
+00:26:39,070 --> 00:26:40,080
+to switch back to
+
+619
+00:26:42,080 --> 00:26:44,580
+WebP, turn the effort up, let it use all of its iterations
+
+620
+00:26:44,580 --> 00:26:45,620
+to figure out the compression.
+
+621
+00:26:46,210 --> 00:26:47,670
+And like, boom, there we go.
+
+622
+00:26:47,710 --> 00:26:48,710
+It's like 13K.
+
+623
+00:26:49,500 --> 00:26:50,500
+It's amazing.
+
+624
+00:26:51,500 --> 00:26:54,170
+Isn't it? like it's incredible how much that saves.
+
+625
+00:26:56,510 --> 00:26:57,840
+For Safari, we need the PNG.
+
+626
+00:26:58,430 --> 00:27:01,470
+PNG compressors are really varied.
+
+627
+00:27:02,010 --> 00:27:04,180
+So we use OxiPNG, which is a pretty good one.
+
+628
+00:27:04,980 --> 00:27:07,900
+And that will take it down to what, 17K?
+
+629
+00:27:07,900 --> 00:27:08,600
+It's a close second, pretty good.
+
+630
+00:27:10,310 --> 00:27:11,610
+It's close.
+
+631
+00:27:11,980 --> 00:27:13,860
+And I would say I would give a shout out to ImageOptim
+
+632
+00:27:14,740 --> 00:27:17,400
+which ships with OxiPNG, but also lots of other PNG
+
+633
+00:27:17,740 --> 00:27:19,950
+compressors that we would like to add to Squoosh at some
+
+634
+00:27:19,950 --> 00:27:20,950
+point. But we haven't yet.
+
+635
+00:27:21,910 --> 00:27:23,580
+And it brings the file size down even more.
+
+636
+00:27:23,950 --> 00:27:27,330
+In fact, it's only 3K off the
+
+637
+00:27:27,410 --> 00:27:29,290
+WebP. So in this case, I would probably not bother.
+
+638
+00:27:29,290 --> 00:27:32,000
+Unless I had like a load of images on the page, and that
+
+639
+00:27:32,250 --> 00:27:34,090
+difference adds up, I would say just serve the PNG.
+
+640
+00:27:34,090 --> 00:27:37,050
+It's fine, 3k is not worth the complexity.
+
+641
+00:27:37,760 --> 00:27:40,180
+So, yeah, rather than think of a compression format for a
+
+642
+00:27:40,180 --> 00:27:41,600
+particular kind of image.
+
+643
+00:27:41,800 --> 00:27:44,180
+Like my take away is like think about how the compression
+
+644
+00:27:44,220 --> 00:27:47,270
+actually works and use that as your
+
+645
+00:27:47,270 --> 00:27:49,440
+first guess. But as you said earlier, it's always worth
+
+646
+00:27:49,440 --> 00:27:51,270
+trying it in something else. So I'm going to look at a
+
+647
+00:27:51,270 --> 00:27:53,110
+couple of edge cases to finish up on.
+
+648
+00:27:54,570 --> 00:27:56,070
+Look at this. Look at this.
+
+649
+00:27:56,190 --> 00:27:57,440
+This is beautiful.
+
+650
+00:27:58,110 --> 00:27:59,700
+This is SVG.
+
+651
+00:28:00,610 --> 00:28:02,870
+I was going to say, it looks like one of these things that
+
+652
+00:28:02,910 --> 00:28:05,830
+the CSS artists build was just like a billion divs
+
+653
+00:28:06,370 --> 00:28:07,910
+and gradients and shadows.
+
+654
+00:28:07,960 --> 00:28:10,920
+And then a photorealistic thing turns out to just be
+
+655
+00:28:11,000 --> 00:28:12,000
+CSS.
+
+656
+00:28:12,420 --> 00:28:14,630
+It's pretty much what is happening here; but with SVG.
+
+657
+00:28:15,050 --> 00:28:16,420
+I think this was manually created.
+
+658
+00:28:16,550 --> 00:28:19,630
+Yeah. Very similar. If I minify it in SVG OMG, which
+
+659
+00:28:19,630 --> 00:28:22,430
+is a SVG compression GUI I made, but
+
+660
+00:28:22,720 --> 00:28:24,890
+it's based on SVGO, which is a node
+
+661
+00:28:25,720 --> 00:28:28,060
+app. I get it down to 37K.
+
+662
+00:28:30,020 --> 00:28:32,980
+But this is so complicated and uses so many filters, like
+
+663
+00:28:33,020 --> 00:28:34,730
+look at the jank there on the resizing.
+
+664
+00:28:34,770 --> 00:28:37,690
+And this is on a high end MacBook. It is taking a ton of
+
+665
+00:28:37,690 --> 00:28:39,320
+CPU to render that image.
+
+666
+00:28:41,160 --> 00:28:43,530
+So over in Squoosh, lossy WebP
+
+667
+00:28:44,240 --> 00:28:46,580
+does a really good job of this like 53K.
+
+668
+00:28:46,620 --> 00:28:47,910
+It's actually bigger than the SVG.
+
+669
+00:28:48,750 --> 00:28:52,250
+But the saving in CPU makes this a better decision.
+
+670
+00:28:52,920 --> 00:28:54,500
+And that's actually interesting because that's something
+
+671
+00:28:54,500 --> 00:28:57,300
+that Squoosh doesn't really allow you
+
+672
+00:28:57,670 --> 00:28:58,670
+to quantify, right?
+
+673
+00:28:59,840 --> 00:29:00,840
+The saving in the CPU.
+
+674
+00:29:01,970 --> 00:29:03,340
+Yes, exactly. Yeah.
+
+675
+00:29:03,510 --> 00:29:05,300
+It'd be nice if we could find a way to do that somehow.
+
+676
+00:29:06,010 --> 00:29:08,350
+But yeah, if it's struggling in
+
+677
+00:29:08,970 --> 00:29:11,480
+- with this image, you notice how slow it loads and
+
+678
+00:29:11,980 --> 00:29:14,900
+you notice in SVG OMG how slow it is to resize, so
+
+679
+00:29:15,400 --> 00:29:16,400
+that's a good signal.
+
+680
+00:29:17,980 --> 00:29:20,240
+The PNG equivalent - because can't use JPEG for this
+
+681
+00:29:20,240 --> 00:29:23,160
+because it's got alpha transparency - the PNG is 86K.
+
+682
+00:29:24,660 --> 00:29:27,530
+And I've had to reduce the colors and that introduced a lot
+
+683
+00:29:27,530 --> 00:29:29,290
+of banding, so I had to introduce dithering.
+
+684
+00:29:29,330 --> 00:29:30,750
+And that's actually noticeable.
+
+685
+00:29:31,040 --> 00:29:32,330
+You can see the dots.
+
+686
+00:29:32,460 --> 00:29:35,040
+It's not great, but without the palette reduction, it's
+
+687
+00:29:35,040 --> 00:29:38,130
+300K. So in this case, you would kind of say,
+
+688
+00:29:38,250 --> 00:29:40,800
+I'm sorry, Safari users, you don't get quite as nice
+
+689
+00:29:41,380 --> 00:29:42,510
+an image, you know.
+
+690
+00:29:42,670 --> 00:29:45,800
+Yeah, but it's worth it for the file size.
+
+691
+00:29:45,970 --> 00:29:48,640
+Although I guess you could also serve the SVG because - I
+
+692
+00:29:48,640 --> 00:29:51,980
+mean the picture element, you specify the sources
+
+693
+00:29:52,020 --> 00:29:53,310
+in order of priority.
+
+694
+00:29:53,640 --> 00:29:56,610
+So you could put the WebP first, and could put the SVG
+
+695
+00:29:56,940 --> 00:29:57,940
+second?
+
+696
+00:29:58,110 --> 00:30:00,820
+Yeah. You could decide like to say, well you know, Safari
+
+697
+00:30:00,820 --> 00:30:03,860
+users are likely to be on a high end device, so the
+
+698
+00:30:03,990 --> 00:30:05,320
+SVG is less bad maybe.
+
+699
+00:30:05,570 --> 00:30:07,320
+But it's still going to cause jank to other things on the
+
+700
+00:30:07,320 --> 00:30:10,330
+page. You know, it is like -
+
+701
+00:30:10,330 --> 00:30:12,830
+on a high end MacBook it's bad. But yes, you could make
+
+702
+00:30:12,830 --> 00:30:13,660
+that judgment call.
+
+703
+00:30:13,660 --> 00:30:16,710
+You can say the jank is better than the 300K or the
+
+704
+00:30:16,710 --> 00:30:17,710
+banding or whatever.
+
+705
+00:30:18,420 --> 00:30:20,000
+One more example I'll leave you with.
+
+706
+00:30:20,880 --> 00:30:22,460
+This is another one of Stephen's drawings.
+
+707
+00:30:23,590 --> 00:30:25,880
+It has a lot of flat color. So my instincts for this would
+
+708
+00:30:25,880 --> 00:30:27,470
+be to go for a lossless format.
+
+709
+00:30:28,010 --> 00:30:30,220
+But there's also a lot of shadows, a lot of gradients as
+
+710
+00:30:30,220 --> 00:30:32,220
+well. So, again, lossy WebP does a really
+
+711
+00:30:33,310 --> 00:30:36,400
+good job of this. Like it takes it down to 28K.
+
+712
+00:30:37,940 --> 00:30:40,860
+If you go for a lossless format, even with the palette
+
+713
+00:30:41,070 --> 00:30:44,110
+reduction, it's 118K and you actually get a lap banding
+
+714
+00:30:44,240 --> 00:30:45,950
+with it. So, yeah, it's like tools,
+
+715
+00:30:47,320 --> 00:30:49,030
+not rules. That's my take away from this.
+
+716
+00:30:49,280 --> 00:30:51,620
+Like think about the codecs in terms of what they are good
+
+717
+00:30:51,620 --> 00:30:53,750
+at. Think about how they work.
+
+718
+00:30:54,330 --> 00:30:57,500
+And with that, go and make your images smaller.
+
+719
+00:30:58,080 --> 00:31:00,170
+Please, please make her images smaller.
+
+720
+00:31:00,380 --> 00:31:02,800
+I've actually enjoyed this. This has been like - should we
+
+721
+00:31:02,800 --> 00:31:04,130
+do some more 203s like this?
+
+722
+00:31:04,300 --> 00:31:05,300
+Should we do some remote 203s?
+
+723
+00:31:05,720 --> 00:31:07,050
+I don't know when we're gonna get back to the office.
+
+724
+00:31:07,130 --> 00:31:08,800
+I was planning to. Absolutely.
+
+725
+00:31:09,430 --> 00:31:11,260
+Well, we've got the equipment, so let's do it.
+
+726
+00:31:12,390 --> 00:31:13,560
+Happy. Next time.
+
+727
+00:31:14,140 --> 00:31:15,140
+Happy next time.
+

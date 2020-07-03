@@ -66,3 +66,5 @@ undefined objects saved — this should be the same as the number of captions (7
 
 searchIndex.length is 8973, but should be the same as the number of captions (8974)
 
+searchIndex.length is 13960, but should be the same as the number of captions (13961)
+

@@ -1,0 +1,1132 @@
+1
+00:00:13,300 --> 00:00:14,300
+Hey, I'm Maud.
+
+2
+00:00:15,550 --> 00:00:18,310
+Hey. And I'm Rowan. Now, over the past couple of videos,
+
+3
+00:00:18,470 --> 00:00:21,350
+there's been a pattern where the changes we've been showing
+
+4
+00:00:21,390 --> 00:00:24,310
+you have been to reduce cross-site data transfer
+
+5
+00:00:24,520 --> 00:00:25,520
+by default.
+
+6
+00:00:25,940 --> 00:00:28,360
+And because some of these changes restrict existing
+
+7
+00:00:28,650 --> 00:00:31,860
+behavior, you need to take action if your site relies
+
+8
+00:00:31,860 --> 00:00:33,320
+on that cross-site functionality.
+
+9
+00:00:33,950 --> 00:00:36,990
+So instead of just a list of features, we wanted
+
+10
+00:00:36,990 --> 00:00:39,040
+to give you a little framework for thinking about them,
+
+11
+00:00:39,040 --> 00:00:41,120
+both for now and for the future.
+
+12
+00:00:41,660 --> 00:00:44,670
+So we've brainstormed then finally distilled that down
+
+13
+00:00:44,710 --> 00:00:47,590
+into three questions you can ask yourself and your team.
+
+14
+00:00:48,340 --> 00:00:51,170
+And we'll be running three examples, but first, let's take
+
+15
+00:00:51,260 --> 00:00:52,550
+a look at the raw questions.
+
+16
+00:00:53,590 --> 00:00:55,720
+One, do I need this data?
+
+17
+00:00:57,810 --> 00:00:59,850
+Now, there's definitely a developer temptation to think,
+
+18
+00:01:00,060 --> 00:01:02,890
+just collect all the data. It might be valuable later, but
+
+19
+00:01:03,350 --> 00:01:05,230
+that's not really the right attitude anymore.
+
+20
+00:01:06,230 --> 00:01:09,030
+Right. And you're opening yourself up to more risk if that
+
+21
+00:01:09,110 --> 00:01:11,990
+data leaks. You've got more regulations to follow and
+
+22
+00:01:12,070 --> 00:01:13,200
+it's just more work.
+
+23
+00:01:13,610 --> 00:01:15,240
+So the lazy option is just don't.
+
+24
+00:01:16,030 --> 00:01:17,870
+Don't collect it, no risk.
+
+25
+00:01:17,910 --> 00:01:18,910
+No work.
+
+26
+00:01:19,490 --> 00:01:21,330
+Mm hmm. So we can sum this up as more
+
+27
+00:01:22,500 --> 00:01:23,710
+data, more problems?
+
+28
+00:01:24,370 --> 00:01:26,500
+Yeah. Onto the next question.
+
+29
+00:01:27,040 --> 00:01:29,460
+Question two, then: is there an alternative?
+
+30
+00:01:30,340 --> 00:01:31,340
+There are so many options there, so it depends.
+
+31
+00:01:33,300 --> 00:01:35,720
+Some things like site preferences might be better
+
+32
+00:01:36,390 --> 00:01:39,010
+in client-side storage, like IndexedDB or LocalStorage,
+
+33
+00:01:39,970 --> 00:01:42,980
+so you can still sync them with the server, but maybe
+
+34
+00:01:42,980 --> 00:01:45,390
+you don't need them on every single request.
+
+35
+00:01:46,060 --> 00:01:48,900
+Yeah, and there might be places where the query parameters
+
+36
+00:01:49,020 --> 00:01:51,570
+in the URL make more sense, if it's related to how the
+
+37
+00:01:51,570 --> 00:01:54,150
+content displays, because then if I share a link with
+
+38
+00:01:54,650 --> 00:01:56,780
+you, you get the same options that I have.
+
+39
+00:01:57,620 --> 00:01:59,120
+Sometimes cookies are the right answer, though,
+
+40
+00:02:00,830 --> 00:02:02,660
+so question 3: have I secured it correctly?
+
+41
+00:02:04,120 --> 00:02:05,330
+Oh, I know this one.
+
+42
+00:02:05,710 --> 00:02:06,710
+Watch my video from earlier.
+
+43
+00:02:07,330 --> 00:02:10,040
+Yeah, yeah, okay Rowan, okay - but let's do a summary.
+
+44
+00:02:10,540 --> 00:02:13,670
+So, first-party cookies should try using
+
+45
+00:02:13,670 --> 00:02:16,220
+the __Host- prefix so they're Secure and single-origin,
+
+46
+00:02:17,390 --> 00:02:20,350
+they should use HttpOnly to stop JavaScript
+
+47
+00:02:20,390 --> 00:02:23,470
+access, and they should set SameSite=Lax to
+
+48
+00:02:23,470 --> 00:02:26,060
+protect against cross-site request forgery.
+
+49
+00:02:27,520 --> 00:02:30,520
+And if they do need to be third-party, then try and do the
+
+50
+00:02:30,520 --> 00:02:33,820
+same, but with SameSite=None and Secure.
+
+51
+00:02:34,780 --> 00:02:35,780
+And that's it.
+
+52
+00:02:36,070 --> 00:02:37,700
+Cool. I feel good about this.
+
+53
+00:02:37,910 --> 00:02:40,120
+I think if you're asking these questions, you're headed
+
+54
+00:02:40,120 --> 00:02:41,120
+down the right track.
+
+55
+00:02:41,910 --> 00:02:45,120
+We should repeat these a few times, though, like good
+
+56
+00:02:45,120 --> 00:02:47,920
+scientists to see if it works with different topics.
+
+57
+00:02:48,960 --> 00:02:52,090
+Good idea. I might even have a topic I could talk about
+
+58
+00:02:52,250 --> 00:02:53,250
+right now.
+
+59
+00:02:53,340 --> 00:02:54,420
+Yeah, me too.
+
+60
+00:02:54,590 --> 00:02:55,590
+Okay, you go.
+
+61
+00:02:56,550 --> 00:02:59,090
+OK, first test drive of these questions then - we're
+
+62
+00:02:59,510 --> 00:03:01,510
+going to take a look at the User-Agent string.
+
+63
+00:03:02,220 --> 00:03:06,140
+Now, the original specification for this back in 1996
+
+64
+00:03:06,230 --> 00:03:08,560
+was pretty simple. It was basically a browser version,
+
+65
+00:03:09,520 --> 00:03:11,190
+library version and so on.
+
+66
+00:03:12,400 --> 00:03:15,360
+However, nearly a quarter of a century later, that
+
+67
+00:03:15,360 --> 00:03:16,860
+string has grown a bit.
+
+68
+00:03:17,490 --> 00:03:20,030
+If you want to successfully parse this, then you need a
+
+69
+00:03:20,070 --> 00:03:23,080
+whole bunch of regular expressions or a library
+
+70
+00:03:23,080 --> 00:03:24,080
+that hides them from you.
+
+71
+00:03:24,830 --> 00:03:27,460
+On top of that, the information about your browser and
+
+72
+00:03:27,500 --> 00:03:29,540
+device in that string can be pretty identifying.
+
+73
+00:03:30,670 --> 00:03:33,250
+From my string here, which is being sent on every single
+
+74
+00:03:33,250 --> 00:03:36,050
+request, you can see the exact build of Chrome,
+
+75
+00:03:36,380 --> 00:03:38,840
+the phone I'm using, the version of Android it's running.
+
+76
+00:03:38,840 --> 00:03:41,760
+Now - especially with less common devices - this
+
+77
+00:03:42,890 --> 00:03:44,220
+could be enough to track someone.
+
+78
+00:03:45,100 --> 00:03:47,520
+While we would eventually like to reduce the amount of data
+
+79
+00:03:47,520 --> 00:03:50,230
+exposed there, those 25 years of growth have meant that
+
+80
+00:03:50,480 --> 00:03:53,270
+there's a lot of genuine and valuable use cases out there
+
+81
+00:03:53,400 --> 00:03:55,860
+for the User-Agent string and maintaining backwards
+
+82
+00:03:56,690 --> 00:03:59,740
+compatibility on the web is what means that your modern
+
+83
+00:03:59,740 --> 00:04:02,740
+browser can still show you those 25 year old sites
+
+84
+00:04:02,740 --> 00:04:04,070
+successfully.
+
+85
+00:04:05,030 --> 00:04:08,160
+Right. Let's run the questions and see if it helps us.
+
+86
+00:04:08,790 --> 00:04:10,210
+Number one: do you need it?
+
+87
+00:04:11,080 --> 00:04:13,130
+If you're using the string to try and determine feature
+
+88
+00:04:13,130 --> 00:04:16,250
+support or capabilities, then it's far better
+
+89
+00:04:16,250 --> 00:04:18,960
+to use feature detection, progressive enhancement, or
+
+90
+00:04:18,960 --> 00:04:21,010
+responsive design to achieve those goals.
+
+91
+00:04:21,680 --> 00:04:24,050
+That means you don't need to maintain a mapping between
+
+92
+00:04:24,050 --> 00:04:26,890
+browser version and whatever feature you're checking for.
+
+93
+00:04:27,680 --> 00:04:30,730
+It also means you're less likely to exclude less common
+
+94
+00:04:30,730 --> 00:04:33,060
+browsers just because you couldn't match the string.
+
+95
+00:04:33,690 --> 00:04:35,610
+Question two: is there an alternative?
+
+96
+00:04:36,320 --> 00:04:38,820
+When I mentioned valid use cases before, some of those
+
+97
+00:04:38,820 --> 00:04:41,780
+examples might be matching the user's OS so you can show
+
+98
+00:04:41,780 --> 00:04:44,490
+appropriate downloads or match the UI conventions.
+
+99
+00:04:45,280 --> 00:04:47,910
+You may also need to work around browser bugs where the
+
+100
+00:04:47,910 --> 00:04:50,750
+specific browser version is the key bit of information
+
+101
+00:04:50,870 --> 00:04:52,290
+you need to know if it's been fixed or not.
+
+102
+00:04:53,290 --> 00:04:56,000
+For this, I want to introduce you to Client Hints, and
+
+103
+00:04:56,000 --> 00:04:58,590
+specifically the new set of User-Agent Client Hints.
+
+104
+00:04:59,340 --> 00:05:01,970
+Essentially, the idea is we could go from broadcasting
+
+105
+00:05:02,510 --> 00:05:05,180
+all of this information by default to a model where the
+
+106
+00:05:05,300 --> 00:05:08,310
+site asks the browser for each piece of info and
+
+107
+00:05:08,310 --> 00:05:10,140
+the browser decides what it wants to return.
+
+108
+00:05:10,890 --> 00:05:14,020
+With User-Agent Client Hints the default data shared
+
+109
+00:05:14,020 --> 00:05:17,150
+on each request is the browser name, significant version,
+
+110
+00:05:17,310 --> 00:05:19,570
+and the mobile indicator which comes in on these Sec-CH
+
+111
+00:05:20,530 --> 00:05:23,650
+headers. If you want something extra like the OS
+
+112
+00:05:23,650 --> 00:05:26,320
+platform, then your site needs to ask for it.
+
+113
+00:05:26,870 --> 00:05:29,950
+It can do this by sending an Accept-CH header
+
+114
+00:05:29,950 --> 00:05:32,080
+in its response asking for platform.
+
+115
+00:05:32,870 --> 00:05:36,040
+Then, on subsequent requests, the browser will send a
+
+116
+00:05:36,040 --> 00:05:38,670
+Sec-CH-UA-Platform header back.
+
+117
+00:05:39,250 --> 00:05:41,420
+You can also do this in JavaScript by calling
+
+118
+00:05:41,420 --> 00:05:43,420
+getHighEntropyValues() on navigator.userAgentData
+
+119
+00:05:45,340 --> 00:05:47,550
+and passing 'platform' as a parameter.
+
+120
+00:05:48,350 --> 00:05:51,140
+There's one of these User-Agent hints to cover each of the
+
+121
+00:05:51,140 --> 00:05:53,810
+bits of data that you can get from the string - so full
+
+122
+00:05:53,930 --> 00:05:56,690
+browser version, platform version, device model, CPU
+
+123
+00:05:57,150 --> 00:05:59,980
+architecture, on top of the significant version
+
+124
+00:06:00,230 --> 00:06:01,610
+and that mobile indicator.
+
+125
+00:06:02,610 --> 00:06:03,820
+But wait, there's more.
+
+126
+00:06:04,450 --> 00:06:07,030
+There are also existing Client Hints that can give you
+
+127
+00:06:07,030 --> 00:06:09,070
+things like device memory or viewport width.
+
+128
+00:06:09,740 --> 00:06:12,330
+Because even if you're getting the data in the right way,
+
+129
+00:06:12,410 --> 00:06:15,330
+it's easier to ask directly for the thing you want
+
+130
+00:06:15,540 --> 00:06:17,920
+instead of using User-Agent as a proxy.
+
+131
+00:06:19,420 --> 00:06:22,130
+OK, third and final question: have you secured it
+
+132
+00:06:22,130 --> 00:06:25,130
+correctly? For the User-Agent Client Hints they are by
+
+133
+00:06:25,130 --> 00:06:27,130
+default restricted to the same origin.
+
+134
+00:06:27,590 --> 00:06:30,390
+If you have other cross-origin or cross-site requests on
+
+135
+00:06:30,390 --> 00:06:32,930
+that page that need the Client Hints - let's say your
+
+136
+00:06:32,930 --> 00:06:35,730
+downloads are hosted on a separate origin, so you want to
+
+137
+00:06:35,730 --> 00:06:38,690
+send the platform hint there - you need to specify
+
+138
+00:06:38,730 --> 00:06:42,150
+each of the hint and origin pairs in a Feature Policy
+
+139
+00:06:42,230 --> 00:06:43,190
+to allow them through.
+
+140
+00:06:43,940 --> 00:06:46,400
+Now, eventually, we'd like to reduce the amount of
+
+141
+00:06:46,570 --> 00:06:48,700
+information exposed by default in the User-Agent string.
+
+142
+00:06:49,870 --> 00:06:51,990
+So ideally, if you can migrate to User-Agent Client Hints,
+
+143
+00:06:53,200 --> 00:06:55,160
+then that should absolutely be your route.
+
+144
+00:06:55,660 --> 00:06:58,710
+However, if you cannot, then try to be flexible
+
+145
+00:06:58,710 --> 00:06:59,710
+in your detection.
+
+146
+00:07:00,000 --> 00:07:03,250
+This kind of string parsing is inherently fragile - so
+
+147
+00:07:03,340 --> 00:07:05,510
+feel free to warn me that I might get issues with my
+
+148
+00:07:05,510 --> 00:07:08,840
+browser, but don't block me just because my string
+
+149
+00:07:08,930 --> 00:07:09,930
+didn't match your regex.
+
+150
+00:07:10,840 --> 00:07:13,100
+And there we go: User-Agent, one, two, three.
+
+151
+00:07:13,310 --> 00:07:15,560
+Done. We've got a lot more info on
+
+152
+00:07:16,270 --> 00:07:17,690
+web.dev but let's keep this rolling.
+
+153
+00:07:17,770 --> 00:07:20,230
+And do another round. Maud, over to you.
+
+154
+00:07:20,900 --> 00:07:21,900
+Thanks, Rowan!
+
+155
+00:07:22,690 --> 00:07:25,650
+Now let's look at our second test drive of these questions
+
+156
+00:07:25,650 --> 00:07:28,900
+to see how they work, using an example that's also
+
+157
+00:07:28,950 --> 00:07:29,950
+an HTTP header.
+
+158
+00:07:30,700 --> 00:07:31,820
+It's called the Referer.
+
+159
+00:07:32,490 --> 00:07:34,950
+You'll see it written with either one or two R's.
+
+160
+00:07:35,580 --> 00:07:38,250
+Don't be surprised. This is due to an original misspelling
+
+161
+00:07:38,250 --> 00:07:39,250
+in the spec.
+
+162
+00:07:39,670 --> 00:07:42,000
+Imagine that a user is visiting a page on site-one.
+
+163
+00:07:42,750 --> 00:07:45,420
+And to load an image, a request to site-two
+
+164
+00:07:45,960 --> 00:07:48,920
+is sent. In some cases, site-two can see the
+
+165
+00:07:49,380 --> 00:07:52,800
+full URL of site-one the user is on in the requests'
+
+166
+00:07:53,010 --> 00:07:55,510
+Referer header, which might be present in all types
+
+167
+00:07:56,270 --> 00:07:58,680
+of requests: navigation or subresource.
+
+168
+00:07:59,350 --> 00:08:02,190
+And this info is not just present in the header.
+
+169
+00:08:02,560 --> 00:08:05,320
+It may be accessed on the destination via JavaScript.
+
+170
+00:08:06,530 --> 00:08:08,150
+The Referer can be insightful.
+
+171
+00:08:08,190 --> 00:08:11,110
+For example, for analytics to know that 50%
+
+172
+00:08:11,740 --> 00:08:14,410
+of visitors to site-two were coming from socialnetwork.com.
+
+173
+00:08:14,410 --> 00:08:17,620
+But full
+
+174
+00:08:17,750 --> 00:08:20,870
+URLs can contain private data and even sensitive
+
+175
+00:08:20,870 --> 00:08:23,750
+or identifying details, especially the path and
+
+176
+00:08:24,290 --> 00:08:27,630
+query string. And requests sent
+
+177
+00:08:27,630 --> 00:08:29,970
+from your websites might include these details.
+
+178
+00:08:31,930 --> 00:08:35,140
+So, onto question one: do I need this data?
+
+179
+00:08:35,800 --> 00:08:37,770
+First, incoming requests.
+
+180
+00:08:38,600 --> 00:08:41,140
+Sometimes, like on this diagram, the Referer is used
+
+181
+00:08:41,600 --> 00:08:44,690
+to extract the origin to see where the request came from
+
+182
+00:08:44,770 --> 00:08:46,610
+or whether its the same origin.
+
+183
+00:08:47,360 --> 00:08:50,190
+But the Referer contains way more data than you need to
+
+184
+00:08:50,190 --> 00:08:51,280
+answer these questions.
+
+185
+00:08:51,900 --> 00:08:54,620
+If you're doing this, you're using it as a proxy to find
+
+186
+00:08:54,870 --> 00:08:56,990
+answers. And this is more work for you.
+
+187
+00:08:57,580 --> 00:08:59,870
+So, we'll look at alternatives in a minute.
+
+188
+00:09:01,040 --> 00:09:02,870
+Second, outgoing requests.
+
+189
+00:09:03,460 --> 00:09:06,080
+If there is no compelling reason for your web site to share
+
+190
+00:09:06,290 --> 00:09:09,250
+full URLs cross-origin, then you shouldn't.
+
+191
+00:09:09,800 --> 00:09:10,800
+We'll see how.
+
+192
+00:09:11,090 --> 00:09:14,130
+OK, on to question two: is there an alternative?
+
+193
+00:09:15,140 --> 00:09:16,140
+Yes.
+
+194
+00:09:16,430 --> 00:09:18,350
+First, incoming requests.
+
+195
+00:09:19,010 --> 00:09:22,480
+Back to what we said. If what you need is just the origin,
+
+196
+00:09:22,890 --> 00:09:25,310
+the Origin header gives you exactly this and it's
+
+197
+00:09:25,850 --> 00:09:28,360
+available in POST and CORS requests.
+
+198
+00:09:30,360 --> 00:09:33,070
+And if what you need to know is whether the request is
+
+199
+00:09:33,070 --> 00:09:34,780
+same-origin, you can use the Sec-Fetch-Site
+
+200
+00:09:36,110 --> 00:09:39,580
+header. Also a side note, if you're using the Referer
+
+201
+00:09:39,660 --> 00:09:42,370
+as extra protection against
+
+202
+00:09:42,750 --> 00:09:45,750
+CSRF, then replacing it with this or
+
+203
+00:09:45,790 --> 00:09:48,880
+Origin is great, but make sure that you're
+
+204
+00:09:48,880 --> 00:09:50,800
+using CSRF tokens and maybe SameSite as
+
+205
+00:09:51,880 --> 00:09:53,050
+a primary protection.
+
+206
+00:09:54,760 --> 00:09:57,010
+Now let's talk about outgoing requests.
+
+207
+00:09:57,510 --> 00:10:00,470
+Is there an alternative to sending the full URL in
+
+208
+00:10:00,470 --> 00:10:01,470
+all requests?
+
+209
+00:10:01,810 --> 00:10:03,020
+Again, yes.
+
+210
+00:10:03,310 --> 00:10:05,980
+Luckily, websites can control how much data is sent in
+
+211
+00:10:06,310 --> 00:10:08,650
+the Referer by sending a specific Referer-Policy.
+
+212
+00:10:10,480 --> 00:10:13,440
+And depending on the policy, either no referer
+
+213
+00:10:13,610 --> 00:10:16,320
+at all, the origin only, or
+
+214
+00:10:16,660 --> 00:10:18,160
+the full URL will be sent.
+
+215
+00:10:18,950 --> 00:10:19,950
+Back to our web sites.
+
+216
+00:10:20,240 --> 00:10:22,490
+Suppose you want the full URL, for example, to
+
+217
+00:10:23,290 --> 00:10:26,080
+understand how users are navigating within your websites.
+
+218
+00:10:27,370 --> 00:10:30,460
+This doesn't mean that you have to send the full URL in all
+
+219
+00:10:30,460 --> 00:10:31,460
+requests.
+
+220
+00:10:31,750 --> 00:10:35,010
+What you can do instead is set your Referer-Policy to
+
+221
+00:10:35,050 --> 00:10:36,050
+strict-origin-when-cross-origin.
+
+222
+00:10:38,090 --> 00:10:41,470
+It shares the full URL for a same-origin requests
+
+223
+00:10:41,560 --> 00:10:43,430
+like here on this diagram, but only the
+
+224
+00:10:44,640 --> 00:10:46,850
+origin in cross-origin requests.
+
+225
+00:10:47,770 --> 00:10:50,810
+Also, it's a safe policy because if from
+
+226
+00:10:50,810 --> 00:10:53,530
+your HTTPS websites, a request to an HTTP origin
+
+227
+00:10:54,320 --> 00:10:56,820
+is sent, the Referer will be stripped.
+
+228
+00:10:57,110 --> 00:10:59,780
+Which is good, because you don't want to leak URLs
+
+229
+00:11:00,070 --> 00:11:02,830
+on an unencrypted connection since anyone in the network
+
+230
+00:11:02,910 --> 00:11:03,910
+can see these, right?
+
+231
+00:11:04,450 --> 00:11:05,450
+And quick segue.
+
+232
+00:11:06,540 --> 00:11:09,710
+If you don't set a policy, the browser's default policy
+
+233
+00:11:09,710 --> 00:11:11,920
+will be used. And to have your back, browsers
+
+234
+00:11:12,960 --> 00:11:15,590
+have switched to or are experimenting with
+
+235
+00:11:16,010 --> 00:11:18,180
+more privacy-preserving default policies.
+
+236
+00:11:18,430 --> 00:11:20,840
+For example, strict-origin-when-cross-origin, the
+
+237
+00:11:21,550 --> 00:11:22,680
+policy we just talked about.
+
+238
+00:11:23,930 --> 00:11:25,180
+You can already try this out.
+
+239
+00:11:25,220 --> 00:11:27,430
+So check the article in the video notes for details.
+
+240
+00:11:28,770 --> 00:11:30,900
+OK, on to question three: have I secured it
+
+241
+00:11:31,770 --> 00:11:34,730
+correctly? strict-origin-when-cross-origin is
+
+242
+00:11:34,730 --> 00:11:37,610
+good, but maybe you can't set this for your whole web site
+
+243
+00:11:37,900 --> 00:11:40,490
+because of some specific use case you might have.
+
+244
+00:11:41,200 --> 00:11:44,080
+In this case, don't fall back to an unsafe policy
+
+245
+00:11:44,120 --> 00:11:45,120
+altogether.
+
+246
+00:11:45,410 --> 00:11:48,370
+What you can do instead is take a case by case approach.
+
+247
+00:11:48,370 --> 00:11:50,040
+For example, set strict-origin-when-cross-origin
+
+248
+00:11:51,460 --> 00:11:54,670
+as a general policy for your website and
+
+249
+00:11:54,880 --> 00:11:58,340
+a more lax policy on specific elements or requests
+
+250
+00:11:58,380 --> 00:12:00,470
+if need be. You need to pick a policy that
+
+251
+00:12:01,390 --> 00:12:04,600
+fits the level of sensitivity of the data and
+
+252
+00:12:04,640 --> 00:12:06,850
+maybe you have a cookie recipes websites, but
+
+253
+00:12:07,600 --> 00:12:10,390
+maybe you have a health care web app and the topic in the
+
+254
+00:12:10,480 --> 00:12:11,690
+path is sensitive.
+
+255
+00:12:12,310 --> 00:12:15,690
+Or some of the URLs contain user identifying
+
+256
+00:12:15,690 --> 00:12:16,650
+information.
+
+257
+00:12:17,070 --> 00:12:19,950
+On the whole, don't share the Referer to a third party
+
+258
+00:12:19,950 --> 00:12:22,910
+unless it's strictly necessary and transparent
+
+259
+00:12:22,950 --> 00:12:23,990
+to your users.
+
+260
+00:12:24,660 --> 00:12:26,950
+And, one last thought, data that might not look
+
+261
+00:12:27,700 --> 00:12:29,580
+sensitive or identifying can bring one
+
+262
+00:12:30,790 --> 00:12:33,500
+more piece to the puzzle and be more revealing than you
+
+263
+00:12:33,630 --> 00:12:34,630
+think.
+
+264
+00:12:35,630 --> 00:12:36,960
+So that it for the Referer.
+
+265
+00:12:37,300 --> 00:12:38,800
+And I think we're through.
+
+266
+00:12:39,170 --> 00:12:40,590
+So, Rowan, you want to wrap up?
+
+267
+00:12:41,550 --> 00:12:42,760
+Thanks. Yeah.
+
+268
+00:12:42,840 --> 00:12:46,100
+OK. Wow. That was a lot of topics in one session.
+
+269
+00:12:46,470 --> 00:12:49,350
+As always, we've got the links included so you can read
+
+270
+00:12:49,350 --> 00:12:52,020
+more on this. To close then, when you're reviewing data
+
+271
+00:12:52,560 --> 00:12:55,650
+usage, whether that cookies, User-Agent, or
+
+272
+00:12:55,650 --> 00:12:58,650
+Referrer or anything else, what are you going
+
+273
+00:12:58,650 --> 00:12:59,610
+to ask yourself?
+
+274
+00:12:59,860 --> 00:13:01,530
+One, do I need this data?
+
+275
+00:13:02,280 --> 00:13:04,360
+Two, is there an alternative?
+
+276
+00:13:04,700 --> 00:13:06,950
+And three, have I secured it correctly?
+
+277
+00:13:07,620 --> 00:13:10,910
+Speaking of needing data, though, what have we got next?
+
+278
+00:13:11,790 --> 00:13:12,750
+Oh, smooth transition.
+
+279
+00:13:13,710 --> 00:13:16,540
+So you definitely need data at sign-up and sign-in,
+
+280
+00:13:17,250 --> 00:13:18,590
+so you got to do these forms right.
+
+281
+00:13:19,340 --> 00:13:21,970
+And Sam's going to explain how to improve sign in
+
+282
+00:13:22,300 --> 00:13:23,760
+and sign up forms on your websites.
+
+283
+00:13:24,800 --> 00:13:25,800
+And we'll see you around!
+

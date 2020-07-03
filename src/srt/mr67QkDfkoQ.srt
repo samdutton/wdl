@@ -1,0 +1,3208 @@
+1
+00:00:15,300 --> 00:00:16,970
+Hello, I'm Jake.
+
+2
+00:00:17,680 --> 00:00:18,680
+I'm Jason.
+
+3
+00:00:19,600 --> 00:00:21,640
+Earlier in this conference, we released - Is this a
+
+4
+00:00:21,640 --> 00:00:24,350
+conference? Actually, is this a conference or it like an
+
+5
+00:00:24,600 --> 00:00:26,690
+event? I don't know. Let's call it a conference.
+
+6
+00:00:27,100 --> 00:00:28,650
+Earlier in this conference. We released Tooling.Report.
+
+7
+00:00:29,900 --> 00:00:32,780
+This is a website. It looks at all the different JavaScript
+
+8
+00:00:33,110 --> 00:00:34,280
+bundling build tools.
+
+9
+00:00:34,570 --> 00:00:36,610
+Shows the things they're good at and things they're not so
+
+10
+00:00:36,610 --> 00:00:39,530
+good at. But in this session, we are going to write our own
+
+11
+00:00:39,660 --> 00:00:40,660
+plugin.
+
+12
+00:00:40,660 --> 00:00:43,330
+Right. So cruising around the web, we see lots of sites
+
+13
+00:00:43,330 --> 00:00:44,450
+with performance issues.
+
+14
+00:00:44,790 --> 00:00:46,660
+And a lot of times these can be solved with something
+
+15
+00:00:46,660 --> 00:00:49,420
+simple, like a preload tag for a web font
+
+16
+00:00:49,920 --> 00:00:51,880
+or some selective code splitting.
+
+17
+00:00:52,920 --> 00:00:54,670
+But the thing is, when these are controlled by a build
+
+18
+00:00:54,670 --> 00:00:58,130
+system or even, like, deep in layers within a build system,
+
+19
+00:00:58,470 --> 00:01:00,090
+making those changes can be really tricky.
+
+20
+00:01:00,640 --> 00:01:04,060
+So supposedly simple changes can start to seem impossible.
+
+21
+00:01:04,350 --> 00:01:07,730
+Yes. But once you are familiar with writing build plugins,
+
+22
+00:01:08,190 --> 00:01:09,980
+sure, that means you can write build plugins.
+
+23
+00:01:10,020 --> 00:01:12,690
+But it also gives you like insight into how the build tool
+
+24
+00:01:12,690 --> 00:01:15,440
+works. It makes it easier to debug things when they go
+
+25
+00:01:15,440 --> 00:01:18,240
+wrong. And of course, it means that you can go and help
+
+26
+00:01:18,240 --> 00:01:20,660
+with community plugins as well and do PRs and add features
+
+27
+00:01:20,660 --> 00:01:21,870
+and fix bugs, that kind of thing.
+
+28
+00:01:22,330 --> 00:01:24,990
+Definitely. So we're going to create the same plugin for
+
+29
+00:01:25,240 --> 00:01:26,250
+Rollup and then for webpack.
+
+30
+00:01:27,160 --> 00:01:29,540
+Just because those are the two most popular and growing
+
+31
+00:01:29,540 --> 00:01:30,750
+build tools that we've seen.
+
+32
+00:01:31,130 --> 00:01:32,710
+So what are we actually building?
+
+33
+00:01:33,960 --> 00:01:36,670
+We are going to build a service worker plugin.
+
+34
+00:01:37,090 --> 00:01:38,880
+Of course, we're going to build a service worker plugin.
+
+35
+00:01:40,130 --> 00:01:43,140
+So the actual subject matter of a service worker
+
+36
+00:01:43,350 --> 00:01:44,930
+plugin itself doesn't matter all too much.
+
+37
+00:01:45,930 --> 00:01:48,890
+We picked this because it touches on a couple
+
+38
+00:01:48,890 --> 00:01:50,980
+different parts of the build process.
+
+39
+00:01:51,230 --> 00:01:53,270
+So it's one of those things that seems simple on the
+
+40
+00:01:53,270 --> 00:01:55,610
+surface. But there's actually quite a bit of complexity
+
+41
+00:01:55,610 --> 00:01:56,610
+when you dig in.
+
+42
+00:01:56,980 --> 00:01:58,030
+Right. So here's the app.
+
+43
+00:01:58,280 --> 00:02:01,280
+Now we're going to go through the whole app, but it has
+
+44
+00:02:01,610 --> 00:02:03,490
+JavaScript, CSS, images, and HTML, all
+
+45
+00:02:04,740 --> 00:02:06,330
+of which are part of the build process.
+
+46
+00:02:07,870 --> 00:02:10,830
+Right. So the bit that we care about for this session is
+
+47
+00:02:10,830 --> 00:02:13,170
+specifically the registering of a service worker.
+
+48
+00:02:14,420 --> 00:02:17,050
+So the URL of a service worker should never change.
+
+49
+00:02:17,460 --> 00:02:19,760
+And that's because we need to be able to go and check for
+
+50
+00:02:19,760 --> 00:02:22,930
+updates at that URL, but it'd be really nice if we didn't
+
+51
+00:02:22,930 --> 00:02:24,640
+have to duplicate that URL here and
+
+52
+00:02:26,010 --> 00:02:28,810
+in our build configuration and on disk.
+
+53
+00:02:29,640 --> 00:02:31,730
+And instead that was just filled in by the build system.
+
+54
+00:02:33,190 --> 00:02:34,980
+So here's a code for the service worker.
+
+55
+00:02:35,770 --> 00:02:37,570
+We're not going to go over all about how service workers
+
+56
+00:02:37,780 --> 00:02:40,780
+work. There are articles for that, but here are the things
+
+57
+00:02:40,780 --> 00:02:42,150
+we need for this build system.
+
+58
+00:02:42,660 --> 00:02:44,030
+We need a list of URLs to cache.
+
+59
+00:02:44,620 --> 00:02:47,280
+So this should be our HTML, CSS, JavaScript, and images.
+
+60
+00:02:47,620 --> 00:02:49,790
+These are the things that a native app would ship as part
+
+61
+00:02:49,790 --> 00:02:52,960
+of its bundle. Now, we can't just hard
+
+62
+00:02:52,960 --> 00:02:55,580
+code these because the build system is going to change the
+
+63
+00:02:55,580 --> 00:02:56,710
+file name, it's going to make them cachable.
+
+64
+00:02:58,460 --> 00:03:00,300
+It might also code split as well, which is going to
+
+65
+00:03:00,300 --> 00:03:02,760
+generate a whole new JavaScript files that we didn't know
+
+66
+00:03:02,760 --> 00:03:05,720
+about in advance. So because we can't predict it, we
+
+67
+00:03:05,720 --> 00:03:07,260
+need to build tool to fill it all in.
+
+68
+00:03:08,180 --> 00:03:11,180
+Right. So we also need a version for
+
+69
+00:03:11,180 --> 00:03:14,020
+the cache. And this is because when we're installing a new
+
+70
+00:03:14,100 --> 00:03:16,940
+version of the app, we want to use a new cache.
+
+71
+00:03:16,980 --> 00:03:19,940
+That way, we don't potentially disrupt any current version
+
+72
+00:03:19,940 --> 00:03:22,740
+of the application that's in use, maybe in another tab.
+
+73
+00:03:23,360 --> 00:03:26,120
+And so because of that, we need the version to be unique
+
+74
+00:03:26,370 --> 00:03:28,700
+for each given set of assets.
+
+75
+00:03:29,490 --> 00:03:31,700
+Yes. And if we don't change the assets, the version number
+
+76
+00:03:31,700 --> 00:03:34,370
+should stay the same. But if we, say like, update the
+
+77
+00:03:34,750 --> 00:03:36,670
+HTML, the version number needs to change.
+
+78
+00:03:37,290 --> 00:03:38,290
+Easy, right?
+
+79
+00:03:38,630 --> 00:03:41,760
+Right. So the challenge is that we
+
+80
+00:03:42,210 --> 00:03:44,300
+really want the service worker to be part of the main
+
+81
+00:03:44,300 --> 00:03:47,340
+build. We want it to potentially take part in code
+
+82
+00:03:47,340 --> 00:03:50,350
+splitting. We want to minify it just like we would our
+
+83
+00:03:50,350 --> 00:03:51,640
+application JavaScript.
+
+84
+00:03:51,770 --> 00:03:54,600
+And also apply any other plugins and optimizations that we
+
+85
+00:03:54,600 --> 00:03:55,690
+have to that code.
+
+86
+00:03:56,560 --> 00:03:59,320
+The thing is, it also needs to know about the final build
+
+87
+00:03:59,360 --> 00:04:02,150
+result. And that is only available once the build
+
+88
+00:04:02,440 --> 00:04:03,440
+is finished.
+
+89
+00:04:03,860 --> 00:04:06,570
+OK. Here is how I would do this in Rollup.
+
+90
+00:04:07,950 --> 00:04:09,070
+We need to get that service worker URL.
+
+91
+00:04:09,490 --> 00:04:11,240
+So I'm going to import it.
+
+92
+00:04:11,540 --> 00:04:14,040
+Now, note it looks a little bit magic.
+
+93
+00:04:14,040 --> 00:04:16,170
+It's got this sort of fake URL scheme.
+
+94
+00:04:17,710 --> 00:04:18,960
+This divides people.
+
+95
+00:04:19,500 --> 00:04:22,550
+I really like this because I want this to look weird
+
+96
+00:04:23,010 --> 00:04:25,380
+if it's a special part of the build, because it means you
+
+97
+00:04:25,380 --> 00:04:26,550
+look at this code you like, huh?
+
+98
+00:04:26,970 --> 00:04:28,390
+That's odd. Yes, it is odd.
+
+99
+00:04:28,680 --> 00:04:30,600
+The build tool is going to do something special here.
+
+100
+00:04:31,310 --> 00:04:33,600
+It also means like if the build tool doesn't do something
+
+101
+00:04:33,600 --> 00:04:36,440
+special, it is going to fail really, really early.
+
+102
+00:04:36,850 --> 00:04:38,850
+But like I said, this divides people.
+
+103
+00:04:38,850 --> 00:04:40,860
+Jason. How do you feel about this?
+
+104
+00:04:41,570 --> 00:04:44,400
+I mean, I like this idea for the fail early reason.
+
+105
+00:04:44,440 --> 00:04:46,450
+Like, that's a nice thing. If you if you pull this code
+
+106
+00:04:46,450 --> 00:04:49,110
+into a new project, it's going to tell you, "Hey,
+
+107
+00:04:49,450 --> 00:04:51,870
+this isn't a thing". Which is sort of exactly the message
+
+108
+00:04:51,870 --> 00:04:52,910
+you would want to receive.
+
+109
+00:04:53,240 --> 00:04:56,500
+But I also like that, you know, on the right hand side
+
+110
+00:04:56,540 --> 00:04:59,210
+of that colon, it's still just a module path.
+
+111
+00:04:59,210 --> 00:05:01,670
+So it's it's really clear for you when you're visually
+
+112
+00:05:01,670 --> 00:05:03,800
+looking through. This is the special part.
+
+113
+00:05:04,000 --> 00:05:05,170
+This is the regular part.
+
+114
+00:05:06,170 --> 00:05:08,300
+Yes. So all we need to do now is create the
+
+115
+00:05:09,130 --> 00:05:10,140
+build plugin, I guess.
+
+116
+00:05:10,390 --> 00:05:12,010
+So here's the config. The Rollup config.
+
+117
+00:05:12,390 --> 00:05:14,810
+You've seen this before if you've used Rollup, I'm going to
+
+118
+00:05:14,810 --> 00:05:17,770
+import this new plugin and add its to our list of plugins.
+
+119
+00:05:18,980 --> 00:05:20,560
+Now, all we need to do is write it.
+
+120
+00:05:21,400 --> 00:05:24,440
+Rollup has a one pager on how to write plugins,
+
+121
+00:05:24,780 --> 00:05:27,490
+but it's quite a long page.
+
+122
+00:05:27,990 --> 00:05:30,910
+But I have to say that the API is really well-designed
+
+123
+00:05:31,030 --> 00:05:33,740
+and the documentation is really well written.
+
+124
+00:05:34,240 --> 00:05:35,910
+So let's get started.
+
+125
+00:05:36,700 --> 00:05:38,160
+This is what Rollup plugins look like.
+
+126
+00:05:38,410 --> 00:05:41,130
+It's a function that returns an object.
+
+127
+00:05:42,330 --> 00:05:43,920
+It has a name as part of that.
+
+128
+00:05:43,960 --> 00:05:45,710
+And that's for error handling and logging.
+
+129
+00:05:46,260 --> 00:05:49,510
+But everything else, the rest of the object uses methods
+
+130
+00:05:49,550 --> 00:05:51,590
+that are called throughout the build that they're
+
+131
+00:05:51,760 --> 00:05:52,890
+essentially callbacks.
+
+132
+00:05:53,970 --> 00:05:55,890
+Rollup calls them hooks because they'rer hooks into the
+
+133
+00:05:55,890 --> 00:05:56,890
+build process.
+
+134
+00:05:57,270 --> 00:05:59,060
+The first hook we're going to look at is resolveID.
+
+135
+00:06:00,480 --> 00:06:02,900
+This is called for every module that's loaded.
+
+136
+00:06:03,110 --> 00:06:05,480
+So it's going to be called for the main file there, but
+
+137
+00:06:05,480 --> 00:06:08,820
+it's also going to be called for this import and everything
+
+138
+00:06:08,860 --> 00:06:11,160
+it imports, including dynamic imports.
+
+139
+00:06:11,490 --> 00:06:14,240
+The ID you get is the raw, unedited
+
+140
+00:06:14,740 --> 00:06:17,450
+import ID, so that's going to start with the dot-slash in
+
+141
+00:06:17,450 --> 00:06:18,450
+this case.
+
+142
+00:06:19,410 --> 00:06:21,960
+And in this case, it's going to include our special made up
+
+143
+00:06:22,250 --> 00:06:23,380
+URL scheme as well.
+
+144
+00:06:24,210 --> 00:06:26,000
+The second argument is the importer.
+
+145
+00:06:26,090 --> 00:06:28,670
+This is the path to the module which did the importing.
+
+146
+00:06:29,130 --> 00:06:30,670
+And this is the only time you get this piece of
+
+147
+00:06:30,670 --> 00:06:31,680
+information.
+
+148
+00:06:32,180 --> 00:06:35,260
+The job of the resolver is to return a full absolute
+
+149
+00:06:35,300 --> 00:06:37,890
+ID that doesn't need the importer anymore.
+
+150
+00:06:38,220 --> 00:06:41,060
+So, you know, any relative paths should be turned into
+
+151
+00:06:41,140 --> 00:06:42,140
+absolute paths.
+
+152
+00:06:42,650 --> 00:06:45,690
+Now, if you've used Rollup before you'll know that
+
+153
+00:06:45,730 --> 00:06:48,150
+it doesn't support node modules out of the box.
+
+154
+00:06:48,650 --> 00:06:50,530
+You need to add a plugin to be able to do that.
+
+155
+00:06:50,570 --> 00:06:52,570
+It's an official plugin, but you still need to add it.
+
+156
+00:06:53,360 --> 00:06:56,080
+All that is is a resolveID hook.
+
+157
+00:06:56,620 --> 00:06:58,990
+It sees these bare modules and it goes, oh, okay, well,
+
+158
+00:06:59,080 --> 00:07:01,000
+I'll try and find that in node modules.
+
+159
+00:07:01,410 --> 00:07:04,080
+But also if you want to create like path aliases
+
+160
+00:07:05,000 --> 00:07:07,540
+to make them work in Rollup, all you need to do is create a
+
+161
+00:07:07,540 --> 00:07:08,750
+resolveID plugin.
+
+162
+00:07:09,630 --> 00:07:11,880
+So we don't need to do anything with this first import.
+
+163
+00:07:12,260 --> 00:07:14,890
+We just need to handle the second one with the special URL.
+
+164
+00:07:16,010 --> 00:07:17,010
+So here we go.
+
+165
+00:07:17,470 --> 00:07:19,720
+The first thing I'm going to do is just exit early.
+
+166
+00:07:20,350 --> 00:07:23,060
+If it doesn't start with that prefix, actually, we're going
+
+167
+00:07:23,060 --> 00:07:24,560
+to do that sort of thing a few times.
+
+168
+00:07:24,560 --> 00:07:26,310
+So I'm going to pop that in a variable up here.
+
+169
+00:07:27,440 --> 00:07:28,860
+It's going to come up time and time again.
+
+170
+00:07:29,610 --> 00:07:31,650
+So there's an early exit. And it means if it doesn't start
+
+171
+00:07:31,650 --> 00:07:34,490
+with that prefix, we can hand it off to other plugins or
+
+172
+00:07:34,490 --> 00:07:36,370
+the default Rollup stuff.
+
+173
+00:07:37,370 --> 00:07:40,040
+Now, I'm going to remove that prefix and resolve it.
+
+174
+00:07:40,620 --> 00:07:43,960
+'this.resolve', this is a Rollup API.
+
+175
+00:07:44,250 --> 00:07:46,500
+And what it says is, like, take this ID and go
+
+176
+00:07:47,210 --> 00:07:48,210
+and find it for me.
+
+177
+00:07:49,710 --> 00:07:51,010
+It couldn't do it by default before.
+
+178
+00:07:51,050 --> 00:07:52,550
+But now we've removed the prefix.
+
+179
+00:07:53,090 --> 00:07:55,300
+Off it goes. And that's going to actually pass it back
+
+180
+00:07:55,300 --> 00:07:57,850
+through all the plugins that do resolving, including
+
+181
+00:07:58,300 --> 00:07:59,890
+our own. But we're going to ignore it because it doesn't
+
+182
+00:07:59,890 --> 00:08:00,890
+have the prefix anymore.
+
+183
+00:08:01,220 --> 00:08:04,230
+But it means like if you have a service worker in node
+
+184
+00:08:04,230 --> 00:08:07,310
+modules or if you have like path
+
+185
+00:08:07,350 --> 00:08:09,650
+aliases, it will all just work.
+
+186
+00:08:11,280 --> 00:08:14,320
+So if there's no match, just bail, and
+
+187
+00:08:14,360 --> 00:08:16,570
+that will cause an error eventually because it means that
+
+188
+00:08:16,570 --> 00:08:17,950
+we couldn't find that service worker.
+
+189
+00:08:18,410 --> 00:08:20,990
+Otherwise, I'm going to add that prefix back on so we can
+
+190
+00:08:20,990 --> 00:08:21,950
+pick it up later on.
+
+191
+00:08:23,370 --> 00:08:25,330
+But now we have an absolute path to the service worker.
+
+192
+00:08:25,660 --> 00:08:27,080
+We have achieved a thing.
+
+193
+00:08:27,670 --> 00:08:28,670
+We can try and build it.
+
+194
+00:08:29,330 --> 00:08:32,130
+Here we go. (sad trombone) It's not going to work.
+
+195
+00:08:32,630 --> 00:08:35,760
+But you can see in that error message it's failed because
+
+196
+00:08:35,760 --> 00:08:37,130
+of that special prefix.
+
+197
+00:08:37,470 --> 00:08:40,430
+But the rest of it is an absolute path to
+
+198
+00:08:40,470 --> 00:08:43,020
+the file as it is on my system.
+
+199
+00:08:43,470 --> 00:08:46,020
+So all we need to do is tell it how to load that script.
+
+200
+00:08:46,810 --> 00:08:49,610
+This is another hook "load" it gets the ID
+
+201
+00:08:50,110 --> 00:08:51,690
+as it's been fully resolved.
+
+202
+00:08:53,110 --> 00:08:55,820
+Again, we want to ignore if it doesn't have that prefix and
+
+203
+00:08:55,820 --> 00:08:57,110
+let other plugins deal with it.
+
+204
+00:08:58,030 --> 00:09:00,530
+And what we need to do now is return the content for this
+
+205
+00:09:00,530 --> 00:09:03,410
+module. So we could just actually make the module,
+
+206
+00:09:03,490 --> 00:09:05,200
+I'm going to do that and the return "hello".
+
+207
+00:09:05,750 --> 00:09:08,210
+And now we've done that, the project will actually build.
+
+208
+00:09:08,670 --> 00:09:11,250
+It's going to turn that fancy custom import into
+
+209
+00:09:11,960 --> 00:09:12,960
+"hello".
+
+210
+00:09:14,300 --> 00:09:17,010
+This is kind of silly, but just knowing those two things,
+
+211
+00:09:17,010 --> 00:09:20,050
+knowing how to resolve and knowing how to load, you can do
+
+212
+00:09:20,050 --> 00:09:22,720
+all sorts with that, that you can do all sorts of cool code
+
+213
+00:09:22,720 --> 00:09:25,560
+generation, loading of your files, that sort of thing.
+
+214
+00:09:25,770 --> 00:09:27,430
+I guess it's not so what we set out to do.
+
+215
+00:09:27,480 --> 00:09:29,900
+But like, you could totally see how this is basically like
+
+216
+00:09:29,900 --> 00:09:31,190
+a constant plugin.
+
+217
+00:09:32,520 --> 00:09:35,650
+Yes, exactly. And I've built constant plugins, and
+
+218
+00:09:35,650 --> 00:09:36,900
+that's exactly how you do it.
+
+219
+00:09:37,650 --> 00:09:38,900
+But let's improve on that.
+
+220
+00:09:38,900 --> 00:09:41,370
+So instead of just returning "hello", we need to bring the
+
+221
+00:09:41,370 --> 00:09:44,410
+service worker into the build system and return
+
+222
+00:09:44,540 --> 00:09:47,160
+it's URL. To bring a file into a build and can use
+
+223
+00:09:47,290 --> 00:09:50,250
+emitFile. This is a Rollup API for adding stuff into
+
+224
+00:09:50,250 --> 00:09:51,250
+the build.
+
+225
+00:09:52,080 --> 00:09:54,750
+I'm going to say this is a chunk and that's telling Rollup
+
+226
+00:09:54,840 --> 00:09:57,210
+like, "treat this like a JavaScript entry point".
+
+227
+00:09:57,550 --> 00:10:00,090
+So it should be processed by all the same plugins that deal
+
+228
+00:10:00,090 --> 00:10:02,930
+with JavaScript like minifiers, code splitting, and all of
+
+229
+00:10:02,930 --> 00:10:03,930
+that sort stuff.
+
+230
+00:10:04,510 --> 00:10:05,640
+It could also be 'asset'.
+
+231
+00:10:06,270 --> 00:10:09,140
+And if it's an asset, that's that's like an image, CSS,
+
+232
+00:10:10,980 --> 00:10:11,980
+I don't know, WebGL shaders.
+
+233
+00:10:12,900 --> 00:10:15,360
+Anything that's not JavaScript essentially you can process
+
+234
+00:10:15,360 --> 00:10:16,360
+in this way.
+
+235
+00:10:16,900 --> 00:10:19,150
+I'm going to give it the ID and that's telling Rollup where
+
+236
+00:10:19,150 --> 00:10:21,910
+to find it. So we've removed the prefix again
+
+237
+00:10:22,910 --> 00:10:24,870
+and I'm going to give it a file name. And this is not
+
+238
+00:10:24,870 --> 00:10:26,030
+something you would usually do.
+
+239
+00:10:26,740 --> 00:10:29,960
+What this does is it overwrites the naming
+
+240
+00:10:29,960 --> 00:10:32,210
+system that Rollup would usually use because Rollup would
+
+241
+00:10:32,210 --> 00:10:33,960
+usually add a hash to this file.
+
+242
+00:10:34,250 --> 00:10:36,210
+But with service worker, you don't want its name to be
+
+243
+00:10:36,210 --> 00:10:38,510
+changing. You want it to be in a static location.
+
+244
+00:10:39,170 --> 00:10:40,260
+So that's how we achieved that.
+
+245
+00:10:41,180 --> 00:10:42,970
+Actually, I'd say this is this is something that you would
+
+246
+00:10:43,010 --> 00:10:44,550
+offer to the user as configuration.
+
+247
+00:10:44,890 --> 00:10:46,760
+So I'm going to do that. I'm going to add an option object
+
+248
+00:10:46,760 --> 00:10:47,760
+to the top here.
+
+249
+00:10:48,140 --> 00:10:51,480
+And I'm just going to like change the variable
+
+250
+00:10:51,480 --> 00:10:53,270
+down here. So it's using that.
+
+251
+00:10:53,270 --> 00:10:55,310
+So that means the user can change the path of the service
+
+252
+00:10:55,310 --> 00:10:58,280
+worker, the file name, all of that sort of stuff.
+
+253
+00:11:00,150 --> 00:11:03,110
+Now, what we need to do is get the URL for this file and
+
+254
+00:11:03,280 --> 00:11:04,870
+strap in. It's a bit of magic.
+
+255
+00:11:05,620 --> 00:11:06,620
+Woo! There it goes.
+
+256
+00:11:07,620 --> 00:11:10,040
+So I'm returning the import.meta, and
+
+257
+00:11:10,830 --> 00:11:13,670
+then this sort of magic string that ends in a file ID.
+
+258
+00:11:14,040 --> 00:11:15,540
+And we've got the file ID from emitFile.
+
+259
+00:11:16,790 --> 00:11:19,670
+Rollup will see this and it will turn it into a URL for the
+
+260
+00:11:19,760 --> 00:11:22,220
+resource. So here's what that looks like.
+
+261
+00:11:23,010 --> 00:11:25,300
+Here's the input and here's the output.
+
+262
+00:11:26,050 --> 00:11:27,510
+So it's created this URL object.
+
+263
+00:11:28,140 --> 00:11:30,970
+And it does that so it can create a relative
+
+264
+00:11:31,140 --> 00:11:34,020
+URL from this script to
+
+265
+00:11:34,230 --> 00:11:36,980
+the service worker. Because on the web, if you've got an
+
+266
+00:11:37,060 --> 00:11:40,070
+image tag with a source or whatever, or
+
+267
+00:11:40,650 --> 00:11:42,820
+when you're calling serviceWorker.register(), by default
+
+268
+00:11:42,820 --> 00:11:44,280
+URLs are relative to the page.
+
+269
+00:11:44,570 --> 00:11:47,200
+But Rollup doesn't know anything about the page.
+
+270
+00:11:47,280 --> 00:11:49,080
+So it creates this, this script relative URL.
+
+271
+00:11:50,370 --> 00:11:51,580
+You can actually configure this in Rollup.
+
+272
+00:11:52,960 --> 00:11:55,500
+So you can tell it, "Hey, all my stuff is actually at the
+
+273
+00:11:55,500 --> 00:11:56,920
+roots of the origin.
+
+274
+00:11:57,380 --> 00:11:58,840
+All you need to do is add a slash to the start".
+
+275
+00:11:58,840 --> 00:12:01,090
+And obviously that will clean up the code a bit.
+
+276
+00:12:01,510 --> 00:12:02,760
+It just doesn't do it by default.
+
+277
+00:12:04,590 --> 00:12:07,260
+But also in our build, we've got a service worker, so that
+
+278
+00:12:07,390 --> 00:12:08,390
+bit is working.
+
+279
+00:12:09,260 --> 00:12:12,060
+All we have to do now is deal with these two things, the
+
+280
+00:12:12,390 --> 00:12:13,560
+version and the assets.
+
+281
+00:12:15,310 --> 00:12:16,900
+We'll handle the the assets first.
+
+282
+00:12:18,190 --> 00:12:21,320
+To do this, we need to know the full details of
+
+283
+00:12:21,320 --> 00:12:24,360
+the build. So because we need those hashed file names
+
+284
+00:12:24,360 --> 00:12:25,400
+and all of that sort of stuff.
+
+285
+00:12:25,900 --> 00:12:28,530
+So we need a hook that is towards the end of the build
+
+286
+00:12:28,530 --> 00:12:29,530
+process.
+
+287
+00:12:30,030 --> 00:12:31,030
+We're gonna use generateBundle.
+
+288
+00:12:31,790 --> 00:12:34,540
+This happens just before things are written to disk.
+
+289
+00:12:35,330 --> 00:12:38,420
+The options parameter, you know,
+
+290
+00:12:38,500 --> 00:12:40,920
+it's the output options. It's not very interesting for us
+
+291
+00:12:40,920 --> 00:12:41,920
+in this case.
+
+292
+00:12:42,840 --> 00:12:45,970
+But this, this is where
+
+293
+00:12:46,220 --> 00:12:47,220
+the party is at.
+
+294
+00:12:47,630 --> 00:12:49,640
+This is full of interesting details about
+
+295
+00:12:50,640 --> 00:12:51,430
+the build.
+
+296
+00:12:51,430 --> 00:12:54,470
+It's a JavaScript object where the key is the file name
+
+297
+00:12:54,640 --> 00:12:56,310
+and the object has details on the file.
+
+298
+00:12:56,310 --> 00:12:58,980
+So this is an asset. So you can see it's got a file name
+
+299
+00:12:59,400 --> 00:13:02,230
+and it's got a buffer representing the content.
+
+300
+00:13:02,650 --> 00:13:05,900
+But for chunks, look at all this all this stuff
+
+301
+00:13:05,900 --> 00:13:07,200
+we get. This is amazing.
+
+302
+00:13:08,820 --> 00:13:11,030
+It tells us things like the imports and the exports of the
+
+303
+00:13:11,030 --> 00:13:13,120
+file. I've used this and other plugins
+
+304
+00:13:14,040 --> 00:13:16,830
+if I'm generating HTML and I'm putting a script tag
+
+305
+00:13:17,410 --> 00:13:18,420
+on the page.
+
+306
+00:13:19,330 --> 00:13:21,170
+I know that that script is just going to import other
+
+307
+00:13:21,290 --> 00:13:23,630
+scripts and I want to preload those things.
+
+308
+00:13:23,920 --> 00:13:24,920
+Well, I can do that here.
+
+309
+00:13:26,340 --> 00:13:29,220
+So this will tell me which things it's going to immediately
+
+310
+00:13:29,430 --> 00:13:31,300
+import so I can turn those into preloads.
+
+311
+00:13:32,640 --> 00:13:35,060
+Anyway, loads of interesting info.
+
+312
+00:13:36,220 --> 00:13:37,230
+We're going to make use of this.
+
+313
+00:13:38,140 --> 00:13:40,350
+In the generateBundle hook, I'm going to get that service
+
+314
+00:13:40,350 --> 00:13:43,270
+worker chunk just from that output option, because that's
+
+315
+00:13:43,480 --> 00:13:44,480
+the file name of it.
+
+316
+00:13:45,030 --> 00:13:47,320
+And then we need to figure out which assets the
+
+317
+00:13:47,990 --> 00:13:50,320
+service worker needs to know about the things that it wants
+
+318
+00:13:50,320 --> 00:13:51,320
+to cache.
+
+319
+00:13:51,950 --> 00:13:54,910
+But iterate over the bundle, get the values, and I'm going
+
+320
+00:13:54,910 --> 00:13:57,540
+to get everything except the service worker item itself.
+
+321
+00:13:58,250 --> 00:14:01,040
+If a service worker caches itself like
+
+322
+00:14:01,710 --> 00:14:04,090
+it doesn't cause the world to end, like you might imagine,
+
+323
+00:14:04,170 --> 00:14:05,920
+it's it's just a bit wasteful.
+
+324
+00:14:07,260 --> 00:14:08,800
+We definitely designed around that.
+
+325
+00:14:08,800 --> 00:14:10,380
+We were worried people would do that.
+
+326
+00:14:10,430 --> 00:14:12,760
+So it's actually OK. But this is a point where people might
+
+327
+00:14:12,760 --> 00:14:15,430
+want to configure the things which are actually cached by
+
+328
+00:14:15,430 --> 00:14:17,890
+the service worker. So what I'm going to do is add another
+
+329
+00:14:17,930 --> 00:14:21,350
+option here. 'filterAssets' returns true by default.
+
+330
+00:14:22,020 --> 00:14:23,150
+And I'm going to call it down here.
+
+331
+00:14:25,270 --> 00:14:26,730
+Slight complicating factor.
+
+332
+00:14:26,860 --> 00:14:29,320
+We want these paths to be relative to the service worker
+
+333
+00:14:29,320 --> 00:14:32,490
+itself. And unfortunately, Rollup doesn't give us access
+
+334
+00:14:32,490 --> 00:14:35,660
+to it's URL resolving magic stuff.
+
+335
+00:14:35,740 --> 00:14:37,080
+I've filed a issue for that.
+
+336
+00:14:37,950 --> 00:14:39,660
+But we're gonna have to do ourselves this time.
+
+337
+00:14:40,370 --> 00:14:42,670
+So I'm going to use node's posix path resolving
+
+338
+00:14:43,330 --> 00:14:46,000
+stuff. Another reason I'm doing that is because posix paths
+
+339
+00:14:46,040 --> 00:14:48,760
+have the forward slash and that's the same as URLs.
+
+340
+00:14:49,550 --> 00:14:50,920
+So we can we can rely on that.
+
+341
+00:14:51,880 --> 00:14:54,850
+And then down here, this is how I curate the relative URLs.
+
+342
+00:14:55,050 --> 00:14:57,680
+This is done by saying "give me the relative path from
+
+343
+00:14:58,060 --> 00:15:01,020
+the folder that the service worker is in to the item
+
+344
+00:15:01,270 --> 00:15:02,270
+from the build".
+
+345
+00:15:03,400 --> 00:15:04,400
+And now we've got that.
+
+346
+00:15:04,770 --> 00:15:06,400
+I can prepend that to the file.
+
+347
+00:15:06,770 --> 00:15:09,230
+So this bundle object is live
+
+348
+00:15:09,730 --> 00:15:12,110
+in that any changes I make here are actually going to be
+
+349
+00:15:12,110 --> 00:15:14,820
+written to disk. So here I'm just taking the code for the
+
+350
+00:15:14,820 --> 00:15:17,200
+service worker chunk, adding that
+
+351
+00:15:17,830 --> 00:15:21,040
+assets line to the start, using JSON.stringify to correctly
+
+352
+00:15:21,120 --> 00:15:22,120
+escape everything.
+
+353
+00:15:22,410 --> 00:15:24,500
+And now that will be part of the service worker.
+
+354
+00:15:25,380 --> 00:15:27,250
+And if we build, there it is.
+
+355
+00:15:27,290 --> 00:15:29,090
+There it is in the output. The assets.
+
+356
+00:15:30,840 --> 00:15:33,510
+We've created a problem, though. And this is something
+
+357
+00:15:33,840 --> 00:15:35,890
+that catches a lot of people out when they're doing service
+
+358
+00:15:35,890 --> 00:15:38,510
+workers. It's this it's easy to think that the service
+
+359
+00:15:38,760 --> 00:15:40,430
+worker is caching files, but it's not.
+
+360
+00:15:40,520 --> 00:15:41,520
+It's caching URLs.
+
+361
+00:15:42,140 --> 00:15:44,480
+And we don't want .HTML in our URLs.
+
+362
+00:15:44,640 --> 00:15:47,110
+We don't want index.HTML in our URLs.
+
+363
+00:15:47,980 --> 00:15:48,980
+So we need to fix that.
+
+364
+00:15:49,860 --> 00:15:52,110
+Back in our plugin, this is where we were before.
+
+365
+00:15:52,490 --> 00:15:54,200
+How can we solve a problem like this?
+
+366
+00:15:55,280 --> 00:15:57,240
+Regular expressions. Of course, it's Regex.
+
+367
+00:16:00,040 --> 00:16:02,160
+I'm not going to go through how this works.
+
+368
+00:16:02,950 --> 00:16:03,960
+I see a back reference in there? I'm not even...
+
+369
+00:16:06,250 --> 00:16:07,330
+I love back reference.
+
+370
+00:16:08,170 --> 00:16:10,500
+I often say that regular expressions are write-only.
+
+371
+00:16:11,300 --> 00:16:12,880
+You can't read them again afterwards.
+
+372
+00:16:13,420 --> 00:16:16,050
+But trust me, this is removing the .HTML and it's removing
+
+373
+00:16:16,050 --> 00:16:17,470
+the index.HTML as well.
+
+374
+00:16:18,140 --> 00:16:20,350
+This could land us with an empty string, which is a problem
+
+375
+00:16:20,350 --> 00:16:23,020
+because that will resolve to the service worker script
+
+376
+00:16:23,180 --> 00:16:25,600
+itself. So in that case, just gonna output a dot.
+
+377
+00:16:27,310 --> 00:16:28,900
+And that solved the problem. There we go.
+
+378
+00:16:29,190 --> 00:16:31,780
+Index.HTML there is replaced with a dot.
+
+379
+00:16:33,070 --> 00:16:34,440
+OK. Last thing.
+
+380
+00:16:34,690 --> 00:16:36,990
+Just need to deal with that version thing.
+
+381
+00:16:37,490 --> 00:16:39,450
+Thankfully we're most of the way there already.
+
+382
+00:16:39,820 --> 00:16:42,160
+This is going to be a hash, so I'm going to include nodes
+
+383
+00:16:42,540 --> 00:16:43,540
+hashing stuff.
+
+384
+00:16:44,500 --> 00:16:47,080
+Down in the generate function, create one of these objects.
+
+385
+00:16:47,080 --> 00:16:50,000
+I picked 'sha1' because
+
+386
+00:16:50,670 --> 00:16:52,840
+I've heard of it before, and it wasn't MD5.
+
+387
+00:16:53,590 --> 00:16:54,550
+It's secure.
+
+388
+00:16:54,550 --> 00:16:56,010
+I'd heard it was worse. Yeah.
+
+389
+00:16:56,130 --> 00:16:57,880
+This is, this is very secure.
+
+390
+00:16:59,220 --> 00:17:01,180
+I mean, yeah, security doesn't matter in this case.
+
+391
+00:17:01,510 --> 00:17:02,510
+It's just, it's just for hashing.
+
+392
+00:17:04,100 --> 00:17:06,600
+Oh don't quote me on that. Like security generally matters.
+
+393
+00:17:07,100 --> 00:17:08,270
+[Laughing] Jake Archibald, security doesn't matter.
+
+394
+00:17:10,900 --> 00:17:12,110
+What a quote to take out of context!
+
+395
+00:17:12,940 --> 00:17:16,030
+OK, so now here I'm adding
+
+396
+00:17:16,490 --> 00:17:17,740
+everything to that hash.
+
+397
+00:17:17,780 --> 00:17:20,740
+So it's either the the source or
+
+398
+00:17:20,740 --> 00:17:23,030
+the code, depending on whether it's an asset or whether
+
+399
+00:17:23,030 --> 00:17:24,040
+it's a chunk.
+
+400
+00:17:25,410 --> 00:17:27,870
+And now I could get a hex version of that hash and
+
+401
+00:17:28,420 --> 00:17:30,380
+include it in the old output there.
+
+402
+00:17:31,960 --> 00:17:33,500
+And that's really it. That's it.
+
+403
+00:17:33,550 --> 00:17:35,760
+We can see that the hash is now in the service worker.
+
+404
+00:17:37,130 --> 00:17:40,140
+There's a couple of caveats here by
+
+405
+00:17:40,180 --> 00:17:41,850
+editing the source right at the end.
+
+406
+00:17:42,100 --> 00:17:44,390
+That was after source maps were generated.
+
+407
+00:17:44,510 --> 00:17:46,470
+So we have just broken source maps.
+
+408
+00:17:46,890 --> 00:17:47,890
+Just for the service worker.
+
+409
+00:17:48,890 --> 00:17:50,560
+I filed an issue with Rollup because
+
+410
+00:17:52,110 --> 00:17:53,900
+I would like there to be an easier way to do this.
+
+411
+00:17:54,610 --> 00:17:56,030
+So hopefully they can add something.
+
+412
+00:17:56,940 --> 00:17:59,280
+We could we could probably work around this by adding those
+
+413
+00:17:59,280 --> 00:18:01,740
+blank lines in a transformed step
+
+414
+00:18:02,450 --> 00:18:04,160
+so we can fill them in later because that that will -
+
+415
+00:18:06,200 --> 00:18:08,290
+those extra two lines at the top, will at least be taken
+
+416
+00:18:08,660 --> 00:18:10,420
+into consideration with the source maps.
+
+417
+00:18:11,120 --> 00:18:12,670
+I don't know. It would be good if there's a proper way of
+
+418
+00:18:12,670 --> 00:18:13,670
+doing this. But anyway.
+
+419
+00:18:15,130 --> 00:18:17,420
+That is it. That is the full plugin.
+
+420
+00:18:19,010 --> 00:18:22,010
+So, Jason, how would you do that
+
+421
+00:18:22,300 --> 00:18:23,300
+in webpack?
+
+422
+00:18:23,600 --> 00:18:26,180
+Right. So building plugins for webpack works a little
+
+423
+00:18:26,560 --> 00:18:29,230
+bit differently. And to illustrate this, I'm going to use a
+
+424
+00:18:29,230 --> 00:18:31,650
+fairly similar approach and naming to what we saw
+
+425
+00:18:32,440 --> 00:18:33,900
+in Jake's Rollup version.
+
+426
+00:18:34,190 --> 00:18:36,230
+Much like with Rollup, the place where we're gonna start
+
+427
+00:18:36,320 --> 00:18:37,320
+will be the bundler config.
+
+428
+00:18:38,780 --> 00:18:42,240
+Now, a typical webpack.config.js file specifies
+
+429
+00:18:42,410 --> 00:18:44,620
+some entry points, which are going to be the modules where
+
+430
+00:18:44,620 --> 00:18:45,620
+bundling starts.
+
+431
+00:18:46,450 --> 00:18:48,870
+Some options for the format and location of files
+
+432
+00:18:49,370 --> 00:18:51,830
+generated on disk and plugins, which is what we're
+
+433
+00:18:52,170 --> 00:18:53,170
+concerned with today.
+
+434
+00:18:53,880 --> 00:18:56,540
+All we need to do is import our plugin that we're going to
+
+435
+00:18:56,540 --> 00:18:58,840
+write and then add it to the plugin's array.
+
+436
+00:19:00,800 --> 00:19:03,680
+At its core, a webpack plugin is really just an object
+
+437
+00:19:03,800 --> 00:19:06,850
+with an apply method and that apply method gets passed
+
+438
+00:19:07,140 --> 00:19:08,310
+the compiler instance.
+
+439
+00:19:08,680 --> 00:19:11,480
+So wait one second. So this is like I see you using classes
+
+440
+00:19:11,480 --> 00:19:14,230
+here. So in Rollup, we were using the function which
+
+441
+00:19:14,230 --> 00:19:16,650
+returned an object. But in webpack land, it's it's all
+
+442
+00:19:16,650 --> 00:19:17,650
+class based?
+
+443
+00:19:17,900 --> 00:19:20,030
+So technically, webpack does not care.
+
+444
+00:19:20,360 --> 00:19:22,070
+It just needs an object with in the apply method.
+
+445
+00:19:22,150 --> 00:19:25,700
+But all of the webpack core modules
+
+446
+00:19:25,740 --> 00:19:28,740
+are classes. And I think as a result of that, all of
+
+447
+00:19:28,740 --> 00:19:31,870
+the ecosystem plugins tend to be classes just because
+
+448
+00:19:32,000 --> 00:19:34,830
+when people import it, they expect to instantiate with new.
+
+449
+00:19:35,460 --> 00:19:37,670
+You could totally write a webpack plugin that was a
+
+450
+00:19:37,670 --> 00:19:38,920
+function that returns an object.
+
+451
+00:19:39,550 --> 00:19:41,550
+I was even actually tempted to do that for this talk to
+
+452
+00:19:41,550 --> 00:19:43,430
+make it look more like the Rollup plugin.
+
+453
+00:19:44,470 --> 00:19:47,260
+But you know we'll stick with the thing people actually do.
+
+454
+00:19:48,640 --> 00:19:51,520
+All right. So if you member in Rollup, plugins
+
+455
+00:19:51,640 --> 00:19:54,770
+define special hook methods that get called in response to
+
+456
+00:19:54,850 --> 00:19:57,560
+events. In webpack, we do the opposite.
+
+457
+00:19:57,980 --> 00:20:00,320
+Your plugin taps into events.
+
+458
+00:20:01,320 --> 00:20:03,490
+And so what we want to do is want to handle a special
+
+459
+00:20:03,490 --> 00:20:05,700
+service-worker:import prefix.
+
+460
+00:20:06,110 --> 00:20:08,320
+And so to do that, we need to tap into normalModuleFactory.
+
+461
+00:20:09,580 --> 00:20:12,040
+And just to preempt because everybody gets confused at
+
+462
+00:20:12,040 --> 00:20:15,290
+this. Normal modules are source
+
+463
+00:20:15,290 --> 00:20:17,790
+modules. These are the code you write, the code you
+
+464
+00:20:18,250 --> 00:20:20,750
+get from NPM, code that you're going to put in your
+
+465
+00:20:21,250 --> 00:20:23,800
+application. There are other types of modules, which
+
+466
+00:20:24,220 --> 00:20:26,890
+is why there is other module factories for things like
+
+467
+00:20:27,390 --> 00:20:30,470
+loaders. Basically, they're more on the infrastructure
+
+468
+00:20:30,470 --> 00:20:32,770
+side of things. So if what we're looking to do here is
+
+469
+00:20:32,770 --> 00:20:35,140
+resolve our own import, we use normalModuleFactory.
+
+470
+00:20:36,640 --> 00:20:39,810
+And so similar with Rollup, anytime we tap into something,
+
+471
+00:20:39,860 --> 00:20:42,400
+we want to pass it a name, which is the name for our
+
+472
+00:20:42,480 --> 00:20:45,030
+plugin. And this gets used for debugging and logging
+
+473
+00:20:45,400 --> 00:20:48,450
+purposes. And also when taking performance profiles.
+
+474
+00:20:50,530 --> 00:20:52,330
+So within normalModuleFactory, we can
+
+475
+00:20:53,620 --> 00:20:56,250
+now hook into webpack's resolver.
+
+476
+00:20:57,040 --> 00:20:59,250
+And this gives us a reference to webpack's own resolve
+
+477
+00:20:59,250 --> 00:21:01,750
+function, which is the thing that sort of handles finding
+
+478
+00:21:01,750 --> 00:21:03,380
+modules and loading them from disk.
+
+479
+00:21:04,090 --> 00:21:06,930
+But it also lets us return our own custom resolver
+
+480
+00:21:06,930 --> 00:21:09,930
+function, which gets passed a dependency description
+
+481
+00:21:10,510 --> 00:21:12,810
+and a callback because it's asynchronous.
+
+482
+00:21:13,100 --> 00:21:16,180
+And so this function we can call the original
+
+483
+00:21:16,180 --> 00:21:18,730
+resolve function. We can do something custom, we can
+
+484
+00:21:19,060 --> 00:21:20,060
+combine the two.
+
+485
+00:21:20,940 --> 00:21:23,020
+To make things easier, we're just going to take those three
+
+486
+00:21:23,020 --> 00:21:26,110
+bits of information that we have and pass them to a new
+
+487
+00:21:26,150 --> 00:21:28,570
+resolveID method that we're going to write.
+
+488
+00:21:29,030 --> 00:21:30,370
+And that sort of everything we needed from apply.
+
+489
+00:21:32,830 --> 00:21:36,160
+So our resolveID method is going to be called
+
+490
+00:21:36,160 --> 00:21:39,170
+for each import specifier in the app
+
+491
+00:21:39,420 --> 00:21:42,380
+with a description of the dependency, that
+
+492
+00:21:42,670 --> 00:21:45,170
+original result function from webpack, and the callback to
+
+493
+00:21:45,170 --> 00:21:46,170
+call when we're done.
+
+494
+00:21:47,050 --> 00:21:50,090
+A dependency description is an object with context
+
+495
+00:21:50,130 --> 00:21:51,340
+and request properties.
+
+496
+00:21:51,800 --> 00:21:54,310
+Context is the directory of the module that's doing
+
+497
+00:21:55,140 --> 00:21:58,180
+the importing. So in this case, dot-slash and
+
+498
+00:21:58,180 --> 00:22:01,440
+request is the unmodified import specifiers.
+
+499
+00:22:01,440 --> 00:22:04,270
+So in this case, it includes our service worker prefix and
+
+500
+00:22:04,610 --> 00:22:06,900
+also the relative path to that file on disk.
+
+501
+00:22:07,150 --> 00:22:09,780
+So similar to Rollup, the first thing we want to do is
+
+502
+00:22:09,900 --> 00:22:12,950
+figure out whether this is an import that has our
+
+503
+00:22:12,990 --> 00:22:14,240
+prefix that we want to handle.
+
+504
+00:22:15,240 --> 00:22:17,950
+If it isn't, then we can just call webpacks original
+
+505
+00:22:17,950 --> 00:22:20,580
+resolve method. It will do what it would normally do.
+
+506
+00:22:20,620 --> 00:22:22,420
+Since there's no prefix, we don't really care about that
+
+507
+00:22:22,460 --> 00:22:23,420
+module.
+
+508
+00:22:24,090 --> 00:22:26,750
+But if it does have the prefix, we need to remove that
+
+509
+00:22:27,170 --> 00:22:30,720
+prefix and then pass it through resolve.
+
+510
+00:22:31,840 --> 00:22:34,760
+And so if the module can't be resolved, we can just forward
+
+511
+00:22:34,850 --> 00:22:36,100
+that error up. That will break the build.
+
+512
+00:22:36,390 --> 00:22:38,060
+There will be an error in the console saying, "Hey,
+
+513
+00:22:38,640 --> 00:22:39,640
+couldn't find module SW/index.js".
+
+514
+00:22:42,650 --> 00:22:46,150
+If it does work, then it'll pass us back a new dependancy
+
+515
+00:22:46,150 --> 00:22:49,490
+object where the request property is a fully resolved
+
+516
+00:22:49,490 --> 00:22:50,490
+disk path.
+
+517
+00:22:52,160 --> 00:22:54,490
+The thing is, we don't actually want to resolve this module
+
+518
+00:22:54,530 --> 00:22:55,530
+to a path.
+
+519
+00:22:56,370 --> 00:22:59,370
+Right. we want to resolve this module to a string somehow.
+
+520
+00:22:59,410 --> 00:23:01,410
+Right. This the string that contains the location of our
+
+521
+00:23:01,410 --> 00:23:02,420
+service worker.
+
+522
+00:23:03,040 --> 00:23:04,920
+And so to do that, we need to sort of - We need to come up
+
+523
+00:23:04,920 --> 00:23:08,090
+with a way of producing a virtual module.
+
+524
+00:23:08,170 --> 00:23:09,170
+Even though we're inside of the resolver.
+
+525
+00:23:10,670 --> 00:23:13,890
+Essentially, we want to intercept this service worker
+
+526
+00:23:13,890 --> 00:23:17,100
+prefix request and then resolve it to a module
+
+527
+00:23:17,100 --> 00:23:19,390
+that we create on the fly. It doesn't actually exist.
+
+528
+00:23:19,850 --> 00:23:23,100
+That just exports the string URL for our service worker.
+
+529
+00:23:24,850 --> 00:23:27,690
+And then one thing we do need to account for here is when
+
+530
+00:23:27,690 --> 00:23:30,440
+when we're working with URLs in webpack, we need to make
+
+531
+00:23:30,690 --> 00:23:33,490
+sure that we respect any webpack public path
+
+532
+00:23:33,860 --> 00:23:35,320
+magic global that has been set.
+
+533
+00:23:35,910 --> 00:23:38,530
+And so this is either the output.public_path
+
+534
+00:23:39,410 --> 00:23:42,410
+configuration value or some value that has been set
+
+535
+00:23:42,460 --> 00:23:43,460
+at runtime.
+
+536
+00:23:43,920 --> 00:23:46,080
+Right. OK. So this is this is another difference from
+
+537
+00:23:46,210 --> 00:23:49,500
+Rollup. So Rollup had to do some of the magic
+
+538
+00:23:49,500 --> 00:23:52,050
+around, like, you know, resolving URLs
+
+539
+00:23:52,590 --> 00:23:55,300
+and stuff, whereas here you've just got a string,
+
+540
+00:23:55,640 --> 00:23:57,680
+which is like where in the webroot is it.
+
+541
+00:23:58,180 --> 00:23:59,760
+Right. Yeah. So like Rollup.
+
+542
+00:24:00,350 --> 00:24:03,390
+You know, they have automation here to sort of give
+
+543
+00:24:03,390 --> 00:24:04,770
+you module relative paths.
+
+544
+00:24:05,600 --> 00:24:09,150
+In webpack, it's a configuration value.
+
+545
+00:24:09,610 --> 00:24:12,070
+And the nice thing is, you know, because everybody
+
+546
+00:24:13,240 --> 00:24:16,070
+uses that configuration value, all plugins tend to respect
+
+547
+00:24:16,110 --> 00:24:18,780
+it. So here, if we combine these two strings, we'll get
+
+548
+00:24:19,240 --> 00:24:21,830
+the slash, which is sort of our default webpack public path
+
+549
+00:24:21,830 --> 00:24:24,910
+value. And that means that the result of this import
+
+550
+00:24:24,960 --> 00:24:27,210
+will be the service workers
+
+551
+00:24:28,920 --> 00:24:30,500
+URL. The thing is, we haven't actually explained how to
+
+552
+00:24:30,500 --> 00:24:32,010
+construct a virtual module yet.
+
+553
+00:24:32,210 --> 00:24:33,340
+We know what we want to do.
+
+554
+00:24:33,760 --> 00:24:34,760
+We don't know how to do it.
+
+555
+00:24:36,050 --> 00:24:38,720
+So first, we want to start with that code that we want to
+
+556
+00:24:38,720 --> 00:24:41,390
+generate. And you'll notice here, I've parameterised the
+
+557
+00:24:42,220 --> 00:24:45,270
+URL from that code string, and
+
+558
+00:24:45,270 --> 00:24:47,150
+that's because we want to make that configurable.
+
+559
+00:24:47,190 --> 00:24:50,150
+So in our constructor, we'll accept an output parameter.
+
+560
+00:24:50,610 --> 00:24:53,610
+The developer can pass us the URL to use.
+
+561
+00:24:53,650 --> 00:24:56,740
+We'll store that and then we can inject it into our code
+
+562
+00:24:56,900 --> 00:24:59,950
+by JSON.stringifying it, which will escape it and
+
+563
+00:25:00,070 --> 00:25:01,080
+wrap it in quotes.
+
+564
+00:25:02,080 --> 00:25:04,700
+Then the last bit is to take our piece of code and pass
+
+565
+00:25:05,000 --> 00:25:06,870
+it back to webpack and to do this.
+
+566
+00:25:07,250 --> 00:25:09,130
+We're going to use something called RawModule
+
+567
+00:25:10,210 --> 00:25:12,170
+and we're going to import this from webpack core.
+
+568
+00:25:12,880 --> 00:25:16,010
+So RawModule is basically
+
+569
+00:25:16,010 --> 00:25:18,720
+a way for us to provide code back to webpack in the same
+
+570
+00:25:18,890 --> 00:25:21,890
+module format as it
+
+571
+00:25:21,890 --> 00:25:24,060
+would expect modules loaded from disk.
+
+572
+00:25:24,430 --> 00:25:27,310
+And the reason why this matters is we need to provide
+
+573
+00:25:27,310 --> 00:25:30,310
+webpack with an object that has a source method
+
+574
+00:25:30,440 --> 00:25:32,730
+that returns is a code string and an identifier
+
+575
+00:25:33,480 --> 00:25:36,190
+method that returns some sort of a unique identifier for
+
+576
+00:25:36,190 --> 00:25:38,860
+that module. In our case, based on the code string.
+
+577
+00:25:39,490 --> 00:25:42,490
+And in doing this, webpack will actually grab the code that
+
+578
+00:25:42,490 --> 00:25:45,290
+we send back to it and avoid ever going to disk to resolve
+
+579
+00:25:45,290 --> 00:25:47,250
+this module. It will just use whatever we pass.
+
+580
+00:25:48,830 --> 00:25:51,540
+So now we have our import resolving to the
+
+581
+00:25:51,790 --> 00:25:54,670
+URL of the service worker, but that URL doesn't exist
+
+582
+00:25:54,750 --> 00:25:56,880
+because we have not yet generated our service worker.
+
+583
+00:25:57,300 --> 00:25:58,300
+Let's do that.
+
+584
+00:25:58,630 --> 00:26:00,130
+For this, we need a new plugin hook.
+
+585
+00:26:02,140 --> 00:26:04,810
+And so when we need a new plugin hook, we have to jump back
+
+586
+00:26:04,810 --> 00:26:05,810
+in to Apply.
+
+587
+00:26:06,180 --> 00:26:08,890
+We need information that's going to be
+
+588
+00:26:09,230 --> 00:26:11,850
+codified into the service worker, those version and assets
+
+589
+00:26:11,850 --> 00:26:14,860
+globals. And to get this, we need to tap into something
+
+590
+00:26:14,860 --> 00:26:17,490
+that happens at the end of the build, once that information
+
+591
+00:26:17,530 --> 00:26:18,490
+is available.
+
+592
+00:26:19,150 --> 00:26:20,910
+So for this, we can use the emit hook.
+
+593
+00:26:21,740 --> 00:26:23,830
+You'll also notice we're using tapAsync here.
+
+594
+00:26:23,910 --> 00:26:26,580
+And this is because our emit hook is going to be
+
+595
+00:26:26,580 --> 00:26:29,250
+asynchronous. And we want a hold back compilation until
+
+596
+00:26:29,250 --> 00:26:30,250
+we're done working.
+
+597
+00:26:31,370 --> 00:26:34,130
+So the emit hook gets past a compilation instance
+
+598
+00:26:34,420 --> 00:26:37,380
+and a callback, which we're going to forward onto a new
+
+599
+00:26:37,380 --> 00:26:38,800
+method just to keep things clean.
+
+600
+00:26:40,800 --> 00:26:43,220
+In webpack, each compile pass is referred to as a
+
+601
+00:26:43,260 --> 00:26:45,930
+compilation, and the main thing that we're interested here
+
+602
+00:26:46,220 --> 00:26:49,480
+is the generated assets, which are an object
+
+603
+00:26:49,520 --> 00:26:52,480
+where the keys are file names and the values
+
+604
+00:26:52,560 --> 00:26:53,940
+are asset descriptors.
+
+605
+00:26:54,810 --> 00:26:57,610
+I recognize this. This is the same as the Rollup
+
+606
+00:26:58,030 --> 00:26:59,490
+bundle thing, right?
+
+607
+00:26:59,650 --> 00:27:00,650
+Like we had in generateBundle.
+
+608
+00:27:00,900 --> 00:27:02,700
+Yeah, it's really similar. I don't think I actually
+
+609
+00:27:02,700 --> 00:27:05,030
+realized until we were sort of looking at these things side
+
+610
+00:27:05,030 --> 00:27:07,370
+by side. They contain really similar metadata.
+
+611
+00:27:08,490 --> 00:27:09,830
+So it has, you know, the dependencies.
+
+612
+00:27:10,450 --> 00:27:12,290
+And "is this an entry chunk?". And all that information.
+
+613
+00:27:12,870 --> 00:27:16,130
+It's also for both JavaScript and non JavaScript assets.
+
+614
+00:27:17,250 --> 00:27:20,260
+In both cases, there's a source method on
+
+615
+00:27:20,260 --> 00:27:23,220
+the asset descriptor that will return either a buffer
+
+616
+00:27:23,590 --> 00:27:26,640
+with the non JavaScript asset contents or
+
+617
+00:27:26,720 --> 00:27:29,470
+a string with the JavaScript code.
+
+618
+00:27:29,970 --> 00:27:33,140
+So we need a list of files for the service worker to cache
+
+619
+00:27:33,390 --> 00:27:36,110
+and to get that, we could just take the keys of the assets
+
+620
+00:27:36,110 --> 00:27:37,110
+object.
+
+621
+00:27:37,570 --> 00:27:40,440
+Similar to with the Rollup plugin, though, it's generally a
+
+622
+00:27:40,480 --> 00:27:43,280
+good idea to make it possible to filter these assets before
+
+623
+00:27:43,280 --> 00:27:45,320
+they get embedded into the service worker just to avoid a
+
+624
+00:27:45,320 --> 00:27:46,320
+huge list.
+
+625
+00:27:46,570 --> 00:27:49,830
+So we'll add a filterAssets constructor parameter
+
+626
+00:27:49,910 --> 00:27:52,660
+that a developer can set and provide a function that takes
+
+627
+00:27:52,660 --> 00:27:55,420
+a file name and returns a boolean indicating whether that
+
+628
+00:27:55,420 --> 00:27:56,710
+asset should be in the list.
+
+629
+00:27:58,710 --> 00:28:00,090
+Now we have our list of asset file names.
+
+630
+00:28:01,380 --> 00:28:04,220
+The next step is to calculate a version based on a hash of
+
+631
+00:28:04,300 --> 00:28:05,300
+their contents.
+
+632
+00:28:06,180 --> 00:28:07,600
+And so to do this, we need to
+
+633
+00:28:09,140 --> 00:28:12,390
+pull in the createHash method from node's crypto module.
+
+634
+00:28:13,060 --> 00:28:16,060
+Then we'll loop over each file name in our filtered list
+
+635
+00:28:16,600 --> 00:28:18,980
+and add its corresponding assets source, which will be that
+
+636
+00:28:18,980 --> 00:28:21,480
+code, string, or buffer to the hash content.
+
+637
+00:28:23,440 --> 00:28:26,110
+Then our version string is just going to be a hex digest of
+
+638
+00:28:26,110 --> 00:28:28,780
+the combined contents of all of those assets.
+
+639
+00:28:29,910 --> 00:28:31,660
+So that's the magic version global done.
+
+640
+00:28:32,370 --> 00:28:34,870
+Now we can do the assets magic global.
+
+641
+00:28:36,460 --> 00:28:39,170
+So as Jake explained in the Rollup walkthrough our assets
+
+642
+00:28:39,170 --> 00:28:42,090
+array contains file names, but our service worker needs to
+
+643
+00:28:42,090 --> 00:28:43,090
+work with URLs.
+
+644
+00:28:43,880 --> 00:28:46,840
+And so to fix this, we need to prepend any configured
+
+645
+00:28:46,840 --> 00:28:49,930
+public path value to the names in
+
+646
+00:28:49,930 --> 00:28:52,930
+case we're deploying somewhere that isn't the root domain.
+
+647
+00:28:53,680 --> 00:28:56,690
+Right, so this is it again, this is gonna be simpler than
+
+648
+00:28:56,690 --> 00:28:59,020
+it was with the Rollup case, because you can just got this
+
+649
+00:28:59,060 --> 00:29:00,060
+string that you can add to the start.
+
+650
+00:29:00,730 --> 00:29:03,400
+Right. So because everyone knows to configure that public
+
+651
+00:29:03,400 --> 00:29:06,070
+path, we can basically count on it being there.
+
+652
+00:29:06,070 --> 00:29:08,700
+If it's unsent, we'll just use slash, but we're gonna be
+
+653
+00:29:08,700 --> 00:29:10,450
+able to resolve these things at build time.
+
+654
+00:29:11,740 --> 00:29:13,830
+So I'm showing some of my biases here.
+
+655
+00:29:13,870 --> 00:29:17,000
+But like, I think this is way
+
+656
+00:29:17,000 --> 00:29:18,830
+more complicated than the Rollup solution.
+
+657
+00:29:19,040 --> 00:29:22,170
+But it's interesting seeing these little details that
+
+658
+00:29:22,500 --> 00:29:24,590
+like I'm like, "Oh, I wish I wish Rollup had that!".
+
+659
+00:29:24,760 --> 00:29:26,840
+I mean, I know why it doesn't, but oh that would be so much
+
+660
+00:29:26,840 --> 00:29:29,140
+simpler for me if it just had like a public path,
+
+661
+00:29:29,970 --> 00:29:30,970
+like string or whatever.
+
+662
+00:29:31,140 --> 00:29:33,310
+Yeah. Maybe that's part of Rollup adding that, you know,
+
+663
+00:29:34,430 --> 00:29:36,810
+exposing their built-in resolution is maybe there is an
+
+664
+00:29:36,810 --> 00:29:38,940
+option you could pass that's like, "Oh by the way, like
+
+665
+00:29:39,020 --> 00:29:40,940
+resolve it all against this public path".
+
+666
+00:29:42,190 --> 00:29:43,520
+That might be a convenient thing.
+
+667
+00:29:43,650 --> 00:29:44,440
+Who knows.
+
+668
+00:29:44,440 --> 00:29:47,280
+So while we remap all of those file names to prepend
+
+669
+00:29:47,490 --> 00:29:49,450
+that public path, we can also remove any
+
+670
+00:29:50,570 --> 00:29:53,120
+trailing index.HTML, because that doesn't appear in URLs.
+
+671
+00:29:53,910 --> 00:29:55,870
+We want to cache the URLs not the file names.
+
+672
+00:29:56,120 --> 00:29:59,000
+And we will use that dot workaround to safeguard
+
+673
+00:29:59,080 --> 00:30:02,290
+against an empty string actually caching the service
+
+674
+00:30:02,290 --> 00:30:04,590
+worker, which we don't want, instead, we'll have it catch
+
+675
+00:30:04,670 --> 00:30:06,090
+the directory the service worker is in.
+
+676
+00:30:07,720 --> 00:30:10,340
+So that's both of our magic globals prepared for the
+
+677
+00:30:10,340 --> 00:30:12,600
+service worker. Now it's time to generate it.
+
+678
+00:30:13,930 --> 00:30:16,270
+And here we're going to create one last function to handle
+
+679
+00:30:16,310 --> 00:30:17,560
+compilation of the service worker.
+
+680
+00:30:18,180 --> 00:30:20,730
+So to build our service worker module, we're going to use
+
+681
+00:30:20,730 --> 00:30:22,940
+something called a child compiler, which is essentially a
+
+682
+00:30:22,940 --> 00:30:24,820
+nested webpack compiler.
+
+683
+00:30:25,650 --> 00:30:27,320
+And we'll configure this to output this
+
+684
+00:30:28,990 --> 00:30:29,990
+sw.js file.
+
+685
+00:30:30,610 --> 00:30:33,780
+And one thing to think about when using child compilers
+
+686
+00:30:33,780 --> 00:30:36,910
+is they can have a completely different list of plugins
+
+687
+00:30:36,990 --> 00:30:38,370
+compared to the main compiler.
+
+688
+00:30:38,870 --> 00:30:41,540
+So we can pull in a plugin that generates worker
+
+689
+00:30:41,960 --> 00:30:45,040
+compatible code because we have a service worker target.
+
+690
+00:30:45,670 --> 00:30:47,590
+So this could be a difference as well, isn't it?
+
+691
+00:30:47,630 --> 00:30:49,880
+Because, like - Well, actually, you tell me.
+
+692
+00:30:50,090 --> 00:30:53,010
+Because you're using a child compiler and
+
+693
+00:30:53,090 --> 00:30:54,300
+it's like a whole different pass.
+
+694
+00:30:55,220 --> 00:30:58,100
+Does that mean that this service worker bundle is not going
+
+695
+00:30:58,310 --> 00:31:00,060
+to be able to share code with the main bundle.
+
+696
+00:31:00,060 --> 00:31:01,390
+It's not going to be up to code split there.
+
+697
+00:31:01,520 --> 00:31:04,270
+Correct. Yeah. So any split points that end up happening
+
+698
+00:31:04,520 --> 00:31:07,150
+in the code generated by this child compiler are going
+
+699
+00:31:07,570 --> 00:31:10,150
+to be totally independent from the main compiler.
+
+700
+00:31:10,190 --> 00:31:11,700
+They'll be a separate set of files.
+
+701
+00:31:13,280 --> 00:31:14,660
+That's an important difference between the two.
+
+702
+00:31:14,740 --> 00:31:17,450
+I mean, it's not common to share code between your service
+
+703
+00:31:17,450 --> 00:31:19,950
+worker and main thread, but the Rollup version could
+
+704
+00:31:20,410 --> 00:31:21,000
+do that.
+
+705
+00:31:21,000 --> 00:31:22,000
+Yeah, exactly.
+
+706
+00:31:23,210 --> 00:31:25,790
+So the other thing that worker template will do in this
+
+707
+00:31:25,790 --> 00:31:28,090
+case is, if there are split points, rather than
+
+708
+00:31:28,750 --> 00:31:30,670
+using a script tag to load those chunks
+
+709
+00:31:31,920 --> 00:31:34,640
+of code, it will use import scripts, which is available in
+
+710
+00:31:34,640 --> 00:31:35,180
+workers.
+
+711
+00:31:35,180 --> 00:31:36,180
+Cool.
+
+712
+00:31:36,800 --> 00:31:38,760
+And so the last thing we need is a second plugin.
+
+713
+00:31:39,140 --> 00:31:40,720
+Also imported from webpack core.
+
+714
+00:31:41,230 --> 00:31:43,730
+And this just lets us specify the entry module
+
+715
+00:31:44,560 --> 00:31:45,810
+to start compiling from.
+
+716
+00:31:46,110 --> 00:31:48,190
+Which is, in this case, our service worker source module.
+
+717
+00:31:49,690 --> 00:31:52,740
+So finally we run our compiler as a child
+
+718
+00:31:52,780 --> 00:31:53,900
+of the main compiler.
+
+719
+00:31:54,320 --> 00:31:57,320
+And this just ensures that if our compiler takes a while to
+
+720
+00:31:57,320 --> 00:32:00,120
+run, the main compiler won't finish and terminate the
+
+721
+00:32:00,120 --> 00:32:01,500
+process before we're finished.
+
+722
+00:32:03,040 --> 00:32:06,000
+And then once it's built, the callback will be called with
+
+723
+00:32:06,420 --> 00:32:07,590
+our compilation.
+
+724
+00:32:08,540 --> 00:32:09,960
+And also any error.
+
+725
+00:32:11,010 --> 00:32:13,670
+So just like with the emit hook, we are going to grab the
+
+726
+00:32:13,670 --> 00:32:16,050
+generated service worker asset from compilation.assets
+
+727
+00:32:17,300 --> 00:32:18,680
+and then we can pass that back to emit.
+
+728
+00:32:20,970 --> 00:32:23,520
+If there was an error in the child compiler say, you know,
+
+729
+00:32:23,770 --> 00:32:26,100
+a syntax error in our service worker code, we'll just
+
+730
+00:32:26,100 --> 00:32:28,110
+bubble that up. That will fail the build and print it to
+
+731
+00:32:28,110 --> 00:32:29,110
+console.
+
+732
+00:32:29,690 --> 00:32:32,280
+If there wasn't an error, we do now have our compiled
+
+733
+00:32:32,280 --> 00:32:33,320
+service worker asset.
+
+734
+00:32:34,030 --> 00:32:37,200
+The thing is, it doesn't yet have version and assets
+
+735
+00:32:37,700 --> 00:32:39,120
+magic global variables.
+
+736
+00:32:40,030 --> 00:32:42,580
+So to inject those, we need to pull in something called
+
+737
+00:32:42,580 --> 00:32:45,080
+ConcatSource from the webpack-sources module.
+
+738
+00:32:45,920 --> 00:32:48,830
+And this lets us concatenate strings essentially.
+
+739
+00:32:48,920 --> 00:32:51,920
+It's very similar to string concat, but with the
+
+740
+00:32:52,000 --> 00:32:55,220
+added benefit of, it is able to produce
+
+741
+00:32:55,300 --> 00:32:56,260
+source maps.
+
+742
+00:32:56,930 --> 00:32:58,140
+Ah yes.
+
+743
+00:32:58,220 --> 00:33:01,260
+OK, so this is interesting because I broke source maps in
+
+744
+00:33:01,260 --> 00:33:02,260
+my solution.
+
+745
+00:33:02,930 --> 00:33:05,100
+But this, this is going to just, just work.
+
+746
+00:33:05,390 --> 00:33:08,020
+Now I could have done the same. In Rollup I could have
+
+747
+00:33:08,100 --> 00:33:09,650
+created essentially - It doesn't
+
+748
+00:33:11,400 --> 00:33:14,070
+support child compilers and such, but you can just call
+
+749
+00:33:14,530 --> 00:33:17,200
+Rollup as a sort of separate layer.
+
+750
+00:33:17,950 --> 00:33:19,320
+That would've been a lot more complicated.
+
+751
+00:33:19,320 --> 00:33:21,830
+So it's interesting now, like some of the complexity that
+
+752
+00:33:21,830 --> 00:33:24,160
+you're using here with webpack is actually
+
+753
+00:33:24,910 --> 00:33:25,620
+paying off.
+
+754
+00:33:25,620 --> 00:33:28,790
+Right. Yeah. So like the initial bundle of service worker
+
+755
+00:33:28,830 --> 00:33:31,420
+was harder. But as it turns out, it's the same number of
+
+756
+00:33:31,420 --> 00:33:34,510
+lines to support source maps as it is to not support
+
+757
+00:33:34,510 --> 00:33:36,880
+source maps. Now that you've opted into some of that
+
+758
+00:33:36,880 --> 00:33:39,760
+complexity. So that's sort of an interesting tradeoff
+
+759
+00:33:39,760 --> 00:33:40,970
+between the two.
+
+760
+00:33:41,260 --> 00:33:44,060
+So, yeah. So the last step, we've constructed this asset,
+
+761
+00:33:44,310 --> 00:33:46,230
+but it's only just an object in memory.
+
+762
+00:33:46,810 --> 00:33:49,940
+So what we need to do is merge it into
+
+763
+00:33:49,940 --> 00:33:51,860
+the compiler's generated assets.
+
+764
+00:33:51,980 --> 00:33:54,780
+Like with Rollup, this is a live object and anything that
+
+765
+00:33:55,030 --> 00:33:56,740
+we merge into here will get written to disk.
+
+766
+00:33:57,320 --> 00:33:59,280
+And so with that, our plugin is done.
+
+767
+00:33:59,450 --> 00:34:01,910
+So we can call the callback compilation will finish.
+
+768
+00:34:02,410 --> 00:34:03,990
+And what we get is our generated
+
+769
+00:34:05,540 --> 00:34:06,540
+service worker source.
+
+770
+00:34:07,000 --> 00:34:10,170
+We can see here that we have assets with
+
+771
+00:34:10,170 --> 00:34:11,540
+the generated array of URLs.
+
+772
+00:34:13,210 --> 00:34:16,210
+And we also have version which is that
+
+773
+00:34:16,210 --> 00:34:18,420
+string based on the hash of their contents.
+
+774
+00:34:18,630 --> 00:34:19,630
+So we did it.
+
+775
+00:34:20,090 --> 00:34:21,300
+Amazing. And that's it.
+
+776
+00:34:22,800 --> 00:34:25,100
+Yeah. And I guess that's that's bringing this talk to a
+
+777
+00:34:25,100 --> 00:34:28,140
+close. Provided that everything is recorded
+
+778
+00:34:28,180 --> 00:34:30,940
+properly and we don't have to do it again because I can't
+
+779
+00:34:30,980 --> 00:34:32,860
+tell you this recording has been absolutely cursed.
+
+780
+00:34:33,190 --> 00:34:35,980
+We have done so many takes due to just Bluetooth stacks
+
+781
+00:34:36,280 --> 00:34:39,150
+failing on my machine, recordings not happening on Jason's
+
+782
+00:34:39,530 --> 00:34:41,160
+machine. So who knows?
+
+783
+00:34:41,410 --> 00:34:42,660
+Maybe this will be the final record.
+
+784
+00:34:42,700 --> 00:34:45,490
+If you're watching this right now, then I am so happy
+
+785
+00:34:45,530 --> 00:34:48,790
+because it means we don't have to do all of this again.
+
+786
+00:34:50,000 --> 00:34:51,370
+Oh, right, OK.
+
+787
+00:34:51,460 --> 00:34:53,750
+If you want to see those implementations, they are both on
+
+788
+00:34:54,000 --> 00:34:56,670
+Tooling.Report along with how to handle assets, code
+
+789
+00:34:56,670 --> 00:34:59,840
+splitting, hashing, transformations, all of that stuff.
+
+790
+00:34:59,970 --> 00:35:02,840
+And not just webpack and Rollup as well.
+
+791
+00:35:02,840 --> 00:35:06,060
+We also have Parcel, and we also have
+
+792
+00:35:06,350 --> 00:35:07,680
+Browserify. Remember, Browserify?
+
+793
+00:35:08,140 --> 00:35:09,770
+And Gulp! And all of that sort of stuff.
+
+794
+00:35:10,140 --> 00:35:13,310
+I mean, you might laugh at that, but this
+
+795
+00:35:13,310 --> 00:35:15,770
+is if you look at the stats on NPM, that is still
+
+796
+00:35:16,110 --> 00:35:17,940
+absolutely huge and climbing.
+
+797
+00:35:17,940 --> 00:35:20,690
+So we did actually find some cases where it really holds
+
+798
+00:35:20,940 --> 00:35:23,780
+its own and was maybe better than some of the
+
+799
+00:35:24,030 --> 00:35:27,160
+more modern things that we deal with.
+
+800
+00:35:27,580 --> 00:35:29,160
+So go on and check all of that out.
+
+801
+00:35:29,500 --> 00:35:31,160
+Thanks so much for watching this.
+
+802
+00:35:31,460 --> 00:35:33,620
+Hopefully final take of this talk.
+

@@ -1,0 +1,256 @@
+1
+00:00:13,200 --> 00:00:15,620
+Are you fed up with console spam?
+
+2
+00:00:15,740 --> 00:00:18,210
+Sick of browser messages that tell you problems but
+
+3
+00:00:18,660 --> 00:00:19,710
+not how to fix them?
+
+4
+00:00:20,040 --> 00:00:23,130
+Well, the Issues tab is a new way for Chrome
+
+5
+00:00:23,340 --> 00:00:25,800
+DevTools to help you find and fix problems with your web
+
+6
+00:00:25,920 --> 00:00:28,010
+site. Problems detected by the browser are
+
+7
+00:00:28,970 --> 00:00:32,010
+presented in a structured format, separate
+
+8
+00:00:32,010 --> 00:00:33,010
+from the console.
+
+9
+00:00:33,890 --> 00:00:36,810
+And that also means your own console messages don't get
+
+10
+00:00:36,810 --> 00:00:38,430
+drowned out by browser warnings.
+
+11
+00:00:39,520 --> 00:00:42,270
+The Issues tab aggregates different types of problems.
+
+12
+00:00:42,730 --> 00:00:46,110
+It describes problems using clear and simple language,
+
+13
+00:00:46,570 --> 00:00:50,110
+explains how to fix them, and links to affected resources
+
+14
+00:00:50,320 --> 00:00:51,490
+within DevTools.
+
+15
+00:00:52,820 --> 00:00:55,120
+And shows you where to find further guidance.
+
+16
+00:00:56,330 --> 00:00:58,540
+So let's run through that from start to finish.
+
+17
+00:00:59,120 --> 00:01:00,960
+First, you need a page with problems.
+
+18
+00:01:01,000 --> 00:01:03,330
+Well, for this example, we have a page with lots of
+
+19
+00:01:03,330 --> 00:01:04,330
+problems.
+
+20
+00:01:04,710 --> 00:01:07,460
+Open the page in Chrome and then open Chrome DevTools.
+
+21
+00:01:08,260 --> 00:01:10,670
+As you can see, issues were detected.
+
+22
+00:01:11,300 --> 00:01:14,550
+Click the 'go to issues' button in the yellow warning bar.
+
+23
+00:01:15,220 --> 00:01:18,020
+You can also select the Issues tab from the 'More Tools'
+
+24
+00:01:18,020 --> 00:01:19,850
+menu or click on the blue icon at the
+
+25
+00:01:21,020 --> 00:01:22,020
+top of DevTools.
+
+26
+00:01:22,560 --> 00:01:25,150
+Now you might need to click the 'reload page' button
+
+27
+00:01:25,650 --> 00:01:28,610
+since DevTools can't collect requests while it's closed.
+
+28
+00:01:29,190 --> 00:01:31,650
+You'll notice that for the moment, warnings that used to
+
+29
+00:01:31,650 --> 00:01:34,660
+show up in the console still do as well as in the
+
+30
+00:01:34,660 --> 00:01:35,660
+Issues tab.
+
+31
+00:01:36,080 --> 00:01:38,740
+The initial version of the Issues tab checks for three
+
+32
+00:01:38,740 --> 00:01:41,870
+types of issue: cookie problems, mixed content,
+
+33
+00:01:42,620 --> 00:01:45,920
+cross-origin embedder policy - that's COEP - issues
+
+34
+00:01:46,040 --> 00:01:48,130
+as well. Future versions will support more
+
+35
+00:01:49,130 --> 00:01:50,130
+issue types.
+
+36
+00:01:50,550 --> 00:01:53,470
+So click an item in the Issues tab and you'll see that
+
+37
+00:01:53,510 --> 00:01:55,550
+each item has four components.
+
+38
+00:01:55,970 --> 00:01:58,970
+A headline, describing the issue, a description
+
+39
+00:01:58,970 --> 00:02:01,980
+providing the context and the solution, and
+
+40
+00:02:02,060 --> 00:02:04,600
+an 'affected resources' section that links to the resources
+
+41
+00:02:05,020 --> 00:02:07,560
+within the appropriate DevTools contexts such as the
+
+42
+00:02:08,070 --> 00:02:11,990
+Network panel, and also links to further guidance.
+
+43
+00:02:13,150 --> 00:02:16,320
+Click on items within affected resources to view details.
+
+44
+00:02:16,410 --> 00:02:18,700
+In this example, there is one cookie and one request.
+
+45
+00:02:18,700 --> 00:02:21,870
+Now the Issues tab explains problems
+
+46
+00:02:21,910 --> 00:02:23,210
+and tells you how to fix them.
+
+47
+00:02:23,370 --> 00:02:25,960
+But it can also show your resources in the appropriate
+
+48
+00:02:26,250 --> 00:02:28,460
+context within the DevTools themselves.
+
+49
+00:02:29,040 --> 00:02:32,130
+So click on a resource link to view the item in context.
+
+50
+00:02:32,590 --> 00:02:34,170
+In this example, click samesite-sandbox.glitch.me
+
+51
+00:02:36,470 --> 00:02:38,510
+to show the cookies attached to that request.
+
+52
+00:02:39,260 --> 00:02:41,890
+Scroll to view the item with a problem; in this case, the
+
+53
+00:02:41,890 --> 00:02:42,890
+cookie ck02.
+
+54
+00:02:44,140 --> 00:02:46,480
+Hover over the Information icon on the right to see the
+
+55
+00:02:46,480 --> 00:02:47,940
+problem and how to fix it.
+
+56
+00:02:48,400 --> 00:02:51,690
+You can also go the other way. Right-click on an item
+
+57
+00:02:51,730 --> 00:02:54,780
+within DevTools to show issues associated with
+
+58
+00:02:54,780 --> 00:02:57,660
+it. We'll be adding more features to the Issues tab in the
+
+59
+00:02:57,660 --> 00:03:00,990
+future. So let us know what you think, how we could improve
+
+60
+00:03:01,030 --> 00:03:03,830
+the Issues tab and what features you'd like to see.
+
+61
+00:03:04,660 --> 00:03:07,540
+You can comment on this video or file bug reports in
+
+62
+00:03:08,000 --> 00:03:10,630
+Crbug, which is the engineering team's bug tracker,
+
+63
+00:03:11,170 --> 00:03:12,500
+or send a tweet to @ChromeDevTools.
+
+64
+00:03:13,550 --> 00:03:16,130
+As ever, we really appreciate your feedback.
+

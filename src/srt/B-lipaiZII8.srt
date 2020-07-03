@@ -1,0 +1,1908 @@
+1
+00:00:12,300 --> 00:00:14,220
+Hello and welcome. My name is Stephen Fluin.
+
+2
+00:00:15,220 --> 00:00:17,470
+I'm a Developer Advocate on the Angular team here at
+
+3
+00:00:17,470 --> 00:00:19,930
+Google. My job is really fun because I get to help
+
+4
+00:00:20,510 --> 00:00:21,770
+developers be successful with Angular.
+
+5
+00:00:22,270 --> 00:00:24,770
+And I get to spend a lot of time listening and engaging
+
+6
+00:00:24,770 --> 00:00:27,310
+with the community, so we can reflect your needs onto the
+
+7
+00:00:27,310 --> 00:00:30,190
+team. One things that we learned, having worked with a lot
+
+8
+00:00:30,400 --> 00:00:33,400
+of developers across the world, is that staying up
+
+9
+00:00:33,400 --> 00:00:35,200
+to date is really, really important.
+
+10
+00:00:35,240 --> 00:00:37,410
+And so today's talk is all about how to keep your
+
+11
+00:00:37,450 --> 00:00:40,080
+application as fast as possible and as fresh as possible
+
+12
+00:00:40,410 --> 00:00:42,790
+using Angular. We're gonna be diving into some of the best
+
+13
+00:00:42,790 --> 00:00:44,710
+practices that you should be following as an application
+
+14
+00:00:44,710 --> 00:00:47,790
+developer. And we'll take a look at live code and see how
+
+15
+00:00:47,790 --> 00:00:50,590
+you can actually go in and debug and build your application
+
+16
+00:00:50,590 --> 00:00:52,710
+out. So let's actually gets started.
+
+17
+00:00:53,050 --> 00:00:56,260
+So if we take a look at we've got here, this is a
+
+18
+00:00:56,380 --> 00:00:58,430
+application that I've built using the Angular CLI.
+
+19
+00:00:59,010 --> 00:01:01,140
+So it's a very, very basic application that should look
+
+20
+00:01:01,140 --> 00:01:04,020
+very, very familiar. It's basically we ran "ng new" and we
+
+21
+00:01:04,140 --> 00:01:05,850
+installed something called Angular Material.
+
+22
+00:01:05,890 --> 00:01:08,730
+And so if you take a look at the AppComponent, I've put in
+
+23
+00:01:08,810 --> 00:01:11,400
+an app dashboard. And so if we ran a command like "ng
+
+24
+00:01:11,440 --> 00:01:14,400
+serve", what we would see is a normal
+
+25
+00:01:14,400 --> 00:01:16,780
+dashboard of an application that's coming from Angular
+
+26
+00:01:16,860 --> 00:01:18,740
+Material. So we've got a few dependencies installed.
+
+27
+00:01:18,950 --> 00:01:21,410
+We've got a few other things installed and all that should
+
+28
+00:01:21,410 --> 00:01:23,160
+just be coming to you kind of automatically.
+
+29
+00:01:23,620 --> 00:01:26,370
+So here we go. This is just the default blank dashboard.
+
+30
+00:01:26,660 --> 00:01:28,460
+And so even though we haven't written a ton of code, we've
+
+31
+00:01:28,460 --> 00:01:31,130
+got the application up and running and it's pulling in
+
+32
+00:01:31,460 --> 00:01:33,130
+a ton of code, right? We're pulling in the features of
+
+33
+00:01:33,300 --> 00:01:35,800
+Angular necessary for these animations, for these menus,
+
+34
+00:01:35,840 --> 00:01:38,510
+for these dialogs, as well as for all of this content
+
+35
+00:01:38,590 --> 00:01:40,760
+around this dashboard that a user could interact with and
+
+36
+00:01:40,760 --> 00:01:43,560
+engage with. And so the first thing I want to do in order
+
+37
+00:01:43,560 --> 00:01:46,100
+to make my application fast as possible is I really want to
+
+38
+00:01:46,100 --> 00:01:48,600
+understand my application. And so we're gonna make a couple
+
+39
+00:01:48,600 --> 00:01:51,730
+changes within our build configuration in the angular.json
+
+40
+00:01:52,310 --> 00:01:54,860
+file. So what we're gonna do is we're gonna find the
+
+41
+00:01:54,900 --> 00:01:57,150
+angular.json file. You're gonna find this directly in the
+
+42
+00:01:57,190 --> 00:01:58,740
+root of your application.
+
+43
+00:01:59,280 --> 00:02:01,490
+And what we're gonna do is we're going to find in the
+
+44
+00:02:01,530 --> 00:02:04,740
+Production Build settings, we're going to change
+
+45
+00:02:04,740 --> 00:02:06,250
+two settings here.
+
+46
+00:02:06,290 --> 00:02:08,710
+We're going to say a sourceMap. I'm gonna change that from
+
+47
+00:02:08,710 --> 00:02:12,040
+false to true, as well as in our
+
+48
+00:02:12,750 --> 00:02:14,670
+namedChunks, we're gonna turn that on to true.
+
+49
+00:02:15,420 --> 00:02:17,840
+What sourceMap does is this will actually take my
+
+50
+00:02:18,050 --> 00:02:21,010
+application and map all of the generated JavaScript
+
+51
+00:02:21,390 --> 00:02:23,720
+that comes out of the build and map it back into
+
+52
+00:02:24,470 --> 00:02:26,890
+the code that that JavaScript came from.
+
+53
+00:02:26,970 --> 00:02:29,390
+So if some of the generated code came from Angular
+
+54
+00:02:29,690 --> 00:02:31,690
+Material, we'll see that. If it came from Angular itself,
+
+55
+00:02:31,690 --> 00:02:33,980
+we'll see that. And we'll even see things like the
+
+56
+00:02:34,020 --> 00:02:37,150
+generated JavaScript being mapped back to my HTML and
+
+57
+00:02:37,230 --> 00:02:39,780
+into the application code that I'm writing for all the
+
+58
+00:02:39,780 --> 00:02:40,910
+components that I'm creating.
+
+59
+00:02:40,990 --> 00:02:43,990
+So source maps are really great way for you to understand
+
+60
+00:02:44,240 --> 00:02:47,120
+what's going on in your application and the relationship
+
+61
+00:02:47,120 --> 00:02:50,040
+between what happens in the code you write in the IDE and
+
+62
+00:02:50,040 --> 00:02:51,870
+the code being delivered to your users.
+
+63
+00:02:52,290 --> 00:02:54,630
+And so there's a lot of steps that we end up taking along
+
+64
+00:02:54,630 --> 00:02:56,550
+that way, right? There's the angular compiler that takes
+
+65
+00:02:56,550 --> 00:02:58,590
+that HTML and turns it into JavaScript.
+
+66
+00:02:58,800 --> 00:03:01,180
+But there's also other steps that we do, like optimizations
+
+67
+00:03:01,180 --> 00:03:03,470
+where we'll change some of the property names.
+
+68
+00:03:03,720 --> 00:03:05,970
+You've got bundling so that we get all of this JavaScript
+
+69
+00:03:05,970 --> 00:03:08,810
+coming down as a single kind of cohesive bundle that makes
+
+70
+00:03:08,810 --> 00:03:11,390
+sense to browsers. And so sourceMap allows us to follow
+
+71
+00:03:11,390 --> 00:03:14,360
+that path, follow that process, and give us really good
+
+72
+00:03:14,400 --> 00:03:16,900
+insights. And so what we can do is, having made these two
+
+73
+00:03:16,900 --> 00:03:19,820
+changes, we can actually now go and run the ng
+
+74
+00:03:20,070 --> 00:03:21,070
+build --prod.
+
+75
+00:03:22,910 --> 00:03:25,450
+What that will do is that will create a production build of
+
+76
+00:03:25,450 --> 00:03:27,200
+our application, which is normally what you ship down to
+
+77
+00:03:27,280 --> 00:03:30,040
+browsers. But because we've turned on source maps and we
+
+78
+00:03:30,160 --> 00:03:33,170
+turned on namedChunks, we'll actually see the JavaScript
+
+79
+00:03:33,170 --> 00:03:35,080
+and be able to analyze those chunks.
+
+80
+00:03:35,460 --> 00:03:37,290
+And so we're also going to using another tool today called
+
+81
+00:03:37,420 --> 00:03:38,420
+source-map-explorer.
+
+82
+00:03:38,840 --> 00:03:42,010
+There's a bunch of other tools out there that developers
+
+83
+00:03:42,010 --> 00:03:44,430
+use to analyze bundle size and chunk size.
+
+84
+00:03:44,680 --> 00:03:46,720
+But we on the Angular team actually really strongly
+
+85
+00:03:46,720 --> 00:03:48,760
+recommend that you only use source-map-explorer because
+
+86
+00:03:49,140 --> 00:03:51,640
+other tools out there like webpack-bundle-analyzer that
+
+87
+00:03:51,640 --> 00:03:54,600
+categorically misrecognize some of those steps within
+
+88
+00:03:54,600 --> 00:03:56,980
+our process. And so we've done that production build, and
+
+89
+00:03:57,400 --> 00:04:00,070
+now whenever you want to actually take a look at what a
+
+90
+00:04:00,860 --> 00:04:02,320
+source map looks like, we can just run source-map-explorer.
+
+91
+00:04:03,070 --> 00:04:04,660
+If you don't have this installed, you can just install it
+
+92
+00:04:04,660 --> 00:04:06,870
+globally: "yarn global add source-map-explorer".
+
+93
+00:04:08,490 --> 00:04:11,000
+Or you can install it local to your project.
+
+94
+00:04:11,120 --> 00:04:13,410
+Whichever makes sense to you, just go and do that.
+
+95
+00:04:14,210 --> 00:04:15,210
+What we'll do is we'll run source-map-explorer,
+
+96
+00:04:17,460 --> 00:04:20,300
+and we will pass it in the JavaScript file that we
+
+97
+00:04:20,550 --> 00:04:22,670
+want to analyze. And so we can see it, we've got our dist
+
+98
+00:04:22,670 --> 00:04:24,630
+folder here and we're gonna look at the es2015
+
+99
+00:04:25,630 --> 00:04:27,180
+version of our JavaScript.
+
+100
+00:04:27,640 --> 00:04:30,390
+So if we run that, it's gonna pop up in a web browser, and
+
+101
+00:04:30,640 --> 00:04:33,310
+we're going to see this visual interactive story about
+
+102
+00:04:33,730 --> 00:04:36,810
+our applications. So we can see our overall bundle size, in
+
+103
+00:04:36,810 --> 00:04:39,230
+terms of minified but not compressed, JavaScript.
+
+104
+00:04:39,730 --> 00:04:41,440
+So it'll actually be a little bit smaller when it goes over
+
+105
+00:04:41,440 --> 00:04:42,990
+the network. We have about
+
+106
+00:04:44,950 --> 00:04:46,410
+452 kilobytes of application.
+
+107
+00:04:46,780 --> 00:04:48,740
+And what's really, really helpful here is that you can see
+
+108
+00:04:48,740 --> 00:04:50,280
+where that bundle size is coming from.
+
+109
+00:04:50,280 --> 00:04:53,160
+So you can see animations is 64 kilobytes
+
+110
+00:04:53,620 --> 00:04:55,750
+and your material is about 56 kilobytes.
+
+111
+00:04:56,420 --> 00:04:59,460
+We've got things like HTTP where we might
+
+112
+00:04:59,460 --> 00:05:01,340
+not actually need these things. And we might not even know
+
+113
+00:05:01,340 --> 00:05:02,920
+that they are in our bundle. We might have forgotten at
+
+114
+00:05:02,920 --> 00:05:04,880
+some point along the way. So you can see I'm pulling in
+
+115
+00:05:04,880 --> 00:05:06,430
+forms and HTTP.
+
+116
+00:05:06,930 --> 00:05:09,640
+If we actually go into our application, now that we know
+
+117
+00:05:09,680 --> 00:05:10,680
+that those things are there we can say, "Hey.
+
+118
+00:05:11,310 --> 00:05:12,680
+I don't actually need that for this dashboard". Right? Like
+
+119
+00:05:12,680 --> 00:05:15,560
+we're not - if we look at the content I'm showing you,
+
+120
+00:05:15,810 --> 00:05:17,940
+there's no form data here. There's no data coming from the
+
+121
+00:05:17,940 --> 00:05:20,860
+internet. And I can go into my AppModule and
+
+122
+00:05:20,860 --> 00:05:22,820
+I could pull those out. Okay? So I'll just comment these
+
+123
+00:05:22,820 --> 00:05:24,650
+out because we don't need a HTTP or forms.
+
+124
+00:05:25,070 --> 00:05:27,860
+What should happen is when I do my next production bundle,
+
+125
+00:05:29,110 --> 00:05:30,450
+all of that code is going to be left out.
+
+126
+00:05:30,450 --> 00:05:32,790
+So we're going to be able to see that our bundle size will
+
+127
+00:05:32,790 --> 00:05:35,950
+come down from around 450 KB to a little bit less
+
+128
+00:05:35,950 --> 00:05:37,500
+than that, which is really, really nice. And it should
+
+129
+00:05:37,500 --> 00:05:40,460
+actually be exactly leaving out the size of the HTTP bundle
+
+130
+00:05:40,630 --> 00:05:42,420
+and the size of the forms bundle.
+
+131
+00:05:42,880 --> 00:05:45,510
+And so source maps are one of the best tools in your
+
+132
+00:05:45,590 --> 00:05:48,300
+toolbox. And we really recommend that every developer be
+
+133
+00:05:48,300 --> 00:05:49,300
+using source-map-explorer.
+
+134
+00:05:49,590 --> 00:05:51,930
+Using this on a regular basis to understand your
+
+135
+00:05:51,930 --> 00:05:53,510
+application, especially when you're doing any sort of
+
+136
+00:05:53,510 --> 00:05:54,810
+performance optimization.
+
+137
+00:05:55,470 --> 00:05:57,940
+Now, let's say that you are looking at your bundle and
+
+138
+00:05:57,940 --> 00:05:59,850
+you're saying it's still too big, but I need all of those
+
+139
+00:05:59,850 --> 00:06:01,650
+features. I need all of those capabilities.
+
+140
+00:06:02,230 --> 00:06:05,030
+Fortunately, the Angular CLI offers a lot of really smart
+
+141
+00:06:05,030 --> 00:06:07,320
+capabilities. One of those capabilities is being able to
+
+142
+00:06:07,610 --> 00:06:10,530
+take an application and build out lazy loaded modules.
+
+143
+00:06:10,530 --> 00:06:12,450
+And so let's actually go ahead and do this.
+
+144
+00:06:12,490 --> 00:06:15,040
+And so I'm going to use the CLI here and I'm going to say
+
+145
+00:06:15,080 --> 00:06:16,370
+"ng", which is the Angular command.
+
+146
+00:06:16,700 --> 00:06:19,540
+And I'm gonna say "generate module", and I'm going to give
+
+147
+00:06:19,540 --> 00:06:21,630
+it a root module that it's going to connect
+
+148
+00:06:22,540 --> 00:06:24,460
+back to. So what we're gonna do is we're gonna create a
+
+149
+00:06:24,460 --> 00:06:27,090
+separate part of our application where we can pull in
+
+150
+00:06:27,130 --> 00:06:29,720
+features that we need and just leave all of that code
+
+151
+00:06:29,760 --> 00:06:31,510
+outside of the main bundle. And so we're going to generate
+
+152
+00:06:31,510 --> 00:06:34,350
+a module here and I'll just link it back to the module
+
+153
+00:06:34,640 --> 00:06:37,270
+known as App Module, which is the root of my application.
+
+154
+00:06:37,850 --> 00:06:38,850
+And now I'm going to give it a route.
+
+155
+00:06:39,180 --> 00:06:41,940
+And so what this does is it automatically wires up this
+
+156
+00:06:41,980 --> 00:06:45,070
+module to be lazy-loaded whenever a user hits that route.
+
+157
+00:06:45,150 --> 00:06:47,610
+And so we'll just make, for example, an about page.
+
+158
+00:06:48,610 --> 00:06:50,700
+And so it is going to do it's going to generate a module
+
+159
+00:06:50,700 --> 00:06:51,700
+called "AboutModule".
+
+160
+00:06:52,610 --> 00:06:55,030
+It's gonna be able to route to it and then is gonna give me
+
+161
+00:06:55,030 --> 00:06:56,030
+an AboutComponent.
+
+162
+00:06:56,540 --> 00:06:58,540
+So we can see all of that in our source code.
+
+163
+00:06:58,580 --> 00:07:01,250
+So it's just close all these files and we're gonna see
+
+164
+00:07:01,580 --> 00:07:03,630
+it created a new About folder with our new
+
+165
+00:07:04,590 --> 00:07:06,170
+module and our new code.
+
+166
+00:07:06,670 --> 00:07:08,630
+And so if we do another production build,
+
+167
+00:07:10,050 --> 00:07:11,760
+what we'll actually see, because we
+
+168
+00:07:13,010 --> 00:07:15,640
+turned on namedChunks, we'll actually get out now, not
+
+169
+00:07:16,140 --> 00:07:18,020
+only a main chunk, a MainModule, we're
+
+170
+00:07:19,180 --> 00:07:20,350
+also going to get out an AboutModule.
+
+171
+00:07:20,730 --> 00:07:23,770
+We can see and independently verify the size of that
+
+172
+00:07:23,770 --> 00:07:26,900
+module and independently verify what the
+
+173
+00:07:27,070 --> 00:07:29,570
+dependencies of that module are doing to the overall bundle
+
+174
+00:07:29,570 --> 00:07:30,610
+size of our application.
+
+175
+00:07:30,900 --> 00:07:32,740
+And so what you'll see is that by default, an Angular
+
+176
+00:07:32,740 --> 00:07:34,870
+module is really, really small. It's very, very thin.
+
+177
+00:07:34,870 --> 00:07:36,490
+It doesn't add a ton of bundle size your application.
+
+178
+00:07:36,780 --> 00:07:39,660
+It's almost always the dependencies that you are pulling in
+
+179
+00:07:39,660 --> 00:07:41,830
+as a developer, the features that you are reaching out for.
+
+180
+00:07:42,660 --> 00:07:45,670
+And what Angular will do is, intelligently based on the
+
+181
+00:07:46,080 --> 00:07:49,090
+where you do the imports, will lazy load and split
+
+182
+00:07:49,090 --> 00:07:52,090
+that code. So if you remember, we pulled HTTP and forms
+
+183
+00:07:52,130 --> 00:07:54,970
+out of our main chunk, we can actually now pull that in.
+
+184
+00:07:55,090 --> 00:07:57,470
+And so you can see we've generated a - Let's just
+
+185
+00:07:58,060 --> 00:08:00,930
+clear this out. Let's take a look in our dist folder here.
+
+186
+00:08:01,600 --> 00:08:04,520
+You can see we've got a main chunk and now we've got
+
+187
+00:08:04,600 --> 00:08:06,520
+this nice new AboutModule.
+
+188
+00:08:06,860 --> 00:08:09,730
+And so you can see in the es2015 version our AboutModule
+
+189
+00:08:10,150 --> 00:08:12,150
+is only about 1.1K of code.
+
+190
+00:08:12,190 --> 00:08:14,150
+So it's just that AboutComponent because it doesn't have
+
+191
+00:08:14,150 --> 00:08:17,160
+any dependencies. But if we add back in more dependencies
+
+192
+00:08:17,240 --> 00:08:19,990
+into that chunk, if we wanted to pull in, for example,
+
+193
+00:08:20,040 --> 00:08:22,620
+Angular Material into that AboutModule, then it's going to
+
+194
+00:08:22,620 --> 00:08:24,620
+pull in that code. But it's going to do it very, very
+
+195
+00:08:24,620 --> 00:08:26,790
+intelligently. It's going to lazy load all of that code.
+
+196
+00:08:26,880 --> 00:08:29,290
+So if you haven't set up lazy loading before, it's really,
+
+197
+00:08:29,290 --> 00:08:31,590
+really easy. Just generate a new module with that command
+
+198
+00:08:31,590 --> 00:08:34,090
+that I showed where we generate a module and we hang it
+
+199
+00:08:34,130 --> 00:08:36,390
+onto the routing structure of our application.
+
+200
+00:08:37,510 --> 00:08:39,600
+All right. Next up, I want to talk a little bit about what
+
+201
+00:08:39,760 --> 00:08:41,600
+happens after we build an application, after we've been
+
+202
+00:08:41,600 --> 00:08:43,430
+building it out and we've added more and more features.
+
+203
+00:08:43,850 --> 00:08:45,600
+It's very, very easy to backslide.
+
+204
+00:08:45,890 --> 00:08:48,190
+One of things that the Chrome team has seen consistently is
+
+205
+00:08:48,190 --> 00:08:50,520
+that even applications that spend a ton of time building
+
+206
+00:08:50,520 --> 00:08:53,030
+great performance into their apps tend to backslide because
+
+207
+00:08:53,070 --> 00:08:54,780
+we as developers, we want to add more features.
+
+208
+00:08:54,780 --> 00:08:57,070
+We want to push more functionality to our users.
+
+209
+00:08:57,160 --> 00:08:59,450
+And that often comes with more dependencies, which
+
+210
+00:08:59,620 --> 00:09:02,120
+sometimes we don't realize is negatively affecting our
+
+211
+00:09:02,120 --> 00:09:04,620
+bundle size. And so one of the features that's built into
+
+212
+00:09:04,620 --> 00:09:06,290
+the Angular CLI is called "bundle budgets".
+
+213
+00:09:07,000 --> 00:09:08,540
+And so, again, if we go back into our angular.json.
+
+214
+00:09:08,540 --> 00:09:10,250
+So we'll just search for that.
+
+215
+00:09:10,920 --> 00:09:13,550
+We can see this nice little budget section.
+
+216
+00:09:13,840 --> 00:09:15,590
+And what this does is it allows you to set several
+
+217
+00:09:15,590 --> 00:09:17,380
+different budgets for your application.
+
+218
+00:09:18,140 --> 00:09:19,720
+By default, we give you two out of the box.
+
+219
+00:09:19,720 --> 00:09:20,970
+We give you an initial budget.
+
+220
+00:09:21,220 --> 00:09:23,140
+So this is the JavaScript that it takes
+
+221
+00:09:24,180 --> 00:09:26,810
+to load the initial page of your application.
+
+222
+00:09:26,810 --> 00:09:29,860
+So right now, we are warning at
+
+223
+00:09:30,060 --> 00:09:32,650
+2 MB. So we'll see a warning as part of our build if our
+
+224
+00:09:32,730 --> 00:09:33,940
+application is over 2 MB.
+
+225
+00:09:34,690 --> 00:09:37,320
+And our build will actually error out if it's more than 5
+
+226
+00:09:37,570 --> 00:09:40,030
+MB. And so those are very, very conservative defaults.
+
+227
+00:09:40,070 --> 00:09:42,870
+We recommend you turn those as small as you can to really
+
+228
+00:09:42,990 --> 00:09:44,700
+just give yourself a knowledge of when you're increasing
+
+229
+00:09:44,700 --> 00:09:47,040
+your bundle sizes. It's a conscious choice rather than an
+
+230
+00:09:47,080 --> 00:09:49,500
+accident. You'll see we also have a few other types of
+
+231
+00:09:49,500 --> 00:09:51,630
+budgets, including any component style.
+
+232
+00:09:51,920 --> 00:09:55,050
+So what this says is that any scoped styles to a component,
+
+233
+00:09:55,710 --> 00:09:56,920
+we want to keep those under 5 KB.
+
+234
+00:09:57,550 --> 00:09:59,970
+And we are going to error out if they become above 10 KB.
+
+235
+00:10:00,300 --> 00:10:02,800
+And there's a few more that you can see if you just take a
+
+236
+00:10:02,800 --> 00:10:03,810
+look in your IDE.
+
+237
+00:10:04,220 --> 00:10:06,680
+You've got allScript, so that's just the total sum
+
+238
+00:10:07,350 --> 00:10:08,480
+of all the scripts in my application.
+
+239
+00:10:09,190 --> 00:10:11,060
+AnyScript are any individual scripts shouldn't be bigger
+
+240
+00:10:11,060 --> 00:10:13,900
+than this. The whole bundle overall, all those sorts of
+
+241
+00:10:13,900 --> 00:10:15,360
+things, so we've got a whole bunch of different features
+
+242
+00:10:15,400 --> 00:10:18,110
+that allow you to really take control and understand and
+
+243
+00:10:18,150 --> 00:10:20,240
+prevent bundle size increases.
+
+244
+00:10:20,320 --> 00:10:21,910
+So that's a really, really helpful tool.
+
+245
+00:10:21,950 --> 00:10:24,370
+So those are some of the top things that you should be
+
+246
+00:10:24,370 --> 00:10:26,620
+doing to keep your application as fast as possible.
+
+247
+00:10:27,000 --> 00:10:29,330
+But one of the best things you can do
+
+248
+00:10:29,960 --> 00:10:32,250
+that doesn't take a lot of work is actually staying up to
+
+249
+00:10:32,250 --> 00:10:33,250
+date with Angular.
+
+250
+00:10:33,590 --> 00:10:36,210
+So if we jump back to the terminal here, what we'll see is
+
+251
+00:10:36,210 --> 00:10:38,590
+that I actually created this Angular application on an old
+
+252
+00:10:38,590 --> 00:10:40,680
+version of Angular, it is running version 8.
+
+253
+00:10:40,970 --> 00:10:42,890
+So version 8 is not the latest version.
+
+254
+00:10:43,550 --> 00:10:46,470
+Version 9 as of this filming is the latest version and
+
+255
+00:10:46,560 --> 00:10:47,560
+version 10 is coming out.
+
+256
+00:10:47,970 --> 00:10:50,270
+But it's always the same. So if you're on an out of date
+
+257
+00:10:50,270 --> 00:10:52,730
+version of Angular, your bundle size is going to be bigger
+
+258
+00:10:52,770 --> 00:10:54,980
+and slower than it needs to be. Because what happens is
+
+259
+00:10:55,440 --> 00:10:58,400
+over time, every time we do a release, the Angular team is
+
+260
+00:10:58,400 --> 00:10:59,700
+looking at what can we do better?
+
+261
+00:11:00,200 --> 00:11:02,490
+With the release of version 8, we actually made a huge step
+
+262
+00:11:02,490 --> 00:11:04,780
+forward by automatically doing something called
+
+263
+00:11:04,780 --> 00:11:07,240
+Differential Loading where because we have this opinionated
+
+264
+00:11:07,540 --> 00:11:10,660
+control of the entire toolchain, we understand
+
+265
+00:11:10,870 --> 00:11:12,290
+how to make your production bundles.
+
+266
+00:11:12,290 --> 00:11:15,460
+And so what we did is we said, "Hey, modern browsers
+
+267
+00:11:15,460 --> 00:11:18,210
+are capable of loading JavaScript differently than legacy
+
+268
+00:11:18,210 --> 00:11:20,760
+browsers that don't support something called ES modules.
+
+269
+00:11:21,130 --> 00:11:23,760
+And so using that knowledge, you can actually conditionally
+
+270
+00:11:23,760 --> 00:11:26,640
+force modern browsers to load modern JavaScript
+
+271
+00:11:26,890 --> 00:11:28,970
+and legacy browsers to load legacy JavaScript.
+
+272
+00:11:29,020 --> 00:11:32,230
+And this is a really nice schism that allows you to
+
+273
+00:11:33,060 --> 00:11:35,980
+have two bundles that really gives you the best of both
+
+274
+00:11:35,980 --> 00:11:38,730
+worlds. Where you can ship the smallest, fastest JavaScript
+
+275
+00:11:38,730 --> 00:11:40,610
+to modern browsers that support the most recent
+
+276
+00:11:40,610 --> 00:11:43,610
+capabilities like classes, like modules, all those sorts
+
+277
+00:11:43,610 --> 00:11:46,870
+of things. And you can leave an older legacy
+
+278
+00:11:46,870 --> 00:11:49,290
+bundle for browsers that don't have that kind of support.
+
+279
+00:11:49,370 --> 00:11:51,370
+So we actually did this out of the box by default.
+
+280
+00:11:51,410 --> 00:11:53,920
+So you notice when we were doing those builds, we were
+
+281
+00:11:53,920 --> 00:11:56,960
+actually getting the two JavaScript bundles
+
+282
+00:11:57,170 --> 00:11:59,760
+for each of the files. So we had about-module-es2015.js and
+
+283
+00:11:59,760 --> 00:12:00,760
+we had about-module-es5.js.
+
+284
+00:12:01,630 --> 00:12:03,680
+And so, again, this is one of the changes that the Angular
+
+285
+00:12:04,720 --> 00:12:07,390
+team did behind the scenes without having to make you
+
+286
+00:12:07,390 --> 00:12:09,140
+change any of the code in your application.
+
+287
+00:12:09,180 --> 00:12:11,220
+And this is something we do every single release.
+
+288
+00:12:11,270 --> 00:12:13,100
+And so what we're gonna do now is we're gonna make our
+
+289
+00:12:13,100 --> 00:12:15,650
+application as fresh as possible so we can update to the
+
+290
+00:12:15,690 --> 00:12:18,400
+latest version of Angular and we're gonna automatically get
+
+291
+00:12:18,400 --> 00:12:19,900
+more improvements to our bundle size.
+
+292
+00:12:19,940 --> 00:12:22,240
+This is something that just happens every time you keep
+
+293
+00:12:22,240 --> 00:12:24,400
+your application up to date using Angular.
+
+294
+00:12:24,450 --> 00:12:27,030
+And so we're going to again, use the @angular/cli command
+
+295
+00:12:27,450 --> 00:12:28,450
+and we're going to use "ng update".
+
+296
+00:12:28,990 --> 00:12:30,410
+And we're going to update our application in a couple
+
+297
+00:12:30,450 --> 00:12:32,700
+stages. First, we're going to update the Angular
+
+298
+00:12:33,410 --> 00:12:36,580
+core packages. So core and the core
+
+299
+00:12:36,580 --> 00:12:38,250
+package, as well as the CLI package.
+
+300
+00:12:38,590 --> 00:12:40,000
+And then what we're gonna do is we're going to go and update
+
+301
+00:12:40,000 --> 00:12:42,130
+our dependencies. So we're gonna do it as two steps to make
+
+302
+00:12:42,130 --> 00:12:45,300
+sure that we don't accidentally enter a mistake or an error
+
+303
+00:12:45,380 --> 00:12:47,340
+where our application is no longer compatible with one of
+
+304
+00:12:47,390 --> 00:12:49,550
+those dependencies. So let's go ahead and get this started.
+
+305
+00:12:49,550 --> 00:12:52,600
+So I'm going to run "ng update" and what we're gonna do
+
+306
+00:12:52,600 --> 00:12:55,810
+is going to pass it angular/cli and angular/core.
+
+307
+00:12:56,650 --> 00:12:59,230
+Now, if you were on an even older version, what we do is we
+
+308
+00:12:59,230 --> 00:13:01,940
+recommend that you go one version at a time just so we can
+
+309
+00:13:01,940 --> 00:13:03,070
+apply things cleanly.
+
+310
+00:13:03,610 --> 00:13:05,280
+And if you want to do that, for example, if you are in
+
+311
+00:13:05,280 --> 00:13:07,610
+version 6, you want to go to version 7, you just say "@7",
+
+312
+00:13:08,280 --> 00:13:10,410
+and that will just do it for you. But we're gonna go all
+
+313
+00:13:10,410 --> 00:13:12,950
+the way from version 8 up to version 9, which is the
+
+314
+00:13:13,200 --> 00:13:15,870
+latest. So I'm going to run this command and
+
+315
+00:13:16,250 --> 00:13:17,790
+theoretically things should work.
+
+316
+00:13:18,170 --> 00:13:19,880
+There's a few places where this might fail.
+
+317
+00:13:20,090 --> 00:13:23,130
+If your repository isn't clean, then what should happen is
+
+318
+00:13:23,130 --> 00:13:24,670
+we're gonna throw this warning, which is what we're seeing
+
+319
+00:13:24,670 --> 00:13:26,470
+right now. "Repository is not clean, please commit".
+
+320
+00:13:26,800 --> 00:13:28,760
+Because what we want is we want you to have a very clean
+
+321
+00:13:28,760 --> 00:13:31,720
+history so that you actually know what the Angular update
+
+322
+00:13:31,720 --> 00:13:34,020
+process did, because this isn't like a normal "ng update"
+
+323
+00:13:34,560 --> 00:13:36,600
+where we're just modifying the node modules of your
+
+324
+00:13:36,600 --> 00:13:39,190
+project. We're actually making changes to your application
+
+325
+00:13:39,480 --> 00:13:41,360
+so that you stay compatible with Angular.
+
+326
+00:13:42,360 --> 00:13:44,110
+And the reason we're able to do this is because the Angular
+
+327
+00:13:44,320 --> 00:13:46,860
+team at Google, we have thousands of projects across
+
+328
+00:13:47,610 --> 00:13:50,280
+Google that are not run by our team that are using Angular.
+
+329
+00:13:50,280 --> 00:13:52,830
+And it's actually, according to Google policy, our
+
+330
+00:13:52,830 --> 00:13:55,700
+responsibility for keeping those applications working as we
+
+331
+00:13:55,700 --> 00:13:58,250
+make breaking changes to Angular. And so, and only way that
+
+332
+00:13:58,250 --> 00:14:00,290
+we can scale is at Google is to build really great
+
+333
+00:14:00,330 --> 00:14:01,750
+automation and really great tooling.
+
+334
+00:14:02,130 --> 00:14:04,380
+And so what we did is we baked that same sort of tooling
+
+335
+00:14:04,380 --> 00:14:06,590
+into the public world, into this "ng update" command.
+
+336
+00:14:06,630 --> 00:14:08,840
+So whenever we need to change a method name, whenever we
+
+337
+00:14:08,840 --> 00:14:10,890
+need to deprecate something, we're going to try and update
+
+338
+00:14:11,010 --> 00:14:12,470
+your application as best we can.
+
+339
+00:14:12,680 --> 00:14:14,140
+And so that's why we always make sure that you want to have
+
+340
+00:14:14,140 --> 00:14:16,600
+a clean history. So we'll just "git add" everything.
+
+341
+00:14:21,150 --> 00:14:23,770
+Commit that, and now we should be able to run our update
+
+342
+00:14:23,770 --> 00:14:24,770
+command.
+
+343
+00:14:27,820 --> 00:14:29,360
+So, again, what's happening behind the scenes?
+
+344
+00:14:29,650 --> 00:14:32,030
+It's going to be downloading and installing the latest
+
+345
+00:14:32,030 --> 00:14:35,160
+version of Angular CLI and then it's going to be updating
+
+346
+00:14:35,160 --> 00:14:37,790
+the packages in application and changing my code where
+
+347
+00:14:38,250 --> 00:14:40,750
+needed. And so if there's any sort of migrations what
+
+348
+00:14:40,750 --> 00:14:42,790
+should happen is while you're doing the update process,
+
+349
+00:14:43,000 --> 00:14:45,590
+it's going to report what migrations it's doing.
+
+350
+00:14:45,670 --> 00:14:48,260
+So you can see in your workspace migration, so it made a
+
+351
+00:14:48,260 --> 00:14:49,970
+few changes to the workspace layout.
+
+352
+00:14:50,010 --> 00:14:51,760
+So you can see it updated my angular.json file, it updated
+
+353
+00:14:51,840 --> 00:14:54,350
+my tsconfig.app, it updated the package.json.
+
+354
+00:14:54,550 --> 00:14:57,100
+And so it's making all of these migrations, even ones that
+
+355
+00:14:57,100 --> 00:14:59,100
+don't really have any changes to my app.
+
+356
+00:14:59,350 --> 00:15:02,270
+It's still double checking all those things so that we know
+
+357
+00:15:02,270 --> 00:15:03,940
+that my application is going to keep working.
+
+358
+00:15:04,400 --> 00:15:06,020
+Now, there's a couple other places that you can look for
+
+359
+00:15:06,110 --> 00:15:07,480
+the latest information.
+
+360
+00:15:08,030 --> 00:15:10,320
+You'll notice here at the very, very bottom of the update,
+
+361
+00:15:10,900 --> 00:15:12,950
+it actually says "for more information, please see this
+
+362
+00:15:12,950 --> 00:15:15,700
+link". And so we actually have guides on what changes we're
+
+363
+00:15:15,700 --> 00:15:17,950
+making behind the scenes with every version of Angular, so
+
+364
+00:15:17,950 --> 00:15:18,950
+you can know about things like deprecations.
+
+365
+00:15:19,500 --> 00:15:21,790
+You can know about things like removals and changes to the
+
+366
+00:15:21,790 --> 00:15:22,870
+way that the APIs work.
+
+367
+00:15:23,420 --> 00:15:25,920
+On the other one that I want to point you out to would be
+
+368
+00:15:26,000 --> 00:15:27,000
+update.angular.io.
+
+369
+00:15:28,300 --> 00:15:30,510
+So behind the scenes, when you ran "ng update", we made a
+
+370
+00:15:30,510 --> 00:15:32,680
+lot of changes to your project. And so, if you actually
+
+371
+00:15:32,680 --> 00:15:35,470
+wanted to see what you need to do, you can just go to the
+
+372
+00:15:35,640 --> 00:15:37,220
+update guide. And you can say "show me how to update".
+
+373
+00:15:37,260 --> 00:15:39,890
+And we'll say, "Oh, make sure you're on the latest version
+
+374
+00:15:39,890 --> 00:15:41,230
+here. Make sure using this version of node".
+
+375
+00:15:41,770 --> 00:15:43,600
+It walks you through the changes that are going to affect
+
+376
+00:15:43,600 --> 00:15:46,650
+you as a developer. And you can even tune this based on the
+
+377
+00:15:46,770 --> 00:15:49,030
+number and amount of features and the depth and complexity
+
+378
+00:15:49,030 --> 00:15:50,030
+of your usage of Angular.
+
+379
+00:15:50,320 --> 00:15:52,740
+Because most applications don't care about all of
+
+380
+00:15:53,280 --> 00:15:55,570
+the changes we're making under the hood. But let's say you
+
+381
+00:15:55,660 --> 00:15:57,280
+have a large application, you have several hundred
+
+382
+00:15:57,280 --> 00:15:58,740
+components. You have component libraries.
+
+383
+00:15:58,740 --> 00:15:59,870
+You're using things like Universal.
+
+384
+00:16:00,120 --> 00:16:01,370
+You can check these boxes.
+
+385
+00:16:01,710 --> 00:16:04,040
+And what we'll do is we'll show you all of the information
+
+386
+00:16:04,040 --> 00:16:05,750
+about the update, all of the changes we're making behind
+
+387
+00:16:05,750 --> 00:16:08,290
+the scenes. So you can have a full, complete understanding
+
+388
+00:16:08,290 --> 00:16:10,670
+what's going on. And the other way you can do it, is if you
+
+389
+00:16:10,670 --> 00:16:13,300
+just take a look at the git history, you can now go in and
+
+390
+00:16:13,300 --> 00:16:14,930
+see what all the changes we made were.
+
+391
+00:16:14,930 --> 00:16:17,390
+So, for example, when we move to version 9, we turned on
+
+392
+00:16:17,470 --> 00:16:20,390
+ahead-of-time compilation by default.
+
+393
+00:16:20,390 --> 00:16:22,480
+So that's gonna make your build a lot faster.
+
+394
+00:16:22,520 --> 00:16:24,980
+You can see that we've installed all the dependencies.
+
+395
+00:16:25,310 --> 00:16:27,310
+And not just on Angular, we've also installed things like
+
+396
+00:16:27,360 --> 00:16:28,650
+rxjs to the latest version.
+
+397
+00:16:29,570 --> 00:16:32,070
+We've updated your components so that they actually
+
+398
+00:16:32,150 --> 00:16:33,860
+continue working as we make changes to Angular.
+
+399
+00:16:34,450 --> 00:16:35,570
+So this is really, really powerful.
+
+400
+00:16:35,860 --> 00:16:38,910
+And then we can actually do a test to see if this works.
+
+401
+00:16:38,950 --> 00:16:42,040
+Let's just run "ng serve" and we can say, "Yes,
+
+402
+00:16:42,450 --> 00:16:45,120
+let's let Google Analytics track some of our CLI usage
+
+403
+00:16:45,210 --> 00:16:46,210
+anonymously".
+
+404
+00:16:47,080 --> 00:16:49,540
+And what will happen is when we return back to the browser
+
+405
+00:16:49,540 --> 00:16:51,840
+window, we're gonna get the latest version of Angular and
+
+406
+00:16:51,840 --> 00:16:53,720
+our app is generally just gonna keep working.
+
+407
+00:16:54,510 --> 00:16:57,260
+And then the way that this really affects you is not only
+
+408
+00:16:57,260 --> 00:16:59,050
+keeping you up to date as a developer, making sure using
+
+409
+00:16:59,050 --> 00:17:01,350
+best practices, but again, it's also going to improve the
+
+410
+00:17:01,350 --> 00:17:02,470
+performance of your application.
+
+411
+00:17:02,890 --> 00:17:05,310
+One of the things that you're going to see is
+
+412
+00:17:06,310 --> 00:17:08,100
+every time we make an update to Angular we're trying to
+
+413
+00:17:08,100 --> 00:17:10,320
+look for ways to making your more tree shakeable, to make
+
+414
+00:17:10,480 --> 00:17:11,480
+your build system better.
+
+415
+00:17:11,940 --> 00:17:14,030
+And so there's lots of experimentation, lots of ideation
+
+416
+00:17:14,030 --> 00:17:16,780
+going on there because the state of bundlers in JavaScript
+
+417
+00:17:16,990 --> 00:17:19,780
+are not static. Webpack keeps getting better, Rollup keeps
+
+418
+00:17:19,950 --> 00:17:21,490
+getting better, terser keeps getting better.
+
+419
+00:17:21,740 --> 00:17:23,870
+And these tools are changing, and they're evolving and the
+
+420
+00:17:23,870 --> 00:17:25,330
+way that they relate to each other is changing.
+
+421
+00:17:25,330 --> 00:17:27,670
+And so what we do is as the Angular team, we're trying to
+
+422
+00:17:27,670 --> 00:17:29,040
+stay on top of that for you.
+
+423
+00:17:29,330 --> 00:17:31,340
+And so let's go ahead and refresh.
+
+424
+00:17:31,710 --> 00:17:34,460
+And if we take a look in the DevTools, we should see we are
+
+425
+00:17:34,460 --> 00:17:36,800
+now on the latest version of Angular so 9.1.9 at the
+
+426
+00:17:37,720 --> 00:17:39,680
+ready. But whenever you use "ng update", it's just gonna
+
+427
+00:17:39,680 --> 00:17:41,430
+move you to the latest version. It's gonna do that
+
+428
+00:17:41,510 --> 00:17:44,140
+automatically for you so that you are staying up to date.
+
+429
+00:17:44,220 --> 00:17:45,770
+Staying fresh. Staying fast.
+
+430
+00:17:46,390 --> 00:17:48,190
+So once you've updated Angular and you've updated the CLI.
+
+431
+00:17:50,150 --> 00:17:51,900
+Now what I'm gonna do is I'm gonna go and update all the
+
+432
+00:17:51,900 --> 00:17:54,400
+other packages. So if you take a look, for example,
+
+433
+00:17:55,240 --> 00:17:58,490
+we did not in our package.json, we didn't update
+
+434
+00:17:58,910 --> 00:18:00,570
+the CDK or we didn't update @angular/material.
+
+435
+00:18:01,160 --> 00:18:03,330
+So we're going to do one more "ng update" command
+
+436
+00:18:04,580 --> 00:18:06,160
+to update @angular/material and @angular/cdk.
+
+437
+00:18:07,040 --> 00:18:08,540
+You can do with any of your dependencies.
+
+438
+00:18:08,580 --> 00:18:10,580
+A lot of dependencies are starting to support these
+
+439
+00:18:10,830 --> 00:18:12,790
+automatic migrations. This is something we've been pushing
+
+440
+00:18:13,130 --> 00:18:14,750
+very hard for in the ecosystem.
+
+441
+00:18:26,640 --> 00:18:28,140
+Let's just run that "ng update @angular/material
+
+442
+00:18:28,140 --> 00:18:29,730
+@angular/cdk" command again.
+
+443
+00:18:30,310 --> 00:18:32,020
+And again, it's fetching the latest version of those
+
+444
+00:18:32,020 --> 00:18:33,770
+packages. It's updating their dependencies in your
+
+445
+00:18:33,820 --> 00:18:36,400
+package.json. And then it's going to execute any migrations
+
+446
+00:18:36,570 --> 00:18:38,950
+that you need to be on the latest version.
+
+447
+00:18:42,320 --> 00:18:44,700
+And I think we're just going to run "ng serve" one last
+
+448
+00:18:44,700 --> 00:18:47,330
+time and we will see that our entire application kept on
+
+449
+00:18:47,330 --> 00:18:50,290
+working and our bundle size should have gotten a little bit
+
+450
+00:18:50,290 --> 00:18:53,590
+better. Then again, it's doing a little bit of compiling
+
+451
+00:18:53,630 --> 00:18:56,340
+ahead of time. Generally, this is a temporary thing that
+
+452
+00:18:56,420 --> 00:18:59,300
+you're going to see with Ivy and with version 9, so we do
+
+453
+00:18:59,300 --> 00:19:00,300
+this extra compilation.
+
+454
+00:19:00,800 --> 00:19:03,260
+That's really to offer the latest version of Angular and
+
+455
+00:19:03,300 --> 00:19:05,100
+the latest features of Angular while still staying
+
+456
+00:19:05,100 --> 00:19:06,970
+compatible with the rest of the ecosystem.
+
+457
+00:19:07,060 --> 00:19:10,020
+So this is just a extra compilation step the Angular
+
+458
+00:19:10,230 --> 00:19:11,900
+team does to optimize things.
+
+459
+00:19:14,360 --> 00:19:16,320
+All right. As soon as this completion is complete, what
+
+460
+00:19:16,320 --> 00:19:18,190
+we're gonna see is we're going to be on the latest version
+
+461
+00:19:18,190 --> 00:19:20,740
+of Angular. And again, we updated the package.json.
+
+462
+00:19:21,280 --> 00:19:23,620
+So just all the dependencies, including removing
+
+463
+00:19:24,410 --> 00:19:27,240
+things like hammer.js and our application should just keep
+
+464
+00:19:27,410 --> 00:19:28,620
+working. Yep. There it is.
+
+465
+00:19:28,950 --> 00:19:29,950
+We have a great
+
+466
+00:19:32,120 --> 00:19:34,080
+dashboard, just like we had before right in the beginning.
+
+467
+00:19:34,080 --> 00:19:35,250
+Everything works, everything animates.
+
+468
+00:19:35,920 --> 00:19:36,920
+We're now on the latest version of Angular.
+
+469
+00:19:37,500 --> 00:19:39,510
+We're now in the latest version material and the CDK.
+
+470
+00:19:39,840 --> 00:19:42,380
+And our application is as fast as we can be because we're
+
+471
+00:19:42,590 --> 00:19:44,510
+budgeting. We're making sure that we're understanding our
+
+472
+00:19:44,550 --> 00:19:46,430
+application, making sure it doesn't grow over time.
+
+473
+00:19:46,930 --> 00:19:49,640
+We're analyzing the application bundle size with source
+
+474
+00:19:49,640 --> 00:19:52,440
+maps. And we're doing things like lazy loading so that we
+
+475
+00:19:52,640 --> 00:19:54,980
+only make users pay for the features that they're using at
+
+476
+00:19:54,980 --> 00:19:55,980
+the current time.
+
+477
+00:19:56,400 --> 00:19:58,190
+That's going to be it for us. Thank you so much for
+

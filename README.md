@@ -11,7 +11,9 @@ The code could easily be adapted to work with caption files from other playlists
 ## Installation and usage
 
 1. Clone or download the code.
-2. Add your SRT caption files to the [_input_](src/srt) directory.
+2. Add your SRT caption files to the [_input_](src/srt) directory. See 
+[get-youtube-captions.md](get-youtube-captions.md) for instructions on how to 
+how to retrieve caption files for YouTube videos.
 3. From a terminal `cd` to the `src` directory and run `node index.js -s`,
 optionally setting flags (see below). This creates HTML for readable transcripts (in the [docs](docs) folder) and builds the search index if the `-s` flag is set.
 4. Progress updates and errors are logged to the console.

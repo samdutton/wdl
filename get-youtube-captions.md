@@ -6,7 +6,7 @@ save a caption (transcript) file for each video.
 
 Other video hosting services provide similar APIs.
 
-## YouTube Data APIs
+## Download captions using the YouTube Data APIs
 
 YouTube provides APIs to get playlist video IDs and caption tracks: see 
 [developers.google.com/youtube/v3/docs/captions](https://developers.google.com/youtube/v3/docs/captions). 
@@ -21,7 +21,7 @@ provides more information, examples and API Explorer functionality:
 
 • [Captions:download](https://developers.google.com/youtube/v3/docs/captions/download)
 
-## youtube-dl
+## Download captions using youtube-dl
 
 [youtube-dl](https://github.com/ytdl-org/youtube-dl/blob/master/README.md#readme) 
 is a Node command-line program for downloading videos and video data from YouTube. 

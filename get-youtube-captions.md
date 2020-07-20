@@ -2,7 +2,7 @@
 
 Before building an app to enable search and readable transcripts for YouTube 
 videos, you will need to download automatic and/or manual video captions and 
-save a caption (transcript) file for each video.
+create a caption (transcript) file for each video.
 
 Other video hosting services provide similar APIs.
 
@@ -11,11 +11,11 @@ Other video hosting services provide similar APIs.
 YouTube provides APIs to get playlist video IDs and caption tracks: see 
 [developers.google.com/youtube/v3/docs/captions](https://developers.google.com/youtube/v3/docs/captions). 
 
-[youtube-data-api](https://github.com/samdutton/youtube-data-api) demonstrates 
-how to use these APIs to get video transcripts for one or more playlists.
+[youtube-data-api](https://github.com/samdutton/youtube-data-api/blob/master/index.js) 
+demonstrates how to use these APIs to get video transcripts for one or more playlists.
 
 Accessing these APIs requires authorisation and incurs quota cost. YouTube 
-provides more information, examples and API Explorer functionality:
+provides more information, examples and an API Explorer for each API:
 
 • [Captions:list](https://developers.google.com/youtube/v3/docs/captions/list)
 
